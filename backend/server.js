@@ -27,6 +27,7 @@ app.post("/users", async (req, res) => {
     }
 })
 
+//CRUD function for Stats collection
 app.post("/stats", async (req, res) => {
     // Store stat data
     try {
@@ -40,6 +41,47 @@ app.post("/stats", async (req, res) => {
         res.status(400).send(JSON.stringify(error))
     }
 })
+
+app.get("/stats", async (req, res) => {
+    client.db("UniStatDB").collection("Stats").find({}).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        res.send(result); // send back all stats
+    }
+    )
+})
+
+app.put("/stats", async (req, res) => {
+    // Update stat data
+    try {
+        await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
+        var jsonResp = {
+            "status": `Stat updated for ${req.body.userEmail}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+app.delete("/stats", async (req, res) => {
+    // Delete stat data
+    try {
+        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+        var jsonResp = {
+            "status": `Stat deleted for ${req.body.userEmail}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+
 
 var server = app.listen(8081, (req, res) => {
     var host = server.address().address;
@@ -58,7 +100,6 @@ async function run() {
 }
 
 async function storeGoogleUserData(idToken) {
-    var res = false
     const response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
     console.log(response.data)
 
