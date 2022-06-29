@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileActivity">
+
+    <EditText
+        android:id="@+id/univNameInput"
+        android:layout_width="262dp"
+        android:layout_height="45dp"
+        android:autofillHints="University Name"
+        android:ems="10"
+        android:hint="@string/univ_name_input"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterProfileInfoPrompt"
+        app:layout_constraintVertical_bias="0.139" />
+
+    <EditText
+        android:id="@+id/univMajorInput"
+        android:layout_width="262dp"
+        android:layout_height="45dp"
+        android:autofillHints="University Major"
+        android:ems="10"
+        android:hint="@string/univ_major_input"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/univNameInput"
+        app:layout_constraintVertical_bias="0.095" />
+
+    <EditText
+        android:id="@+id/univGpaInput"
+        android:layout_width="262dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/univ_grade_input"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/univMajorInput"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <EditText
+        android:id="@+id/univEntranceScoreInput"
+        android:layout_width="262dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/univ_entrance_input"
+        android:importantForAutofill="no"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/univGpaInput"
+        app:layout_constraintVertical_bias="0.191" />
+
+    <Button
+        android:id="@+id/nextUserProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/next_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/univEntranceScoreInput"
+        app:layout_constraintVertical_bias="0.571" />
+
+    <TextView
+        android:id="@+id/enterProfileInfoPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/user_profile_prompt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.108" />
+</androidx.constraintlayout.widget.ConstraintLayout>

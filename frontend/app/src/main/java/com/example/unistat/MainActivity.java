@@ -1,21 +1,17 @@
 package com.example.unistat;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,9 +22,6 @@ import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -81,33 +74,32 @@ public class MainActivity extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            String idToken = account.getIdToken();
 
             // TODO(developer): send ID Token to server and validate
-            serverAuth(idToken);
+            serverAuth(account);
 
             // Signed in successfully, show authenticated UI.
-            updateUI(account);
+//            updateUI(account);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null);
+            updateUI(null, false);
         }
     }
 
-    private void serverAuth(String idToken) {
+    private void serverAuth(GoogleSignInAccount account) {
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        String URL = "http://192.168.0.16:8081/users";
+        String URL = "http://10.0.2.2:8081/users";
 
         JSONObject body = new JSONObject();
         try {
-            body.put("Token", idToken);
+            body.put("Token", account.getIdToken());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+        JsonObjectRequest postUserTokenRequest = new JsonObjectRequest(
                 Request.Method.POST,
                 URL,
                 body,
@@ -115,6 +107,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            Boolean isLoggedIn = response.get("status").toString().equals("loggedIn");
+                            updateUI(account, isLoggedIn);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -125,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
 
-        requestQueue.add(jsonObjectRequest);
+        requestQueue.add(postUserTokenRequest);
     }
 
     @Override
@@ -134,10 +132,10 @@ public class MainActivity extends AppCompatActivity {
         // Check for existing Google Sign In account, if the user is already signed in
         // the GoogleSignInAccount will be non-null.
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        updateUI(account);
+        updateUI(account, true);
     }
 
-    private void updateUI(GoogleSignInAccount account) {
+    private void updateUI(GoogleSignInAccount account, Boolean isLoggedIn) {
         if (account == null){
             Log.d(TAG, "There is no user signed in!");
         }
@@ -151,10 +149,17 @@ public class MainActivity extends AppCompatActivity {
             //send token to your back-end
 
             //move to another activity only after sign-in!
-            Intent signOutEvent = new Intent(MainActivity.this, signOutActivity.class);
+            Intent openUserStatus = new Intent(MainActivity.this, UserStatusActivity.class);
+            Intent openSignOut = new Intent(MainActivity.this, SignOutActivity.class);
 
-            startActivity(signOutEvent);
-
+            if (!isLoggedIn) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userEmailId", account.getEmail());
+                openUserStatus.putExtras(bundle);
+                startActivity(openUserStatus);
+            } else {
+                startActivity(openSignOut);
+            }
         }
     }
 

@@ -27,6 +27,20 @@ app.post("/users", async (req, res) => {
     }
 })
 
+app.post("/stats", async (req, res) => {
+    // Store stat data
+    try {
+        await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+        var jsonResp = {
+            "status": `Stat stored for ${req.body.userEmail}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
 var server = app.listen(8081, (req, res) => {
     var host = server.address().address;
     var port = server.address().port;
@@ -61,5 +75,6 @@ async function storeGoogleUserData(idToken) {
     console.log("num existing users: ", lenUsers)
     return lenUsers > 0 ? true : false
 }
+
 
 run()

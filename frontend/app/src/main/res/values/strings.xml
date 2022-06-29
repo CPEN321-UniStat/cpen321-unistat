@@ -2,4 +2,14 @@
     <string name="app_name">UniStat</string>
     <string name="sign_out_button_text">Sign Out</string>
     <string name="server_client_id">572477064370-885bs334uv17fhubimtof6su24mf0pp8.apps.googleusercontent.com</string>
+    <string name="user_status_question_text">Which of the following apply to you?</string>
+    <string name="hs_student_button_text">I am a High School Student</string>
+    <string name="univ_student_button_text">I am a University Student/Graduate</string>
+    <string name="next_button_text">next</string>
+    <string name="univ_name_input">Your University</string>
+    <string name="univ_grade_input">Your Current University GPA</string>
+    <string name="univ_major_input">Your Major</string>
+    <string name="univ_entrance_input">Your SAT/Entrance-exam score</string>
+    <string name="user_profile_prompt">Kindly enter your university details below.</string>
+
 </resources>

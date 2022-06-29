@@ -15,7 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class signOutActivity extends AppCompatActivity {
+public class SignOutActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
     private Button signOutButton;
@@ -43,7 +43,7 @@ public class signOutActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.d(TAG, "logged out");
-                        Intent openMainActivity = new Intent(signOutActivity.this, MainActivity.class);
+                        Intent openMainActivity = new Intent(SignOutActivity.this, MainActivity.class);
                         openMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(openMainActivity);
                     }
