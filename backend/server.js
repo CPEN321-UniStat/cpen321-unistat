@@ -53,6 +53,39 @@ app.get("/stats", async (req, res) => {
     )
 })
 
+app.get("/statsByFilter", async (req, res) => {
+    client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        res.send(result); // send back all stats with filter applied
+    }
+    )
+})
+
+app.get("/statsBySorting", async (req, res) => {
+    client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        res.send(result.reverse()); // send back all stats sorted applied
+    }
+    )
+})  
+
+app.get("/statsByConfiguration", async (req, res) => {
+    client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        res.send(result.reverse()); // send back all stats sorted by filter applied
+    }
+    )
+})  
+
 app.put("/stats", async (req, res) => {
     // Update stat data
     try {
