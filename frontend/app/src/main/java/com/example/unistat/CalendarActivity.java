@@ -1,5 +1,6 @@
 package com.example.unistat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
@@ -53,6 +56,34 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
         setupDateTimeInterpreter(false);
+
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.calendar_activity);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.calendar_activity:
+                        return true;
+                    case R.id.view_stats_activity:
+                        startActivity(new Intent(getApplicationContext(),ViewStatsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.sign_out_activity:
+                        startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
     }
 
     private void viewEvent(WeekViewEvent event) {
@@ -210,6 +241,33 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
+        // Initialize and assign variable
+        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+
+        // Set Home selected
+        bottomNavigationView.setSelectedItemId(R.id.calendar_activity);
+
+        // Perform item selected listener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch(item.getItemId())
+                {
+                    case R.id.calendar_activity:
+                        return true;
+                    case R.id.view_stats_activity:
+                        startActivity(new Intent(getApplicationContext(),ViewStatsActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.sign_out_activity:
+                        startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
     }
 }

@@ -12,12 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UniStat"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".EventActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CalendarActivity"
-            android:exported="false" />
+        <activity android:name=".EventActivity"/>
+        <activity android:name=".CalendarActivity"/>
+        <activity android:name=".ViewStatsActivity" />
         <activity android:name=".UserProfileActivity" />
         <activity android:name=".UserStatusActivity" />
         <activity android:name=".SignOutActivity" />
