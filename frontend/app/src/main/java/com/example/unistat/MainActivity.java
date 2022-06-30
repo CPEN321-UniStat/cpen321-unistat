@@ -51,6 +51,18 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
+
+        findViewById(R.id.view_calendar_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewCalendar();
+            }
+        });
+    }
+
+    private void viewCalendar() {
+        Intent viewCalendar = new Intent(MainActivity.this, CalendarActivity.class);
+        startActivity(viewCalendar);
     }
 
     private void signIn() {
@@ -79,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
             serverAuth(account);
 
             // Signed in successfully, show authenticated UI.
-//            updateUI(account);
+            //updateUI(account, true);
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            updateUI(null, false);
+            ///updateUI(null);
         }
     }
 
