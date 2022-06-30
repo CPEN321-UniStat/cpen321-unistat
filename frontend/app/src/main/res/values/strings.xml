@@ -11,5 +11,8 @@
     <string name="univ_major_input">Your Major</string>
     <string name="univ_entrance_input">Your SAT/Entrance-exam score</string>
     <string name="user_profile_prompt">Kindly enter your university details below.</string>
+    <string name="calendar">Calendar</string>
+    <string name="view_stats">View Stats</string>
+    <string name="profile">Profile</string>
 
 </resources>

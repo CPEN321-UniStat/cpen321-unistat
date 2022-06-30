@@ -51,8 +51,9 @@ public class UserProfileActivity extends AppCompatActivity {
                     Toast.makeText(UserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
                 } else {
                     createStatInDB();
-                    Intent openSignOut = new Intent(UserProfileActivity.this, SignOutActivity.class);
-                    startActivity(openSignOut);
+//                    Intent openSignOut = new Intent(UserProfileActivity.this, SignOutActivity.class);
+                    Intent openViewStats = new Intent(UserProfileActivity.this, ViewStatsActivity.class);
+                    startActivity(openViewStats);
                 }
             }
         });

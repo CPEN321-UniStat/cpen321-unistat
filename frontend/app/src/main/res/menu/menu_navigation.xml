@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/calendar_activity"
+        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:title="@string/calendar" />
+    <item
+        android:id="@+id/view_stats_activity"
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/view_stats" />
+
+    <item
+        android:id="@+id/sign_out_activity"
+        android:title="@string/profile"
+        android:icon="@android:drawable/ic_menu_preferences"/>
+
+</menu>

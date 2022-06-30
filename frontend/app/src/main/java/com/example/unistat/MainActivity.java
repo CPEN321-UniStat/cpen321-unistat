@@ -150,7 +150,8 @@ public class MainActivity extends AppCompatActivity {
 
             //move to another activity only after sign-in!
             Intent openUserStatus = new Intent(MainActivity.this, UserStatusActivity.class);
-            Intent openSignOut = new Intent(MainActivity.this, SignOutActivity.class);
+//            Intent openSignOut = new Intent(MainActivity.this, SignOutActivity.class);
+            Intent openViewStats = new Intent(MainActivity.this, ViewStatsActivity.class);
 
             if (!isLoggedIn) {
                 Bundle bundle = new Bundle();
@@ -158,7 +159,8 @@ public class MainActivity extends AppCompatActivity {
                 openUserStatus.putExtras(bundle);
                 startActivity(openUserStatus);
             } else {
-                startActivity(openSignOut);
+//                startActivity(openSignOut);
+                startActivity(openViewStats);
             }
         }
     }
