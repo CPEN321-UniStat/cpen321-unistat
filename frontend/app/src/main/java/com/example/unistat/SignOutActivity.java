@@ -21,6 +21,7 @@ public class SignOutActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
     private Button signOutButton;
+    private Button viewProfileButton;
     private GoogleSignInClient mGoogleSignInClient;
     private Boolean shouldAllowBack = false;
 
@@ -34,6 +35,14 @@ public class SignOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signOut();
+            }
+        });
+
+        viewProfileButton = findViewById(R.id.view_profile_button);
+        viewProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignOutActivity.this, UserProfileActivity.class));
             }
         });
 

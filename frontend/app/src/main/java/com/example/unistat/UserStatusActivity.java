@@ -27,7 +27,7 @@ public class UserStatusActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (checked) {
 //                    Intent openSignOut = new Intent(UserStatusActivity.this, SignOutActivity.class);
-                    Intent openUserProfile = new Intent(UserStatusActivity.this, UserProfileActivity.class);
+                    Intent openUserProfile = new Intent(UserStatusActivity.this, CreateUserProfileActivity.class);
                     Intent openViewStats = new Intent(UserStatusActivity.this, ViewStatsActivity.class);
                     if (isHighSchoolStudent) // Mentee
                         startActivity(openViewStats);
