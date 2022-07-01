@@ -20,9 +20,18 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_700"
+        app:menu="@menu/menu_navigation"
+        app:backgroundTint="@color/purple_500"
+        app:itemRippleColor="@drawable/selector"
+        app:itemActiveIndicatorStyle="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
-        app:menu="@menu/menu_navigation" />
+        app:itemTextAppearanceActive="@drawable/selector"
+        app:itemIconSize="40dp"
+        app:itemPaddingTop="5dp"
+        app:itemPaddingBottom="5dp"
+        app:labelVisibilityMode="unlabeled"
+        />
 
 </RelativeLayout>
+

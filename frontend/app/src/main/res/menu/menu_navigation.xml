@@ -3,16 +3,19 @@
 
     <item
         android:id="@+id/calendar_activity"
+        android:enabled="true"
         android:icon="@android:drawable/ic_menu_my_calendar"
         android:title="@string/calendar" />
     <item
         android:id="@+id/view_stats_activity"
-        android:icon="@android:drawable/ic_dialog_dialer"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="@string/view_stats" />
 
     <item
         android:id="@+id/sign_out_activity"
-        android:title="@string/profile"
-        android:icon="@android:drawable/ic_menu_preferences"/>
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/profile" />
 
 </menu>
