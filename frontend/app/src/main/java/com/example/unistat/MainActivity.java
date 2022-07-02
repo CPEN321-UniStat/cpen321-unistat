@@ -51,18 +51,6 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
-
-        findViewById(R.id.view_calendar_button).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewCalendar();
-            }
-        });
-    }
-
-    private void viewCalendar() {
-        Intent viewCalendar = new Intent(MainActivity.this, CalendarActivity.class);
-        startActivity(viewCalendar);
     }
 
     private void signIn() {

@@ -11,4 +11,17 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
     }
+
+    // respondToMeeting(Event meeting)
+
+    //{
+        //          meetingid,
+        //          mentorEmail,
+        //          menteeEmail,
+        //          paymentAmount,
+        //          status (accepted/denied/pending),
+        //          startTime,
+        //          endTime,
+        //          dataLog
+        //      },
 }

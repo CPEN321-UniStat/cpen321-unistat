@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
     private static final int TYPE_DAY_VIEW = 1;
-    private static final int TYPE_THREE_DAY_VIEW = 2;
+    private static final int TYPE_THREE_DAY_VIEW = 6;
     private static final int TYPE_WEEK_VIEW = 3;
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
@@ -36,7 +36,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         setContentView(R.layout.activity_calendar);
 
         // Get a reference for the week view in the layout.
-        mWeekView = (WeekView) findViewById(R.id.weekView);
+        mWeekView = findViewById(R.id.weekView);
 
         // Set an action when any event is clicked.
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
@@ -126,6 +126,37 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         // Populate the week view with some events.
+
+        // List <Strings> getMeetingIds(emailAddress)
+        // return a list of meeting ids for the current user. Fetches from the userDB
+        // [123, 1234, 125]
+
+        // viewCalendar(meetingIds)
+        // returns a JSON list of events (in a changeable time period)
+        // {
+        //      {
+        //          meetingid,
+        //          mentorEmail,
+        //          menteeEmail,
+        //          paymentAmount,
+        //          status (accepted/denied/pending),
+        //          startTime,
+        //          endTime,
+        //          dataLog
+        //      },
+        //      {
+        //          meetingid,
+        //          mentorEmail,
+        //          menteeEmail,
+        //          paymentAmount,
+        //          status (accepted/denied/pending),
+        //          startTime,
+        //          endTime,
+        //          dataLog
+        //      }
+        // }
+
+
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
 
         Calendar startTime = Calendar.getInstance();
