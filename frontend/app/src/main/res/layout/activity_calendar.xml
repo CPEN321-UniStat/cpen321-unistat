@@ -20,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
+        app:menu="@menu/menu_navigation"
         app:backgroundTint="@color/purple_500"
         app:itemRippleColor="@drawable/selector"
         app:itemActiveIndicatorStyle="@drawable/selector"
@@ -29,7 +30,6 @@
         app:itemIconSize="40dp"
         app:itemPaddingTop="5dp"
         app:itemPaddingBottom="5dp"
-        app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/menu_navigation" />
+        app:labelVisibilityMode="unlabeled" />
 
 </RelativeLayout>

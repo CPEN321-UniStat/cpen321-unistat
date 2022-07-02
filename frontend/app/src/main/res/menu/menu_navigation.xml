@@ -4,7 +4,7 @@
     <item
         android:id="@+id/calendar_activity"
         android:enabled="true"
-        android:icon="@android:drawable/ic_menu_my_calendar"
+        android:icon="@drawable/ic_baseline_calendar_today_24"
         android:title="@string/calendar" />
     <item
         android:id="@+id/view_stats_activity"
