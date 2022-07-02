@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.UniStat"
+        android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
             android:windowSoftInputMode="adjustPan"
@@ -21,7 +21,9 @@
             android:windowSoftInputMode="adjustPan"
             android:name=".CreateUserProfileActivity" />
         <activity android:name=".UserStatusActivity" />
-        <activity android:name=".SignOutActivity" />
+        <activity android:name=".SignOutActivity"
+            android:configChanges="uiMode"
+            />
         <activity
             android:name=".MainActivity"
             android:exported="true">
