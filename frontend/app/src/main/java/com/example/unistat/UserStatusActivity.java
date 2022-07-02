@@ -9,11 +9,13 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class UserStatusActivity extends AppCompatActivity {
 
     private Boolean isHighSchoolStudent = false;
     private Boolean checked = false;
-    private Button nextButton;
+    private FloatingActionButton nextButton;
     private Boolean shouldAllowBack = false;
 
     @Override

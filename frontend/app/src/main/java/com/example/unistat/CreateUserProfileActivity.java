@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,11 +26,12 @@ import org.json.JSONObject;
 public class CreateUserProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "UserProfileActivity";
-    private EditText userUnivName;
-    private EditText userUnivMajor;
-    private EditText userUnivGpa;
-    private EditText userUnivEntranceScore;
-    private Button nextButton;
+    private TextInputLayout userUnivName;
+    private TextInputLayout userUnivMajor;
+    private TextInputLayout userUnivGpa;
+    private TextInputLayout userUnivEntranceScore;
+    private TextInputLayout userUnivBio;
+    private FloatingActionButton nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,15 +42,17 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         userUnivMajor = findViewById(R.id.univMajorInput);
         userUnivGpa = findViewById(R.id.univGpaInput);
         userUnivEntranceScore = findViewById(R.id.univEntranceScoreInput);
+        userUnivBio = findViewById(R.id.univUserBio);
 
         nextButton = findViewById(R.id.nextUserProfileButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(userUnivName.getText())
-                        || TextUtils.isEmpty(userUnivMajor.getText())
-                        || TextUtils.isEmpty(userUnivGpa.getText())
-                        || TextUtils.isEmpty(userUnivEntranceScore.getText())) {
+                if (TextUtils.isEmpty(userUnivName.getEditText().getText())
+                        || TextUtils.isEmpty(userUnivMajor.getEditText().getText())
+                        || TextUtils.isEmpty(userUnivGpa.getEditText().getText())
+                        || TextUtils.isEmpty(userUnivEntranceScore.getEditText().getText())
+                        || TextUtils.isEmpty(userUnivBio.getEditText().getText())) {
                     Toast.makeText(CreateUserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
                 } else {
                     createStatInDB();
@@ -68,10 +73,11 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         String userEmailId = bundle.getString("userEmailId");
         try {
             body.put("userEmail", userEmailId);
-            body.put("univName", userUnivName.getText());
-            body.put("univMajor", userUnivMajor.getText());
-            body.put("univGpa", userUnivGpa.getText());
-            body.put("univEntranceScore", userUnivEntranceScore.getText());
+            body.put("univName", userUnivName.getEditText().getText());
+            body.put("univMajor", userUnivMajor.getEditText().getText());
+            body.put("univGpa", userUnivGpa.getEditText().getText());
+            body.put("univEntranceScore", userUnivEntranceScore.getEditText().getText());
+            body.put("univBio", userUnivBio.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }

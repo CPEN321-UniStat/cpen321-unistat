@@ -160,7 +160,6 @@ public class UserProfileActivity extends AppCompatActivity {
                             JSONArray statArray = (JSONArray) response.get("statData");
                             JSONObject userStat;
                             if (statArray.length() <= 0) { // if mentee then not much to show
-                                Log.d(TAG, "here" + statArray.length());
                                 editUserUnivName.setVisibility(View.GONE);
                                 editUserUnivMajor.setVisibility(View.GONE);
                                 editUserUnivGpa.setVisibility(View.GONE);
