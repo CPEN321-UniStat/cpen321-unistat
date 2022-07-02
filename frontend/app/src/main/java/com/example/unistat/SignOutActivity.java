@@ -39,8 +39,6 @@ public class SignOutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             setTheme(R.style.Theme_Dark);
         }
@@ -48,6 +46,7 @@ public class SignOutActivity extends AppCompatActivity {
             setTheme(R.style.Theme_Light);
         }
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_out);
 
         signOutButton = findViewById(R.id.sign_out_button);
@@ -100,6 +99,18 @@ public class SignOutActivity extends AppCompatActivity {
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 }
+                new Handler().post(new Runnable() {
+
+                    @Override
+                    public void run()
+                    {
+                        overridePendingTransition(0, 0);
+                        finish();
+
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+                    }
+                });
             }
         });
 
