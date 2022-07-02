@@ -30,8 +30,11 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
 
+    private Boolean shouldAllowBack = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
@@ -301,4 +304,14 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBack) {
+            super.onBackPressed();
+        } else {
+            //
+        }
+    }
+
 }

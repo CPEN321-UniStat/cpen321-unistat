@@ -2,6 +2,7 @@ package com.example.unistat;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +11,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ViewStatsActivity extends AppCompatActivity {
-
+    private Boolean shouldAllowBack = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,4 +45,14 @@ public class ViewStatsActivity extends AppCompatActivity {
                 }
             });
         }
+
+    @Override
+    public void onBackPressed() {
+        if (shouldAllowBack) {
+            super.onBackPressed();
+        } else {
+            //
+        }
+    }
+
 }

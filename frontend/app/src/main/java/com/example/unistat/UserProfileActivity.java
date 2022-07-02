@@ -2,13 +2,10 @@ package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -17,73 +14,117 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputLayout;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "UserProfileActivity";
-    private EditText userUnivName;
-    private EditText userUnivMajor;
-    private EditText userUnivGpa;
-    private EditText userUnivEntranceScore;
-    private Button nextButton;
+    private TextInputLayout editUserUnivName;
+    private TextInputLayout editUserUnivMajor;
+    private TextInputLayout editUserUnivGpa;
+    private TextInputLayout editUserUnivEntranceScore;
+    private FloatingActionButton confirmChangesButton;
+    private FloatingActionButton editProfileButton;
+    private TextView userNameText;
+    private TextView userEmailText;
+    private CircleImageView userProfileImage;
+    private RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        userUnivName = findViewById(R.id.univNameInput);
-        userUnivMajor = findViewById(R.id.univMajorInput);
-        userUnivGpa = findViewById(R.id.univGpaInput);
-        userUnivEntranceScore = findViewById(R.id.univEntranceScoreInput);
+        editUserUnivName = findViewById(R.id.editUserUnivInput);
+        editUserUnivMajor = findViewById(R.id.editUserMajorinput);
+        editUserUnivGpa = findViewById(R.id.editUserGpaInput);
+        editUserUnivEntranceScore = findViewById(R.id.editUserEntranceScoreinput);
 
-        nextButton = findViewById(R.id.nextUserProfileButton);
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        editUserUnivName.setEnabled(false);
+        editUserUnivMajor.setEnabled(false);
+        editUserUnivGpa.setEnabled(false);
+        editUserUnivEntranceScore.setEnabled(false);
+
+        userNameText = findViewById(R.id.userNameText);
+        userEmailText = findViewById(R.id.userEmailText);
+        userProfileImage = findViewById(R.id.userProfileImage);
+
+        requestQueue = Volley.newRequestQueue(UserProfileActivity.this);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+        String userEmail = account.getEmail();
+        Log.d(TAG, "User email: " + userEmail);
+        getUserStats(userEmail);
+
+        userNameText.setText(account.getDisplayName());
+        String emailText = "Account for " + account.getEmail();
+        userEmailText.setText(emailText);
+        Picasso.get().load(account.getPhotoUrl()).resize(125, 125).into(userProfileImage);
+
+        confirmChangesButton = findViewById(R.id.confirmChangesButton);
+        confirmChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(userUnivName.getText())
-                        || TextUtils.isEmpty(userUnivMajor.getText())
-                        || TextUtils.isEmpty(userUnivGpa.getText())
-                        || TextUtils.isEmpty(userUnivEntranceScore.getText())) {
-                    Toast.makeText(UserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
-                } else {
-                    createStatInDB();
-//                    Intent openSignOut = new Intent(UserProfileActivity.this, SignOutActivity.class);
-                    Intent openViewStats = new Intent(UserProfileActivity.this, ViewStatsActivity.class);
-                    startActivity(openViewStats);
-                }
+                updateUserStats(userEmail);
+                confirmChangesButton.setVisibility(View.GONE);
+                editProfileButton.setVisibility(View.VISIBLE);
+                editUserUnivName.setEnabled(false);
+                editUserUnivMajor.setEnabled(false);
+                editUserUnivGpa.setEnabled(false);
+                editUserUnivEntranceScore.setEnabled(false);
             }
         });
+
+        editProfileButton = findViewById(R.id.editProfileButton);
+        editProfileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editUserUnivName.setEnabled(true);
+                editUserUnivMajor.setEnabled(true);
+                editUserUnivGpa.setEnabled(true);
+                editUserUnivEntranceScore.setEnabled(true);
+                editProfileButton.setVisibility(View.GONE);
+                confirmChangesButton.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 
-    private void createStatInDB() {
-        RequestQueue requestQueue = Volley.newRequestQueue(UserProfileActivity.this);
+    private void updateUserStats(String userEmail) {
         String URL = "http://10.0.2.2:8081/stats";
 
         JSONObject body = new JSONObject();
-        Bundle bundle = getIntent().getExtras();
-        String userEmailId = bundle.getString("userEmailId");
         try {
-            body.put("userEmail", userEmailId);
-            body.put("univName", userUnivName.getText());
-            body.put("univMajor", userUnivMajor.getText());
-            body.put("univGpa", userUnivGpa.getText());
-            body.put("univEntranceScore", userUnivEntranceScore.getText());
+            body.put("userEmail", userEmail);
+            body.put("univName", editUserUnivName.getEditText().getText());
+            body.put("univMajor", editUserUnivMajor.getEditText().getText());
+            body.put("univGpa", editUserUnivGpa.getEditText().getText());
+            body.put("univEntranceScore", editUserUnivEntranceScore.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        JsonObjectRequest postUserStatRequest = new JsonObjectRequest(
-                Request.Method.POST,
+        JsonObjectRequest updateUserStatRequest = new JsonObjectRequest(
+                Request.Method.PUT,
                 URL,
                 body,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
+                        Toast.makeText(UserProfileActivity.this, "Your Profile has been updated", Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
@@ -94,6 +135,59 @@ public class UserProfileActivity extends AppCompatActivity {
                 }
         );
 
-        requestQueue.add(postUserStatRequest);
+        requestQueue.add(updateUserStatRequest);
+    }
+
+    private void getUserStats(String userEmail) {
+        String URL = "http://10.0.2.2:8081/statsByFilter";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", userEmail);
+            Log.d(TAG, body.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getUserStatRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            JSONArray statArray = (JSONArray) response.get("statData");
+                            JSONObject userStat;
+                            if (statArray.length() <= 0) { // if mentee then not much to show
+                                Log.d(TAG, "here" + statArray.length());
+                                editUserUnivName.setVisibility(View.GONE);
+                                editUserUnivMajor.setVisibility(View.GONE);
+                                editUserUnivGpa.setVisibility(View.GONE);
+                                editUserUnivEntranceScore.setVisibility(View.GONE);
+                                editProfileButton.setVisibility(View.GONE);
+                                confirmChangesButton.setVisibility(View.GONE);
+                            } else { // if mentor then show university stats
+                                userStat = statArray.getJSONObject(0);
+                                editUserUnivName.getEditText().setText((String) userStat.get("univName"), TextView.BufferType.EDITABLE);
+                                editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
+                                editUserUnivGpa.getEditText().setText((String) userStat.get("univGpa"), TextView.BufferType.EDITABLE);
+                                editUserUnivEntranceScore.getEditText().setText((String) userStat.get("univEntranceScore"), TextView.BufferType.EDITABLE);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getUserStatRequest);
     }
 }

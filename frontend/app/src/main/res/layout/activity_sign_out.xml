@@ -7,33 +7,133 @@
     android:layout_height="match_parent"
     tools:context=".SignOutActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/profile"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        android:layout_centerInParent="true"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/teal_700"
+        app:backgroundTint="@color/purple_500"
+        app:itemRippleColor="@drawable/selector"
+        app:itemActiveIndicatorStyle="@drawable/selector"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
+        app:itemTextAppearanceActive="@drawable/selector"
+        app:itemIconSize="40dp"
+        app:itemPaddingTop="5dp"
+        app:itemPaddingBottom="5dp"
+        app:labelVisibilityMode="unlabeled"
         app:menu="@menu/menu_navigation" />
 
-        <Button
-            android:id="@+id/sign_out_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_out_button_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="371dp"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginStart="25dp"-->
+<!--        android:layout_marginLeft="25dp"-->
+<!--        android:layout_marginTop="22dp"-->
+<!--        android:layout_marginEnd="25dp"-->
+<!--        android:layout_marginRight="25dp"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        app:lottie_rawRes="@raw/settings" />-->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sign_out_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="117dp"
+        android:layout_marginLeft="117dp"
+        android:layout_marginEnd="113dp"
+        android:layout_marginRight="113dp"
+        android:layout_marginBottom="25dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:text="@string/sign_out_button_text"
+        android:textAllCaps="false"
+        app:icon="@drawable/common_full_open_on_phone"
+        app:iconGravity="start"
+        app:iconSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/purple_200" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/view_profile_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="262dp"
+        android:layout_height="58dp"
+        android:layout_above="@+id/sign_out_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginRight="115dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/view_profile_button_text"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_person_24"
+        app:iconGravity="start"
+        app:iconPadding="10dp"
+        app:iconSize="25dp"
+        app:strokeColor="@color/purple_200" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dark_mode_button"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="262dp"
+        android:layout_height="58dp"
+        android:layout_above="@+id/view_profile_button"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="115dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginRight="115dp"
+        android:layout_marginBottom="25dp"
+        android:text="@string/change_theme"
+        android:textAllCaps="false"
+        app:icon="@drawable/ic_baseline_wb_sunny_24"
+        app:iconGravity="start"
+        app:iconPadding="10dp"
+        app:iconSize="25dp"
+        app:strokeColor="@color/purple_200" />
+
+<!--    <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--        android:id="@+id/dark_light_mode_switch"-->
+<!--        android:layout_width="73dp"-->
+<!--        android:layout_height="62dp"-->
+<!--        android:layout_above="@+id/view_profile_button"-->
+<!--        android:layout_alignParentStart="true"-->
+<!--        android:layout_alignParentLeft="true"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginStart="150dp"-->
+<!--        android:layout_marginLeft="150dp"-->
+<!--        android:layout_marginTop="79dp"-->
+<!--        android:layout_marginEnd="165dp"-->
+<!--        android:layout_marginRight="165dp"-->
+<!--        android:layout_marginBottom="25dp"-->
+<!--        android:checked="false"-->
+<!--        android:focusableInTouchMode="true"-->
+<!--        android:text="" />-->
 
 </RelativeLayout>
 

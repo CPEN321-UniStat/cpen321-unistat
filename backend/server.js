@@ -53,13 +53,14 @@ app.get("/stats", async (req, res) => {
     )
 })
 
-app.get("/statsByFilter", async (req, res) => {
+app.post("/statsByFilter", async (req, res) => {
     client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
         if (err){
             console.log(error)
             res.status(400).send(JSON.stringify(error))
         }
-        res.send(result); // send back all stats with filter applied
+        var jsonResp = {"statData" : result}
+        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     }
     )
 })
