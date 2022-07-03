@@ -73,7 +73,7 @@
                 android:layout_height="65dp"
                 android:layout_marginTop="35dp"
                 android:hint="@string/user_univ_text"
-                app:boxStrokeColor="@color/purple_200"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
