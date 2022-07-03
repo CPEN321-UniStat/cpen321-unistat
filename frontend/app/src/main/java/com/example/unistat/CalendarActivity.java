@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class CalendarActivity extends AppCompatActivity {
                     case R.id.calendar_activity:
                         return true;
                     case R.id.view_stats_activity:
-                        startActivity(new Intent(getApplicationContext(),ViewStatsActivity.class));
+                        startActivity(new Intent(getApplicationContext(), ViewStatsActivity.class));
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.sign_out_activity:

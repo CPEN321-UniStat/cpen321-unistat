@@ -16,7 +16,7 @@
             android:windowSoftInputMode="adjustPan"
             android:name=".UserProfileActivity" />
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".ViewStatsActivity" />
+        <activity android:name=".StatsCardView.ViewStatsActivity" />
         <activity
             android:windowSoftInputMode="adjustPan"
             android:name=".CreateUserProfileActivity" />

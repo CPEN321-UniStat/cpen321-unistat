@@ -48,7 +48,8 @@ app.get("/stats", async (req, res) => {
             console.log(error)
             res.status(400).send(JSON.stringify(error))
         }
-        res.send(result); // send back all stats
+        var jsonResp = {"statData" : result}
+        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     }
     )
 })
