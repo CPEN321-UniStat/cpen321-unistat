@@ -33,6 +33,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextInputLayout editUserUnivMajor;
     private TextInputLayout editUserUnivGpa;
     private TextInputLayout editUserUnivEntranceScore;
+    private TextInputLayout editUserBio;
     private FloatingActionButton confirmChangesButton;
     private FloatingActionButton editProfileButton;
     private TextView userNameText;
@@ -50,11 +51,13 @@ public class UserProfileActivity extends AppCompatActivity {
         editUserUnivMajor = findViewById(R.id.editUserMajorinput);
         editUserUnivGpa = findViewById(R.id.editUserGpaInput);
         editUserUnivEntranceScore = findViewById(R.id.editUserEntranceScoreinput);
+        editUserBio = findViewById(R.id.editUserBioInput);
 
         editUserUnivName.setEnabled(false);
         editUserUnivMajor.setEnabled(false);
         editUserUnivGpa.setEnabled(false);
         editUserUnivEntranceScore.setEnabled(false);
+        editUserBio.setEnabled(false);
 
         userNameText = findViewById(R.id.userNameText);
         userEmailText = findViewById(R.id.userEmailText);
@@ -84,6 +87,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 editUserUnivMajor.setEnabled(false);
                 editUserUnivGpa.setEnabled(false);
                 editUserUnivEntranceScore.setEnabled(false);
+                editUserBio.setEnabled(false);
             }
         });
 
@@ -95,6 +99,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 editUserUnivMajor.setEnabled(true);
                 editUserUnivGpa.setEnabled(true);
                 editUserUnivEntranceScore.setEnabled(true);
+                editUserBio.setEnabled(true);
                 editProfileButton.setVisibility(View.GONE);
                 confirmChangesButton.setVisibility(View.VISIBLE);
             }
@@ -112,6 +117,7 @@ public class UserProfileActivity extends AppCompatActivity {
             body.put("univMajor", editUserUnivMajor.getEditText().getText());
             body.put("univGpa", editUserUnivGpa.getEditText().getText());
             body.put("univEntranceScore", editUserUnivEntranceScore.getEditText().getText());
+            body.put("univBio", editUserBio.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -173,6 +179,7 @@ public class UserProfileActivity extends AppCompatActivity {
                                 editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
                                 editUserUnivGpa.getEditText().setText((String) userStat.get("univGpa"), TextView.BufferType.EDITABLE);
                                 editUserUnivEntranceScore.getEditText().setText((String) userStat.get("univEntranceScore"), TextView.BufferType.EDITABLE);
+                                editUserBio.getEditText().setText((String) userStat.get("univBio"), TextView.BufferType.EDITABLE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

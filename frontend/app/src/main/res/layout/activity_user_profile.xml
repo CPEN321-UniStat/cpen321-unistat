@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="90dp"
+            android:layout_marginBottom="25dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -27,7 +28,6 @@
                 android:layout_height="135dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                app:civ_border_color="@color/black"
                 app:civ_border_width="2dp"
                 app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,6 @@
                 android:layout_height="40dp"
                 android:gravity="center_horizontal"
                 android:text="@string/app_name"
-                android:textColor="@color/black"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
@@ -74,7 +73,6 @@
                 android:layout_height="65dp"
                 android:layout_marginTop="35dp"
                 android:hint="@string/user_univ_text"
-                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/purple_200"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,8 +83,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -97,7 +94,6 @@
                 android:layout_height="65dp"
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_major_text"
-                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -107,8 +103,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:inputType="text"
-                    android:textColor="@color/black" />
+                    android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -119,7 +114,6 @@
                 android:layout_height="65dp"
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_gpa_text"
-                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
@@ -129,8 +123,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/black" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -141,7 +134,6 @@
                 android:layout_height="65dp"
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_entrance_score_text"
-                android:textColorHint="@color/black"
                 app:boxStrokeColor="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,8 +142,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:inputType="numberDecimal"
-                    android:textColor="@color/black" />
+                    android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -160,8 +151,7 @@
                 android:layout_width="254dp"
                 android:layout_height="166dp"
                 android:layout_marginTop="25dp"
-                android:hint="@string/user_entrance_score_text"
-                android:textColorHint="@color/black"
+                android:hint="@string/univ_user_bio_input"
                 app:boxStrokeColor="@color/purple_200"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -174,8 +164,7 @@
                     android:inputType="textMultiLine"
                     android:lines="50"
                     android:minLines="2"
-                    android:scrollbars="vertical"
-                    android:textColor="@color/black" />
+                    android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -185,6 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="10dp"
+                android:padding="20dp"
                 android:contentDescription="@string/edit_profile_button_text"
                 android:src="@drawable/ic_baseline_done_24"
                 android:visibility="gone"
@@ -196,6 +186,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_margin="10dp"
+                android:padding="20dp"
                 android:contentDescription="@string/edit_profile_button_text"
                 android:src="@drawable/ic_baseline_edit_24"
                 android:visibility="visible"
