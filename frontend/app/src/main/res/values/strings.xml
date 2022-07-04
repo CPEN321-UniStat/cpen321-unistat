@@ -24,6 +24,11 @@
     <string name="user_gpa_text">GPA</string>
     <string name="user_entrance_score_text">Entrance Score</string>
     <string name="change_theme">Change Theme</string>
+    <string name="sort_by_gpa_text">Sort by GPA</string>
+    <string name="sort_by_entrance_score_text">Sort by Entrance Score</string>
+    <string name="filter_by_univ_text">Filter by University</string>
+    <string name="filter_by_major_text">Filter by Major</string>
+    <string name="search_text">Search</string>
 
 
 </resources>

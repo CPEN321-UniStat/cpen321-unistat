@@ -16,6 +16,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -31,6 +33,7 @@ public class CreateUserProfileActivity extends AppCompatActivity {
     private TextInputLayout userUnivEntranceScore;
     private TextInputLayout userUnivBio;
     private FloatingActionButton nextButton;
+    private GoogleSignInAccount account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         userUnivGpa = findViewById(R.id.univGpaInput);
         userUnivEntranceScore = findViewById(R.id.univEntranceScoreInput);
         userUnivBio = findViewById(R.id.univUserBio);
+
+        account = GoogleSignIn.getLastSignedInAccount(this);
 
         nextButton = findViewById(R.id.nextUserProfileButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +74,11 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         String URL = "http://10.0.2.2:8081/stats";
 
         JSONObject body = new JSONObject();
-        Bundle bundle = getIntent().getExtras();
-        String userEmailId = bundle.getString("userEmailId");
+
         try {
-            body.put("userEmail", userEmailId);
+            body.put("userEmail", account.getEmail());
+            body.put("userPhoto", account.getPhotoUrl());
+            body.put("userName", account.getDisplayName());
             body.put("univName", userUnivName.getEditText().getText());
             body.put("univMajor", userUnivMajor.getEditText().getText());
             body.put("univGpa", userUnivGpa.getEditText().getText());

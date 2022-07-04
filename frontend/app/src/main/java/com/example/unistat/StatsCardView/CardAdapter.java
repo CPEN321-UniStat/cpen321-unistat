@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unistat.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
 
@@ -40,6 +43,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         holder.univGpaCard.setText(curStat.getUnivGpa());
         holder.univEntranceScoreCard.setText(curStat.getUnivEntranceScore());
         holder.univBioCard.setText(curStat.getUnivBio());
+        Picasso.get().load(curStat.getUserStatProfileImage()).resize(100, 100).into(holder.userStatProfileImage);
     }
 
     @Override
@@ -55,6 +59,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         private TextView univGpaCard;
         private TextView univEntranceScoreCard;
         private TextView univBioCard;
+        private CircleImageView userStatProfileImage;
 
         public StatsHolder(View itemView) {
             super(itemView);
@@ -64,6 +69,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
             univGpaCard = itemView.findViewById(R.id.univGpa);
             univEntranceScoreCard = itemView.findViewById(R.id.univEntranceScore);
             univBioCard = itemView.findViewById(R.id.univBio);
+            userStatProfileImage = itemView.findViewById(R.id.userStatProfileImage);
         }
 
         void setDetails(StatsCards stats){
@@ -73,6 +79,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
             univGpaCard.setText(stats.getUnivGpa());
             univEntranceScoreCard.setText(stats.getUnivEntranceScore());
             univBioCard.setText(stats.getUnivBio());
+            Picasso.get().load(stats.getUserStatProfileImage()).resize(100, 100).into(userStatProfileImage);
         }
 
     }

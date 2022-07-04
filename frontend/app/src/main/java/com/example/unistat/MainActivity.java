@@ -157,9 +157,6 @@ public class MainActivity extends AppCompatActivity {
             Intent openViewStats = new Intent(MainActivity.this, ViewStatsActivity.class);
 
             if (!isLoggedIn) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userEmailId", account.getEmail());
-                openUserStatus.putExtras(bundle);
                 startActivity(openUserStatus);
             } else {
 //                startActivity(openSignOut);
