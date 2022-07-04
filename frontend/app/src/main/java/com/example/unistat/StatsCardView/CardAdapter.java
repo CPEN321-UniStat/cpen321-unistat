@@ -1,15 +1,19 @@
 package com.example.unistat.StatsCardView;
 
 import android.content.Context;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unistat.R;
+import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
 
@@ -18,6 +22,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
     // CardAdapter Class
     private Context mContext;
     private ArrayList<StatsCards> stats;
+    private static final String TAG = "CardAdapter";
 
     public CardAdapter(Context mContext, ArrayList<StatsCards> stats) {
         this.mContext = mContext;
@@ -40,6 +45,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         holder.univGpaCard.setText(curStat.getUnivGpa());
         holder.univEntranceScoreCard.setText(curStat.getUnivEntranceScore());
         holder.univBioCard.setText(curStat.getUnivBio());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "cardButton clicked!!!" + curStat.getUnivName() + " " + curStat.getUnivMajor());
+            }
+        });
     }
 
     @Override
@@ -55,9 +66,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         private TextView univGpaCard;
         private TextView univEntranceScoreCard;
         private TextView univBioCard;
-
+        private Button cardButton;
+        private MaterialCardView cardView;
         public StatsHolder(View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card);
             mentorNameCard = itemView.findViewById(R.id.mentorName);
             univNameCard = itemView.findViewById(R.id.univName);
             univMajorCard = itemView.findViewById(R.id.univMajor);
