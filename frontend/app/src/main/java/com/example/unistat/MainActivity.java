@@ -3,9 +3,11 @@ package com.example.unistat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -155,9 +157,6 @@ public class MainActivity extends AppCompatActivity {
             Intent openViewStats = new Intent(MainActivity.this, ViewStatsActivity.class);
 
             if (!isLoggedIn) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userEmailId", account.getEmail());
-                openUserStatus.putExtras(bundle);
                 startActivity(openUserStatus);
             } else {
 //                startActivity(openSignOut);

@@ -38,11 +38,6 @@ public class UserStatusActivity extends AppCompatActivity {
                     if (isHighSchoolStudent) // Mentee
                         startActivity(openViewStats);
                     else { // Mentor
-                        Bundle mainActivityBundle = getIntent().getExtras();
-                        String userEmailId = mainActivityBundle.getString("userEmailId");
-                        Bundle profileBundle = new Bundle();
-                        profileBundle.putString("userEmailId", userEmailId);
-                        openUserProfile.putExtras(profileBundle);
                         startActivity(openUserProfile);
                     }
 
