@@ -134,11 +134,23 @@ app.post("/meetings", async (req, res) => {
 })
 
 app.get("/meetings", async (req, res) => {
-    // Post a new meeting
+    client.db("UniStatDB").collection("Meetings").find({}).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        var jsonResp = {"meetings" : result}
+        res.send(JSON.stringify(jsonResp)); 
+    }
+    )
+})
+
+app.put("/meetings", async (req, res) => {
+    // Update stat data
     try {
-        await client.db("UniStatDB").collection("Meetings").find(req.body)
+        await client.db("UniStatDB").collection("Meetings").updateOne({meetingID : req.body.meetingID}, {$set: req.body})
         var jsonResp = {
-            "status": `Meeting request inputted by ${req.body.menteeEmail}`
+            "status": `Meeting status updated`
         }
         res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
