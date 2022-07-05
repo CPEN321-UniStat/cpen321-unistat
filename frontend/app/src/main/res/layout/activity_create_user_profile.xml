@@ -6,76 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".CreateUserProfileActivity">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/univNameInput"
-        android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:autofillHints="University Name"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="255dp"
+        android:layout_height="65dp"
         android:hint="@string/univ_name_input"
-        android:inputType="textPersonName"
+        android:textColorHint="@drawable/text_box_stroke_color"
+        app:hintTextColor="@drawable/text_box_stroke_color"
+        app:boxStrokeColor="@drawable/text_box_stroke_color"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterProfileInfoPrompt"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.123">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:inputType="text"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/univMajorInput"
-        android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:autofillHints="University Major"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="255dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
         android:hint="@string/univ_major_input"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@drawable/text_box_stroke_color"
+        app:hintTextColor="@drawable/text_box_stroke_color"
+        app:boxStrokeColor="@drawable/text_box_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/univNameInput"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintTop_toBottomOf="@+id/univNameInput">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:inputType="text"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/univGpaInput"
-        android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="255dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
         android:hint="@string/univ_grade_input"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@drawable/text_box_stroke_color"
+        app:hintTextColor="@drawable/text_box_stroke_color"
+        app:boxStrokeColor="@drawable/text_box_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/univMajorInput"
-        app:layout_constraintVertical_bias="0.15" />
+        app:layout_constraintTop_toBottomOf="@+id/univMajorInput">
 
-    <EditText
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/univEntranceScoreInput"
-        android:layout_width="262dp"
-        android:layout_height="45dp"
-        android:ems="10"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="255dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="25dp"
         android:hint="@string/univ_entrance_input"
-        android:importantForAutofill="no"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@drawable/text_box_stroke_color"
+        app:hintTextColor="@drawable/text_box_stroke_color"
+        app:boxStrokeColor="@drawable/text_box_stroke_color"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/univGpaInput"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintTop_toBottomOf="@+id/univGpaInput">
 
-    <Button
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/univUserBio"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="257dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="25dp"
+        android:hint="@string/univ_user_bio_input"
+        android:textColorHint="@drawable/text_box_stroke_color"
+        app:hintTextColor="@drawable/text_box_stroke_color"
+        app:boxStrokeColor="@drawable/text_box_stroke_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/univEntranceScoreInput">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:lines="50"
+            android:scrollbars="vertical"
+            android:textColor="@color/black" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/nextUserProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next_button_text"
+        android:contentDescription="@string/next_button_text"
+        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:visibility="visible"
+        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/univEntranceScoreInput"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
 
     <TextView
         android:id="@+id/enterProfileInfoPrompt"
@@ -85,7 +141,8 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintVertical_bias="0.052" />
 </androidx.constraintlayout.widget.ConstraintLayout>

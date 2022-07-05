@@ -1,13 +1,14 @@
 package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -156,9 +158,6 @@ public class MainActivity extends AppCompatActivity {
             Intent openViewStats = new Intent(MainActivity.this, ViewStatsActivity.class);
 
             if (!isLoggedIn) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userEmailId", account.getEmail());
-                openUserStatus.putExtras(bundle);
                 startActivity(openUserStatus);
             } else {
 //                startActivity(openSignOut);

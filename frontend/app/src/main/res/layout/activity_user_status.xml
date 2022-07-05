@@ -11,46 +11,67 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_status_question_text"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.195" />
+        app:layout_constraintVertical_bias="0.512" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/questionAnimation"
+        android:layout_width="315dp"
+        android:layout_height="297dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/question_animation" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="229dp"
-        android:layout_height="97dp"
+        android:layout_width="310dp"
+        android:layout_height="147dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userStatusQuestion"
-        app:layout_constraintVertical_bias="0.076">
+        app:layout_constraintVertical_bias="0.182">
 
         <RadioButton
             android:id="@+id/hsStudentButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonChecked"
-            android:text="@string/hs_student_button_text" />
+            android:text="@string/hs_student_button_text"
+            android:textSize="20sp" />
 
         <RadioButton
             android:id="@+id/univStudentButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onRadioButtonChecked"
-            android:text="@string/univ_student_button_text" />
+            android:text="@string/univ_student_button_text"
+            android:textSize="20sp" />
 
     </RadioGroup>
 
-    <Button
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/nextUserStatusButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/next_button_text"
+        android:contentDescription="@string/next_button_text"
+        android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+        android:visibility="visible"
+        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

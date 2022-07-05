@@ -3,7 +3,9 @@ package com.example.unistat;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +14,16 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DateFormat;
@@ -30,6 +40,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
     private ArrayList<Meeting> meetings;
+    private RequestQueue requestQueue;
 
     private Boolean shouldAllowBack = false;
 
@@ -38,6 +49,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
         // Get a reference for the week view in the layout.
         mWeekView = findViewById(R.id.weekView);
@@ -299,46 +312,49 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         return events;
     }
 
+    private void getAllMeetingsByUser(String userEmail) {
+        String URL = "http://10.0.2.2:8081/meetings";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("email", userEmail);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getAllMeetingsRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d("CALENDAR", "Server resp: " + response.toString());
+                        Toast.makeText(CalendarActivity.this, "Your meeting response has been sent", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d("CALENDAR", "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getAllMeetingsRequest);
+    }
+
     @Override
     public void onEmptyViewLongPress(Calendar time) {
-
     }
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
-
     }
 
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
-
-        // Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.calendar_activity);
-
-        // Perform item selected listener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch(item.getItemId())
-                {
-                    case R.id.calendar_activity:
-                        return true;
-                    case R.id.view_stats_activity:
-                        startActivity(new Intent(getApplicationContext(),ViewStatsActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.sign_out_activity:
-                        startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                }
-                return false;
-            }
-        });
-
     }
 
     @Override

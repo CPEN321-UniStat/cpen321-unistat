@@ -14,6 +14,7 @@
     <string name="univ_grade_input">Your Current University GPA</string>
     <string name="univ_major_input">Your Major</string>
     <string name="univ_entrance_input">Your SAT/Entrance-exam score</string>
+    <string name="univ_user_bio_input">Your Story</string>
     <string name="user_profile_prompt">Kindly enter your university details below.</string>
     <string name="calendar">Calendar</string>
     <string name="view_stats">Home</string>
@@ -22,11 +23,19 @@
     <string name="user_profile_text">Your Profile</string>
     <string name="confirm_changes_button_text">Confirm Changes</string>
     <string name="edit_profile_button_text">Edit Profile</string>
-    <string name="user_univ_text">University: </string>
-    <string name="user_major_text">Major: </string>
-    <string name="user_gpa_text">GPA: </string>
-    <string name="user_entrance_score_text">Entrance Score: </string>
+    <string name="user_univ_text">University</string>
+    <string name="user_major_text">Major</string>
+    <string name="user_gpa_text">GPA</string>
+    <string name="user_entrance_score_text">Entrance Score</string>
+    <string name="user_story_text">Story</string>
     <string name="change_theme">Change Theme</string>
+    <string name="sort_by_gpa_text">Sort by GPA</string>
+    <string name="sort_by_entrance_score_text">Sort by Entrance Score</string>
+    <string name="filter_by_univ_text">Filter by University</string>
+    <string name="filter_by_major_text">Filter by Major</string>
+    <string name="search_text">Search</string>
+    <string name="request_meeting_button_text">Request a Meeting</string>
+    <string name="text_test">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tellus iaculis, feugiat arcu non, interdum sapien. Quisque non ex dolor. Vestibulum vel aliquam eros, dictum pulvinar justo. Aenean et velit dolor. Nullam quis bibendum ante, sed mollis leo. Donec suscipit mauris est, vel dignissim felis venenatis vitae. Nulla sed ultricies ex. In hac habitasse platea dictumst. Vivamus interdum erat ut convallis consectetur. Nulla varius ullamcorper tincidunt. Sed mattis ligula eget sapien ullamcorper, id sollicitudin tortor dapibus.</string>
 
 
 </resources>

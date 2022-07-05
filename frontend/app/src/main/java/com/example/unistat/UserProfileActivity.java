@@ -2,9 +2,11 @@ package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +18,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
@@ -33,6 +36,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextInputLayout editUserUnivMajor;
     private TextInputLayout editUserUnivGpa;
     private TextInputLayout editUserUnivEntranceScore;
+    private TextInputLayout editUserBio;
     private FloatingActionButton confirmChangesButton;
     private FloatingActionButton editProfileButton;
     private TextView userNameText;
@@ -50,11 +54,13 @@ public class UserProfileActivity extends AppCompatActivity {
         editUserUnivMajor = findViewById(R.id.editUserMajorinput);
         editUserUnivGpa = findViewById(R.id.editUserGpaInput);
         editUserUnivEntranceScore = findViewById(R.id.editUserEntranceScoreinput);
+        editUserBio = findViewById(R.id.editUserBioInput);
 
         editUserUnivName.setEnabled(false);
         editUserUnivMajor.setEnabled(false);
         editUserUnivGpa.setEnabled(false);
         editUserUnivEntranceScore.setEnabled(false);
+        editUserBio.setEnabled(false);
 
         userNameText = findViewById(R.id.userNameText);
         userEmailText = findViewById(R.id.userEmailText);
@@ -84,6 +90,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 editUserUnivMajor.setEnabled(false);
                 editUserUnivGpa.setEnabled(false);
                 editUserUnivEntranceScore.setEnabled(false);
+                editUserBio.setEnabled(false);
             }
         });
 
@@ -95,6 +102,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 editUserUnivMajor.setEnabled(true);
                 editUserUnivGpa.setEnabled(true);
                 editUserUnivEntranceScore.setEnabled(true);
+                editUserBio.setEnabled(true);
                 editProfileButton.setVisibility(View.GONE);
                 confirmChangesButton.setVisibility(View.VISIBLE);
             }
@@ -112,6 +120,7 @@ public class UserProfileActivity extends AppCompatActivity {
             body.put("univMajor", editUserUnivMajor.getEditText().getText());
             body.put("univGpa", editUserUnivGpa.getEditText().getText());
             body.put("univEntranceScore", editUserUnivEntranceScore.getEditText().getText());
+            body.put("univBio", editUserBio.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -161,7 +170,6 @@ public class UserProfileActivity extends AppCompatActivity {
                             JSONArray statArray = (JSONArray) response.get("statData");
                             JSONObject userStat;
                             if (statArray.length() <= 0) { // if mentee then not much to show
-                                Log.d(TAG, "here" + statArray.length());
                                 editUserUnivName.setVisibility(View.GONE);
                                 editUserUnivMajor.setVisibility(View.GONE);
                                 editUserUnivGpa.setVisibility(View.GONE);
@@ -174,6 +182,7 @@ public class UserProfileActivity extends AppCompatActivity {
                                 editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
                                 editUserUnivGpa.getEditText().setText((String) userStat.get("univGpa"), TextView.BufferType.EDITABLE);
                                 editUserUnivEntranceScore.getEditText().setText((String) userStat.get("univEntranceScore"), TextView.BufferType.EDITABLE);
+                                editUserBio.getEditText().setText((String) userStat.get("univBio"), TextView.BufferType.EDITABLE);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

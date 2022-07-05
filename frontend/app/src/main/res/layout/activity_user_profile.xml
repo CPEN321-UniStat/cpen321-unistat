@@ -4,161 +4,208 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".UserProfileActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editUserEntranceScoreinput"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="217dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="30dp"
-        android:hint="@string/user_entrance_score_text"
-        android:inputType="numberDecimal"
-        app:boxStrokeColor="@color/purple_200"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUserGpaInput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/black"
-            android:layout_width="211dp"
-            android:layout_height="50dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editUserUnivInput"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="217dp"
-        android:layout_height="63dp"
-        android:hint="@string/user_univ_text"
-        android:inputType="numberDecimal"
-        android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.456">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="211dp"
-            android:layout_height="50dp"
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editUserMajorinput"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="217dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="30dp"
-        android:hint="@string/user_major_text"
-        android:inputType="numberDecimal"
-        app:boxStrokeColor="@color/purple_200"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUserUnivInput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/black"
-            android:layout_width="211dp"
-            android:layout_height="50dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editUserGpaInput"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="217dp"
-        android:layout_height="63dp"
-        android:layout_marginTop="30dp"
-        android:hint="@string/user_gpa_text"
-        android:inputType="numberDecimal"
-        app:boxStrokeColor="@color/purple_200"
-        android:textColorHint="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUserMajorinput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:textColor="@color/black"
-            android:layout_width="211dp"
-            android:layout_height="50dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/confirmChangesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:src="@drawable/ic_baseline_done_24"
-        android:visibility="visible"
-        app:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/editProfileButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="TODO"
-        android:src="@drawable/ic_baseline_edit_24"
-        android:visibility="visible"
-        app:backgroundTint="@color/purple_200"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userProfileImage"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        app:civ_border_color="@color/black"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/userNameText"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center_horizontal"
-        android:text="@string/app_name"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileImage"
-        app:layout_constraintVertical_bias="0.25" />
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-    <TextView
-        android:id="@+id/userEmailText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNameText"
-        app:layout_constraintVertical_bias="0.392" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="25dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userProfileImage"
+                android:layout_width="135dp"
+                android:layout_height="135dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="10dp"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/grey"
+                app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.094"
+                tools:srcCompat="@tools:sample/avatars" />
+
+
+            <TextView
+                android:id="@+id/userNameText"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center_horizontal"
+                android:text="@string/app_name"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userProfileImage"
+                app:layout_constraintVertical_bias="0.203" />
+
+
+            <TextView
+                android:id="@+id/userEmailText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="0dp"
+                android:fontFamily="@font/open_sans"
+                app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userNameText"
+                app:layout_constraintVertical_bias="0.309" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editUserUnivInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="255dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="35dp"
+                android:hint="@string/user_univ_text"
+                android:textColorHint="@drawable/text_box_stroke_color"
+                app:hintTextColor="@drawable/text_box_stroke_color"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.442">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editUserMajorinput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="255dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="25dp"
+                android:hint="@string/user_major_text"
+                android:textColorHint="@drawable/text_box_stroke_color"
+                app:hintTextColor="@drawable/text_box_stroke_color"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editUserUnivInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editUserGpaInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="255dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="25dp"
+                android:hint="@string/user_gpa_text"
+                android:textColorHint="@drawable/text_box_stroke_color"
+                app:hintTextColor="@drawable/text_box_stroke_color"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editUserMajorinput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editUserEntranceScoreinput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="255dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="25dp"
+                android:hint="@string/user_entrance_score_text"
+                android:textColorHint="@drawable/text_box_stroke_color"
+                app:hintTextColor="@drawable/text_box_stroke_color"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editUserGpaInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/editUserBioInput"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="254dp"
+                android:layout_height="166dp"
+                android:layout_marginTop="25dp"
+                android:hint="@string/univ_user_bio_input"
+                android:textColorHint="@drawable/text_box_stroke_color"
+                app:hintTextColor="@drawable/text_box_stroke_color"
+                app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editUserGpaInput">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:lines="50"
+                    android:minLines="2"
+                    android:scrollbars="vertical" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/confirmChangesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:padding="20dp"
+                android:contentDescription="@string/edit_profile_button_text"
+                android:src="@drawable/ic_baseline_done_24"
+                android:visibility="gone"
+                app:backgroundTint="@color/purple_200" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/editProfileButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_margin="10dp"
+                android:padding="20dp"
+                android:contentDescription="@string/edit_profile_button_text"
+                android:src="@drawable/ic_baseline_edit_24"
+                android:visibility="visible"
+                app:backgroundTint="@color/purple_200" />
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

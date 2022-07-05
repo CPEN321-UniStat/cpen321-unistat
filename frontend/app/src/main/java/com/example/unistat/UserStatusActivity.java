@@ -5,21 +5,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class UserStatusActivity extends AppCompatActivity {
 
     private Boolean isHighSchoolStudent = false;
     private Boolean checked = false;
-    private Button nextButton;
+    private FloatingActionButton nextButton;
     private Boolean shouldAllowBack = false;
+    private LottieAnimationView lottieAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_status);
+
+        lottieAnimationView = findViewById(R.id.questionAnimation);
 
         nextButton = findViewById(R.id.nextUserStatusButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -32,11 +38,6 @@ public class UserStatusActivity extends AppCompatActivity {
                     if (isHighSchoolStudent) // Mentee
                         startActivity(openViewStats);
                     else { // Mentor
-                        Bundle mainActivityBundle = getIntent().getExtras();
-                        String userEmailId = mainActivityBundle.getString("userEmailId");
-                        Bundle profileBundle = new Bundle();
-                        profileBundle.putString("userEmailId", userEmailId);
-                        openUserProfile.putExtras(profileBundle);
                         startActivity(openUserProfile);
                     }
 
@@ -59,10 +60,14 @@ public class UserStatusActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.hsStudentButton:
                 if (checked)
+                    lottieAnimationView.setAnimation(R.raw.school);
+                    lottieAnimationView.playAnimation();
                     isHighSchoolStudent = true;
                 break;
             case R.id.univStudentButton:
                 if (checked)
+                    lottieAnimationView.setAnimation(R.raw.graduation);
+                    lottieAnimationView.playAnimation();
                     isHighSchoolStudent = false;
                 break;
         }
