@@ -12,15 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EventActivity"/>
-        <activity android:name=".CalendarActivity"/>
-        <activity android:name=".UserProfileActivity"></activity>
+        <activity
+            android:name=".ZoomMeetingActivity"
+            android:exported="false" />
+        <activity android:name=".EventActivity" />
+        <activity android:name=".CalendarActivity" />
+        <activity android:name=".UserProfileActivity" />
         <activity android:name=".ViewStatsActivity" />
         <activity android:name=".CreateUserProfileActivity" />
         <activity android:name=".UserStatusActivity" />
-        <activity android:name=".SignOutActivity"
-            android:configChanges="uiMode"
-            />
+        <activity
+            android:name=".SignOutActivity"
+            android:configChanges="uiMode" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

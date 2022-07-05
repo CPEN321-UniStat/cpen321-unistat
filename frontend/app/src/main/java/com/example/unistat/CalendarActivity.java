@@ -1,22 +1,22 @@
 package com.example.unistat;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONObject;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,6 +29,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private static final int TYPE_WEEK_VIEW = 3;
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
+    private ArrayList<Meeting> meetings;
 
     private Boolean shouldAllowBack = false;
 
@@ -45,7 +46,11 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {
-                viewEvent(event);
+                try {
+                    viewEvent(event);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -89,8 +94,35 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
     }
 
-    private void viewEvent(WeekViewEvent event) {
+    private void viewEvent(WeekViewEvent event) throws Exception {
+        Meeting meeting = null;
+        Long eventID = event.getId();
+        for (int i = 0; i < meetings.size(); i++ ) {
+            Meeting currMeeting = meetings.get(i);
+            if (String.valueOf(currMeeting.getMeetingID()).equals(String.valueOf(eventID))) {
+                meeting = currMeeting;
+                break;
+            }
+        }
+        if (meeting == null) {
+            throw new Exception("There is not a corresponding meeting variable that the backend has provided");
+        }
+
+        DateFormat df = new SimpleDateFormat("h:mm a");
+
         Intent viewEvent = new Intent(CalendarActivity.this, EventActivity.class);
+        Bundle params = new Bundle();
+        params.putLong("meetingID", event.getId());
+        params.putString("meetingName", meeting.getMeetingName());
+        params.putString("mentorEmail", meeting.getMentorID());
+        params.putString("menteeEmail", meeting.getMenteeID());
+        params.putDouble("paymentAmount", (Double) meeting.getPaymentAmount());
+        params.putString("status", String.valueOf(meeting.getStatus()));
+        params.putString("startTime", df.format(event.getStartTime().getTime()));
+        params.putString("endTime", df.format(event.getEndTime().getTime()));
+        params.putString("date", String.valueOf(event.getEndTime().get(Calendar.YEAR)) + "/" + String.valueOf(event.getEndTime().get(Calendar.MONTH)) + "/" + String.valueOf(event.getEndTime().get(Calendar.DAY_OF_MONTH)));
+
+        viewEvent.putExtras(params);
         startActivity(viewEvent);
     }
 
@@ -133,8 +165,10 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // List <Strings> getMeetingIds(emailAddress)
         // return a list of meeting ids for the current user. Fetches from the userDB
         // [123, 1234, 125]
+        meetings = new ArrayList<Meeting>();
+        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
 
-        // viewCalendar(meetingIds)
+        // meetings = viewCalendar(meetingIds)
         // returns a JSON list of events (in a changeable time period)
         // {
         //      {
@@ -161,6 +195,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
 
         List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
+
+
 
         Calendar startTime = Calendar.getInstance();
         startTime.set(Calendar.HOUR_OF_DAY, 3);
