@@ -77,7 +77,6 @@ public class ViewStatsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     isSortGpa = true;
-                    Toast.makeText(ViewStatsActivity.this, "sorting by gpa", Toast.LENGTH_LONG).show();
 
                     // If filter and sort or only sort
                     if (filterAutoComplete.getText().toString().length() > 0) {
@@ -104,7 +103,6 @@ public class ViewStatsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     isSortEntranceScore = true;
-                    Toast.makeText(ViewStatsActivity.this, "checked", Toast.LENGTH_LONG).show();
 
                     // If filter and sort or only sort
                     if (filterAutoComplete.getText().toString().length() > 0) {
@@ -141,7 +139,7 @@ public class ViewStatsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 searchText = adapter.getItem(i);
-                Toast.makeText(ViewStatsActivity.this, "searching for: " + searchText, Toast.LENGTH_LONG).show();
+
                 // Only filter no sort
                 if (!isSortGpa && !isSortEntranceScore) {
                     getCardData("statsByFilter", true);

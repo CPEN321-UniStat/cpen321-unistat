@@ -29,6 +29,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 app:civ_border_width="2dp"
+                app:civ_border_color="@color/grey"
                 app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

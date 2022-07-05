@@ -1,7 +1,9 @@
 package com.example.unistat.StatsCardView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.unistat.R;
+import com.example.unistat.ViewMentorProfileActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -47,11 +53,26 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         holder.univMajorCard.setText(curStat.getUnivMajor());
         holder.univGpaCard.setText(curStat.getUnivGpa());
         holder.univEntranceScoreCard.setText(curStat.getUnivEntranceScore());
-        holder.univBioCard.setText(curStat.getUnivBio());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "cardButton clicked!!!" + curStat.getUnivName() + " " + curStat.getUnivMajor());
+                Intent openMentorProfile = new Intent(view.getContext(), ViewMentorProfileActivity.class);
+                JSONObject currStat = new JSONObject();
+
+                try {
+                    currStat.put("mentorName", curStat.getMentorName());
+                    currStat.put("mentorPhoto", curStat.getUserStatProfileImage());
+                    currStat.put("univName", curStat.getUnivName());
+                    currStat.put("univMajor", curStat.getUnivMajor());
+                    currStat.put("univGpa", curStat.getUnivGpa());
+                    currStat.put("univEntranceScore", curStat.getUnivEntranceScore());
+                    currStat.put("univBio", curStat.getUnivBio());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                openMentorProfile.putExtra("currStat", currStat.toString());
+                view.getContext().startActivity(openMentorProfile);
             }
         });
         Picasso.get().load(curStat.getUserStatProfileImage()).resize(100, 100).into(holder.userStatProfileImage);
@@ -69,8 +90,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         private TextView univMajorCard;
         private TextView univGpaCard;
         private TextView univEntranceScoreCard;
-        private TextView univBioCard;
-        private Button cardButton;
         private MaterialCardView cardView;
         private CircleImageView userStatProfileImage;
 
@@ -82,7 +101,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
             univMajorCard = itemView.findViewById(R.id.univMajor);
             univGpaCard = itemView.findViewById(R.id.univGpa);
             univEntranceScoreCard = itemView.findViewById(R.id.univEntranceScore);
-            univBioCard = itemView.findViewById(R.id.univBio);
             userStatProfileImage = itemView.findViewById(R.id.userStatProfileImage);
         }
 
@@ -92,7 +110,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
             univMajorCard.setText(stats.getUnivMajor());
             univGpaCard.setText(stats.getUnivGpa());
             univEntranceScoreCard.setText(stats.getUnivEntranceScore());
-            univBioCard.setText(stats.getUnivBio());
             Picasso.get().load(stats.getUserStatProfileImage()).resize(100, 100).into(userStatProfileImage);
         }
 

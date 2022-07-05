@@ -17,7 +17,7 @@
 
     <LinearLayout
         android:layout_width="389dp"
-        android:layout_height="193dp"
+        android:layout_height="180dp"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -27,11 +27,12 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             app:civ_border_width="2dp"
+            app:civ_border_color="@color/grey"
             tools:srcCompat="@tools:sample/avatars" />
 
         <View
             android:layout_width="0.5dp"
-            android:layout_height="165dp"
+            android:layout_height="155dp"
             android:layout_gravity="center"
             android:layout_margin="2dp"
             android:background="@color/grey" />
@@ -64,49 +65,77 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/univName"
+                        android:id="@+id/univNameHeading"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/user_univ_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/univName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/univMajorHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/user_major_text"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/univMajor"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="120dp"
                     android:layout_height="match_parent"
-                    android:paddingEnd="15dp"
+                    android:paddingEnd="5dp"
                     android:orientation="vertical"
-                    android:paddingRight="15dp">
+                    android:paddingRight="5dp">
+
+                    <TextView
+                        android:id="@+id/univGpaHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/user_gpa_text"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/univGpa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/univEntranceScoreHeading"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/user_entrance_score_text"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/univEntranceScore"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textStyle="bold" />
-
-
-                    <TextView
-                        android:id="@+id/univBio"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/open_sans"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 
