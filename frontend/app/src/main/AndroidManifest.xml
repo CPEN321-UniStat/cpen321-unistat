@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".RequestMeeting"
+            android:exported="false" />
+        <activity
             android:name=".ZoomMeetingActivity"
             android:exported="false" />
         <activity android:name=".EventActivity" />
