@@ -12,6 +12,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+import com.example.unistat.Meeting.Meeting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONObject;
@@ -114,8 +115,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         Bundle params = new Bundle();
         params.putLong("meetingID", event.getId());
         params.putString("meetingName", meeting.getMeetingName());
-        params.putString("mentorEmail", meeting.getMentorID());
-        params.putString("menteeEmail", meeting.getMenteeID());
+        params.putString("mentorEmail", meeting.getMentorEmail());
+        params.putString("menteeEmail", meeting.getMenteeEmail());
         params.putDouble("paymentAmount", (Double) meeting.getPaymentAmount());
         params.putString("status", String.valueOf(meeting.getStatus()));
         params.putString("startTime", df.format(event.getStartTime().getTime()));
@@ -166,7 +167,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // return a list of meeting ids for the current user. Fetches from the userDB
         // [123, 1234, 125]
         meetings = new ArrayList<Meeting>();
-        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
+//        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
 
         // meetings = viewCalendar(meetingIds)
         // returns a JSON list of events (in a changeable time period)
