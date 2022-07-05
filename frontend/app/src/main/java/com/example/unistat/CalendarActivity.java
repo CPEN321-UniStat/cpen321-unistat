@@ -20,24 +20,34 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.unistat.Meeting.MeetingLog;
+import com.example.unistat.StatsCardView.StatsCards;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.example.unistat.Meeting.Meeting;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
     private static final int TYPE_DAY_VIEW = 1;
     private static final int TYPE_THREE_DAY_VIEW = 6;
     private static final int TYPE_WEEK_VIEW = 3;
+    final static String ISO8601DATEFORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSZ";
     private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
     private ArrayList<Meeting> meetings;
@@ -53,10 +63,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
-        // Get a reference for the week view in the layout.
         mWeekView = findViewById(R.id.weekView);
-
-        // Set an action when any event is clicked.
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {
@@ -72,7 +79,6 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // month every time the month changes on the week view.
         mWeekView.setMonthChangeListener(this);
 
-        // Set long press listener for events.
         mWeekView.setEventLongPressListener(this);
 
         // Set up a date time interpreter to interpret how the date and time will be formatted in
@@ -168,162 +174,33 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
     }
 
-    protected String getEventTitle(Calendar time) {
-        return String.format("Event of %02d:%02d %s/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.MONTH)+1, time.get(Calendar.DAY_OF_MONTH));
-    }
-
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+        String userEmail = account.getEmail();
+
         // Populate the week view with some events.
 
         // List <Strings> getMeetingIds(emailAddress)
         // return a list of meeting ids for the current user. Fetches from the userDB
         // [123, 1234, 125]
         meetings = new ArrayList<Meeting>();
-//        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
 
-        // meetings = viewCalendar(meetingIds)
-        // returns a JSON list of events (in a changeable time period)
-        // {
-        //      {
-        //          meetingid,
-        //          mentorEmail,
-        //          menteeEmail,
-        //          paymentAmount,
-        //          status (accepted/denied/pending),
-        //          startTime,
-        //          endTime,
-        //          dataLog
-        //      },
-        //      {
-        //          meetingid,
-        //          mentorEmail,
-        //          menteeEmail,
-        //          paymentAmount,
-        //          status (accepted/denied/pending),
-        //          startTime,
-        //          endTime,
-        //          dataLog
-        //      }
-        // }
-
-
-        List<WeekViewEvent> events = new ArrayList<WeekViewEvent>();
-
-
-
-        Calendar startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 3);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        Calendar endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR, 1);
-        endTime.set(Calendar.MONTH, newMonth-1);
-        WeekViewEvent event = new WeekViewEvent(1, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.purple_200));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 3);
-        startTime.set(Calendar.MINUTE, 30);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.set(Calendar.HOUR_OF_DAY, 4);
-        endTime.set(Calendar.MINUTE, 30);
-        endTime.set(Calendar.MONTH, newMonth-1);
-        event = new WeekViewEvent(10, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.teal_200));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 4);
-        startTime.set(Calendar.MINUTE, 20);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.set(Calendar.HOUR_OF_DAY, 5);
-        endTime.set(Calendar.MINUTE, 0);
-        event = new WeekViewEvent(10, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.black));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 5);
-        startTime.set(Calendar.MINUTE, 30);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 2);
-        endTime.set(Calendar.MONTH, newMonth-1);
-        event = new WeekViewEvent(2, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.white));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 5);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        startTime.add(Calendar.DATE, 1);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 3);
-        endTime.set(Calendar.MONTH, newMonth - 1);
-        event = new WeekViewEvent(3, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.white));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.DAY_OF_MONTH, 15);
-        startTime.set(Calendar.HOUR_OF_DAY, 3);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 3);
-        event = new WeekViewEvent(4, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.white));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.DAY_OF_MONTH, 1);
-        startTime.set(Calendar.HOUR_OF_DAY, 3);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 3);
-        event = new WeekViewEvent(5, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.white));
-        events.add(event);
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.DAY_OF_MONTH, startTime.getActualMaximum(Calendar.DAY_OF_MONTH));
-        startTime.set(Calendar.HOUR_OF_DAY, 15);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR_OF_DAY, 3);
-        event = new WeekViewEvent(5, getEventTitle(startTime), startTime, endTime);
-        event.setColor(getResources().getColor(R.color.white));
-        events.add(event);
-
-        return events;
+        return getAllMeetingsByEmail(userEmail);
     }
 
-    private void getAllMeetingsByUser(String userEmail) {
+    private List<WeekViewEvent> getAllMeetingsByEmail(String userEmail) {
         String URL = "http://10.0.2.2:8081/meetings";
 
         JSONObject body = new JSONObject();
         try {
-            body.put("email", userEmail);
-
+            body.put("menteeEmail", userEmail);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        ArrayList events = new ArrayList<WeekViewEvent>();
         JsonObjectRequest getAllMeetingsRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -332,7 +209,32 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d("CALENDAR", "Server resp: " + response.toString());
-                        Toast.makeText(CalendarActivity.this, "Your meeting response has been sent", Toast.LENGTH_LONG).show();
+                        try {
+                            JSONArray meetingArray = (JSONArray) response.get("meetings");
+
+                            for (int i = 0; i < meetingArray.length(); i++){
+                                JSONObject meeting =  meetingArray.getJSONObject(i);
+                                Toast.makeText(CalendarActivity.this, "inside", Toast.LENGTH_LONG).show();
+
+                                String meetingName = (String) meeting.get("meetingName");
+                                Long meetingID = Long.parseLong((String) meeting.get("meetingID"));
+                                String mentorEmail = (String) meeting.get("mentorEmail");
+                                String menteeEmail = (String) meeting.get("menteeEmail");
+                                Double paymentAmount = Double.parseDouble((String) meeting.get("paymentAmount"));
+                                String status = (String) meeting.get("status");
+                                String startTimeString = (String) meeting.get("startTime");
+                                String endTimeString = (String) meeting.get("endTime");
+                                Calendar startTime = getCalendarFromISO(startTimeString);
+                                Calendar endTime = getCalendarFromISO(endTimeString);
+
+                                WeekViewEvent event = new WeekViewEvent(meetingID, meetingName, startTime, endTime);
+                                event.setColor((status == "Pending") ? getResources().getColor(R.color.grey) : (status == "Accepted") ? getResources().getColor(R.color.green) : getResources().getColor(R.color.red));
+                                events.add(event);
+                                meetings.add(new Meeting(meetingID, meetingName, startTime, endTime, mentorEmail, menteeEmail, paymentAmount, status, new ArrayList<MeetingLog>()));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -344,6 +246,22 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         );
 
         requestQueue.add(getAllMeetingsRequest);
+        return events;
+    }
+
+    public static Calendar getCalendarFromISO(String datestring) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault()) ;
+        SimpleDateFormat dateformat = new SimpleDateFormat(ISO8601DATEFORMAT, Locale.getDefault());
+        try {
+            Date date = dateformat.parse(datestring);
+            date.setHours(date.getHours()-1);
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        return calendar;
     }
 
     @Override

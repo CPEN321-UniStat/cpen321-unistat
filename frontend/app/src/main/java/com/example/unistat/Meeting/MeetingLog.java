@@ -13,6 +13,10 @@ public class MeetingLog {
         this.action = action;
     }
 
+    public MeetingLog() {
+
+    }
+
     public String getTimestamp() {
         return timestamp;
     }
