@@ -21,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.example.unistat.Meeting.Meeting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;
@@ -112,7 +113,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         Long eventID = event.getId();
         for (int i = 0; i < meetings.size(); i++ ) {
             Meeting currMeeting = meetings.get(i);
-            if (String.valueOf(currMeeting.getMeetingID()).equals(String.valueOf(eventID))) {
+            if (String.valueOf(currMeeting.getId()).equals(String.valueOf(eventID))) {
                 meeting = currMeeting;
                 break;
             }
@@ -126,9 +127,9 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         Intent viewEvent = new Intent(CalendarActivity.this, EventActivity.class);
         Bundle params = new Bundle();
         params.putLong("meetingID", event.getId());
-        params.putString("meetingName", meeting.getMeetingName());
-        params.putString("mentorEmail", meeting.getMentorID());
-        params.putString("menteeEmail", meeting.getMenteeID());
+        params.putString("meetingName", meeting.getName());
+        params.putString("mentorEmail", meeting.getMentorEmail());
+        params.putString("menteeEmail", meeting.getMenteeEmail());
         params.putDouble("paymentAmount", (Double) meeting.getPaymentAmount());
         params.putString("status", String.valueOf(meeting.getStatus()));
         params.putString("startTime", df.format(event.getStartTime().getTime()));
@@ -179,7 +180,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // return a list of meeting ids for the current user. Fetches from the userDB
         // [123, 1234, 125]
         meetings = new ArrayList<Meeting>();
-        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
+//        meetings.add(new Meeting(1, "bestMeeting", null, null, "quinn@gmail.com", "vijeeth@gmail.com", 21, "Pending", new JSONObject()));
 
         // meetings = viewCalendar(meetingIds)
         // returns a JSON list of events (in a changeable time period)

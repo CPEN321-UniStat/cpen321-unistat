@@ -133,6 +133,20 @@ app.post("/meetings", async (req, res) => {
     }
 })
 
+app.get("/meetings", async (req, res) => {
+    // Post a new meeting
+    try {
+        await client.db("UniStatDB").collection("Meetings").find(req.body)
+        var jsonResp = {
+            "status": `Meeting request inputted by ${req.body.menteeEmail}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
 
 
 var server = app.listen(8081, (req, res) => {

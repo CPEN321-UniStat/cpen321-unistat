@@ -17,6 +17,9 @@
             android:name=".UserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:name=".RequestMeeting"
+            android:exported="false" />
+        <activity
             android:name=".ZoomMeetingActivity"
             android:exported="false" />
         <activity android:name=".EventActivity" />

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unistat.StatsCardView.StatsCards;
@@ -19,6 +21,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "MentorProfileActivity";
     private JSONObject currStat;
+    private Button requestMeetingButton;
     private String mentorName;
     private String mentorPhotoUrl;
     private String univName;
@@ -77,5 +80,10 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
 
         Picasso.get().load(mentorPhotoUrl).resize(135, 135).into(mentorPhoto);
 
+    }
+
+    public void requestMeeting(View view) {
+        Intent viewEvent = new Intent(ViewMentorProfileActivity.this, RequestMeeting.class);
+        startActivity(viewEvent);
     }
 }
