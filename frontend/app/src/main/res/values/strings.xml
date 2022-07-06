@@ -36,6 +36,9 @@
     <string name="search_text">Search</string>
     <string name="request_meeting_button_text">Request a Meeting</string>
     <string name="text_test">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tellus iaculis, feugiat arcu non, interdum sapien. Quisque non ex dolor. Vestibulum vel aliquam eros, dictum pulvinar justo. Aenean et velit dolor. Nullam quis bibendum ante, sed mollis leo. Donec suscipit mauris est, vel dignissim felis venenatis vitae. Nulla sed ultricies ex. In hac habitasse platea dictumst. Vivamus interdum erat ut convallis consectetur. Nulla varius ullamcorper tincidunt. Sed mattis ligula eget sapien ullamcorper, id sollicitudin tortor dapibus.</string>
+    <string name="make_payment_button">Make Payment</string>
+    <string name="googlepay_status_unavailable">Google Pay is not yet available</string>
+    <string name="pay">Pay</string>
 
 
 </resources>

@@ -3,7 +3,6 @@ package com.example.unistat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.metrics.Event;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,9 +17,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.unistat.Payment.CheckoutActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.internal.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +31,7 @@ public class EventActivity extends AppCompatActivity {
     private Button acceptMeetingButton;
     private Button declineMeetingButton;
     private Button joinMeetingButton;
+    private Button makePaymentButton;
     private RequestQueue requestQueue;
     private Long meetingID;
     private Boolean isMentor = false;
@@ -90,19 +90,23 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton = findViewById(R.id.acceptMeetingRequest);
         declineMeetingButton = findViewById(R.id.declineMeetingRequest);
         joinMeetingButton = findViewById(R.id.joinMeeting);
+        makePaymentButton = findViewById(R.id.makePayment);
 
         if (status.equals("Accepted")) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             joinMeetingButton.setVisibility(View.VISIBLE);
+            makePaymentButton.setVisibility(View.VISIBLE);
         } else if (status.equals("Declined")) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             joinMeetingButton.setVisibility(View.GONE);
+            makePaymentButton.setVisibility(View.GONE);
         } else if (status.equals("Pending")) {
             acceptMeetingButton.setVisibility(View.VISIBLE);
             declineMeetingButton.setVisibility(View.VISIBLE);
             joinMeetingButton.setVisibility(View.GONE);
+            makePaymentButton.setVisibility(View.GONE);
         }
     }
 
@@ -117,6 +121,7 @@ public class EventActivity extends AppCompatActivity {
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
+                makePaymentButton.setVisibility(View.VISIBLE);
             }
         });
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +138,13 @@ public class EventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent joinMeeting = new Intent(EventActivity.this, ZoomMeetingActivity.class);
                 startActivity(joinMeeting);
+            }
+        });
+        makePaymentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent checkoutActivity = new Intent(EventActivity.this, CheckoutActivity.class);
+                startActivity(checkoutActivity);
             }
         });
     }
@@ -169,5 +181,10 @@ public class EventActivity extends AppCompatActivity {
         );
 
         requestQueue.add(updateMeetingRequest);
+    }
+
+    // Payment
+    private static JSONObject getBaseRequest() throws JSONException {
+        return new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
     }
 }

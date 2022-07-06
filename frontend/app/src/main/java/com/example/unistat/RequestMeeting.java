@@ -6,12 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.timepicker.MaterialTimePicker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -25,9 +36,13 @@ public class RequestMeeting extends AppCompatActivity {
     private TextView startTimeText;
     private TextView endDateText;
     private TextView endTimeText;
+    private TextView meetingTitle;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat, timeFormat;
+
+    private static final String TAG = "RequestMeeting";
+    private RequestQueue requestQueue;
 
 
 
@@ -59,7 +74,7 @@ public class RequestMeeting extends AppCompatActivity {
         String endTime = timeFormat.format(curDate);
         endTimeText.setText(endTime);
 
-
+        requestQueue = Volley.newRequestQueue(RequestMeeting.this);
 
 
         MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
@@ -170,8 +185,44 @@ public class RequestMeeting extends AppCompatActivity {
         });
     }
 
-    public void requestMeeting(View v) {
+    public void sendMeetingRequest(View v) {
+        String URL = "http://10.0.2.2:8081/meetings";
 
+        JSONObject body = new JSONObject();
+        try {
+            body.put("status", "Pending");
+            body.put("meetingName", "QuinnMeeting");
+            body.put("mentorEmail", "quinn@gmail.com");
+            body.put("menteeEmail", "vijeeth@gmail.com");
+            body.put("paymentAmount", "21");
+            body.put("status", "Pending");
+            body.put("startTime", "2022-07-05T22:00:00.000Z");
+            body.put("startTime", "2022-07-05T23:00:00.000Z");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest sendMeetingRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        Toast.makeText(RequestMeeting.this, "Your meeting request has been sent", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(sendMeetingRequest);
     }
 
 }

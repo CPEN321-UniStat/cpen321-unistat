@@ -36,12 +36,19 @@ import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
     private static final int TYPE_DAY_VIEW = 1;
@@ -61,6 +68,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
+        meetings = new ArrayList<Meeting>();
         requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
         mWeekView = findViewById(R.id.weekView);
@@ -117,8 +125,11 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private void viewEvent(WeekViewEvent event) throws Exception {
         Meeting meeting = null;
         Long eventID = event.getId();
+        Log.d("MEETINGS", String.valueOf(meetings.size()));
         for (int i = 0; i < meetings.size(); i++ ) {
             Meeting currMeeting = meetings.get(i);
+            Log.d("CURRMEETING", String.valueOf(currMeeting.getId()));
+            Log.d("NEXTMEETING", (String.valueOf(eventID)));
             if (String.valueOf(currMeeting.getId()).equals(String.valueOf(eventID))) {
                 meeting = currMeeting;
                 break;
@@ -186,17 +197,17 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         // List <Strings> getMeetingIds(emailAddress)
         // return a list of meeting ids for the current user. Fetches from the userDB
         // [123, 1234, 125]
-        meetings = new ArrayList<Meeting>();
 
-        return getAllMeetingsByEmail(userEmail);
+
+        return getAllMeetingsByEmail(userEmail, newMonth, newYear);
     }
 
-    private List<WeekViewEvent> getAllMeetingsByEmail(String userEmail) {
+    private List<WeekViewEvent> getAllMeetingsByEmail(String userEmail, int newMonth, int newYear) {
         String URL = "http://10.0.2.2:8081/meetings";
 
         JSONObject body = new JSONObject();
         try {
-            body.put("menteeEmail", userEmail);
+            body.put("mentorEmail", userEmail);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -211,7 +222,6 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         Log.d("CALENDAR", "Server resp: " + response.toString());
                         try {
                             JSONArray meetingArray = (JSONArray) response.get("meetings");
-
                             for (int i = 0; i < meetingArray.length(); i++){
                                 JSONObject meeting =  meetingArray.getJSONObject(i);
                                 Toast.makeText(CalendarActivity.this, "inside", Toast.LENGTH_LONG).show();
@@ -224,15 +234,16 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                                 String status = (String) meeting.get("status");
                                 String startTimeString = (String) meeting.get("startTime");
                                 String endTimeString = (String) meeting.get("endTime");
-                                Calendar startTime = getCalendarFromISO(startTimeString);
-                                Calendar endTime = getCalendarFromISO(endTimeString);
+
+                                Calendar startTime = ISO8601.toCalendar(startTimeString);
+                                Calendar endTime = ISO8601.toCalendar(endTimeString);
 
                                 WeekViewEvent event = new WeekViewEvent(meetingID, meetingName, startTime, endTime);
                                 event.setColor((status == "Pending") ? getResources().getColor(R.color.grey) : (status == "Accepted") ? getResources().getColor(R.color.green) : getResources().getColor(R.color.red));
                                 events.add(event);
                                 meetings.add(new Meeting(meetingID, meetingName, startTime, endTime, mentorEmail, menteeEmail, paymentAmount, status, new ArrayList<MeetingLog>()));
                             }
-                        } catch (JSONException e) {
+                        } catch (JSONException | ParseException e) {
                             e.printStackTrace();
                         }
                     }
@@ -244,25 +255,38 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                     }
                 }
         );
+        Calendar startTime = Calendar.getInstance();
+        startTime.set(Calendar.HOUR_OF_DAY, 3);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        Calendar endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR, 1);
+        endTime.set(Calendar.MONTH, newMonth-1);
+        WeekViewEvent event = new WeekViewEvent(1, "McChicken time", startTime, endTime);
+        event.setColor(getResources().getColor(R.color.purple_200));
+        events.add(event);
+        meetings.add(new Meeting(1, "McChicken time", startTime, endTime, "quinncarroll810@gmail.com", "vijeeth@gmail.com", 21, "Pending", new ArrayList<MeetingLog>()));
+
+
+        startTime = Calendar.getInstance();
+        startTime.set(Calendar.HOUR_OF_DAY, 8);
+        startTime.set(Calendar.MINUTE, 0);
+        startTime.set(Calendar.MONTH, newMonth-1);
+        startTime.set(Calendar.YEAR, newYear);
+        endTime = (Calendar) startTime.clone();
+        endTime.add(Calendar.HOUR, 1);
+        endTime.set(Calendar.MONTH, newMonth-1);
+        event = new WeekViewEvent(12345, "Just a test meeting by Quinn", startTime, endTime);
+        event.setColor(getResources().getColor(R.color.purple_200));
+        events.add(event);
+        meetings.add(new Meeting(12345, "Just a test meeting by Quinn", startTime, endTime, "quinncarroll810@gmail.com", "vijeeth@gmail.com", 21, "Pending", new ArrayList<MeetingLog>()));
 
         requestQueue.add(getAllMeetingsRequest);
         return events;
     }
 
-    public static Calendar getCalendarFromISO(String datestring) {
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault()) ;
-        SimpleDateFormat dateformat = new SimpleDateFormat(ISO8601DATEFORMAT, Locale.getDefault());
-        try {
-            Date date = dateformat.parse(datestring);
-            date.setHours(date.getHours()-1);
-            calendar.setTime(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
 
-
-        return calendar;
-    }
 
     @Override
     public void onEmptyViewLongPress(Calendar time) {
@@ -285,4 +309,42 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         }
     }
 
+}
+
+
+
+/**
+ * Helper class for handling a most common subset of ISO 8601 strings
+ * (in the following format: "2008-03-01T13:00:00+01:00"). It supports
+ * parsing the "Z" timezone, but many other less-used features are
+ * missing.
+ */
+final class ISO8601 {
+    /** Transform Calendar to ISO 8601 string. */
+    public static String fromCalendar(final Calendar calendar) {
+        Date date = calendar.getTime();
+        String formatted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+                .format(date);
+        return formatted.substring(0, 22) + ":" + formatted.substring(22);
+    }
+
+    /** Get current date and time formatted as ISO 8601 string. */
+    public static String now() {
+        return fromCalendar(GregorianCalendar.getInstance());
+    }
+
+    /** Transform ISO 8601 string to Calendar. */
+    public static Calendar toCalendar(final String iso8601string)
+            throws ParseException {
+        Calendar calendar = GregorianCalendar.getInstance();
+        String s = iso8601string.replace("Z", "+00:00");
+        try {
+            s = s.substring(0, 22) + s.substring(23);  // to get rid of the ":"
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException("Invalid length", 0);
+        }
+        Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(s);
+        calendar.setTime(date);
+        return calendar;
+    }
 }
