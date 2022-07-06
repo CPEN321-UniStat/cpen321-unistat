@@ -197,7 +197,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         assert account != null;
         String userEmail = account.getEmail();
 
-        return getAllMeetingsByEmail(userEmail, newMonth, newYear);
+        return getAllMeetingsByEmail(userEmail, newMonth-1, newYear);
     }
 
     private List<Meeting> getAllMeetingsByEmail(String userEmail, int month, int year) {
