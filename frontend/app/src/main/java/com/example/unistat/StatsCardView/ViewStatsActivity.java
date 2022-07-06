@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +29,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.CalendarActivity;
+import com.example.unistat.Meeting.Meeting;
+import com.example.unistat.Meeting.MeetingLog;
 import com.example.unistat.R;
+import com.example.unistat.RequestMeeting;
 import com.example.unistat.SignOutActivity;
 import com.example.unistat.UserProfileActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,12 +40,17 @@ import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.LinkedList;
 
 public class ViewStatsActivity extends AppCompatActivity {
     private static final String TAG = "ViewStatsActivity";
@@ -60,6 +69,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;
     private ArrayAdapter<String> adapter;
+    public Button requestMeetingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -209,11 +219,20 @@ public class ViewStatsActivity extends AppCompatActivity {
                         return true;
                 }
                 return false;
-                }
-            });
+            }
+        });
+
+        requestMeetingButton = findViewById(R.id.request_meeting_button);
+        requestMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(ViewStatsActivity.this, RequestMeeting.class));
+            }
+        });
 
 
-        }
+    }
 
     private void initCardView() {
         recyclerView = findViewById(R.id.recycler_view_card_id);

@@ -3,6 +3,7 @@ package com.example.unistat;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,17 +28,28 @@ import com.example.unistat.Meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -54,12 +66,16 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private RequestQueue requestQueue;
 
     private Boolean shouldAllowBack = false;
+    private static HttpURLConnection connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
@@ -181,71 +197,70 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         assert account != null;
         String userEmail = account.getEmail();
 
-        // Populate the week view with some events.
-
-        // List <Strings> getMeetingIds(emailAddress)
-        // return a list of meeting ids for the current user. Fetches from the userDB
-        // [123, 1234, 125]
-        meetings = new ArrayList<Meeting>();
-
-        return getAllMeetingsByEmail(userEmail);
+        return getAllMeetingsByEmail(userEmail, newMonth, newYear);
     }
 
-    private List<WeekViewEvent> getAllMeetingsByEmail(String userEmail) {
-        String URL = "http://10.0.2.2:8081/meetings";
+    private List<Meeting> getAllMeetingsByEmail(String userEmail, int month, int year) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
 
-        JSONObject body = new JSONObject();
+        String URL = "http://10.0.2.2:8081/meetings/"+userEmail;
+
+        List<Meeting> events = new ArrayList<>();
+
+        BufferedReader reader;
+        String line;
+        StringBuffer responseContent = new StringBuffer();
         try {
-            body.put("menteeEmail", userEmail);
+            URL url = new URL(URL);
+            connection = (HttpURLConnection) url.openConnection();
+            
+            //Request setup
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("month", String.valueOf(month));
+            connection.setRequestProperty("year", String.valueOf(year));
+
+            int status = connection.getResponseCode();
+
+            if (status > 299) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+
+            System.out.println(responseContent.toString());
+            JSONObject response = new JSONObject(responseContent.toString());
+            JSONArray meetingArray = (JSONArray) response.get("meetings");
+            for (int i = 0; i < meetingArray.length(); i++){
+                JSONObject meeting =  meetingArray.getJSONObject(i);
+                String jsonString = meeting.toString();
+                Meeting meetingObj = gson.fromJson(jsonString, Meeting.class);
+                events.add(meetingObj);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
+        } finally {
+            connection.disconnect();
         }
-        ArrayList events = new ArrayList<WeekViewEvent>();
-        JsonObjectRequest getAllMeetingsRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                body,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("CALENDAR", "Server resp: " + response.toString());
-                        try {
-                            JSONArray meetingArray = (JSONArray) response.get("meetings");
-
-                            for (int i = 0; i < meetingArray.length(); i++){
-                                JSONObject meeting =  meetingArray.getJSONObject(i);
-                                Toast.makeText(CalendarActivity.this, "inside", Toast.LENGTH_LONG).show();
-
-                                String meetingName = (String) meeting.get("meetingName");
-                                Long meetingID = Long.parseLong((String) meeting.get("meetingID"));
-                                String mentorEmail = (String) meeting.get("mentorEmail");
-                                String menteeEmail = (String) meeting.get("menteeEmail");
-                                Double paymentAmount = Double.parseDouble((String) meeting.get("paymentAmount"));
-                                String status = (String) meeting.get("status");
-                                String startTimeString = (String) meeting.get("startTime");
-                                String endTimeString = (String) meeting.get("endTime");
-                                Calendar startTime = getCalendarFromISO(startTimeString);
-                                Calendar endTime = getCalendarFromISO(endTimeString);
-
-                                WeekViewEvent event = new WeekViewEvent(meetingID, meetingName, startTime, endTime);
-                                event.setColor((status == "Pending") ? getResources().getColor(R.color.grey) : (status == "Accepted") ? getResources().getColor(R.color.green) : getResources().getColor(R.color.red));
-                                events.add(event);
-                                meetings.add(new Meeting(meetingID, meetingName, startTime, endTime, mentorEmail, menteeEmail, paymentAmount, status, new ArrayList<MeetingLog>()));
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("CALENDAR", "Server error: " + error);
-                    }
-                }
-        );
-
-        requestQueue.add(getAllMeetingsRequest);
+        System.out.println("Length of events: " + events.size());
         return events;
     }
 

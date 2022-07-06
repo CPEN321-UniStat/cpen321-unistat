@@ -5,7 +5,8 @@ const { MongoClient } = require("mongodb")
 const uri = "mongodb://localhost:27017"
 const client = new MongoClient(uri)
 
-const axios = require("axios")
+const axios = require("axios");
+const { query } = require("express");
 
 app.use(express.json());
 
@@ -143,6 +144,23 @@ app.get("/meetings", async (req, res) => {
         res.send(JSON.stringify(jsonResp)); 
     }
     )
+})
+
+app.get("/meetings/:email", async (req, res) => {
+    var email = req.params.email;
+    var month = parseInt(req.headers['month'])
+    var year = parseInt(req.headers['year'])
+    var query = {"mStartTime.month": month, "mStartTime.year": year,  "$or": [{"menteeEmail": email}, {"mentorEmail": email}] }
+    
+    console.log(month)
+    client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        var jsonResp = {"meetings" : result}
+        res.send(JSON.stringify(jsonResp)); 
+    })
 })
 
 app.put("/meetings", async (req, res) => {

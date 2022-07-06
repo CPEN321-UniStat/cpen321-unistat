@@ -6,18 +6,43 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alamkanak.weekview.WeekViewEvent;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.unistat.Meeting.Meeting;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.timepicker.MaterialTimePicker;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.UUID;
 
 public class RequestMeeting extends AppCompatActivity {
 
@@ -29,6 +54,11 @@ public class RequestMeeting extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat, timeFormat;
 
+    private Calendar startTimeCalendar, endTimeCalendar;
+    private Button bookMeetingButton;
+    private TextInputLayout meetingTitleInput, paymentInput;
+
+    private RequestQueue requestQueue;
 
 
 
@@ -36,6 +66,28 @@ public class RequestMeeting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_meeting);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeeting.this);
+        assert account != null;
+        String userEmail = account.getEmail();
+
+        requestQueue = Volley.newRequestQueue(RequestMeeting.this);
+
+        meetingTitleInput = findViewById(R.id.meeting_title_input);
+
+        paymentInput = findViewById(R.id.payment_offer_input);
+
+        bookMeetingButton = findViewById(R.id.book_meeting_button);
+        bookMeetingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String meetingTitle = meetingTitleInput.getEditText().getText().toString();
+                String paymentOffer = paymentInput.getEditText().getText().toString();
+                double payment = Double.parseDouble(paymentOffer);
+                bookMeeting(meetingTitle, "mentor@email", userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+            }
+        });
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MMM d, yyyy");
@@ -52,12 +104,15 @@ public class RequestMeeting extends AppCompatActivity {
         startTimeText = findViewById(R.id.start_time_text);
         String startTime = timeFormat.format(calendar.getTime());
         startTimeText.setText(startTime);
+        startTimeCalendar = Calendar.getInstance();
 
         endTimeText = findViewById(R.id.end_time_text);
         Date curDate = calendar.getTime();
         curDate.setTime(curDate.getTime() + 3600000);
         String endTime = timeFormat.format(curDate);
         endTimeText.setText(endTime);
+        endTimeCalendar = Calendar.getInstance();
+        endTimeCalendar.setTime(curDate);
 
 
 
@@ -76,14 +131,26 @@ public class RequestMeeting extends AppCompatActivity {
             @Override
             public void onPositiveButtonClick(Object selection) {
 
-                // if the user clicks on the positive
-                // button that is ok button update the
-                // selected date
                 startDateText.setText(materialDatePicker.getHeaderText());
                 endDateText.setText(materialDatePicker.getHeaderText());
-                // in the above statement, getHeaderText
-                // is the selected date preview from the
-                // dialog
+
+                Date date1;
+                try {
+                    date1 = dateFormat.parse(materialDatePicker.getHeaderText());
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date1);
+                    int month = cal.get(Calendar.MONTH);
+                    int day = cal.get(Calendar.DAY_OF_MONTH);
+                    int year = cal.get(Calendar.YEAR);
+                    startTimeCalendar.set(Calendar.MONTH, month);
+                    startTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
+                    startTimeCalendar.set(Calendar.YEAR, year);
+                    endTimeCalendar.set(Calendar.MONTH, month);
+                    endTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
+                    endTimeCalendar.set(Calendar.YEAR, year);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -110,8 +177,8 @@ public class RequestMeeting extends AppCompatActivity {
         });
 
 
-        addTimePickerOnPositiveClickListener(startTimeMaterialTimePicker, startTimeText);
-        addTimePickerOnPositiveClickListener(endTimeMaterialTimePicker, endTimeText);
+        addTimePickerOnPositiveClickListener(startTimeMaterialTimePicker, startTimeText, startTimeCalendar);
+        addTimePickerOnPositiveClickListener(endTimeMaterialTimePicker, endTimeText, endTimeCalendar);
 
     }
 
@@ -124,13 +191,16 @@ public class RequestMeeting extends AppCompatActivity {
         });
     }
 
-    private void addTimePickerOnPositiveClickListener(MaterialTimePicker materialTimePicker, TextView timeText) {
+    private void addTimePickerOnPositiveClickListener(MaterialTimePicker materialTimePicker, TextView timeText, Calendar calendar) {
         materialTimePicker.addOnPositiveButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int hours = materialTimePicker.getHour();
                 int minutes = materialTimePicker.getMinute();
                 String time;
+
+                calendar.set(Calendar.HOUR_OF_DAY, hours);
+                calendar.set(Calendar.MINUTE, minutes);
 
                 if (hours > 12) {
                     if (minutes < 10) {
@@ -170,7 +240,41 @@ public class RequestMeeting extends AppCompatActivity {
         });
     }
 
-    public void requestMeeting(View v) {
+    public void bookMeeting(String name, String mentorEmail, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
+        long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
+        Meeting meeting = new Meeting(id, name, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, new LinkedList<>());
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        String jsonBody = gson.toJson(meeting);
+
+        String URL = "http://10.0.2.2:8081/meetings";
+        try {
+            JSONObject jsonObject = new JSONObject(jsonBody);
+            JsonObjectRequest postMeetingsRequest = new JsonObjectRequest(
+                    Request.Method.POST,
+                    URL,
+                    jsonObject,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("CALENDAR", "Server resp: " + response.toString());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("CALENDAR", "Server error: " + error);
+                        }
+                    }
+            );
+            requestQueue.add(postMeetingsRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 

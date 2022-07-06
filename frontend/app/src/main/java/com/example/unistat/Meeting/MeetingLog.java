@@ -1,20 +1,19 @@
 package com.example.unistat.Meeting;
 
 public class MeetingLog {
+    public enum Action {
+        JOINED, LEFT
+    }
     private String timestamp;
     private String userEmail;
     private boolean isMentor;
-    private String action;
+    private Action action;
 
-    public MeetingLog(String timestamp, String userEmail, boolean isMentor, String action) {
+    public MeetingLog(String timestamp, String userEmail, boolean isMentor, Action action) {
         this.timestamp = timestamp;
         this.userEmail = userEmail;
         this.isMentor = isMentor;
         this.action = action;
-    }
-
-    public MeetingLog() {
-
     }
 
     public String getTimestamp() {
@@ -41,11 +40,11 @@ public class MeetingLog {
         isMentor = mentor;
     }
 
-    public String getAction() {
+    public Action getAction() {
         return action;
     }
 
-    public void setAction(String action) {
+    public void setAction(Action action) {
         this.action = action;
     }
 }
