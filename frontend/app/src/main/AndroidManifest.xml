@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewMentorProfileActivity"></activity>
+        <activity
+            android:name=".Payment.CheckoutActivity"
+            android:exported="false" />
+        <activity android:name=".ViewMentorProfileActivity" />
         <activity
             android:name=".UserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -45,6 +48,9 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
     </application>
 
 </manifest>
