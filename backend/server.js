@@ -166,9 +166,11 @@ app.get("/meetings/:email", async (req, res) => {
 app.put("/meetings", async (req, res) => {
     // Update stat data
     try {
-        await client.db("UniStatDB").collection("Meetings").updateOne({"mId" : req.body.mId}, {"$set": {"status": req.body.status}})
-        console.log(req.body.mId + " " + req.body.status)
+        console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
         console.log(req.body)
+        find_query = {"mId" : req.body.mId}
+        update_query = {"$set": {"status": req.body.status, "mColor": req.body.mColor}}
+        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         var jsonResp = {
             "status": `Meeting status updated`
         }

@@ -128,8 +128,7 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meeting.setStatus(Meeting.Status.ACCEPTED);
-                updateMeetingStatus();
+                updateMeetingStatus(Meeting.Status.ACCEPTED);
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
@@ -139,8 +138,7 @@ public class EventActivity extends AppCompatActivity {
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meeting.setStatus(Meeting.Status.REJECTED);
-                updateMeetingStatus();
+                updateMeetingStatus(Meeting.Status.REJECTED);
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.GONE);
@@ -162,14 +160,17 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private void updateMeetingStatus() {
+    private void updateMeetingStatus(Meeting.Status status) {
+        meeting.setStatus(status);
+        System.out.println(status.name() + " " + meeting.getColor());
+
         String URL = "http://10.0.2.2:8081/meetings";
 
         JSONObject body = new JSONObject();
         try {
             body.put("mId", meeting.getId());
             body.put("status", meeting.getStatus().name());
-
+            body.put("mColor", meeting.getColor());
         } catch (JSONException e) {
             e.printStackTrace();
         }
