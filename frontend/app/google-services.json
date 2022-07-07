@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "572477064370",
+    "project_id": "unistat-1656128595939",
+    "storage_bucket": "unistat-1656128595939.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572477064370:android:adfae7b7c8f9eec3ce35ab",
+        "android_client_info": {
+          "package_name": "com.example.unistat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572477064370-kij843brtq940lo0jjvo3n2kf92kd4sn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.unistat",
+            "certificate_hash": "017ace7a7291e20cff5da738b8f99d47e624b00f"
+          }
+        },
+        {
+          "client_id": "572477064370-2qjrgc0k389jigb066350tha03vai6ed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx-wpQzmPhWnjwquLS8DsLCJBV2YJdaxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572477064370-2qjrgc0k389jigb066350tha03vai6ed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
