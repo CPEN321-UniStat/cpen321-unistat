@@ -18,12 +18,19 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.unistat.Meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.Constants;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -35,6 +42,7 @@ public class EventActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private Long meetingID;
     private Boolean isMentor = false;
+    Meeting meeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,58 +56,60 @@ public class EventActivity extends AppCompatActivity {
 
     private void getAndSetMeetingInfo() {
         // 1. Get all parameters
-        Bundle params = getIntent().getExtras();
-        meetingID = params.getLong("meetingID");
-        String meetingName = params.getString("meetingName");
-        String mentorEmail = params.getString("mentorEmail");
-        String menteeEmail = params.getString("menteeEmail");
-        Double paymentAmount = params.getDouble("paymentAmount");
-        String status = params.getString("status");
-        String startTime = params.getString("startTime");
-        String endTime = params.getString("endTime");
-        String date = params.getString("date");
+        Intent intent = getIntent();
+        String meetingJsonString = intent.getStringExtra("Meeting");
+
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
+        meeting = gson.fromJson(meetingJsonString, Meeting.class);
 
         TextView profileText = findViewById(R.id.name);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
-        if (userEmail.equals(mentorEmail)) {
+        if (userEmail.equals(meeting.getMentorEmail())) {
             isMentor = true;
-            profileText.setText(menteeEmail);
+            profileText.setText(meeting.getMenteeEmail());
         } else{
-            profileText.setText(mentorEmail);
+            profileText.setText(meeting.getMentorEmail());
         }
 
         // 2. Set all parameters
         TextView eventNameText = findViewById(R.id.eventName);
-        eventNameText.setText(meetingName);
+        eventNameText.setText(meeting.getName());
 
         TextView paymentAmountText = findViewById(R.id.money);
-        paymentAmountText.setText(String.valueOf(paymentAmount));
+        paymentAmountText.setText(String.valueOf(meeting.getPaymentAmount()));
 
         TextView timeText = findViewById(R.id.time);
-        timeText.setText(startTime + " - " + endTime);
+        DateFormat df = new SimpleDateFormat("h:mm a");
+        String startTimeString = df.format(meeting.getStartTime().getTime());
+        String endTimeString = df.format(meeting.getEndTime().getTime());
+        timeText.setText(startTimeString + " - " + endTimeString);
 
+        df = new SimpleDateFormat("MMM d, yyyy");
+        String date = df.format(meeting.getStartTime().getTime());
         TextView dateText = findViewById(R.id.date);
         dateText.setText(date);
 
-        decideWhatsVisible(status);
+        decideWhatsVisible(meeting.getStatus());
     }
 
-    private void decideWhatsVisible(String status) {
+    private void decideWhatsVisible(Meeting.Status status) {
         acceptMeetingButton = findViewById(R.id.acceptMeetingRequest);
         declineMeetingButton = findViewById(R.id.declineMeetingRequest);
         joinMeetingButton = findViewById(R.id.joinMeeting);
 
-        if (status.equals("Accepted")) {
+        if (status.equals(Meeting.Status.ACCEPTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             joinMeetingButton.setVisibility(View.VISIBLE);
-        } else if (status.equals("Declined")) {
+        } else if (status.equals(Meeting.Status.REJECTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             joinMeetingButton.setVisibility(View.GONE);
-        } else if (status.equals("Pending")) {
+        } else if (status.equals(Meeting.Status.PENDING)) {
             acceptMeetingButton.setVisibility(View.VISIBLE);
             declineMeetingButton.setVisibility(View.VISIBLE);
             joinMeetingButton.setVisibility(View.GONE);
@@ -113,7 +123,8 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateMeetingStatus("Accepted", meetingID);
+                meeting.setStatus(Meeting.Status.ACCEPTED);
+                updateMeetingStatus();
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
@@ -122,7 +133,8 @@ public class EventActivity extends AppCompatActivity {
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateMeetingStatus("Declined", meetingID);
+                meeting.setStatus(Meeting.Status.REJECTED);
+                updateMeetingStatus();
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.GONE);
@@ -137,20 +149,20 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private void updateMeetingStatus(String newStatus, Long meetingID) {
+    private void updateMeetingStatus() {
         String URL = "http://10.0.2.2:8081/meetings";
 
         JSONObject body = new JSONObject();
         try {
-            body.put("meetingID", meetingID);
-            body.put("status", newStatus);
+            body.put("mId", meeting.getId());
+            body.put("status", meeting.getStatus().name());
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         JsonObjectRequest updateMeetingRequest = new JsonObjectRequest(
-                Request.Method.PATCH,
+                Request.Method.PUT,
                 URL,
                 body,
                 new Response.Listener<JSONObject>() {

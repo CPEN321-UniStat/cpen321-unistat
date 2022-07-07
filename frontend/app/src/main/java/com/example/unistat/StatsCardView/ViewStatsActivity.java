@@ -334,7 +334,8 @@ public class ViewStatsActivity extends AppCompatActivity {
                                     univMajorStats.add((String) userStat.get("univMajor"));
                                 }
                                 String userName = userStat.getString("userName");
-                                statsList.add(new StatsCards(userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), (String) userStat.get("univGpa"), (String) userStat.get("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
+                                String userEmail = userStat.getString("userEmail");
+                                statsList.add(new StatsCards(userEmail, userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), (String) userStat.get("univGpa"), (String) userStat.get("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
                             }
 
                             filterOptions.addAll(univNameStats);

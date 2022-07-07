@@ -4,6 +4,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -59,6 +60,7 @@ public class RequestMeeting extends AppCompatActivity {
     private TextInputLayout meetingTitleInput, paymentInput;
 
     private RequestQueue requestQueue;
+    private String mentorEmail;
 
 
 
@@ -66,6 +68,9 @@ public class RequestMeeting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_meeting);
+
+        Intent intent = getIntent();
+        mentorEmail = intent.getStringExtra("mentorEmail");
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeeting.this);
         assert account != null;
@@ -85,7 +90,7 @@ public class RequestMeeting extends AppCompatActivity {
                 String meetingTitle = meetingTitleInput.getEditText().getText().toString();
                 String paymentOffer = paymentInput.getEditText().getText().toString();
                 double payment = Double.parseDouble(paymentOffer);
-                bookMeeting(meetingTitle, "mentor@email", userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
             }
         });
 

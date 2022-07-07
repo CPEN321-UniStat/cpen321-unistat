@@ -3,6 +3,7 @@ package com.example.unistat.StatsCardView;
 public class StatsCards {
 
     //Model Class
+    private String mentorEmail;
     private String mentorName;
     private String univName;
     private String univMajor;
@@ -12,7 +13,8 @@ public class StatsCards {
     private String userStatProfileImage;
 
     //Constructor
-    public StatsCards(String mentorName, String univName, String univMajor, String univGpa, String univEntranceScore, String univBio, String userStatProfileImage) {
+    public StatsCards(String mentorEmail, String mentorName, String univName, String univMajor, String univGpa, String univEntranceScore, String univBio, String userStatProfileImage) {
+        this.mentorEmail = mentorEmail;
         this.mentorName = mentorName;
         this.univName = univName;
         this.univMajor = univMajor;
@@ -23,6 +25,10 @@ public class StatsCards {
     }
 
     //Getters
+    public String getMentorEmail() {
+        return mentorEmail;
+    }
+
     public String getMentorName() {
         return mentorName;
     }

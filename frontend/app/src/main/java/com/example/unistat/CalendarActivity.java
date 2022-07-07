@@ -131,34 +131,16 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     }
 
     private void viewEvent(WeekViewEvent event) throws Exception {
-        Meeting meeting = null;
-        Long eventID = event.getId();
-        for (int i = 0; i < meetings.size(); i++ ) {
-            Meeting currMeeting = meetings.get(i);
-            if (String.valueOf(currMeeting.getId()).equals(String.valueOf(eventID))) {
-                meeting = currMeeting;
-                break;
-            }
-        }
-        if (meeting == null) {
-            throw new Exception("There is not a corresponding meeting variable that the backend has provided");
-        }
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
 
-        DateFormat df = new SimpleDateFormat("h:mm a");
+        Meeting meeting = (Meeting) event;
+        String meetingJsonString = gson.toJson(meeting);
 
         Intent viewEvent = new Intent(CalendarActivity.this, EventActivity.class);
-        Bundle params = new Bundle();
-        params.putLong("meetingID", event.getId());
-        params.putString("meetingName", meeting.getName());
-        params.putString("mentorEmail", meeting.getMentorEmail());
-        params.putString("menteeEmail", meeting.getMenteeEmail());
-        params.putDouble("paymentAmount", (Double) meeting.getPaymentAmount());
-        params.putString("status", String.valueOf(meeting.getStatus()));
-        params.putString("startTime", df.format(event.getStartTime().getTime()));
-        params.putString("endTime", df.format(event.getEndTime().getTime()));
-        params.putString("date", String.valueOf(event.getEndTime().get(Calendar.YEAR)) + "/" + String.valueOf(event.getEndTime().get(Calendar.MONTH)) + "/" + String.valueOf(event.getEndTime().get(Calendar.DAY_OF_MONTH)));
 
-        viewEvent.putExtras(params);
+        viewEvent.putExtra("Meeting", meetingJsonString);
         startActivity(viewEvent);
     }
 
