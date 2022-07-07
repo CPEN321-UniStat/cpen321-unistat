@@ -60,6 +60,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
                 JSONObject currStat = new JSONObject();
 
                 try {
+                    currStat.put("mentorEmail", curStat.getMentorEmail());
                     currStat.put("mentorName", curStat.getMentorName());
                     currStat.put("mentorPhoto", curStat.getUserStatProfileImage());
                     currStat.put("univName", curStat.getUnivName());

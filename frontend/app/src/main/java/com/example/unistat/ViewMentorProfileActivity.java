@@ -10,10 +10,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.unistat.StatsCardView.StatsCards;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import javax.xml.transform.sax.SAXResult;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -22,6 +26,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
     private static final String TAG = "MentorProfileActivity";
     private JSONObject currStat;
     private Button requestMeetingButton;
+    private String mentorEmail;
     private String mentorName;
     private String mentorPhotoUrl;
     private String univName;
@@ -52,6 +57,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
         }
 
         try {
+            mentorEmail = currStat.getString("mentorEmail");
             mentorName = currStat.getString("mentorName");
             mentorPhotoUrl = currStat.getString("mentorPhoto");
             univName = currStat.getString("univName");
@@ -84,6 +90,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
 
     public void requestMeeting(View view) {
         Intent viewEvent = new Intent(ViewMentorProfileActivity.this, RequestMeeting.class);
+        viewEvent.putExtra("mentorEmail", mentorEmail);
         startActivity(viewEvent);
     }
 }

@@ -3,6 +3,7 @@ package com.example.unistat;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -27,28 +28,32 @@ import com.example.unistat.Meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
     private static final int TYPE_DAY_VIEW = 1;
@@ -61,6 +66,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private RequestQueue requestQueue;
 
     private Boolean shouldAllowBack = false;
+    private static HttpURLConnection connection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +74,9 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        meetings = new ArrayList<Meeting>();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
         mWeekView = findViewById(R.id.weekView);
@@ -123,37 +131,16 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     }
 
     private void viewEvent(WeekViewEvent event) throws Exception {
-        Meeting meeting = null;
-        Long eventID = event.getId();
-        Log.d("MEETINGS", String.valueOf(meetings.size()));
-        for (int i = 0; i < meetings.size(); i++ ) {
-            Meeting currMeeting = meetings.get(i);
-            Log.d("CURRMEETING", String.valueOf(currMeeting.getId()));
-            Log.d("NEXTMEETING", (String.valueOf(eventID)));
-            if (String.valueOf(currMeeting.getId()).equals(String.valueOf(eventID))) {
-                meeting = currMeeting;
-                break;
-            }
-        }
-        if (meeting == null) {
-            throw new Exception("There is not a corresponding meeting variable that the backend has provided");
-        }
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
 
-        DateFormat df = new SimpleDateFormat("h:mm a");
+        Meeting meeting = (Meeting) event;
+        String meetingJsonString = gson.toJson(meeting);
 
         Intent viewEvent = new Intent(CalendarActivity.this, EventActivity.class);
-        Bundle params = new Bundle();
-        params.putLong("meetingID", event.getId());
-        params.putString("meetingName", meeting.getName());
-        params.putString("mentorEmail", meeting.getMentorEmail());
-        params.putString("menteeEmail", meeting.getMenteeEmail());
-        params.putDouble("paymentAmount", (Double) meeting.getPaymentAmount());
-        params.putString("status", String.valueOf(meeting.getStatus()));
-        params.putString("startTime", df.format(event.getStartTime().getTime()));
-        params.putString("endTime", df.format(event.getEndTime().getTime()));
-        params.putString("date", String.valueOf(event.getEndTime().get(Calendar.YEAR)) + "/" + String.valueOf(event.getEndTime().get(Calendar.MONTH)) + "/" + String.valueOf(event.getEndTime().get(Calendar.DAY_OF_MONTH)));
 
-        viewEvent.putExtras(params);
+        viewEvent.putExtra("Meeting", meetingJsonString);
         startActivity(viewEvent);
     }
 
@@ -192,101 +179,87 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         assert account != null;
         String userEmail = account.getEmail();
 
-        // Populate the week view with some events.
-
-        // List <Strings> getMeetingIds(emailAddress)
-        // return a list of meeting ids for the current user. Fetches from the userDB
-        // [123, 1234, 125]
-
-
-        return getAllMeetingsByEmail(userEmail, newMonth, newYear);
+        return getAllMeetingsByEmail(userEmail, newMonth-1, newYear);
     }
 
-    private List<WeekViewEvent> getAllMeetingsByEmail(String userEmail, int newMonth, int newYear) {
-        String URL = "http://10.0.2.2:8081/meetings";
+    private List<Meeting> getAllMeetingsByEmail(String userEmail, int month, int year) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.setPrettyPrinting();
+        Gson gson = builder.create();
 
-        JSONObject body = new JSONObject();
+        String URL = "http://10.0.2.2:8081/meetings/"+userEmail;
+
+        List<Meeting> events = new ArrayList<>();
+
+        BufferedReader reader;
+        String line;
+        StringBuffer responseContent = new StringBuffer();
         try {
-            body.put("mentorEmail", userEmail);
+            URL url = new URL(URL);
+            connection = (HttpURLConnection) url.openConnection();
+            
+            //Request setup
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setRequestProperty("month", String.valueOf(month));
+            connection.setRequestProperty("year", String.valueOf(year));
+
+            int status = connection.getResponseCode();
+
+            if (status > 299) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+
+            System.out.println(responseContent.toString());
+            JSONObject response = new JSONObject(responseContent.toString());
+            JSONArray meetingArray = (JSONArray) response.get("meetings");
+            for (int i = 0; i < meetingArray.length(); i++){
+                JSONObject meeting =  meetingArray.getJSONObject(i);
+                String jsonString = meeting.toString();
+                Meeting meetingObj = gson.fromJson(jsonString, Meeting.class);
+                events.add(meetingObj);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
+        } finally {
+            connection.disconnect();
         }
-        ArrayList events = new ArrayList<WeekViewEvent>();
-        JsonObjectRequest getAllMeetingsRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                body,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("CALENDAR", "Server resp: " + response.toString());
-                        try {
-                            JSONArray meetingArray = (JSONArray) response.get("meetings");
-                            for (int i = 0; i < meetingArray.length(); i++){
-                                JSONObject meeting =  meetingArray.getJSONObject(i);
-                                Toast.makeText(CalendarActivity.this, "inside", Toast.LENGTH_LONG).show();
-
-                                String meetingName = (String) meeting.get("meetingName");
-                                Long meetingID = Long.parseLong((String) meeting.get("meetingID"));
-                                String mentorEmail = (String) meeting.get("mentorEmail");
-                                String menteeEmail = (String) meeting.get("menteeEmail");
-                                Double paymentAmount = Double.parseDouble((String) meeting.get("paymentAmount"));
-                                String status = (String) meeting.get("status");
-                                String startTimeString = (String) meeting.get("startTime");
-                                String endTimeString = (String) meeting.get("endTime");
-
-                                Calendar startTime = ISO8601.toCalendar(startTimeString);
-                                Calendar endTime = ISO8601.toCalendar(endTimeString);
-
-                                WeekViewEvent event = new WeekViewEvent(meetingID, meetingName, startTime, endTime);
-                                event.setColor((status == "Pending") ? getResources().getColor(R.color.grey) : (status == "Accepted") ? getResources().getColor(R.color.green) : getResources().getColor(R.color.red));
-                                events.add(event);
-                                meetings.add(new Meeting(meetingID, meetingName, startTime, endTime, mentorEmail, menteeEmail, paymentAmount, status, new ArrayList<MeetingLog>()));
-                            }
-                        } catch (JSONException | ParseException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d("CALENDAR", "Server error: " + error);
-                    }
-                }
-        );
-        Calendar startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 3);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        Calendar endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR, 1);
-        endTime.set(Calendar.MONTH, newMonth-1);
-        WeekViewEvent event = new WeekViewEvent(1, "McChicken time", startTime, endTime);
-        event.setColor(getResources().getColor(R.color.purple_200));
-        events.add(event);
-        meetings.add(new Meeting(1, "McChicken time", startTime, endTime, "quinncarroll810@gmail.com", "vijeeth@gmail.com", 21, "Pending", new ArrayList<MeetingLog>()));
-
-
-        startTime = Calendar.getInstance();
-        startTime.set(Calendar.HOUR_OF_DAY, 8);
-        startTime.set(Calendar.MINUTE, 0);
-        startTime.set(Calendar.MONTH, newMonth-1);
-        startTime.set(Calendar.YEAR, newYear);
-        endTime = (Calendar) startTime.clone();
-        endTime.add(Calendar.HOUR, 1);
-        endTime.set(Calendar.MONTH, newMonth-1);
-        event = new WeekViewEvent(12345, "Just a test meeting by Quinn", startTime, endTime);
-        event.setColor(getResources().getColor(R.color.purple_200));
-        events.add(event);
-        meetings.add(new Meeting(12345, "Just a test meeting by Quinn", startTime, endTime, "quinncarroll810@gmail.com", "vijeeth@gmail.com", 21, "Pending", new ArrayList<MeetingLog>()));
-
-        requestQueue.add(getAllMeetingsRequest);
+        System.out.println("Length of events: " + events.size());
         return events;
     }
 
+    public static Calendar getCalendarFromISO(String datestring) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault(), Locale.getDefault()) ;
+        SimpleDateFormat dateformat = new SimpleDateFormat(ISO8601DATEFORMAT, Locale.getDefault());
+        try {
+            Date date = dateformat.parse(datestring);
+            date.setHours(date.getHours()-1);
+            calendar.setTime(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+
+        return calendar;
+    }
 
     @Override
     public void onEmptyViewLongPress(Calendar time) {
@@ -309,42 +282,4 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         }
     }
 
-}
-
-
-
-/**
- * Helper class for handling a most common subset of ISO 8601 strings
- * (in the following format: "2008-03-01T13:00:00+01:00"). It supports
- * parsing the "Z" timezone, but many other less-used features are
- * missing.
- */
-final class ISO8601 {
-    /** Transform Calendar to ISO 8601 string. */
-    public static String fromCalendar(final Calendar calendar) {
-        Date date = calendar.getTime();
-        String formatted = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
-                .format(date);
-        return formatted.substring(0, 22) + ":" + formatted.substring(22);
-    }
-
-    /** Get current date and time formatted as ISO 8601 string. */
-    public static String now() {
-        return fromCalendar(GregorianCalendar.getInstance());
-    }
-
-    /** Transform ISO 8601 string to Calendar. */
-    public static Calendar toCalendar(final String iso8601string)
-            throws ParseException {
-        Calendar calendar = GregorianCalendar.getInstance();
-        String s = iso8601string.replace("Z", "+00:00");
-        try {
-            s = s.substring(0, 22) + s.substring(23);  // to get rid of the ":"
-        } catch (IndexOutOfBoundsException e) {
-            throw new ParseException("Invalid length", 0);
-        }
-        Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(s);
-        calendar.setTime(date);
-        return calendar;
-    }
 }
