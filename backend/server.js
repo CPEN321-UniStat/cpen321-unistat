@@ -1,14 +1,108 @@
 var express = require("express");
 var app = express()
 
-const { MongoClient } = require("mongodb")
+const { MongoClient, MongoNetworkError } = require("mongodb")
 const uri = "mongodb://localhost:27017"
 const client = new MongoClient(uri)
 
 const axios = require("axios");
 const { query } = require("express");
 
+// set up firebase authentication for notifications
+var admin = require("firebase-admin");
+
+var serviceAccount = require("./serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+
 app.use(express.json());
+
+
+app.put("/firebaseToken", async (req, res) => {
+    // Update firebase_token data
+    try {
+        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+        var jsonResp = {
+            "status": `Firebase Token updated for ${req.body.email}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+app.post("/sendMeetingRequest", async (req, res) => {
+
+    //email of person you are sending request to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email }) //mentor email
+        var curToken = (await curUser.toArray())[0].firebase_token
+    } catch (error) {
+        console.log(error)
+    }
+
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone requested a meeting with you!",
+        },
+    }
+    
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
+
+    admin.messaging().sendToDevice(curToken, payload, options)
+    .then(function(response) {
+        console.log("Successfully sent message:", response);
+        var jsonResp = {"res" : "Successfully sent notification"}
+        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+    })
+    .catch(function(error) {
+        console.log("Error sending message:", error);
+    })
+
+})
+
+app.post("/sendMeetingResponse", async (req, res) => {
+
+    //email of person you are responding to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email })
+        var curToken = (await curUser.toArray())[0].firebase_token
+    } catch (error) {
+        console.log(error)
+    }
+
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone responded to your meeting request!",
+        },
+    }
+    
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
+
+    admin.messaging().sendToDevice(curToken, payload, options)
+    .then(function(response) {
+        console.log("Successfully sent message:", response);
+        var jsonResp = {"res" : "Successfully sent notification"}
+        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+    })
+    .catch(function(error) {
+        console.log("Error sending message:", error);
+    })
+
+})
+
 
 app.get("/", (req, res) => {
     res.status(200).send("Server running...");
@@ -16,12 +110,12 @@ app.get("/", (req, res) => {
 
 app.post("/users", async (req, res) => {
     try {
-        var alreadyExists = await storeGoogleUserData(req.body.Token);
+        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
         console.log("exists: " + alreadyExists);
         var jsonResp = {
             "status": alreadyExists ? "loggedIn" : "signedUp"
         }
-        res.status(200).send(JSON.stringify(jsonResp));
+        res.send(JSON.stringify(jsonResp));
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
@@ -199,15 +293,17 @@ async function run() {
     }
 }
 
-async function storeGoogleUserData(idToken) {
-    const response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
-    console.log(response.data)
+async function storeGoogleUserData(idToken, fb_token) {
+    var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
+    response.data.firebase_token = fb_token
+    console.log(fb_token)
 
     var existingUsers = client.db("UniStatDB").collection("Users").find({email: response.data.email}, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
 
     if (lenUsers > 0) { // User already exists
         console.log("already exists")
+        await client.db("UniStatDB").collection("Users").updateOne({email : response.data.email}, {$set: {"firebase_token": fb_token}})
     } else { // New user, so insert
         console.log("new user, signing up...")
         await client.db("UniStatDB").collection("Users").insertOne(response.data)

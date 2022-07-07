@@ -10,4 +10,13 @@
     <color name="grey">#777</color>
     <color name="green">#008000</color>
     <color name="red">#ff0000</color>
+    <color name="blue">#388bfd</color>
+    <color name="owlPink">#FF7597</color>
+    <color name="owlPink2">#FF0266</color>
+    <color name="test_light">#DEE4E7</color>
+    <color name="test_Dark">#37474F</color>
+    <color name="teal">#47B5FF</color>
+    <color name="teal_blue">#1363DF</color>
+    <color name="navy_blue">#1F4287</color>
+    <color name="light_teal">#c1fefe</color>
 </resources>

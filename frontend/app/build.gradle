@@ -8,8 +8,8 @@ android {
 
     defaultConfig {
         applicationId "com.example.unistat"
-        minSdkVersion 24
-        targetSdkVersion 27
+        minSdkVersion 19
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -45,4 +45,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    implementation platform('com.google.firebase:firebase-bom:30.2.0')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+
 }
