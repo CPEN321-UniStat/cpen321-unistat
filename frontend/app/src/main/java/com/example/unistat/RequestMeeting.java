@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.UUID;
 
 public class RequestMeeting extends AppCompatActivity {
@@ -89,8 +90,16 @@ public class RequestMeeting extends AppCompatActivity {
 
                 String meetingTitle = meetingTitleInput.getEditText().getText().toString();
                 String paymentOffer = paymentInput.getEditText().getText().toString();
-                double payment = Double.parseDouble(paymentOffer);
-                bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                boolean meetingTitleValid = isMeetingTitleValid(meetingTitle);
+                boolean paymentValid = isPaymentValid(paymentOffer);
+                meetingTitleInput.setError(meetingTitleValid ? null : "Meeting name must not be empty");
+                paymentInput.setError(paymentValid ? null : "Enter a valid number");
+
+                if (meetingTitleValid && paymentValid) {
+                    meetingTitle = meetingTitle.trim();
+                    double payment = Double.parseDouble(paymentOffer.trim());
+                    bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                }
             }
         });
 
@@ -185,6 +194,16 @@ public class RequestMeeting extends AppCompatActivity {
         addTimePickerOnPositiveClickListener(startTimeMaterialTimePicker, startTimeText, startTimeCalendar);
         addTimePickerOnPositiveClickListener(endTimeMaterialTimePicker, endTimeText, endTimeCalendar);
 
+    }
+
+    private boolean isMeetingTitleValid(String meetingTitle) {
+        return !meetingTitle.trim().isEmpty();
+    }
+
+    private boolean isPaymentValid(String payment) {
+        if (payment.trim().isEmpty())
+            return false;
+        return payment.trim().matches("-?\\d+(\\.\\d+)?");
     }
 
     private void addDatePickerOnClickListener(MaterialDatePicker materialDatePicker, TextView dateText) {
