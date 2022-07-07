@@ -91,7 +91,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                     // If (no sort and only filter) or (no sort no filter)
                     if (filterAutoComplete.getText().toString().length() > 0) {
                         getCardData("statsByFilter", true);
-                    } else {
+                    } else if (!isSortEntranceScore) {
                         getCardData("stats", false);
                     }
                 }
@@ -117,7 +117,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                     // If (no sort and only filter) or (no sort no filter)
                     if (filterAutoComplete.getText().toString().length() > 0) {
                         getCardData("statsByFilter", true);
-                    } else {
+                    } else if (!isSortGpa) {
                         getCardData("stats", false);
                     }
                 }
