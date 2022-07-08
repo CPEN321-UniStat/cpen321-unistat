@@ -4,7 +4,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    style="?attr/materialCardViewElevatedStyle"
+    style="@style/Widget.Material3.CardView.Elevated"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="10dp"
@@ -51,6 +51,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:textSize="24sp"
+                android:autoSizeTextType="uniform"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -76,8 +77,10 @@
                     <TextView
                         android:id="@+id/univName"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="30dp"
                         android:fontFamily="@font/open_sans"
+                        android:autoSizeTextType="uniform"
+                        android:inputType="textMultiLine|textNoSuggestions"
                         android:textSize="20sp" />
 
                     <TextView
@@ -94,6 +97,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/open_sans"
+                        android:autoSizeTextType="uniform"
+                        android:inputType="textMultiLine|textNoSuggestions"
                         android:textSize="20sp" />
 
                 </LinearLayout>

@@ -131,8 +131,7 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meeting.setStatus(Meeting.Status.ACCEPTED);
-                updateMeetingStatus();
+                updateMeetingStatus(Meeting.Status.ACCEPTED);
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
@@ -143,8 +142,7 @@ public class EventActivity extends AppCompatActivity {
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                meeting.setStatus(Meeting.Status.REJECTED);
-                updateMeetingStatus();
+                updateMeetingStatus(Meeting.Status.REJECTED);
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.GONE);
@@ -167,14 +165,17 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private void updateMeetingStatus() {
+    private void updateMeetingStatus(Meeting.Status status) {
+        meeting.setStatus(status);
+        System.out.println(status.name() + " " + meeting.getColor());
+
         String URL = "http://10.0.2.2:8081/meetings";
 
         JSONObject body = new JSONObject();
         try {
             body.put("mId", meeting.getId());
             body.put("status", meeting.getStatus().name());
-
+            body.put("mColor", meeting.getColor());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -198,5 +199,34 @@ public class EventActivity extends AppCompatActivity {
         );
 
         requestQueue.add(updateMeetingRequest);
+
+
+        URL = "http://10.0.2.2:8081/sendMeetingResponse";
+        JSONObject responseNotificationBody = new JSONObject();
+        try {
+            responseNotificationBody.put("email", meeting.getMenteeEmail());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest sendMeetingResponseNotification = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                responseNotificationBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        Toast.makeText(EventActivity.this, "Your meeting response has been sent", Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+        requestQueue.add(sendMeetingResponseNotification);
     }
 }

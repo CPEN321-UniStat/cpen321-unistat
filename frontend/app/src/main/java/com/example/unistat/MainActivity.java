@@ -1,5 +1,6 @@
 package com.example.unistat;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -22,7 +23,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN = 1;
     private Boolean shouldAllowBack = false;
+    private String firebase_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +60,22 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
+
+        //generate fb token
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+                        // Get new FCM registration token for current device
+                        firebase_token = task.getResult();
+//                Log.d(TAG, "TOKEN " + firebase_token);
+                    }
+                });
+
     }
 
     private void signIn() {
@@ -99,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject body = new JSONObject();
         try {
             body.put("Token", account.getIdToken());
+            body.put("firebase_token", firebase_token); //passing fb token in body to store in users collection
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -160,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
             if (!isLoggedIn) {
                 startActivity(openUserStatus);
             } else {
-//                startActivity(openSignOut);
                 startActivity(openViewStats);
             }
         }
