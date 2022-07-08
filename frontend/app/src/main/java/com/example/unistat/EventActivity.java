@@ -60,8 +60,11 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
+<<<<<<< HEAD
         initZoom(this);
 
+=======
+>>>>>>> 9a7afe715701f8b1aadc81386b66bfd97fc26a6f
         getAndSetMeetingInfo();
         addButtonListeners();
     }
