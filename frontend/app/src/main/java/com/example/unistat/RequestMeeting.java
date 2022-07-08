@@ -282,17 +282,39 @@ public class RequestMeeting extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            Log.d("CALENDAR", "Server resp: " + response.toString());
+                            Log.d("RequestMeeting", "Server resp: " + response.toString());
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.d("CALENDAR", "Server error: " + error);
+                            Log.d("RequestMeeting", "Server error: " + error);
                         }
                     }
             );
             requestQueue.add(postMeetingsRequest);
+
+            URL = "http://10.0.2.2:8081/sendMeetingRequest";
+            JSONObject notificationBody = new JSONObject();
+            notificationBody.put("email", mentorEmail);
+            JsonObjectRequest postRequestNotification = new JsonObjectRequest(
+                    Request.Method.POST,
+                    URL,
+                    notificationBody,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d("RequestMeetingNotif", "Server resp: " + response.toString());
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.d("RequestMeetingNotif", "Server error: " + error);
+                        }
+                    }
+            );
+            requestQueue.add(postRequestNotification);
         } catch (JSONException e) {
             e.printStackTrace();
         }

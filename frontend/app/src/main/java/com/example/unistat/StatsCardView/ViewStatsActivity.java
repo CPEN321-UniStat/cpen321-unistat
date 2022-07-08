@@ -77,7 +77,6 @@ public class ViewStatsActivity extends AppCompatActivity {
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;
     private ArrayAdapter<String> adapter;
-    public Button requestMeetingButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
