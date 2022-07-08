@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/viewRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone"
+                />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <View
+            android:id="@id/viewRight"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_lbl_posting_permissions_128567" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:id="@+id/panelOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zm_window_bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/zm_setting_item_padding_bottom"
+            android:orientation="vertical">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingTop="@dimen/zm_setting_item_group_spacing">
+
+                <TextView
+                    android:id="@+id/txtNotificationFor"
+                    style="@style/ZmSettingOptionTitle"
+                    android:text="@string/zm_mm_lbl_posting_permissions_hint_128567" />
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/panelNotificationFor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/panelEveryOne"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_mm_lbl_posting_permissions_everyone_128567" />
+
+                        <ImageView
+                            android:id="@+id/imgEveryone"
+                            style="@style/ZmSettingItemArrow"
+                            tools:visibility="visible"
+                            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                            android:src="@drawable/zm_group_type_select"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/panelAdmin"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_mm_lbl_posting_permissions_admin_only_128567" />
+
+                        <ImageView
+                            android:id="@+id/imgAdmin"
+                            style="@style/ZmSettingItemArrow"
+                            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                            android:src="@drawable/zm_group_type_select"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/panelAdminPlus"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_mm_lbl_posting_permissions_admin_and_specific_128567" />
+
+                        <ImageView
+                            android:id="@+id/imgAdminPlus"
+                            style="@style/ZmSettingItemArrow"
+                            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                            android:src="@drawable/zm_group_type_select"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/zm_margin_medium_size"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/panelSpecificPeople"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_mm_lbl_posting_permissions_specific_people_128567" />
+
+                        <TextView
+                            android:id="@+id/txtSpecificNames"
+                            style="@style/ZmSettingItemContent"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_hintl_not_set" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            android:layout_marginLeft="@dimen/zm_margin_small_size"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+            </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

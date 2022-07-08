@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ZmSettingItem">
+
+    <TextView
+        android:id="@+id/txtNumber"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:text="@string/zm_lbl_notification_all_msg_19898" />
+
+</LinearLayout>

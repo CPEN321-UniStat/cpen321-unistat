@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_white">
+
+    <com.zipow.videobox.view.ZMGifView
+        android:id="@+id/preview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="centerCrop" />
+
+    <View
+        android:id="@+id/layer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_v1_black_alpha60"
+        android:visibility="gone" />
+
+    <com.zipow.videobox.view.mm.message.MessageSimpleCircularProgressView
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/zm_btn_height_24dp"
+        android:layout_height="@dimen/zm_btn_height_24dp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:backColor="@color/zm_v1_white_alpha18"
+        app:progColor="@color/zm_v1_white_alpha54"
+        app:progWidth="2.5dp"
+        app:progress="0" />
+
+    <ProgressBar
+        android:id="@+id/progressBarDownload"
+        style="@style/ZMProgressBar.Small"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

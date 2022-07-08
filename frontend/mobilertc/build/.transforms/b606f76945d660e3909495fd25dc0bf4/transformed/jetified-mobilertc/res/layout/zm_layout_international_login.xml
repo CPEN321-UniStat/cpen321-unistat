@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Apple and Google and Facebook -->
+    <LinearLayout
+        android:id="@+id/panelActions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/zm_margin_small"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/zm_margin_medium_size"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/linkSSOLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_small"
+            android:background="@drawable/zm_thirdparty_login_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/zm_padding_medium">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_sso"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingRight="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_thirdparty_sign_in_sso_label_216537"
+                android:textSize="@dimen/zm_font_large_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnLoginApple"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_small"
+            android:background="@drawable/zm_thirdparty_login_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/zm_padding_medium">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_apple"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingRight="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_thirdparty_sign_in_apple_label_216537"
+                android:textSize="@dimen/zm_font_large_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnLoginGoogle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_small"
+            android:background="@drawable/zm_thirdparty_login_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/zm_padding_medium">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_google"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingRight="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_thirdparty_sign_in_google_label_216537"
+                android:textSize="@dimen/zm_font_large_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnLoginFacebook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_small"
+            android:background="@drawable/zm_thirdparty_login_item_bg"
+            android:gravity="center_vertical"
+            android:padding="@dimen/zm_padding_medium">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_facebook"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingRight="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_thirdparty_sign_in_facebook_label_216537"
+                android:textSize="@dimen/zm_font_large_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

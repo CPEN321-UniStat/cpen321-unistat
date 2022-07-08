@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rlGroup"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:focusable="true"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgCateExpand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:src="@drawable/zm_directory_group_unexpand"
+        tools:ignore="ContentDescription" />
+
+    <com.zipow.videobox.view.ZMSimpleEmojiTextView
+        android:id="@+id/txtCateName"
+        style="@style/ZmTextView.Content.Secondary"
+        android:gravity="left|center_vertical"
+        tools:text="Starred"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/imgCateExpand"
+        android:layout_marginRight="40dp"
+        android:padding="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/contactCountLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:padding="16dp"
+        >
+        <TextView
+            android:id="@+id/txtCount"
+            style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+            android:gravity="left|center_vertical"
+            tools:text="222"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <ImageView
+            android:id="@+id/btnRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_btn_width_48dp"
+            android:minHeight="@dimen/zm_btn_width_48dp"
+            android:src="@drawable/zm_ic_contacts_refresh"
+            android:contentDescription="@string/zm_btn_refresh"
+            android:visibility="gone"
+            tools:visibility="visible"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtUnreadCount"
+        style="@style/ZMTextView.UnreadMessageCount.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="0dp"
+        android:duplicateParentState="true"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text=""
+        android:visibility="gone"
+        tools:visibility="visible"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/txtCateName"
+        android:background="@color/zm_v2_cell_divider"/>
+</RelativeLayout>

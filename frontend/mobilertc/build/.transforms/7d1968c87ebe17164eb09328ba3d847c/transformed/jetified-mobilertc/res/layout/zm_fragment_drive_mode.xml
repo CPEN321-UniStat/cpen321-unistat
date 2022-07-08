@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_black"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/zm_padding_largest"
+        android:paddingBottom="@dimen/zm_padding_smallest"
+        android:paddingStart="@dimen/zm_padding_normal"
+        android:paddingEnd="@dimen/zm_padding_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imgAudioSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_btn_width_48dp"
+            app:layout_constrainedHeight="true"
+            app:layout_constrainedWidth="true"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+            android:src="@drawable/zm_ic_speaker_off"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="ContentDescription" />
+
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTextView.Title"
+            android:textSize="@dimen/zm_font_larger_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_padding_small"
+            android:layout_marginEnd="@dimen/zm_padding_small"
+            android:text="@string/zm_msg_driving_mode_title_86526"
+            android:textColor="@color/zm_v2_txt_primary_ondark"
+            android:singleLine="true"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnLeave"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/imgAudioSource"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <Button
+            android:id="@+id/btnLeave"
+            style="@style/ZMTitleButtonLeaveOrEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@string/zm_btn_leave_meeting" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/placehoder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topbar"
+        app:layout_constraintBottom_toBottomOf="@id/topbar"
+        android:background="@color/zm_leave_panel_tab_bg"
+        />
+
+    <Button
+        android:id="@+id/btnCancelLeaveMeeting"
+        style="@style/UIRedButton.Cancel"
+        android:paddingRight="@dimen/zm_margin_medium"
+        android:paddingLeft="@dimen/zm_margin_medium"
+        android:layout_marginEnd="@dimen/zm_margin_medium"
+        android:layout_marginStart="@dimen/zm_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/placehoder"
+        app:layout_constraintBottom_toBottomOf="@id/placehoder"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:text="@string/zm_btn_cancel"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/leaveCancelGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnCancelLeaveMeeting,placehoder"
+        android:visibility="gone"
+        tools:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/llStatusContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar"
+        app:layout_constraintBottom_toTopOf="@+id/btnTabSpeaker">
+
+        <TextView
+            android:id="@+id/txtAudioStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_msg_driving_mode_message_muted"
+            android:textColor="@color/zm_v2_txt_primary_ondark" />
+
+        <TextView
+            android:id="@+id/txtVideoStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_msg_driving_mode_message_video_stopped"
+            android:textColor="@color/zm_v2_txt_primary_ondark" />
+
+    </LinearLayout>
+
+    <us.zoom.uicommon.widget.view.ZMTextButton
+        android:id="@+id/btnTabSpeaker"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/zm_margin_medium"
+        android:background="@drawable/zm_circle_white_stroke_tab_speaker"
+        android:gravity="center"
+        android:text="@string/zm_btn_tap_speak"
+        android:contentDescription="@string/zm_description_tap_speak"
+        android:textColor="@color/zm_drivermode_text_color_highlight"
+        android:textSize="@dimen/zm_font_largest_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topbar"
+        app:layout_constraintVertical_bias="0.5" />
+
+
+
+    <TextView
+        android:id="@+id/txtSpeakerMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="@dimen/zm_font_normal_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/zm_margin_normal"
+        app:layout_constraintTop_toBottomOf="@+id/btnTabSpeaker"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.8"
+        android:text="@string/zm_msg_xxx_is_speaking"
+        android:textColor="@color/zm_v2_txt_primary_ondark" />
+
+    <us.zoom.uicommon.widget.view.ZMTipLayer
+        android:id="@+id/tipLayerForDriveMode"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

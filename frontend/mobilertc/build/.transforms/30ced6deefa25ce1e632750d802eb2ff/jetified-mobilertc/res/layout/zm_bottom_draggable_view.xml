@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_bottom_draggable_view_bg"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/pullBarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_view_height_40dp">
+
+            <ImageView
+                android:id="@+id/pullBar"
+                android:layout_width="40dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:background="@drawable/zm_bottom_draggable_pull_bar_bg"
+                android:importantForAccessibility="no"
+                tools:ignore="ContentDescription" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/topbarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_btn_width_60dp">
+
+            <ImageView
+                android:id="@+id/topbarCloseBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/zm_margin_medium_minus_size"
+                android:contentDescription="@string/zm_close_btn_acc_361813"
+                android:src="@drawable/ic_bottom_draggable_view_close" />
+
+            <TextView
+                android:id="@+id/topbarRightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end |center_vertical"
+                android:layout_marginEnd="@dimen/zm_margin_medium_minus_size"
+                android:textColor="@color/zm_bg_blue"
+                android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+                tools:text="Edit" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/contentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

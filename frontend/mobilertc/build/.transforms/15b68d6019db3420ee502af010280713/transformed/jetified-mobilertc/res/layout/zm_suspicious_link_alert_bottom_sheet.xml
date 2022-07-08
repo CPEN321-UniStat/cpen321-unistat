@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_white_bg"
+    android:paddingLeft="@dimen/zm_margin_normal_size"
+    android:paddingRight="@dimen/zm_margin_normal_size">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/zm_margin_normal_size"
+            android:gravity="center"
+            android:text="@string/zm_suspicious_link_268214"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textDesc"
+            style="@style/ZmTextView.Content.Primary.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:gravity="center"
+            android:maxLines="@integer/medium_lines"
+            tools:text="The link ”www.baidu.com“ is taking you to “https://www.figma.com/file/CCXrzHziR8Y...”. Are you sure you want to visit this site?" />
+
+        <Button
+            android:id="@+id/btnVisit"
+            style="@style/ZmButton"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:text="@string/zm_suspicious_link_visit_268214" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmButton.Secondary"
+            android:layout_marginTop="@dimen/zm_margin_small_size"
+            android:text="@string/zm_btn_cancel" />
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:layout_marginTop="@dimen/zm_margin_small_size"
+            android:layout_marginBottom="@dimen/zm_margin_small_size"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_suspicious_link_not_remind_again_268214" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkNotRemind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false"
+                android:gravity="center" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

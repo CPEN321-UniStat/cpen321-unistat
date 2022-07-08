@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_notification_background"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_smaller_size"
+            android:paddingTop="@dimen/zm_padding_smaller_size" >
+            <!--todo svg-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_mm_ic_network_unavailable"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txtNetworkAlert"
+                style="@style/ZmTextView.Content.Primary.Small.OnLight"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:maxLines="@integer/maximum_lines"
+                android:gravity="left"
+                android:layout_marginRight="@dimen/zm_margin_smaller_size"
+                tools:text="Network is unavailable"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_list_divider"
+            tools:ignore="ContentDescription" />
+
+</LinearLayout>

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:zm_leftButton="@+id/btnCancel"
+        app:zm_rightButton="@+id/btnShare"
+        app:zm_title="@+id/txtTitle">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_cancel" />
+
+        <Button
+            android:id="@+id/btnShare"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_pbx_voicemail_forward_btn_share_330349" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:paddingLeft="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_smallest_size"
+            android:text="@string/zm_pbx_voicemail_forward_title_330349" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/infoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@color/zm_white"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/panelTitleBar">
+
+        <RelativeLayout
+            android:id="@+id/layoutAvatar"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:duplicateParentState="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.zipow.videobox.view.AvatarView
+                android:id="@+id/avatarView"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:duplicateParentState="true"
+                app:zm_cornerRadiusRatio="0.32"
+                app:zm_description_enable="false" />
+
+            <com.zipow.videobox.view.PresenceStateView
+                android:id="@+id/imgPresence"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                app:zm_subpresence_type="0" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/recordDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+            app:layout_constraintTop_toTopOf="@id/layoutAvatar"
+            tools:text="Clara Arellano" />
+
+        <TextView
+            android:id="@+id/recordDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/zm_v2_txt_secondary"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/layoutAvatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/layoutAvatar"
+            app:layout_constraintTop_toBottomOf="@id/userName"
+            tools:text="Voicemail Recording · Apr 29, 2021 at 10:53 AM" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/divider0"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider"
+        app:layout_constraintTop_toBottomOf="@id/infoContainer" />
+
+    <LinearLayout
+        android:id="@+id/shareWithClickView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/zm_settings_item_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/divider1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider0">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/zm_pbx_voicemail_forward_share_with_330349"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/selectedNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/zm_pbx_voicemail_forward_none_330349"
+            android:textColor="@color/zm_v2_txt_secondary"
+            android:textSize="16sp" />
+
+        <ImageView
+            style="@style/ZmSettingItemArrow"
+            android:layout_marginEnd="16dp"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/zm_line_divider"
+        app:layout_constraintTop_toBottomOf="@id/divider0" />
+
+    <LinearLayout
+        android:id="@+id/privateClickView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/zm_settings_item_selector"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/divider2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/divider1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="@string/zm_pbx_voicemail_forward_private_330349"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="16sp" />
+
+        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+            android:id="@+id/chkPrivate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:checkMark="@drawable/zm_btn_toggle_default"
+            android:clickable="false"
+            android:duplicateParentState="true"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="48dp"
+        android:background="@color/zm_line_divider"
+        app:layout_constraintTop_toBottomOf="@id/divider1" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/zm_pbx_voicemail_forward_private_prompt_330349"
+        android:textColor="@color/zm_v2_txt_secondary"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/divider2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

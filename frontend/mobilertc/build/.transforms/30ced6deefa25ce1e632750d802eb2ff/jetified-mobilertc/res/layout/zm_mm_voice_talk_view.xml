@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zipow.videobox.view.mm.VoiceTalkAutoHeightLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_v2_chat_audio_record_bg"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtRcdHintText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_height_36dp"
+            android:layout_marginRight="@dimen/zm_height_36dp"
+            android:layout_marginTop="@dimen/zm_margin_large_minus_size"
+            android:layout_marginBottom="@dimen/zm_height_36dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:text="@string/zm_mm_msg_rcd_hint_def_359510"
+            android:textColor="@color/zm_v2_chat_audio_record_title_text_color"
+            android:textSize="@dimen/zm_ui_kit_text_size_16sp" />
+
+        <ImageView
+            android:id="@+id/imgVoiceRcdHint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/zm_btn_start"
+            android:src="@drawable/ic_voice_talk_def"
+            android:visibility="gone"
+            android:focusable="true"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/txtRcdHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_height_36dp"
+            android:layout_marginRight="@dimen/zm_height_36dp"
+            android:layout_marginTop="@dimen/zm_dialog_margin_12dp"
+            android:layout_marginBottom="@dimen/zm_margin_smallest"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:text="@string/zm_btn_start"
+            android:textColor="@color/zm_v2_chat_audio_record_text_color"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/voice_send_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="@dimen/zm_margin_smallest"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/imgVoiceRcdCancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/cancel"
+                    android:src="@drawable/ic_voice_talk_cancel"
+                    android:focusable="true"
+                    android:clickable="true"/>
+                <TextView
+                    android:id="@+id/txtRcdCancelText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/zm_dialog_margin_12dp"
+                    android:layout_marginRight="@dimen/zm_dialog_margin_12dp"
+                    android:layout_marginTop="@dimen/zm_dialog_margin_12dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:importantForAccessibility="no"
+                    android:gravity="center"
+                    android:text="@string/cancel"
+                    android:textColor="@color/zm_v2_chat_audio_record_text_color"
+                    android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="124dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="18dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/imgVoiceRcdSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/zm_btn_send"
+                    android:src="@drawable/ic_voice_talk_send"
+                    android:focusable="true"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:id="@+id/txtRcdSendText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/zm_dialog_margin_12dp"
+                    android:layout_marginRight="@dimen/zm_dialog_margin_12dp"
+                    android:layout_marginTop="@dimen/zm_dialog_margin_12dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:importantForAccessibility="no"
+                    android:text="@string/zm_btn_send"
+                    android:textColor="@color/zm_v2_chat_audio_record_text_color"
+                    android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.zipow.videobox.view.mm.VoiceTalkAutoHeightLinearLayout>
+
+</merge>

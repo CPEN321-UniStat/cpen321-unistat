@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:padding="@dimen/zm_padding_small"
+    android:background="@drawable/zm_immersive_download_progress_view_bg"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/panelShowDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            style="@style/ZMTextView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/zm_legal_notice_tip_transcription_260953"
+            android:clickable="false"
+            android:layout_gravity="left"
+            android:singleLine="false"
+            android:textColor="@color/zm_v1_white"/>
+
+        <TextView
+            android:id="@+id/btnLegalQuestion"
+            style="@style/ZMTextView.Normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_data_privacy_transcript"
+            android:drawablePadding="@dimen/zm_padding_small"
+            android:text="@string/zm_legal_notice_question_transcription_260953"
+            android:clickable="false"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textColor="@color/zm_v1_white"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/zm_padding_small"
+        android:src="@drawable/zm_btn_legal_tip_close_light"
+        android:contentDescription="@string/zm_btn_close"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
+

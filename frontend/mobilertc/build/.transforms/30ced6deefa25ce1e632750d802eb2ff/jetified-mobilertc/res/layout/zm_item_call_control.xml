@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.zoom.uicommon.widget.view.ZMSettingsCategory xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout style="@style/ZmSettingItem.UnClick">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/tvAppName"
+            style="@style/ZmSettingItemTitle"
+            tools:text="Salesforce" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/tvDuration"
+            style="@style/ZmSettingItemContent"
+            android:ellipsize="start"
+            android:paddingRight="14dp"
+            tools:text="1 hour" />
+
+        <ImageView
+            style="@style/ZmSettingItemArrow"
+            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+</us.zoom.uicommon.widget.view.ZMSettingsCategory>

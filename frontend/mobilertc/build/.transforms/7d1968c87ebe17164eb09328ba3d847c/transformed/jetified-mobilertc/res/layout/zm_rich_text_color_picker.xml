@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:colorPickerView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bg_popup_window"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/text_color"
+        android:textFontWeight="600"
+        android:textSize="11sp" />
+
+    <us.zoom.videomeetings.richtext.popup.ZMColorPickerView
+        android:id="@+id/textColorPalette"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        colorPickerView:colorViewCheckedType="checkMark"
+        colorPickerView:colorViewHeight="24dp"
+        colorPickerView:colorViewWidth="24dp"
+        colorPickerView:colors="@array/textColors"
+        colorPickerView:isTextColor="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/background_color"
+        android:textFontWeight="600"
+        android:textSize="11sp" />
+
+    <us.zoom.videomeetings.richtext.popup.ZMColorPickerView
+        android:id="@+id/backgroundColorPalette"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        colorPickerView:colorViewCheckedType="checkMark"
+        colorPickerView:colorViewHeight="24dp"
+        colorPickerView:colorViewWidth="24dp"
+        colorPickerView:colors="@array/backgroundColors"
+        colorPickerView:isTextColor="false" />
+
+    <Button
+        android:id="@+id/clearBtn"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@drawable/zm_bg_clear_btn"
+        android:text="@string/clear"
+        android:textSize="11sp" />
+</LinearLayout>
+

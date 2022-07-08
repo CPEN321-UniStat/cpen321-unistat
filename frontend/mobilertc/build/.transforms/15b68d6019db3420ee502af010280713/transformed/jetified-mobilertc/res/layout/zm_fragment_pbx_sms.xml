@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <ImageButton
+            android:id="@+id/iv_keypad"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_sip_keypad_desc_117773"
+            android:src="@drawable/zm_sip_ic_keyboard"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerInside"
+            android:background="@drawable/zm_ui_kit_btn_normal_round12_white_selector"/>
+
+        <ImageButton
+            android:id="@+id/iv_search"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_search"
+            android:src="@drawable/zm_sip_ic_sms_search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_new_chat"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerInside"
+            android:background="@drawable/zm_ui_kit_btn_normal_round12_white_selector"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+        <ImageButton
+            android:id="@+id/iv_new_chat"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_sip_new_sms_desc_117773"
+            android:src="@drawable/zm_sip_ic_new_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:scaleType="centerInside"
+            android:background="@drawable/zm_ui_kit_btn_normal_round12_white_selector"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_marginTop="-58dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                android:src="@drawable/zm_ic_no_conversation" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:layout_marginTop="@dimen/zm_margin_normal_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zm_sip_sms_no_conversations_117773" />
+
+        </LinearLayout>
+
+        <com.zipow.videobox.view.sip.sms.PhonePBXMessageSessionRecyclerView
+            android:id="@+id/rv_session_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"/>
+
+    </FrameLayout>
+
+</LinearLayout>

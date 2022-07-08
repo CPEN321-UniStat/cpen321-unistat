@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:visibility="gone"
+		tools:visibility="visible"
+        android:padding="10dp"
+	    android:id="@+id/panelLoadMoreView">
+	    
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/ZMProgressBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dp" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmTextView.Content.Primary.MediumPlus"
+			android:textColor="@color/zm_v2_txt_action"
+            android:id="@+id/txtMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="@string/zm_msg_loading" />
+	</LinearLayout>
+
+</LinearLayout>

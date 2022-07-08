@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportHeight="32"
+    android:viewportWidth="32">
+    <path
+        android:fillColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"
+        android:pathData="M19.8439,12.8807C19.4762,12.6684 19.0981,12.8082 19.0981,13.2122L19.093,15.1543L8.81781,15.144C8.49672,15.144 8.22741,15.4133 8.22741,15.7344C8.22741,16.0555 8.49672,16.3248 8.81781,16.3248L19.093,16.3351L19.0878,18.2669C19.093,18.6657 19.471,18.8159 19.8387,18.6035L24.1011,16.1539C24.4325,15.9571 24.4222,15.5117 24.0959,15.3304L19.8439,12.8807Z"/>
+
+</vector>

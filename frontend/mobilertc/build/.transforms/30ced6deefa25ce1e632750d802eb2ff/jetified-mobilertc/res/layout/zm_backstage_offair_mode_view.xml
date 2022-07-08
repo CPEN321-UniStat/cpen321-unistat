@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraintContent"
+    android:layout_width="match_parent"
+    android:background="@color/zm_v1_black"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/dynamicOffair"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/zm_v1_white_alpha9"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="h,5:3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_backstage_offair_bg"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/zm_padding_normal_size"
+            android:paddingVertical="@dimen/zm_padding_small_size"
+            android:shadowColor="#CCFF0000"
+            android:shadowDx="5"
+            android:shadowDy="5"
+            android:shadowRadius="40"
+            android:text="@string/zm_gr_backstage_offair_267913"
+            android:textColor="#ED4D6A"
+            android:textSize="64sp"
+            android:textStyle="bold" />
+
+        <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTopicPip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_backstage_offair_bg"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/zm_padding_normal_size"
+            android:paddingVertical="@dimen/zm_padding_small_size"
+            android:shadowColor="#CCFF0000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="8"
+            android:text="@string/zm_gr_backstage_offair_267913"
+            android:textColor="#ED4D6A"
+            android:textSize="@dimen/zm_font_normal_size"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/zm_margin_medium_size"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:text="@string/zm_gr_backstage_webinar_start_time_267913"
+            android:textColor="@color/zm_v1_white_500"
+            android:textSize="@dimen/zm_font_normal_size" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

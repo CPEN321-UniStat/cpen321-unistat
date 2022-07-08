@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/avatarList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/zm_whiteboard_share_temporary_avatar_list_width"
+        tools:itemCount="4"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:orientation="horizontal"
+        tools:listitem="@layout/zm_whiteboard_share_avatar_item" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        layout="@layout/zm_whiteboard_share_avatar_item"
+        android:layout_width="@dimen/zm_whiteboard_share_temporary_item_avatar_size"
+        android:layout_height="@dimen/zm_whiteboard_share_temporary_item_avatar_size"
+        android:textColor="@color/zm_v1_black_50"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/zm_ic_whiteboard_topbar_avatar_count_bg"
+        android:gravity="center"
+        android:textSize="@dimen/zm_font_medium_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="99" />
+
+    <ImageView
+        android:id="@+id/imgMore"
+        android:layout_width="@dimen/zm_whiteboard_share_temporary_item_avatar_size"
+        android:layout_height="@dimen/zm_whiteboard_share_temporary_item_avatar_size"
+        android:src="@drawable/zm_ic_whiteboard_share_temporary_avatar_more"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/zm_whiteboard_accessibility_more_289013"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</merge>

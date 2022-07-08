@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_whiteboard_share_dialog_bg">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ZMTitleBar"
+        android:id="@+id/title_bar"
+        android:background="@color/zm_white">
+
+        <ImageButton
+            android:id="@+id/btnClose"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/ZmTitleBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/zm_wb_share_dialog_setting_title_289013"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnClose"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_below="@+id/title_bar"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:orientation="vertical"
+        app:zm_showBottomDivider="false"
+        app:zm_showTopDivider="false">
+
+
+        <LinearLayout
+            android:id="@+id/ll_users"
+            style="@style/ZmSettingItem.UnClick">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_wb_share_dialog_setting_user_can_share_289013" />
+
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkInviteEditor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_internal_user"
+            style="@style/ZmSettingItem.UnClick">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_wb_share_dialog_setting_internal_user_can_share_289013" />
+
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkInviteCommentor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_external_user"
+            style="@style/ZmSettingItem.UnClick">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_wb_share_dialog_setting_external_user_can_share_289013" />
+
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkInviteViewer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+</RelativeLayout>

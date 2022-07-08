@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_immersive_download_progress_view_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/zm_padding_medium">
+
+    <ProgressBar
+        style="@style/ZMProgressBar.Small"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_centerVertical="true" />
+
+    <TextView
+        android:id="@+id/displayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_smallest"
+        android:text="@string/zm_msg_immersive_dowloading_206958"
+        android:textColor="@color/zm_v1_white" />
+
+    <TextView
+        android:id="@+id/percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_smallest"
+        android:text="15%"
+        android:textColor="@color/zm_v1_white" />
+
+</LinearLayout>

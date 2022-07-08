@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/panelMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mainTopLayout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/btnHideKeyboard"
+                style="@style/ZmTitleBarAction"
+                android:layout_height="wrap_content"
+                android:height="36dp"
+                android:minHeight="36dp"
+                android:drawableLeft="@drawable/zm_btn_back_blue"
+                android:drawablePadding="5dp"
+                android:text="@string/zm_btn_hide_61381"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btnMinimize"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="@dimen/zm_ui_kit_page_left_padding"
+                android:background="@drawable/zm_sip_dialpad_key_bg"
+                android:contentDescription="@string/zm_sip_minimize_des_155628"
+                android:padding="12dp"
+                android:src="@drawable/ic_drop_down" />
+
+            <fragment
+                android:id="@+id/topStatusFragment"
+                android:name="com.zipow.videobox.view.sip.SipInCallTopStatusFragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/btnMinimize"
+                android:layout_alignBottom="@id/btnMinimize"
+                android:layout_marginEnd="10dp"
+                android:visibility="visible"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_above="@id/keyboard"
+            android:id="@+id/linearTop"
+            android:layout_below="@id/mainTopLayout"
+            app:layout_constraintTop_toBottomOf="@id/mainTopLayout"
+            app:layout_constraintBottom_toTopOf="@id/keyboard">
+            <LinearLayout
+                android:id="@+id/panelMultiBuddy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/zm_ui_kit_sip_page_left_padding_large"
+                android:layout_marginRight="@dimen/zm_ui_kit_sip_page_left_padding_large"
+                android:layout_above="@id/keyboard"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:visibility="visible"
+                tools:visibility="gone">
+
+                <RelativeLayout
+                    android:id="@+id/panelMultiCall2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/zm_ui_kit_btn_normal_round_white_selector"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="3dp"
+                    >
+
+                    <FrameLayout
+                        android:id="@+id/layoutMultiBuddyName2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/linearMultiActions2">
+                        <TextView
+                            android:id="@+id/txtMultiBuddyName2"
+                            style="@style/UIKitTextView.BuddyName.Bold.Blue.Selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Jason Shenddddddddddddddddddddddddddddd"
+                            android:singleLine="true"
+                            android:ellipsize="none"
+                            android:requiresFadingEdge="horizontal"
+                            android:fadingEdgeLength="36dp"
+                            />
+                    </FrameLayout>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_below="@id/layoutMultiBuddyName2"
+                        android:layout_toLeftOf="@+id/linearMultiActions2"
+                        android:gravity="center_vertical|left"
+                        android:importantForAccessibility="no">
+                        <Chronometer
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/UIKitTextView.PrimaryText.Normal"
+                            android:id="@+id/txtMultiDialTimer2"
+                            android:maxLines="1"
+                            android:importantForAccessibility="yes"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/txtMultiDialState2"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtMultiDialState2"
+                            style="@style/UIKitTextView.PrimaryText.Normal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            tools:text="@string/zm_phone_calls_on_hold_31368"
+                            android:ellipsize="end"
+                            android:requiresFadingEdge="horizontal"
+                            android:fadingEdgeLength="36dp"
+                            app:layout_constraintWidth_default="wrap"
+                            app:layout_constraintLeft_toRightOf="@id/txtMultiDialTimer2"
+                            app:layout_constraintRight_toLeftOf="@id/multiPresenceStateView2"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+
+                        <com.zipow.videobox.view.PresenceStateView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/multiPresenceStateView2"
+                            app:layout_constraintLeft_toRightOf="@id/txtMultiDialState2"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/linearMultiActions2"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/zm_sip_btn_merge_call"
+                            android:id="@+id/btnMultiAction2"
+                            android:scaleType="centerInside"
+                            android:contentDescription="@string/zm_accessbility_sip_merge_call_61394"/>
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:src="@drawable/zm_sip_history_list_more_action"
+                            android:id="@+id/btnMultiMore2"
+                            android:scaleType="centerInside"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:contentDescription="@string/zm_accessbility_sip_more_action_61394"/>
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <View style="@style/ZMLightLine" />
+
+                <RelativeLayout
+                    android:id="@+id/panelMultiCall1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:background="@drawable/zm_ui_kit_btn_normal_round_white_selector"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="3dp">
+
+                    <FrameLayout
+                        android:id="@+id/layoutMultiBuddyName1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@+id/linearMultiActions1">
+
+                        <TextView
+                            android:id="@+id/txtMultiBuddyName1"
+                            style="@style/UIKitTextView.BuddyName.Bold.Blue.Selector"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="Jason Shenddddddddddddddddddddddddddddd"
+                            android:singleLine="true"
+                            android:ellipsize="none"
+                            android:requiresFadingEdge="horizontal"
+                            android:fadingEdgeLength="36dp"
+                            />
+
+                    </FrameLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_below="@id/layoutMultiBuddyName1"
+                        android:layout_toLeftOf="@+id/linearMultiActions1"
+                        android:gravity="center_vertical|left"
+                        android:importantForAccessibility="no">
+                        <Chronometer
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/UIKitTextView.PrimaryText.Normal"
+                            android:id="@+id/txtMultiDialTimer1"
+                            android:maxLines="1"
+                            android:importantForAccessibility="yes"
+                            app:layout_constraintHorizontal_bias="0"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/txtMultiDialState1"
+                            app:layout_constraintHorizontal_chainStyle="packed"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+
+                        <TextView
+                            android:id="@+id/txtMultiDialState1"
+                            style="@style/UIKitTextView.PrimaryText.Normal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            tools:text="@string/zm_phone_calls_on_hold_31368"
+                            android:ellipsize="end"
+                            android:requiresFadingEdge="horizontal"
+                            android:fadingEdgeLength="36dp"
+                            app:layout_constraintWidth_default="wrap"
+                            app:layout_constraintLeft_toRightOf="@id/txtMultiDialTimer1"
+                            app:layout_constraintRight_toLeftOf="@id/multiPresenceStateView1"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+
+                        <com.zipow.videobox.view.PresenceStateView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/multiPresenceStateView1"
+                            app:layout_constraintLeft_toRightOf="@id/txtMultiDialState1"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/linearMultiActions1"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/zm_sip_btn_merge_call"
+                            android:id="@+id/btnMultiAction1"
+                            android:contentDescription="@string/zm_accessbility_sip_merge_call_61394"
+                            android:scaleType="centerInside"/>
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="33dp"
+                            android:src="@drawable/zm_sip_history_list_more_action"
+                            android:id="@+id/btnMultiMore1"
+                            android:scaleType="centerInside"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:contentDescription="@string/zm_accessbility_sip_more_action_61394"/>
+
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/panelOneBuddy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/keyboard"
+                android:layout_marginLeft="@dimen/zm_ui_kit_page_left_padding"
+                android:layout_marginRight="@dimen/zm_ui_kit_page_left_padding"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/txtOneBuddyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:ellipsize="none"
+                    android:fadingEdgeLength="48dp"
+                    android:gravity="center"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:requiresFadingEdge="horizontal"
+                    android:singleLine="true"
+                    android:textColor="@color/zm_v2_txt_primary"
+                    android:textSize="@dimen/zm_font_larger_size"
+                    android:textStyle="bold"
+                    tools:text="Jingssrearedafawrfeardadfsafdasfdsafasdfseaerassss" />
+
+                <ImageView
+                    android:id="@+id/btnOneMore"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="-36dp"
+                    android:layout_toRightOf="@id/txtOneBuddyName"
+                    android:contentDescription="@string/zm_accessbility_sip_more_action_61394"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/zm_sip_history_list_more_action" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/linearOneDialState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtOneBuddyName"
+                    android:layout_marginTop="2dp"
+                    android:importantForAccessibility="no">
+
+                    <TextView
+                        android:id="@+id/txtOneE911DialState"
+                        style="@style/UIKitTextView.PrimaryText.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="yes"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/txtOneDialTimer"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Emergency Call" />
+
+                    <Chronometer
+                        android:id="@+id/txtOneDialTimer"
+                        style="@style/UIKitTextView.PrimaryText.Normal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="yes"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/txtOneE911DialState"
+                        app:layout_constraintRight_toLeftOf="@id/txtOneDialState"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/txtOneDialState"
+                        style="@style/UIKitTextView.PrimaryText.Normal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:importantForAccessibility="yes"
+                        android:maxLines="1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/txtOneDialTimer"
+                        app:layout_constraintRight_toLeftOf="@id/onePresenceStateView"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_default="wrap"
+                        tools:text="abcdefghijklmnopqrstuvwxyz" />
+
+                    <com.zipow.videobox.view.PresenceStateView
+                        android:id="@+id/onePresenceStateView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/txtOneDialState"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <ViewStub android:layout="@layout/zm_sip_call_emergency_addr"
+            android:layout_below="@id/linearTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/linearTop"
+            android:id="@+id/panelEmergencyInfoStub"
+            android:layout_marginTop="-20dp"
+            />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/panelCallBtns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/keyboard"
+            app:layout_constraintTop_toBottomOf="@id/keyboard"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnCompleteMeetingInvite"
+                style="@style/ZmButton"
+                android:layout_width="@dimen/zm_sip_dialpad_width"
+                android:text="@string/zm_sip_btn_complete_meeting_invite_250011"
+                app:layout_constraintBottom_toTopOf="@id/btnEndCall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/btnEndCall"
+                android:layout_width="@dimen/zm_sip_dialpad_key_width"
+                android:layout_height="@dimen/zm_sip_dialpad_key_width"
+                android:contentDescription="@string/zm_accessbility_btn_end_call_14480"
+                android:src="@drawable/zm_sip_end_call"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/panelTransferOption"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnCompleteMeetingInvite"
+                tools:visibility="visible"
+                android:layout_marginTop="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/panelTransferOption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnEndCall"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/btnCompleteTransfer"
+                    style="@style/ZmButton"
+                    android:layout_width="@dimen/zm_sip_dialpad_width"
+                    android:text="@string/zm_sip_btn_complete_transfer_61381" />
+
+                <TextView
+                    android:id="@+id/btnCancelTransfer"
+                    style="@style/ZmButton.Text"
+                    android:layout_width="@dimen/zm_sip_dialpad_width"
+                    android:layout_marginTop="@dimen/zm_margin_smaller_size"
+                    android:contentDescription="@string/zm_sip_btn_cancel_transfer_61381"
+                    android:gravity="center"
+                    android:text="@string/zm_sip_btn_cancel_transfer_61381" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.zipow.videobox.view.sip.DialKeyboardView
+            android:id="@+id/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.6"/>
+
+        <com.zipow.videobox.view.sip.SipInCallPanelView
+            android:id="@+id/panelInCall"
+            android:layout_width="@dimen/zm_sip_dialpad_width"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/zm_sip_dialpad_content_margin_left"
+            android:layout_marginRight="@dimen/zm_sip_dialpad_content_margin_left"
+            android:scrollbars="none"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            tools:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <include layout="@layout/zm_snackbar_toast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/panelTips"
+            android:visibility="gone"
+            tools:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/panelSipError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_notification_background"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            android:padding="16dp"
+            tools:visibility="gone">
+
+            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                android:id="@+id/txtSipError"
+                style="@style/ZmTextView.Content.Primary.Small.OnLight"
+                android:layout_width="wrap_content"
+                app:layout_constrainedWidth="true"
+                android:layout_height="wrap_content"
+                android:maxLines="@integer/maximum_lines"
+                android:text="@string/zm_sip_error_data_99728"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintEnd_toStartOf="@+id/progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Unable to switch to end-to-end encryption." />
+
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/zm_sip_incall_top_loading"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtSipError"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="gone"
+        android:id="@+id/panelPopFragments"/>
+
+</RelativeLayout>

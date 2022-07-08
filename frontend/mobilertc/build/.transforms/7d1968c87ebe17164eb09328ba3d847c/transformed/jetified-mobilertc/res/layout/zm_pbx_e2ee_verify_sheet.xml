@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_white_bg"
+    android:paddingLeft="@dimen/zm_dialog_margin_24dp"
+    android:paddingTop="11dp"
+    android:paddingRight="@dimen/zm_dialog_margin_24dp"
+    android:paddingBottom="@dimen/zm_margin_normal_size">
+
+    <LinearLayout
+        android:id="@+id/verifyCodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/zm_pbx_e2ee_verify_sheet_top_bar"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/verifyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:letterSpacing="0.02"
+            android:maxLines="1"
+            android:text="@string/zm_e2e_meeting_verify_info_title_171869"
+            android:textColor="@color/zm_v2_txt_primary_light"
+            android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtVerifyHint"
+            style="@style/ZMInMeetingInfoItemTitle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+            android:maxLines="5"
+            android:text="@string/zm_pbx_e2ee_veriry_sheet_hint_267074"
+            android:textColor="@color/zm_black_2" />
+
+        <LinearLayout
+            android:id="@+id/first_line_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:background="@drawable/bg_pbx_e2ee_verify_sheet_code"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingTop="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+            <TextView
+                android:id="@+id/codeR1C1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="12345" />
+
+            <TextView
+                android:id="@+id/codeR1C2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="10045" />
+
+            <TextView
+                android:id="@+id/codeR1C3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="11111" />
+
+            <TextView
+                android:id="@+id/codeR1C4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="22333" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_line_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:background="@drawable/bg_pbx_e2ee_verify_sheet_code"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingTop="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+            <TextView
+                android:id="@+id/codeR2C1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="22333" />
+
+            <TextView
+                android:id="@+id/codeR2C2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="22333" />
+
+            <TextView
+                android:id="@+id/codeR2C3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="22333" />
+
+            <TextView
+                android:id="@+id/codeR2C4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_light"
+                android:textSize="@dimen/zm_font_large_size"
+                tools:text="22333" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:layout_marginBottom="@dimen/zm_margin_medium_size"
+            android:drawableLeft="@drawable/ic_back_blue"
+            android:drawablePadding="@dimen/zm_padding_small_size"
+            android:text="@string/zm_btn_back"
+            android:textColor="@color/zm_v2_primary_btn_normal" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

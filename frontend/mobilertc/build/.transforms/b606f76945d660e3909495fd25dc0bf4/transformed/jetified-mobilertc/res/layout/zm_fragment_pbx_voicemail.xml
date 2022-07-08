@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ivKeyboard"
+            style="@style/ZmBackButton"
+            android:src="@drawable/zm_sip_ic_keyboard"
+            android:contentDescription="@string/zm_sip_keypad_desc_117773"
+            android:scaleType="centerInside"
+            android:layout_centerVertical="true"
+            android:background="@drawable/zm_ui_kit_btn_normal_round12_white_selector"/>
+
+        <TextView
+            android:id="@+id/btnFilter"
+            style="@style/ZmTextView.Button.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            tools:text="All Inboxes"
+            android:drawableRight="@drawable/zm_sip_ic_dropdown"
+            android:gravity="center"
+            android:drawablePadding="8dp"
+            android:paddingLeft="34dp"
+            android:paddingRight="16dp"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/btnListEdit"
+            style="@style/ZmButton.Medium.Text"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/zm_margin_smallest_size"
+            android:text="@string/zm_btn_edit"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider"
+        android:importantForAccessibility="no"/>
+
+    <com.zipow.videobox.view.sip.PhonePBXVoiceMailListView
+        android:id="@+id/listviewVoiceMails"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+
+    <LinearLayout
+        android:id="@+id/panelEmptyView"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/zm_pt_titlebar_height"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txtEmptyViewTitle"
+            style="@style/ZmTextView.Title.Medium.Dimmed"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_lbl_call_history_empty_14480"/>
+        <TextView
+            android:id="@+id/txtEmptyView"
+            style="@style/ZmTextView.Content.Primary.MediumPlus.Dimmed"
+            android:maxLines="5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="@string/zm_sip_call_mail_empty_view_61381"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/in_meeting_info_bg"
+    android:paddingLeft="@dimen/zm_dialog_margin_24dp"
+    android:paddingTop="@dimen/zm_margin_normal_size"
+    android:paddingRight="@dimen/zm_dialog_margin_24dp"
+    android:paddingBottom="@dimen/zm_margin_normal_size">
+
+    <LinearLayout
+        android:id="@+id/verifyCodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/verifyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:letterSpacing="0.02"
+            android:maxLines="1"
+            android:text="@string/zm_e2e_meeting_verify_info_title_171869"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+            android:textStyle="bold" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtVerifyHint"
+            style="@style/ZMInMeetingInfoItemTitle"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+            android:maxLines="5"
+            android:text="@string/zm_e2e_meeting_verify_security_code_text_239254" />
+
+        <LinearLayout
+            android:id="@+id/first_line_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:background="@drawable/in_meeting_verify_code_bg"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingTop="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="12345"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="10045"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="11111"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="22333"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/second_line_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:background="@drawable/in_meeting_verify_code_bg"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingTop="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num21"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="22333"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num22"
+                tools:text="22333"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num23"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="22333"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/num24"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                tools:text="22333"
+                android:textColor="@color/zm_v2_txt_primary_ondark"
+                android:textSize="@dimen/zm_font_large_size" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="@dimen/zm_margin_medium_size"
+                android:layout_marginBottom="@dimen/zm_margin_medium_size"
+                android:drawableLeft="@drawable/ic_back_blue"
+                android:drawablePadding="@dimen/zm_padding_small_size"
+                android:text="@string/zm_btn_back"
+                android:textColor="@color/zm_v1_blue_B400" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/time"
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/zm_margin_medium_size"
+                android:layout_marginBottom="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_e2e_code_update_time_seconds_204709" />
+        </RelativeLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

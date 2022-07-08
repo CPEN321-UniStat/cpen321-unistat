@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zm_mm_folder_create_empty_button_margin">25dp</dimen>
+    <dimen name="zm_mm_folder_create_empty_linear_margin">32dp</dimen>
+    <dimen name="zm_preview_sheet_btn_margin_top">15dp</dimen>
+    <dimen name="zm_preview_sheet_padding_bottom">15dp</dimen>
+    <dimen name="zm_preview_sheet_padding_top">10dp</dimen>
+    <item format="integer" name="zm_content_max_images_each_line" type="integer">6</item>
+</resources>

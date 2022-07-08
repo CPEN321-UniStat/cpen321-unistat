@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_titlebar_height">
+
+        <include layout="@layout/zm_meeting_search_bar"/>
+
+        <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+            android:id="@+id/panelTitleBar"
+            style="@style/ZmTitleBar"
+            zoom:zm_leftButton="@+id/btnCancel"
+            zoom:zm_rightButton="@+id/btnOK"
+            zoom:zm_title="@+id/txtTitle" >
+
+            <ImageButton
+                android:id="@+id/btnCancel"
+                style="@style/ZmBackButton"
+                android:contentDescription="@string/zm_btn_back" />
+
+            <Button
+                android:id="@+id/btnOK"
+                style="@style/ZmTitleBarAction"
+                android:text="@string/zm_btn_ok" />
+
+
+            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/zm_lbl_edit_dial_in_country_127873" />
+
+        </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:id="@+id/edtSearchDummy"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_margin_large_minus_size"
+        android:layout_marginTop="@dimen/zm_padding_smallest_size"
+        android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_size"
+        android:background="@drawable/zm_im_search_bar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+            android:src="@drawable/zm_ic_im_search"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="@style/ZmInputBox"
+            android:gravity="left|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/zm_padding_smaller_size"
+            android:layout_weight="1"
+            android:hint="@string/zm_hint_search"
+            android:cursorVisible="false"
+            android:imeOptions="actionDone"
+            android:textColorHint="@color/zm_im_search_text_hint" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/listContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <us.zoom.uicommon.widget.listview.QuickSearchListView
+            android:id="@+id/phoneNumberListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/zm_listview_bg"
+            android:layout_marginBottom="@dimen/zm_margin_large_size"/>
+
+        <LinearLayout
+            android:id="@+id/panelSelect"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_btn_large_height"
+            android:layout_gravity="bottom"
+            android:background="@drawable/zm_tab_bg"
+            android:orientation="horizontal"
+            android:focusable="true"
+            android:clickable="true"
+            >
+
+            <TextView
+                android:id="@+id/txtBtnSelect"
+                style="@style/ZmTitleBarAction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:text="@string/zm_sip_select_all_61381"
+                android:focusable="false"
+                android:clickable="false"/>
+            <TextView
+                android:id="@+id/txtBtnClear"
+                style="@style/ZmTitleBarAction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center_vertical"
+                android:text="@string/zm_btn_clear_selection_103901"
+                android:visibility="gone"
+                android:focusable="false"
+                android:clickable="false"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

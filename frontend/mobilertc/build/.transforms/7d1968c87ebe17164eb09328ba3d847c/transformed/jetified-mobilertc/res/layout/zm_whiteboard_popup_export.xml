@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_whiteboard_common_toolbar_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin">
+
+    <TextView
+        android:id="@+id/tvExportPDF"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_export_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteborad_export_pdf_289013" />
+
+    <TextView
+        android:id="@+id/tvExportPNG"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_export_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteborad_export_png_289013" />
+
+</LinearLayout>

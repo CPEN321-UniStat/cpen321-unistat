@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="40"
+    android:viewportHeight="40">
+  <path
+      android:pathData="M12.8,0.2L27.2,0.2A12.6,12.6 0,0 1,39.8 12.8L39.8,27.2A12.6,12.6 0,0 1,27.2 39.8L12.8,39.8A12.6,12.6 0,0 1,0.2 27.2L0.2,12.8A12.6,12.6 0,0 1,12.8 0.2z"
+      android:strokeWidth="0.4"
+      android:fillColor="@color/zm_v2_svg_avatar_1"
+      android:strokeColor="@color/zm_v2_svg_avatar_2"/>
+  <path
+      android:pathData="M17,17.3003H17V18.7999H23V17.3005H23C22.9998,15.6438 21.6567,14.3009 20,14.3009C18.3433,14.3009 17.0003,15.6437 17,17.3003ZM24.5,17.3003V17.3005L24.5,18.8003H24.1637C25.1814,18.8209 26,19.6523 26,20.6749V25.9249C26,26.9604 25.1605,27.7999 24.125,27.7999H15.875C14.8395,27.7999 14,26.9604 14,25.9249V20.6749C14,19.6523 14.8186,18.8209 15.8363,18.8003H15.5V17.3003C15.5,14.815 17.5147,12.8003 20,12.8003C22.4853,12.8003 24.5,14.815 24.5,17.3003Z"
+      android:fillColor="@color/zm_v2_svg_avatar_3"
+      android:fillType="evenOdd"/>
+</vector>

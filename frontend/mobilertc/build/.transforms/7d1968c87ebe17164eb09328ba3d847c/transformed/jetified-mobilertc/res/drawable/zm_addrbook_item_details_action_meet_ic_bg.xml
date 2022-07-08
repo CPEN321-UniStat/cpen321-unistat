@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="44dp"
+    android:height="44dp"
+    android:viewportWidth="44"
+    android:viewportHeight="44">
+  <path
+      android:pathData="M14,0L30,0A14,14 0,0 1,44 14L44,30A14,14 0,0 1,30 44L14,44A14,14 0,0 1,0 30L0,14A14,14 0,0 1,14 0z"
+      android:fillColor="@color/zm_v2_blue_btn_bg_color"/>
+  <path
+      android:pathData="M12.1737,15C10.9732,15 10,15.9732 10,17.1737V24.6526C10,27.0536 11.9464,29 14.3474,29H24.8263C26.0268,29 27,28.0268 27,26.8263V19.3474C27,16.9464 25.0536,15 22.6526,15H12.1737ZM34,16.9638V27.0362C34,27.8535 33.0728,28.3257 32.4118,27.845L29.3237,25.599C28.8062,25.2227 28.5,24.6214 28.5,23.9816V20.0184C28.5,19.3786 28.8062,18.7773 29.3237,18.401L32.4118,16.155C33.0728,15.6743 34,16.1465 34,16.9638Z"
+      android:fillColor="@color/zm_addrbook_item_details_action_icon_color"
+      android:fillType="evenOdd"/>
+</vector>

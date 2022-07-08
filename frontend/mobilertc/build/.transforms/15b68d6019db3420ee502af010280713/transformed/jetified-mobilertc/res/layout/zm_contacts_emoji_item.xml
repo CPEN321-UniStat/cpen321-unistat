@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/zm_list_selector_white_bg"
+    android:minHeight="@dimen/zm_chat_session_item_min_height"
+    android:paddingLeft="@dimen/zm_padding_larger_size"
+    android:paddingRight="@dimen/zm_padding_larger_size">
+
+    <com.zipow.videobox.view.EmojiTextView
+        android:id="@+id/emojiTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:id="@+id/shortcut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22dp"
+        style="@style/UIKitTextView.CellTitle"
+        >
+
+    </TextView>
+
+</LinearLayout>

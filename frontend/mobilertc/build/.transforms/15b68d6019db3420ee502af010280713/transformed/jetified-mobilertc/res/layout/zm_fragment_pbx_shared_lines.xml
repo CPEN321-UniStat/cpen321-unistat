@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        tools:visibility="visible"
+        android:visibility="visible"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/ivKeyboard"
+            style="@style/ZmBackButton"
+            android:src="@drawable/zm_sip_ic_keyboard"
+            android:contentDescription="@string/zm_sip_keypad_desc_117773"
+            android:scaleType="centerInside"
+            android:background="@drawable/zm_ui_kit_btn_normal_round12_white_selector"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider" />
+
+    <com.zipow.videobox.view.sip.PhonePBXSharedLineRecyclerView
+        android:id="@+id/sharedLineRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

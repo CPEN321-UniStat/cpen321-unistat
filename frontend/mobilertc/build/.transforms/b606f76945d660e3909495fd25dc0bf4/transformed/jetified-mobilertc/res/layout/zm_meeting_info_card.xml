@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="@dimen/zm_mm_bubble_file_width"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:paddingTop="11dp"
+    android:paddingBottom="11dp"
+    android:background="@drawable/zm_corner_bg_ligthblue">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMeetingTitle"
+        tools:text="Design Critique"
+        style="@style/ZMTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMeetingTime"
+        app:layout_constraintTop_toBottomOf="@+id/txtMeetingTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="4dp"
+        style="@style/ZMTextView.Small.Dimmed"
+        tools:text="10:00 AM - 11:00 AM"
+        />
+
+
+
+    <LinearLayout
+        app:layout_constraintTop_toBottomOf="@+id/txtMeetingTime"
+        android:id="@+id/panelMembers"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/panelAvatars"/>
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/UIKitTextView.Small.Gray"
+            tools:visibility="visible"
+            android:visibility="gone"
+            tools:text="+2"
+            android:id="@+id/txtMoreCount"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_v2_btn_gray"
+        app:layout_constraintTop_toBottomOf="@+id/panelMembers"
+        app:layout_constraintLeft_toLeftOf="@+id/panelMembers"
+        app:layout_constraintRight_toRightOf="@+id/panelMembers"
+        android:layout_marginTop="8dp"
+        />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMeetingRecord"
+        android:text="@string/zm_lbl_meeting2chat_meetrecording_218634"
+        android:drawablePadding="4dp"
+        style="@style/UIKitTextView.Small.Blue"
+        android:drawableStart="@drawable/zm_ic_meeting_recording"
+        app:layout_constraintTop_toBottomOf="@+id/panelMembers"
+        android:layout_marginTop="21dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"
+        />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtMeetingChat"
+        android:text="@string/zm_lbl_meeting2chat_transcript_218634"
+        android:drawablePadding="4dp"
+        style="@style/UIKitTextView.Small.Blue"
+        android:drawableStart="@drawable/zm_ic_meeting_card_chat"
+        app:layout_constraintTop_toBottomOf="@+id/txtMeetingRecord"
+        android:layout_marginTop="20dp"
+        android:paddingEnd="10dp"
+        android:gravity="center_vertical"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

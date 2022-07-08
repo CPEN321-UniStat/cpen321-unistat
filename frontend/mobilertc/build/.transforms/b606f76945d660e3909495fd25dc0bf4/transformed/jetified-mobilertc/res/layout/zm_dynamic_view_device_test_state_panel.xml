@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Changhua Jiang on 10/28/21 8:03 AM
+  ~ Last modified 10/28/21 8:02 AM
+  ~
+  -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dynamicViewTestDevice"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        style="@style/ZmTextView.Content.Primary"
+        android:id="@+id/txtDeviceTestMode"
+        android:background="@color/zm_v1_blue_D400"
+        android:layout_marginTop="@dimen/zm_margin_large_size"
+        android:paddingTop="@dimen/zm_padding_small"
+        android:paddingBottom="@dimen/zm_padding_small"
+
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:textColor="@color/zm_v1_white"
+        android:text="@string/zm_device_test_mode" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

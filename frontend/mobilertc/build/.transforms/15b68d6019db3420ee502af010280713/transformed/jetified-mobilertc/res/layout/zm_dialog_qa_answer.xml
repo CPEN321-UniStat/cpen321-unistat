@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/zm_padding_normal_size"
+    android:paddingTop="@dimen/zm_padding_smallest_size"
+    android:paddingRight="@dimen/zm_padding_small_size"
+    android:paddingBottom="@dimen/zm_padding_smallest_size"
+    >
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="@dimen/zm_btn_small_height"
+        android:layout_height="@dimen/zm_btn_small_height"
+        android:padding="@dimen/zm_padding_smallest_size"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/zm_dialog_close"
+        android:contentDescription="@string/zm_btn_close"/>
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+       android:id="@+id/txtQuestion"
+        style="@style/ZMTextView.OnLight.Medium.DeepGrey"
+        android:layout_below="@+id/imgClose"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smaller_size"
+        android:scrollbars="vertical"
+        android:maxLines="@integer/zm_qa_question_show_max_lines"
+        android:text="Beryl Cook is one of Britain’s most talented and amusing artists .Beryl’s pictures feature women of all shapes  enjoying themselves? "
+        />
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_below="@+id/txtQuestion"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/zm_padding_small_size"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider"/>
+    <EditText
+        android:id="@+id/edtContent"
+        style="@style/InMeetingChatEditText"
+        android:layout_below="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smaller_size"
+        android:hint="@string/zm_qa_hint_answer_question_41047"
+        android:gravity="top"
+        android:imeOptions="actionSend"
+        android:inputType="textMultiLine"
+        android:maxLength="1000"
+        android:lines="@integer/zm_qa_question_input_max_lines"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/edtContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smaller_size"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/optionPrivately"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/zm_pt_titlebar_height"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="@dimen/zm_padding_smallest_size"
+            android:paddingBottom="@dimen/zm_padding_smallest_size"
+            >
+
+            <CheckBox
+                android:id="@+id/chkPrivately"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"/>
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtPrivately"
+                style="@style/ZMTextView.OnLight.Normal"
+                android:paddingLeft="@dimen/zm_padding_smallest_size"
+                android:textColor="@color/zm_v2_txt_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/zm_font_normal_size"
+                android:text="@string/zm_qa_msg_send_privately_41047"/>
+        </LinearLayout>
+
+        <us.zoom.uicommon.widget.view.ZMTextButton
+            android:id="@+id/btnSend"
+            style="@style/ZmButton.Small.Secondary"
+            android:enabled="false"
+            android:text="@string/zm_btn_send" />
+
+    </LinearLayout>
+
+</RelativeLayout>

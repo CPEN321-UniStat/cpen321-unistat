@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    style="@style/ZmSettingItem.UnClick"
+    android:background="@color/zm_white"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/zm_whiteboard_share_item_height">
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="@dimen/zm_whiteboard_share_item_avatar_size"
+        android:layout_height="@dimen/zm_whiteboard_share_item_avatar_size"
+        android:layout_marginStart="@dimen/zm_margin_small_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_ic_whiteboard_share_avatar_default" />
+
+    <ImageView
+        android:id="@+id/ivUserState"
+        android:layout_width="@dimen/zm_whiteboard_share_item_avatar_state_size"
+        android:layout_height="@dimen/zm_whiteboard_share_item_avatar_state_size"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:background="@drawable/zm_bottom_sheet_round_rect_bg"
+        android:padding="@dimen/zm_padding_smallest_minus_minus_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintCircle="@+id/ivAvatar"
+        app:layout_constraintCircleAngle="45"
+        app:layout_constraintCircleRadius="@dimen/zm_margin_medium_minus_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_ic_whiteboard_share_avatar_in_meeting" />
+
+    <TextView
+        android:id="@+id/tvUserName"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_small_size"
+        android:layout_marginEnd="@dimen/zm_margin_small_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/llPermission"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ashlee York" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

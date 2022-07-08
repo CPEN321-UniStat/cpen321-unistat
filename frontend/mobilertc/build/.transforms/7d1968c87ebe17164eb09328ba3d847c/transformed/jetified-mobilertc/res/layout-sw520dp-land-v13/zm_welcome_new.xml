@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_white">
+
+    <RelativeLayout
+        android:id="@+id/rlSettingIndex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp">
+
+        <LinearLayout
+            android:id="@+id/vpIndexer"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:orientation="horizontal" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            style="@style/ZMButton.TitleBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:contentDescription="@string/zm_btn_settings"
+            android:src="@drawable/zm_btn_settings_wlc" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/panelActions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rlSettingIndex"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/wlcViewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/panelJoinBack" />
+
+        <FrameLayout
+            android:id="@+id/panelJoinBack"
+            android:layout_width="@dimen/zm_wlc_join_btn_width"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/vSignInUp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="24dp">
+
+            <Button
+                android:id="@+id/btnJoinConf"
+                style="@style/ZmButton"
+                android:text="@string/zm_btn_join_a_meeting_on_welcome" />
+
+            <Button
+                android:id="@+id/btnReturnToConf"
+                style="@style/ZmButton"
+                android:text="@string/zm_btn_return_to_conf"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/vSignInUp"
+            android:layout_width="@dimen/zm_wlc_join_btn_width"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/loginInternational"
+                style="@style/ZmButton.Text"
+                android:gravity="center"
+                android:visibility="visible"
+                tools:visibility="visible"
+                android:text="@string/zm_btn_link_account_zoom_us"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/signUpPanel"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/btnSignup"
+                        style="@style/ZmButton.Text"
+                        android:layout_marginLeft="@dimen/zm_margin_large_size"
+                        android:layout_gravity="left"
+                        android:gravity="center"
+                        android:text="@string/zm_btn_signup_on_welcome"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/btnLogin"
+                        style="@style/ZmButton.Text"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="@dimen/zm_margin_large_size"
+                        android:gravity="center"
+                        android:text="@string/zm_login_to_start_conf" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/panelConnecting"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_white"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/zm_blue_logo"
+            tools:ignore="ContentDescription" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

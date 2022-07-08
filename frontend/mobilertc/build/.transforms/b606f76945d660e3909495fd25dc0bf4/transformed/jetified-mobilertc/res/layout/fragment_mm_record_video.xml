@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraint_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_black_3"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:contentDescription="@string/zm_btn_back"
+        android:background="@color/zm_v1_black_alpha0"
+        android:src="@drawable/zm_ic_btn_back_white"
+        app:layout_constraintStart_toStartOf="@id/constraint_layout_root"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout_root"
+        android:layout_marginTop="@dimen/zm_meeting_chat_msg_margin_start"
+        android:layout_marginStart="@dimen/zm_margin_medium"/>
+    <TextView
+        android:id="@+id/send_time_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/UIKitTextView.PrimaryText.Normal.White"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout_root"
+        app:layout_constraintStart_toStartOf="@id/constraint_layout_root"
+        app:layout_constraintEnd_toEndOf="@id/constraint_layout_root"
+        android:layout_marginTop="@dimen/zm_margin_small"
+        android:visibility="visible"
+        tools:text="00:00"/>
+
+    <TextView
+        android:id="@+id/txtTime"
+        style="@style/UIKitTextView.PrimaryText.Normal.White"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout_root"
+        app:layout_constraintStart_toStartOf="@id/constraint_layout_root"
+        app:layout_constraintEnd_toEndOf="@id/constraint_layout_root"
+        android:layout_marginTop="@dimen/zm_margin_smallest"
+        android:background="@drawable/zm_record_video_time_bg"
+        android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+        android:paddingRight="@dimen/zm_dialog_margin_16dp"
+        android:gravity="center"
+        android:textColor="@color/zm_v1_white_alpha70"
+        android:textSize="18sp"
+        android:visibility="gone"
+        tools:text="00:00 / 03:00"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="@id/constraint_layout_root"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_layout_root"
+        android:layout_marginTop="46dp"
+        android:layout_marginBottom="120dp">
+        <com.zipow.videobox.view.ptvideo.ZmPtCameraView
+            android:id="@+id/previewCameraView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w,16:9"
+            android:background="@color/zm_black">
+        </com.zipow.videobox.view.ptvideo.ZmPtCameraView>
+
+        <com.zipow.videobox.view.ptvideo.ZmVideoPlayerView
+            android:id="@+id/zm_video_player_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w,16:9"
+            android:visibility="gone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/video_record_option_layout"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_content"
+        app:layout_constraintBottom_toBottomOf="@id/constraint_layout_root"
+        android:background="@color/zm_black_3"
+        android:visibility="visible"
+        tools:visibility="visible">
+        <ImageButton
+            android:id="@+id/record_video_btn"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@color/zm_v1_black_alpha0"
+            android:src="@drawable/zm_video_record_start_ic"
+            android:contentDescription="@string/zm_lbl_starting_record"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/zm_v1_black_alpha0"
+            android:layout_marginStart="35dp"
+            android:layout_centerVertical="true"
+            android:text="@string/zm_btn_cancel"
+            android:contentDescription="@string/zm_btn_cancel"
+            android:textColor="@color/zm_v1_white"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:id="@+id/switch_camera_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/zm_mi_switch_camera"
+            android:layout_marginEnd="@dimen/zm_margin_32dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/zm_v1_black_alpha0"
+            android:src="@drawable/zm_video_record_switch_camera_ic"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/retake_video_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="35dp"
+            android:background="@color/zm_v1_black_alpha0"
+            android:text="@string/zm_accessibility_retake_178874"
+            android:contentDescription="@string/zm_accessibility_retake_178874"
+            android:textColor="@color/zm_v1_white"
+            android:textSize="18sp"
+            android:visibility="gone"/>
+        <ImageButton
+            android:id="@+id/send_video_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/zm_btn_send"
+            android:background="@color/zm_v1_black_alpha0"
+            android:src="@drawable/zm_video_record_send_ic"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

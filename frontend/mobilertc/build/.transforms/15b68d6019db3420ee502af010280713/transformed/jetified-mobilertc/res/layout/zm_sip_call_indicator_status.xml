@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="24dp"
+    android:background="@drawable/zm_btn_round_gray_bkg"
+    android:paddingLeft="4dp"
+    android:paddingRight="4dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:id="@+id/ivSipCallLiveTranscript"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/zm_ic_sip_call_indicator_live_transcript"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:contentDescription="@string/zm_pbx_live_transcript_288876"/>
+
+    <ImageView
+        android:layout_width="@dimen/zm_ic_sip_indicator_size"
+        android:layout_height="@dimen/zm_ic_sip_indicator_size"
+        android:src="@drawable/zm_ic_sip_call_indicator_p2p"
+        android:id="@+id/ivSipCallP2p"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/zm_sip_call_indicator_call_mode_p2p_127988" />
+
+    <ImageView
+        android:layout_width="@dimen/zm_ic_sip_indicator_size"
+        android:layout_height="@dimen/zm_ic_sip_indicator_size"
+        android:src="@drawable/zm_ic_sip_encryption"
+        android:id="@+id/ivSipCallEncrypt"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/zm_lbl_encryption_gcm_155209"/>
+
+    <ImageView
+        android:layout_width="@dimen/zm_ic_sip_indicator_size"
+        android:layout_height="@dimen/zm_ic_sip_indicator_size"
+        android:src="@drawable/zm_ic_sip_call_indicator_hd"
+        android:id="@+id/ivSipCallHd"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/zm_sip_call_indicator_hd_127988"/>
+
+    <ImageView
+        android:layout_width="@dimen/zm_ic_sip_indicator_size"
+        android:layout_height="@dimen/zm_ic_sip_indicator_size"
+        android:src="@drawable/zm_ic_sip_call_indicator_quality_ave"
+        android:id="@+id/ivSipCallQuality"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
+        android:scaleType="centerInside"
+        android:contentDescription="@string/zm_accessibility_call_quality_178874" />
+</LinearLayout>

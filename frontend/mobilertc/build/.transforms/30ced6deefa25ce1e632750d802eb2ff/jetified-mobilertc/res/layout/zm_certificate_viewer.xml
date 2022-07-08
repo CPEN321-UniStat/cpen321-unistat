@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_anno_multi_page_bg"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_titlebar_height"
+        android:layout_marginTop="@dimen/zm_btn_largest_height"
+        android:layout_marginEnd="@dimen/zm_margin_small_minus_size">
+
+        <TextView
+            android:id="@+id/zm_btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:layout_marginLeft="@dimen/zm_margin_small_size"
+            android:layout_marginEnd="@dimen/zm_margin_small_size"
+            android:padding="@dimen/zm_padding_smaller_size"
+            android:text="@string/zm_certificate_btn_close_253547"
+            android:textColor="@color/zm_ui_kit_color_blue_0E71EB"
+            android:textSize="@dimen/zm_font_large_size" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/zm_certificate_title_253547"
+            android:textColor="@color/zm_text_light_dark"
+            android:textSize="@dimen/zm_font_large_size"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E5E5E5"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginTop="@dimen/zm_padding_large_size"
+                android:layout_marginBottom="@dimen/zm_padding_smallest_minus_size"
+                android:text="@string/zm_certificate_issued_to_253547"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_common_name_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedToCommonName"
+                style="@style/ZMCertificateViewerText"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/zm_padding_smaller_size" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_organization_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedToOrganization"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_smaller_size" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_serial_number_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedToSerialNumber"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_large_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zm_dimen_stroke_smallest"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginTop="@dimen/zm_padding_large_size"
+                android:layout_marginBottom="@dimen/zm_padding_smallest_minus_size"
+                android:text="@string/zm_certificate_issued_by_253547"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_common_name_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedByCommonName"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_smaller_size" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_organization_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedByOrganization"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_large_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zm_dimen_stroke_smallest"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginTop="@dimen/zm_padding_large_size"
+                android:layout_marginBottom="@dimen/zm_padding_smallest_minus_size"
+                android:text="@string/zm_certificate_validity_period_253547"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_issued_on_253547" />
+
+            <TextView
+                android:id="@+id/txtIssuedOn"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_smaller_size" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:text="@string/zm_certificate_expires_on_253547" />
+
+            <TextView
+                android:id="@+id/txtExpiresOn"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_padding_smaller_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zm_dimen_stroke_smallest"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginTop="@dimen/zm_padding_large_size"
+                android:layout_marginBottom="@dimen/zm_padding_smallest_minus_size"
+                android:text="@string/zm_certificate_fingerprints_253547"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtFingerprints"
+                style="@style/ZMCertificateViewerText"
+                android:layout_marginBottom="@dimen/zm_margin_large_size" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

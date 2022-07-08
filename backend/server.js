@@ -335,6 +335,7 @@ async function storeGoogleUserData(idToken, fb_token) {
         await client.db("UniStatDB").collection("Users").updateOne({email : response.data.email}, {$set: {"firebase_token": fb_token}})
     } else { // New user, so insert
         console.log("new user, signing up...")
+        response.data.currency = "100"
         await client.db("UniStatDB").collection("Users").insertOne(response.data)
     }
 

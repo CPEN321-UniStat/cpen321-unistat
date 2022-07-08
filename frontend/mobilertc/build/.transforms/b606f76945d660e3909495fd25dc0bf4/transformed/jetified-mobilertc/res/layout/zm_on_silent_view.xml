@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	xmlns:tools="http://schemas.android.com/tools">
+
+	<com.zipow.videobox.view.OnHoldView
+		android:id="@+id/vOnHoldView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+	<com.zipow.videobox.view.NoHostView
+		android:id="@+id/vNoHostView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+	<com.zipow.videobox.view.WaitingRoomView
+		android:id="@+id/vWaitingRoomView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+	<us.zoom.uicommon.widget.view.ZMCommonTextView
+		android:id="@+id/txtPipStatus"
+		style="@style/ZMTextView.ExtremLarge.OnDark"
+		android:textSize="@dimen/zm_font_pip_size"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@color/zm_black"
+		android:gravity="center"
+		android:padding="@dimen/zm_padding_normal_size"
+		android:text="@string/zm_msg_you_are_in_silent_mode"
+		android:visibility="gone"
+		tools:visibility="visible"
+
+		/>
+
+</FrameLayout>

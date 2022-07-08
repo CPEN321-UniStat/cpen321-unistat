@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_list_selector_white_bg">
+
+    <FrameLayout
+        android:id="@+id/iconFrameLayout"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.zipow.videobox.view.ZMGifView
+            android:id="@+id/imgFileLogo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zm_ic_filetype_image" />
+
+        <ImageView
+            android:id="@+id/iconVideo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+<!--        android:src="@drawable/zm_ic_btn_play"-->
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/titleFrameLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/senderNameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconFrameLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zipow.videobox.view.ZMSimpleEmojiTextView
+                android:id="@+id/txtFileName"
+                style="@style/UIKitTextView.CellTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                tools:text="A. Explorations Exploration.pptx" />
+
+            <ImageView
+                android:id="@+id/externalFileLinkIndicatorImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:src="@drawable/ic_external_link"
+                android:contentDescription="@string/zm_external_link_accessibility_350330" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!--    <androidx.constraintlayout.widget.Group-->
+    <!--        android:id="@+id/senderNameAndTimeGroup"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:constraint_referenced_ids="senderNameTextView,timeFileSizeTextView" />-->
+
+    <com.zipow.videobox.view.ZMSimpleEmojiTextView
+        android:id="@+id/senderNameTextView"
+        style="@style/UIKitTextView.SecondaryText.Small.Dimmed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginStart="16dp"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/txtFileFrom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconFrameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/titleFrameLayout"
+        tools:text="Ethan Sang" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/timeFileSizeTextView"-->
+    <!--        style="@style/UIKitTextView.SecondaryText.Small.Dimmed"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginEnd="16dp"-->
+    <!--        android:singleLine="true"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/senderNameTextView"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_chainStyle="spread"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/senderNameTextView"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/senderNameTextView"-->
+    <!--        tools:text=", Yesterday, 10:30 AM, 1232312.4 KB" />-->
+
+    <TextView
+        android:id="@+id/txtFileFrom"
+        style="@style/UIKitTextView.SecondaryText.Small.Dimmed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iconFrameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/senderNameTextView"
+        tools:text="File from XXX" />
+
+    <View
+        android:id="@+id/separatorLine"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="16dp"
+        android:background="@color/zm_v2_cell_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

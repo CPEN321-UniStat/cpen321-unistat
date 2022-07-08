@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_meeting"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="@dimen/zm_padding_normal"
+    android:paddingTop="@dimen/zm_padding_small"
+    android:paddingRight="@dimen/zm_padding_normal"
+    android:paddingBottom="@dimen/zm_padding_small">
+
+    <TextView
+        android:id="@+id/tv_meeting_now"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:text="@string/zm_widget_now_371496"
+        android:textColor="@color/zm_v2_txt_desctructive"
+        android:textSize="@dimen/zm_font_smallest_size" />
+
+    <TextView
+        android:id="@+id/tv_meeting_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_font_smallest_size" />
+
+    <TextView
+        android:id="@+id/tv_meeting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:maxLines="1"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_meeting_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:importantForAccessibility="no"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_font_smallest_size" />
+</LinearLayout>

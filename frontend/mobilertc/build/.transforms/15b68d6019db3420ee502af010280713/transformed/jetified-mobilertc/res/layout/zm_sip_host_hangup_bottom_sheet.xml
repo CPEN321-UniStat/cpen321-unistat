@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bottom_sheet_white_bg"
+    android:paddingLeft="@dimen/zm_dialog_margin_24dp"
+    android:paddingTop="30dp"
+    android:paddingRight="@dimen/zm_dialog_margin_24dp"
+    android:paddingBottom="40dp">
+    <LinearLayout
+        android:id="@+id/itemContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_title_pbx_conference_leave_210413"
+            style="@style/ZmTextView.Title.Medium"
+            android:maxLines="3"/>
+
+        <Button
+            android:id="@+id/btnLeave"
+            style="@style/UILargestButton.RedV2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_btn_large_height"
+            android:text="@string/zm_btn_leave_conf"
+            android:layout_height="@dimen/zm_view_height_40dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

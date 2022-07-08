@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/zm_btn_height_24dp"
+    android:background="@drawable/zm_bg_float_gray_normal"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+  >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgNDI"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smallest_size"
+        android:contentDescription="@string/zm_accessibility_left_top_bar_gov_235253"
+        android:src="@drawable/zm_icon_ndi"
+        android:focusable="true"
+        tools:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgGov"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_smallest_size"
+        android:layout_marginRight="@dimen/zm_margin_smallest_size"
+        android:contentDescription="@string/zm_accessibility_left_top_bar_gov_235253"
+        android:src="@drawable/zm_icon_gov"
+        android:focusable="true"
+        tools:visibility="visible"
+        />
+
+    <LinearLayout
+        android:id="@+id/panelRecordBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:background="@drawable/zm_bg_record_pressed"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/zm_btn_height_24dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/zm_padding_smallest"
+        android:paddingRight="@dimen/zm_padding_smallest"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/imgRecordAnim"
+            android:layout_width="@dimen/zm_margin_small_6dp"
+            android:layout_height="@dimen/zm_margin_small_6dp"
+            android:focusable="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zm_ic_red_dot"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            style="@style/ZMTextView.Small.OnGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_margin_smallest"
+            android:focusable="false"
+            android:gravity="center"
+            android:text="@string/zm_rec_btn_159402"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelFocusMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:background="@drawable/zm_bg_record_pressed"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/zm_btn_height_24dp"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/zm_padding_smallest"
+        android:paddingRight="@dimen/zm_padding_smallest"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_acc_focus_mode_left_top_icon_271149"
+        tools:visibility="visible">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zm_ic_focus_mode"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelLiveStream"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:background="@drawable/zm_bg_record_pressed"
+        android:gravity="center"
+        android:minHeight="@dimen/zm_btn_height_24dp"
+        tools:visibility="visible">
+
+        <TextView
+            style="@style/ZMTextView.Small.OnGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/zm_bg_lightdark_stroke_normal"
+            android:gravity="center"
+            android:paddingLeft="@dimen/zm_padding_smallest"
+            android:paddingRight="@dimen/zm_padding_smallest"
+            android:layout_marginLeft="@dimen/zm_padding_smallest"
+            android:layout_marginRight="@dimen/zm_padding_smallest"
+            android:text="@string/zm_live_btn_159402"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/panelLobby"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_smallest"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:background="@drawable/zm_bg_record_pressed"
+        android:gravity="center"
+        android:minHeight="@dimen/zm_btn_height_24dp"
+        tools:visibility="visible">
+
+        <TextView
+            style="@style/ZMTextView.Small.OnGray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingLeft="@dimen/zm_padding_smallest"
+            android:paddingRight="@dimen/zm_padding_smallest"
+            android:layout_marginLeft="@dimen/zm_padding_smallest"
+            android:layout_marginRight="@dimen/zm_padding_smallest"
+            android:text="@string/zm_zoom_events_lobby_btn_335919"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgBandwidthLimit"
+        android:visibility="gone"
+        android:layout_width="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_height="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_marginLeft="@dimen/zm_padding_small"
+        android:layout_marginRight="@dimen/zm_padding_small"
+        android:contentDescription="@string/zm_accessibility_bandwidth_limit_enable_82445"
+        android:scaleType="fitXY"
+        android:src="@drawable/zm_ic_low_bandwidth"
+        android:focusable="true"
+        tools:visibility="visible"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgAudioWatermark"
+        android:visibility="gone"
+        android:layout_width="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_height="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_marginLeft="@dimen/zm_padding_small"
+        android:layout_marginRight="@dimen/zm_padding_small"
+        android:contentDescription="@string/zm_accessibility_audio_watermark_70457"
+        android:src="@drawable/zm_ic_audio_watermark"
+        android:focusable="true"
+        />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgUnmuteBtn"
+        android:visibility="gone"
+        android:layout_width="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_height="@dimen/zm_sip_emergency_top_arc_height"
+        android:layout_marginLeft="@dimen/zm_padding_small"
+        android:layout_marginRight="@dimen/zm_padding_small"
+        android:contentDescription="@string/zm_allow_host_unmute_hint_169817"
+        android:src="@drawable/ic_can_unmute"
+        android:focusable="true"
+        tools:visibility="visible"
+        />
+
+</LinearLayout>

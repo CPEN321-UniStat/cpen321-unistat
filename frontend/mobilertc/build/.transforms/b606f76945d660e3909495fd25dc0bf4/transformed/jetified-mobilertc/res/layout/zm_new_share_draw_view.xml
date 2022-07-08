@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/annotateContent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.zipow.annotate.AnnoContentView
+            android:id="@+id/annoContentView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.zipow.annotate.AnnoInputView
+            android:id="@+id/annoInputView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/annotatePanel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <us.zoom.uicommon.widget.view.ZMDynamicEditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_anno_edit_bg"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:maxLength="500"
+            android:minWidth="30dp"
+            android:minHeight="40dp"
+            android:padding="5dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="LabelFor" />
+
+        <us.zoom.uicommon.widget.view.ZMImageButton
+            android:id="@+id/id_mobile_close"
+            android:layout_width="@dimen/zm_edit_text_normal_height"
+            android:layout_height="@dimen/zm_edit_text_normal_height"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/zm_margin_small_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_btn_close"
+            android:gravity="center"
+            android:src="@drawable/zm_anno_wb_mobile_close_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <us.zoom.uicommon.widget.view.ZMImageButton
+            android:id="@+id/id_mobile_undo"
+            android:layout_width="@dimen/zm_edit_text_normal_height"
+            android:layout_height="@dimen/zm_edit_text_normal_height"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:gravity="center"
+            android:contentDescription="@string/zm_bnt_undo"
+            app:layout_constraintEnd_toStartOf="@+id/id_mobile_redo"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/zm_anno_undo_mobile" />
+
+        <us.zoom.uicommon.widget.view.ZMImageButton
+            android:id="@+id/id_mobile_redo"
+            android:layout_width="@dimen/zm_edit_text_normal_height"
+            android:layout_height="@dimen/zm_edit_text_normal_height"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/zm_margin_small_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_bnt_redo"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/zm_anno_redo_mobile" />'
+
+        <com.zipow.videobox.conference.ui.view.share.ZmNewLegalNoticeAnnotationPanel
+            android:id="@+id/panelAnnotationLegelNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/drawingtools"
+            android:layout_marginBottom="@dimen/zm_margin_large"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/annotate_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/annotate_bar_height"
+            android:layout_alignWithParentIfMissing="true"
+            android:layout_gravity="center"
+            android:background="@color/zm_annotate_bar_color"
+            android:paddingLeft="@dimen/zm_padding_smaller_size"
+            android:paddingRight="@dimen/zm_padding_smaller_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1">
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_wb_undo"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/zm_bnt_undo"
+                android:drawableLeft="@drawable/zm_anno_undo_wb"
+                android:gravity="center" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_wb_redo"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/zm_bnt_redo"
+                android:drawableLeft="@drawable/zm_anno_redo_wb"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/id_wb_undo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/leftPlaceHolder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/id_wb_redo"
+                app:layout_constraintStart_toStartOf="@+id/id_wb_undo" />
+
+            <View
+                android:id="@+id/rightPlaceHolder"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="@+id/moreBtn"
+                app:layout_constraintStart_toStartOf="@+id/cleanBtn" />
+
+            <HorizontalScrollView
+                android:id="@+id/hsvCenterBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fadeScrollbars="false"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/id_wb_annotate_control_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|center_horizontal|center_vertical">
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_pen"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_pen"
+                        android:drawableLeft="@drawable/zm_anno_pen_wb"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_erase"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_erase"
+                        android:drawableLeft="@drawable/zm_anno_erase_wb"
+                        android:focusable="true" />
+
+                    <ImageButton
+                        android:id="@+id/id_wb_autoShape"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:background="@color/zm_transparent"
+                        android:contentDescription="@string/zm_text_annotate_toolbar_shape_174988"
+                        android:focusable="true"
+                        android:src="@drawable/zm_anno_wb_shape"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/id_wb_line"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:background="@color/zm_transparent"
+                        android:contentDescription="@string/zm_btn_autoLine"
+                        android:src="@drawable/zm_anno_wb_line"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/id_wb_rectange"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:background="@color/zm_transparent"
+                        android:contentDescription="@string/zm_btn_rectangle"
+                        android:src="@drawable/zm_anno_wb_rec"
+                        android:visibility="gone" />
+
+                    <ImageButton
+                        android:id="@+id/id_wb_oval"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:background="@color/zm_transparent"
+                        android:contentDescription="@string/zm_btn_oval"
+                        android:src="@drawable/zm_anno_wb_oval"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_black_color"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_black_46296"
+                        android:drawableLeft="@drawable/zm_anno_black_color_selector"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_red_color"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_red_46296"
+                        android:drawableLeft="@drawable/zm_anno_red_color_selector"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_yellow_color"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_yellow_46296"
+                        android:drawableLeft="@drawable/zm_anno_yellow_color_selector"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_green_color"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_green_46296"
+                        android:drawableLeft="@drawable/zm_anno_green_color_selector"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_blue_color"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_blue_46296"
+                        android:drawableLeft="@drawable/zm_anno_blue_color_selector"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_text"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_text_15986"
+                        android:drawableLeft="@drawable/zm_anno_text_wb"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_lineWidth"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_msg_line_width"
+                        android:drawableLeft="@drawable/zm_anno_line_width_wb"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_Highlight"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_highlight"
+                        android:drawableLeft="@drawable/zm_anno_highlight_new"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_Spotlight"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_spotlight"
+                        android:drawableLeft="@drawable/zm_anno_spolight"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_shrink"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_hide_advanced_tools_46296"
+                        android:drawableLeft="@drawable/zm_anno_shrink"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_wb_extend"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_anno_accessibility_more_tools_46296"
+                        android:drawableLeft="@drawable/zm_anno_extend"
+                        android:focusable="true" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_mobile_clean"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_bnt_clear"
+                        android:drawableLeft="@drawable/zm_anno_clean"
+                        android:focusable="true"
+                        android:visibility="gone" />
+
+                    <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/id_mobile_more"
+                        android:layout_width="@dimen/zm_edit_text_normal_height"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/zm_btn_more_no_dot"
+                        android:drawableLeft="@drawable/zm_anno_more"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/cleanBtn"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/zm_anno_clean"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/pageManagementLayout"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/pageManagementLayout"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/zm_anno_view_all_whiteboards_46296"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/newPageBtn"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/pageManagementBtn"
+                    android:layout_width="@dimen/zm_edit_text_normal_height"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@drawable/zm_anno_page_num"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/pageNumTextView"
+                    android:layout_width="15dp"
+                    android:layout_height="13dp"
+                    android:gravity="center"
+                    android:text="12"
+                    android:textColor="@color/zm_v1_gray_2100"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.38"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.52" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/newPageBtn"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/zm_anno_new_whiteboard_46296"
+                android:drawableLeft="@drawable/zm_anno_new_page"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/moreBtn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/moreBtn"
+                android:layout_width="@dimen/zm_edit_text_normal_height"
+                android:layout_height="match_parent"
+                android:layout_marginRight="15dp"
+                android:drawableLeft="@drawable/zm_anno_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <us.zoom.uicommon.widget.view.ZMToolbarLayout
+            android:id="@+id/drawingtools"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/annotate_bar_height"
+            android:background="@color/zm_annoter_background"
+            android:gravity="center_vertical"
+            android:visibility="visible"
+            tools:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <ImageView
+                android:id="@+id/shareEditBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/zm_margin_smallest_size"
+                android:layout_marginTop="@dimen/zm_margin_smallest_size"
+                android:layout_marginBottom="@dimen/zm_margin_smallest_size"
+                android:contentDescription="@string/zm_description_btn_share_stop_draw"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_btn_annotation" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnSpotlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_spotlight"
+                zoom:zm_text="@string/zm_btn_spotlight" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnPen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:longClickable="true"
+                zoom:zm_icon="@drawable/zm_anno_pen"
+                zoom:zm_text="@string/zm_btn_pen" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnHighlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                zoom:zm_icon="@drawable/zm_anno_highlight"
+                zoom:zm_text="@string/zm_btn_highlight" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_arrow"
+                zoom:zm_text="@string/zm_btn_arrow" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnShape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_shape"
+                zoom:zm_text="@string/zm_text_annotate_toolbar_shape_174988" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnAutoLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_line"
+                zoom:zm_text="@string/zm_btn_autoLine" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnRectangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_rectangle"
+                zoom:zm_text="@string/zm_btn_rectangle" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnOval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_oval"
+                zoom:zm_text="@string/zm_btn_oval" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                zoom:zm_icon="@drawable/zm_anno_text"
+                zoom:zm_text="@string/zm_btn_text_15986" />
+
+            <RelativeLayout
+                android:id="@+id/colorIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingTop="4dp">
+
+                <com.zipow.videobox.share.ColorSelectedImage
+                    android:id="@+id/colorImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/ic_anno_color" />
+
+                <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZMTextView.ToolbarBtnLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/colorImage"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/zm_btn_color" />
+            </RelativeLayout>
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnErase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                zoom:zm_icon="@drawable/zm_anno_eraser"
+                zoom:zm_text="@string/zm_btn_erase" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnUndo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_undo"
+                zoom:zm_text="@string/zm_bnt_undo" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnRedo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_redo"
+                zoom:zm_text="@string/zm_bnt_redo" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_clear"
+                zoom:zm_text="@string/zm_bnt_clear" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_save"
+                zoom:zm_text="@string/zm_btn_save" />
+        </us.zoom.uicommon.widget.view.ZMToolbarLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/drawingTexttools"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/annotate_bar_height"
+            tools:visibility="gone"
+            android:background="@color/zm_annoter_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_bold"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/zm_anno_accessibility_bold_46296"
+                android:drawableLeft="@drawable/zm_anno_text_bold_default"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_italic"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_italic"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="164dp"
+                android:contentDescription="@string/zm_anno_accessibility_italic_46296"
+                android:drawableLeft="@drawable/zm_anno_text_italic_default"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/textALeft"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_bold" />
+
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/textALeft"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@color/zm_annotate_bar_color"
+                android:textSize="24px"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_font_size_seekbar"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_italic" />
+
+            <SeekBar
+                android:id="@+id/id_anno_text_font_size_seekbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:max="36"
+                android:minWidth="200dp"
+                android:progress="0"
+                app:layout_constraintEnd_toStartOf="@+id/textARight"
+                app:layout_constraintStart_toEndOf="@id/textALeft" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/textARight"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@color/zm_annotate_bar_color"
+                android:textSize="34px"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_black"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_font_size_seekbar" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_black"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/zm_anno_accessibility_black_46296"
+                android:drawableLeft="@drawable/zm_anno_text_black_color_selector"
+                android:focusable="true"
+                android:minWidth="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_red"
+                app:layout_constraintStart_toEndOf="@+id/textARight" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_red"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/zm_anno_accessibility_red_46296"
+                android:drawableLeft="@drawable/zm_anno_text_red_color_selector"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_yellow"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_black" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_yellow"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/zm_anno_accessibility_yellow_46296"
+                android:drawableLeft="@drawable/zm_anno_text_yellow_color_selector"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_green"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_red" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_green"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/zm_anno_accessibility_green_46296"
+                android:drawableLeft="@drawable/zm_anno_text_green_color_selector"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/id_anno_text_blue"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_yellow" />
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/id_anno_text_blue"
+                android:layout_width="36dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="12dp"
+                android:contentDescription="@string/zm_anno_accessibility_blue_46296"
+                android:drawableLeft="@drawable/zm_anno_text_blue_color_selector"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/id_anno_text_green" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

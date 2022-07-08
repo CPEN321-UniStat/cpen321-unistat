@@ -2,6 +2,8 @@ package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,20 +19,28 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.Payment.CheckoutActivity;
 import com.example.unistat.Meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.Constants;
+import com.google.android.gms.wallet.PaymentsClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import us.zoom.sdk.JoinMeetingOptions;
+import us.zoom.sdk.JoinMeetingParams;
+import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.ZoomSDK;
+import us.zoom.sdk.ZoomSDKInitParams;
+import us.zoom.sdk.ZoomSDKInitializeListener;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -50,9 +60,42 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        getAndSetMeetingInfo();
+        initZoom(this);
 
+        getAndSetMeetingInfo();
         addButtonListeners();
+    }
+
+    private void initZoom(Context context) {
+        ZoomSDK sdk = ZoomSDK.getInstance();
+        ZoomSDKInitParams params = new ZoomSDKInitParams();
+        params.appKey = "ABj2ki7HAdTM9dFc44KdbMnjjlo5v26P46MY";
+        params.appSecret = "1ImANl0EeqLEorNO98DptPpNBn0t6DySJtXH";
+        params.domain = "zoom.us";
+        params.enableLog = true;
+
+        ZoomSDKInitializeListener listener = new ZoomSDKInitializeListener() {
+            @Override
+            public void onZoomSDKInitializeResult(int i, int i1) {
+
+            }
+
+            @Override
+            public void onZoomAuthIdentityExpired() {
+
+            }
+        };
+        sdk.initialize(context, listener, params);
+    }
+
+    private void joinZoomMeeting(Context context) {
+        MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
+        JoinMeetingOptions options = new JoinMeetingOptions();
+        JoinMeetingParams params = new JoinMeetingParams();
+        params.displayName = "Kush Arora";
+        params.meetingNo = "9419977292";
+        params.password = "5bCwMU";
+        meetingService.joinMeetingWithParams(context, params, options);
     }
 
     private void getAndSetMeetingInfo() {
@@ -119,6 +162,12 @@ public class EventActivity extends AppCompatActivity {
             joinMeetingButton.setVisibility(View.GONE);
             makePaymentButton.setVisibility(View.GONE);
         }
+        if (!isMentor) {
+            acceptMeetingButton.setVisibility(View.VISIBLE);
+            declineMeetingButton.setVisibility(View.VISIBLE);
+        } else {
+            makePaymentButton.setVisibility(View.GONE);
+        }
     }
 
     private void addButtonListeners() {
@@ -132,6 +181,7 @@ public class EventActivity extends AppCompatActivity {
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
+                joinMeetingButton.setClickable(false);
                 makePaymentButton.setVisibility(View.VISIBLE);
             }
         });
@@ -147,15 +197,12 @@ public class EventActivity extends AppCompatActivity {
         joinMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent joinMeeting = new Intent(EventActivity.this, ZoomMeetingActivity.class);
-                startActivity(joinMeeting);
+                joinZoomMeeting(EventActivity.this);
             }
         });
         makePaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent checkoutActivity = new Intent(EventActivity.this, CheckoutActivity.class);
-                startActivity(checkoutActivity);
             }
         });
     }
@@ -183,7 +230,6 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
-                        Toast.makeText(EventActivity.this, "Your meeting response has been sent", Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

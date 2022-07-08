@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/zm_v2_light_bg_opaque"
+    android:orientation="vertical"
+    android:minHeight="@dimen/zm_quick_search_list_item_header_min_height"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/txtOrTag"
+        style="@style/ZmTextView.Content.Secondary.Medium.Dimmed"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/zm_padding_smallest_minus_size"
+        android:paddingBottom="@dimen/zm_padding_smallest_minus_size"
+        android:maxLines="1"
+        android:text="@string/zm_lbl_classification_select_or_tag_285659" />
+
+</LinearLayout>

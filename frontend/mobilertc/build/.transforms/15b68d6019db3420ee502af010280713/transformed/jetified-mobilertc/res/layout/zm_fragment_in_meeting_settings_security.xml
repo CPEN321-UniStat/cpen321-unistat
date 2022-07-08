@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_pt_titlebar_height"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/viewRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_close" />
+
+        <View
+            android:id="@+id/viewRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+            android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+            android:text="@string/zm_title_setting_security_200528" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="@dimen/zm_padding_small_size"
+            zoom:zm_settingsCategorySpacing="0dp">
+
+            <!--normal-->
+            <include
+                layout="@layout/zm_in_meeting_settings_security_normal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!--remove participant-->
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelRemove"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_btn_width_48dp"
+                android:orientation="vertical"
+                zoom:zm_dividerHeight="1px"
+                zoom:zm_showBottomDivider="false"
+                zoom:zm_showTopDivider="false">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItem.UnClick"
+                    android:layout_height="@dimen/zm_btn_largest_height"
+                    android:gravity="center"
+                    android:text="@string/zm_btn_remove_participant_200528"
+                    android:textColor="@color/zm_v2_txt_action"
+                    android:textSize="@dimen/zm_font_normal_size" />
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <!--suspend participant activities-->
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelSuspend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_btn_large_height"
+                android:orientation="vertical"
+                zoom:zm_dividerHeight="1px"
+                zoom:zm_showBottomDivider="false">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItem.UnClick"
+                    android:layout_height="@dimen/zm_btn_largest_height"
+                    android:gravity="center"
+                    android:text="@string/zm_btn_suspend_participant_activities_200528"
+                    android:textColor="@color/zm_v2_txt_desctructive"
+                    android:textSize="@dimen/zm_font_normal_size" />
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+    </ScrollView>
+</LinearLayout>

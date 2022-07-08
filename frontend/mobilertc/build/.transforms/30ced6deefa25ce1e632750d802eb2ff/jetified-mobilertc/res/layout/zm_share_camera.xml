@@ -1,0 +1,25 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/zm_btn_width_48dp"
+    android:focusable="true">
+
+    <us.zoom.uicommon.widget.view.ZMTextButton
+        android:id="@+id/btnControlCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panelTopContent"
+        android:background="@drawable/zm_bg_float_gray_normal"
+        android:drawableLeft="@drawable/zm_ic_pause"
+        android:drawablePadding="@dimen/zm_margin_smallest"
+        android:focusable="false"
+        android:gravity="center_vertical"
+        android:layout_gravity="center"
+        android:paddingLeft="@dimen/zm_margin_small"
+        android:paddingTop="@dimen/zm_margin_small_6dp"
+        android:paddingRight="@dimen/zm_margin_small"
+        android:paddingBottom="@dimen/zm_margin_small_6dp"
+        android:text="@string/zm_btn_pause_camera_179638"
+        android:textColor="@color/zm_v2_white_alpha80"
+        android:textSize="@dimen/zm_font_smaller_size" />
+
+</FrameLayout>

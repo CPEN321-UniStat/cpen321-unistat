@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/zm_immersive_download_progress_view_bg"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/zm_margin_small"
+    android:padding="@dimen/zm_padding_small">
+
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtInfo"
+        style="@style/ZMTextView.Normal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/zm_dialog_margin_16dp"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:singleLine="false"
+        android:text="@string/zm_idp_verify_info_auth_291884"
+        android:textColor="@color/zm_v1_white" />
+
+    <Button
+        android:id="@+id/btnOK"
+        style="@style/ZmButton.Small"
+        android:layout_gravity="center_vertical"
+        android:text="@string/zm_btn_authenticate_291884"/>
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="@dimen/zm_btn_small_height"
+        android:layout_height="@dimen/zm_btn_small_height"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/zm_margin_smallest"
+        android:contentDescription="@string/zm_btn_close"
+        android:padding="@dimen/zm_padding_small"
+        android:scaleType="fitCenter"
+        android:src="@drawable/zm_btn_legal_tip_close_light" />
+
+</LinearLayout>
+

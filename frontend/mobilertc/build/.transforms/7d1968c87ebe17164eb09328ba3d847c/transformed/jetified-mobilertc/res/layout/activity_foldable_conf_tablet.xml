@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <us.zoom.uicommon.widget.view.ZmFoldableLayout
+        android:id="@+id/fodable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        custom:firstViewId="@+id/start_layout"
+        custom:secondViewId="@+id/end_layout">
+
+        <com.zipow.videobox.view.ZmUnexpectedReattachDetector
+            android:layout_width="1px"
+            android:layout_height="1px" />
+        <!-- first view layout-->
+       <!-- <include
+            android:id="@id/start_layout"
+            layout="@layout/zm_conf_content_panel" />-->
+        <com.zipow.videobox.conference.ui.view.ZmMainContentLayout
+            android:id="@id/start_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <!-- second view layout-->
+
+        <com.zipow.videobox.conference.ui.view.ZmTabletMainControlLayout
+            android:id="@id/end_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+       <!-- <include
+            android:id="@id/end_layout"
+            layout="@layout/zm_conf_control_view_panel" />-->
+    </us.zoom.uicommon.widget.view.ZmFoldableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

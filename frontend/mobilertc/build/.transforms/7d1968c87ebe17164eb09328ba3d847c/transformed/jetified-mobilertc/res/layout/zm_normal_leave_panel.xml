@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 7/6/21 9:00 AM
+  ~ Last modified 7/6/21 9:00 AM
+  ~
+  -->
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/leaveNormalContainer"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/endMeetingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnEndMeeting"
+                style="@style/UIRedButton.EndMeeting"
+                android:layout_width="match_parent"
+                android:text="@string/zm_sip_meet_inmeeting_dialog_end_108086" />
+
+            <Button
+                android:id="@+id/btnLeaveWithCall"
+                style="@style/UIRedButton.EndMeeting"
+                android:layout_width="match_parent"
+                android:text="@string/zm_btn_leave_conf_with_call" />
+
+            <Button
+                android:id="@+id/btnLeaveFromRoom"
+                style="@style/UIRedButton.EndMeeting"
+                android:layout_width="match_parent"
+                android:text="@string/zm_btn_room_btn_leave_from_phone_179549" />
+
+            <Button
+                android:id="@+id/btnEndWebinarAttendees"
+                style="@style/UIKitButton.LeaveMeeting"
+                android:layout_width="match_parent"
+                android:text="@string/zm_gr_end_webinar_for_attendees" />
+
+            <Button
+                android:id="@+id/btnLeaveMeeting"
+                style="@style/UIKitButton.LeaveMeeting"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/zm_dialog_margin_24dp"
+                android:text="@string/zm_btn_leave_conference" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/endWebinarAttendeesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnEndWebinarAttendees3Times"
+                style="@style/UIRedButton.EndMeeting"
+                android:layout_width="match_parent"
+                android:text="@string/zm_gr_end_webinar_for_attendees" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_margin_large_middle"
+                android:text="@string/zm_gr_end_webinar_for_attendees_tips"
+                android:textColor="@color/white"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                android:layout_marginHorizontal="@dimen/zm_end_webinar_attendees_marginleft"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </ScrollView>

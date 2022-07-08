@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/zm_window_bg">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        android:background="@drawable/zm_window_bg"
+        android:elevation="0dp"
+        zoom:zm_leftButton="@+id/btnCancel" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmTitleBarAction"
+            android:contentDescription="@string/zm_btn_cancel"
+            android:text="@string/zm_btn_cancel" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                style="@style/ZmTextView.Title.Medium"
+                android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+                android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="@integer/maximum_lines"
+                android:text="@string/zm_txt_confirm_age_msg_148333" />
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_marginTop="@dimen/zm_margin_large_minus_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/txtBirth"
+                        style="@style/ZmInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/zm_edit_text_normal_height"
+                        android:background="@color/zm_white"
+                        android:hint="@string/zm_txt_input_age_148333" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary.MediumPlus.Dimmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+                android:layout_marginBottom="@dimen/zm_margin_super_large_size"
+                android:text="@string/zm_txt_no_store_msg_148333" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

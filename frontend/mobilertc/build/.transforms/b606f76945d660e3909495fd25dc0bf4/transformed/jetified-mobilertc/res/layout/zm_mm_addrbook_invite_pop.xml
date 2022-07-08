@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_white"
+        android:elevation="10dp"
+        android:layout_margin="10dp"
+        android:minWidth="200dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:id="@+id/panelAddContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector" >
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_im_invite_zoom_contact_221346" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelCreatePhoneContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector">
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_im_create_a_phone_contact_221346" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelAddContactGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector" >
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_mm_lbl_create_contact_group_68451" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelAddPhoneContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector" >
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_add_phone_contact_33300" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelNewGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector" >
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_mm_title_new_group_59554" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelJoinPublicGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector">
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_btn_join_public_group_326355" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelAddApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/zm_setting_item_padding_top"
+            android:paddingTop="@dimen/zm_setting_item_padding_top"
+            android:background="@drawable/zm_settings_item_selector" >
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_add_app_283743" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

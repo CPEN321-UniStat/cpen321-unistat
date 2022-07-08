@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/zm_padding_smallest_size"
+    android:paddingBottom="@dimen/zm_padding_smallest_size"
+    >
+
+    <TextView
+        android:id="@+id/txtCity"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"
+        android:ellipsize="end"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:text="Asia/Shanghai" />
+
+    <TextView
+        android:id="@+id/txtGMT"
+        style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"
+        android:layout_marginTop="@dimen/zm_margin_smallest_size"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:paddingLeft="0dp"
+        android:text="China stardard time : GMT +8.0" />
+
+
+</LinearLayout>

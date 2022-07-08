@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        style="@style/ZmSettingItem.UnClick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingRight="0dp"
+        >
+
+        <ImageView
+            android:id="@+id/imgSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+            android:scaleType="center"
+            android:src="@drawable/zm_group_type_select"
+            android:visibility="invisible" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTrackValue"
+            style="@style/ZmSettingItemContent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="false"
+            android:gravity="left"
+            />
+    </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_divider_height"
+        android:background="@color/zm_line_divider"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"
+        />
+
+</RelativeLayout>

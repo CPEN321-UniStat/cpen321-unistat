@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/zm_padding_small_size"
+    android:paddingBottom="@dimen/zm_padding_small_size"
+    android:background="@color/zm_transparent">
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnPen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/zm_margin_smallest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnHighlight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_medium_size"
+        zoom:zm_icon="@drawable/zm_anno_bg_pen_tip"
+        zoom:zm_text="@string/zm_btn_pen"
+        zoom:zm_vertical_divide_icon_text="@dimen/zm_margin_smaller_size" />
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnHighlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/zm_margin_smallest"
+        android:layout_marginRight="@dimen/zm_margin_small_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnPen"
+        app:layout_constraintTop_toTopOf="parent"
+        zoom:zm_icon="@drawable/zm_bg_highlight_tip"
+        zoom:zm_text="@string/zm_btn_highlight"
+        zoom:zm_vertical_divide_icon_text="@dimen/zm_margin_smaller_size" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

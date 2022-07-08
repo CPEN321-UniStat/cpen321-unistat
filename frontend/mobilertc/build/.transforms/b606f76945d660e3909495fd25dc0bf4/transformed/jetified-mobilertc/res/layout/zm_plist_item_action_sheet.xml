@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/action_sheet_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bottom_sheet_round_rect_bg"
+    android:maxWidth="@dimen/zm_action_sheet_max_width"
+    android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+    android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+    zoom:layout_constraintBottom_toBottomOf="parent"
+    zoom:layout_constraintEnd_toEndOf="parent"
+    zoom:layout_constraintStart_toStartOf="parent">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/header"
+        style="@style/ZmTextView.Button.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:gravity="left|center_vertical"
+        android:textStyle="bold"
+        tools:text="12312312312"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/panelIdpVerify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@id/header"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/panelIdpVerifyLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="gone">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_smallest"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/zm_chat_typing_text"
+                tools:text="@string/zm_idp_verify_info_loading_291884" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@style/ZMProgressBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelIdpVerifyInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtIdpVerifyInfoType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/zm_chat_typing_text"
+                tools:text="@string/zm_idp_verify_info_display_291884" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtIdpVerifyInfoName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_dialog_margin_12dp"
+                android:drawableLeft="@drawable/ic_user"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="@dimen/zm_margin_normal"
+                android:textColor="@color/zm_chat_typing_text"
+                tools:text="Johnathan Chen" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtIdpVerifyInfoEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_margin_smallest"
+                android:drawableLeft="@drawable/ic_email"
+                android:layout_gravity="center_vertical"
+                android:drawablePadding="@dimen/zm_margin_normal"
+                android:textColor="@color/zm_chat_typing_text"
+                tools:text="john.chen@zoom.us" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/btnLearnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/zm_padding_small"
+                android:paddingBottom="@dimen/zm_padding_small"
+                android:text="@string/zm_subscription_cancel_learn_more_287238"
+                android:textColor="@color/zm_v2_txt_action"
+                android:textSize="@dimen/zm_font_small_size" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+        android:id="@+id/menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        zoom:autoHeight="true"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@id/panelIdpVerify" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ZmButton.Medium.Text.ActionSheet"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:text="@string/zm_btn_cancel"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/menu_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

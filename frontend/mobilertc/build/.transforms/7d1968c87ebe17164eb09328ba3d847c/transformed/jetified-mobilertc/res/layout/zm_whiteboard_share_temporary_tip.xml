@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+     >
+
+    <RelativeLayout
+        android:id="@+id/panelTipContent"
+        android:layout_width="@dimen/zm_cloud_whiteboard_share_temp_tip_text_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_smaller_size"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+        android:background="@drawable/zm_whiteboard_temp_tip_content_bg"
+        android:elevation="@dimen/zm_margin_smallest_size">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_padding_smaller_size"
+            android:layout_marginTop="@dimen/zm_padding_smaller_size"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:layout_marginBottom="@dimen/zm_padding_smaller_size"
+            android:gravity="start"
+            android:maxLines="5"
+            android:text="@string/zm_whiteboard_share_dialog_temporary_tip_289013"
+            android:textColor="@color/zm_v2_schedule_force_tip_text"
+            android:textSize="@dimen/zm_margin_small_minus_size" />
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/panelTipContent"
+        android:layout_marginStart="@dimen/zm_margin_super_large_size"
+        android:elevation="@dimen/zm_margin_smaller_size"
+        android:src="@drawable/zm_ic_triangle_down"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/zm_v2_window_gb"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnCancel"
+        zoom:zm_rightButton="@+id/btnNext"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_cancel" />
+
+        <Button
+            android:id="@+id/btnNext"
+            style="@style/ZmTitleBarAction"
+            android:enabled="false"
+            android:text="@string/zm_btn_next" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:text="@string/zm_mm_title_folder_create_357393" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_v2_window_gb">
+
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="@dimen/zm_btn_height_24dp" >
+            <TextView
+                style="@style/ZmSettingOptionTitle"
+                android:text="@string/zm_mm_lbl_folder_name_357393" />
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                zoom:zm_showTopDivider="false" >
+
+                <LinearLayout
+                    android:id="@+id/btnPassword"
+                    style="@style/ZmSettingItem">
+
+                    <EditText
+                        android:id="@+id/edtFolderName"
+                        style="@style/ZmInputBox"
+                        android:gravity="left|center_vertical"
+                        android:hint="@string/zm_mm_folder_create_hint_357393"
+                        android:maxLength="256"
+                        android:inputType="textCapSentences" >
+
+                        <requestFocus />
+                    </EditText>
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/zm_action_sheet_menu_min_height"
+    tools:background="@color/zm_white">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/menu_text"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="start"
+        android:maxLines="@integer/maximum_lines"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textColor="@color/zm_v2_btn_black_text_color"
+        android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Reply" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/menu_desc"
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="start"
+        android:maxLines="@integer/maximum_lines"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/tv_verified"
+        app:layout_constraintEnd_toEndOf="@id/menu_text"
+        app:layout_constraintStart_toStartOf="@id/menu_text"
+        app:layout_constraintTop_toBottomOf="@id/menu_text"
+        app:layout_goneMarginBottom="15dp"
+        tools:text="40407"
+        tools:visibility="visible" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/tv_verified"
+        style="@style/UIKitTextView.PrimaryText.Normal.Gray.Selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="15dp"
+        android:drawableStart="@drawable/zm_ic_sip_verified"
+        android:drawablePadding="2dp"
+        android:text="@string/zm_phone_caller_verified_261041"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/menu_divider"
+        app:layout_constraintStart_toStartOf="@id/menu_text"
+        app:layout_constraintTop_toBottomOf="@id/menu_desc"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/menu_divider"
+        android:layout_width="0dp"
+        android:layout_height="1px"
+        android:background="@drawable/zm_divider_line_decoration"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/menu_text"
+        app:layout_constraintTop_toBottomOf="@id/tv_verified" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

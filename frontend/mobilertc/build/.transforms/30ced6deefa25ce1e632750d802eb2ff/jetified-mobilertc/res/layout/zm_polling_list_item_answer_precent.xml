@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/zm_margin_small_size">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/answerPercent"
+        style="@style/ZMTextView.OnLight.Medium.Dimmed"
+        android:visibility="visible"
+        tools:text="4/10 (40%) answered" />
+</LinearLayout>

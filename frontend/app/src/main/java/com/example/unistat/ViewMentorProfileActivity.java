@@ -69,6 +69,16 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        requestMeetingButton = findViewById(R.id.requestMeetingButton);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+        String userEmail = account.getEmail();
+        if (userEmail.equals(mentorEmail)) {
+            requestMeetingButton.setVisibility(View.GONE);
+        }
+
+
+
         mentorPhoto = findViewById(R.id.mentorProfileImage);
         mentorNameText = findViewById(R.id.mentorNameText);
         univNameText = findViewById(R.id.univNameText);

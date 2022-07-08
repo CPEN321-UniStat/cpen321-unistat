@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnConfirm"
+        zoom:zm_title="@+id/txtTitle">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_back" />
+
+        <Button
+            android:id="@+id/btnConfirm"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_confirm_19898" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:text="@string/zm_lbl_personal_note_display_time_287600" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="@dimen/zm_setting_item_group_spacing">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical"
+                zoom:zm_showTopDivider="false">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/timeOptList"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/customTime"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical"
+                zoom:zm_showTopDivider="false">
+
+                <LinearLayout
+                    android:id="@+id/panelFromTime"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/zm_lbl_from_19898" />
+
+                    <TextView
+                        android:id="@+id/txtFromTime"
+                        style="@style/ZmSettingItemContent"
+                        android:maxLines="1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        tools:text="Today, 5:45 PM" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/panelToTime"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="wrap_content"
+                        android:text="@string/zm_lbl_to_19898" />
+
+                    <TextView
+                        android:id="@+id/txtToTime"
+                        style="@style/ZmSettingItemContent"
+                        android:maxLines="1"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        tools:text="Today, 12:00 PM" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+    </ScrollView>
+</LinearLayout>

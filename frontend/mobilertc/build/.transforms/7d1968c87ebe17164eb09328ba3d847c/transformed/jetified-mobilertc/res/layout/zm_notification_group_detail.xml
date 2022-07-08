@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/viewRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <View
+            android:id="@+id/viewRight"
+            android:layout_width="40dp"
+            android:layout_height="match_parent" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"/>
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/zm_padding_large_size"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="@dimen/zm_padding_larger_size">
+
+        <TextView
+            android:id="@+id/txtGroupNotificationDes"
+            style="@style/ZmSettingDescription"
+            android:text="@string/zm_lbl_receive_mobile_group_notifications_19898" />
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:id="@+id/panelGroupNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/panelAllMsg"
+                style="@style/ZmSettingItem">
+
+                <TextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/zm_lbl_notification_all_msg_19898" />
+
+                <ImageView
+                    android:id="@+id/imgAllMsg"
+                    style="@style/ZmSettingItemArrow"
+                    android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                    android:src="@drawable/zm_group_type_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelPrivateMsg"
+                style="@style/ZmSettingItem">
+
+                <TextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/zm_lbl_notification_private_msg_in_group_19898" />
+
+                <ImageView
+                    android:id="@+id/imgNotificationPrivate"
+                    style="@style/ZmSettingItemArrow"
+                    android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                    android:src="@drawable/zm_group_type_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelNoMsg"
+                style="@style/ZmSettingItem">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/zm_lbl_notification_nothing_19898" />
+
+                <ImageView
+                    android:id="@+id/imgNotificationNo"
+                    style="@style/ZmSettingItemArrow"
+                    android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                    android:src="@drawable/zm_group_type_select"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/panelRestDefault"
+                style="@style/ZmSettingItem">
+
+                <TextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="match_parent"
+                    android:text="@string/zm_btn_reset_default_19898"
+                    android:textColor="@drawable/zm_button_text_color" />
+
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+    </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+</LinearLayout>

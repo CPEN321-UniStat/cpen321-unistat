@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/zm_title_bar_height"
+    android:background="@drawable/zm_window_bg">
+
+    <TextView
+        android:id="@+id/txtLabel"
+        style="@style/ZMTextView.Normal.OnLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:paddingTop="@dimen/zm_padding_small_size"
+        android:paddingBottom="@dimen/zm_padding_small_size"
+        android:text="Waiting(2)" />
+
+
+    <TextView
+        android:id="@+id/txtBoWaitingDes"
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLabel"
+        android:gravity="left"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:paddingBottom="@dimen/zm_padding_smallest_minus_size"
+        android:visibility="gone"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal">
+        <us.zoom.uicommon.widget.view.ZMTextButton
+            android:id="@+id/btn_admit_all"
+            style="@style/ZMMaterialButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/zm_padding_small_size"
+            android:paddingRight="@dimen/zm_padding_normal_size"
+            android:paddingBottom="@dimen/zm_padding_small_size"
+            android:text="@string/zm_btn_admit_all_39690"
+            android:visibility="gone"
+            tools:visibility="visible" />
+        <ImageView
+            android:id="@+id/icon_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_more"
+            android:paddingTop="@dimen/zm_padding_small_size"
+            android:paddingBottom="@dimen/zm_padding_small_size"
+            android:paddingEnd="@dimen/zm_padding_normal_size"
+            android:paddingStart="@dimen/zm_padding_normal_size"
+            android:contentDescription="@string/zm_btn_more"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+        <LinearLayout
+            android:id="@+id/llExpand"
+            android:layout_width="@dimen/zm_view_height_40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            tools:visibility="visible"
+            >
+
+            <ImageView
+                android:id="@+id/icExpand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_next_arrow"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/zm_line_divider" />
+
+
+</RelativeLayout>

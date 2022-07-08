@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <com.zipow.videobox.view.EmojiTextView
+        android:id="@+id/txtMessage"
+        style="@style/ZmTextView.Content.Primary"
+        android:maxLines="@integer/maximum_lines"
+        tools:text="Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/btnSayHi"
+        style="@style/ZmTextView.Button.Secondary.Small.Dark"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/zm_btn_rounded_rect_blue"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:text="@string/zm_lbl_say_hi_79032"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/btnLoginZoom"-->
+<!--        style="@style/ZmButton.Small"-->
+<!--        android:layout_marginTop="@dimen/zm_margin_medium_size"-->
+<!--        android:layout_marginLeft="@dimen/zm_margin_medium_size"-->
+<!--        android:layout_marginRight="@dimen/zm_margin_medium_size"-->
+<!--        android:text="@string/zm_btn_login" />-->
+
+</LinearLayout>

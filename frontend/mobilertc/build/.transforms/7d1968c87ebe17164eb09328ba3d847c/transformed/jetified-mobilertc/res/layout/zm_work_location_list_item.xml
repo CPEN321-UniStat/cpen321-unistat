@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+    style="@style/ZmSettingItem"
+    android:background="@drawable/zm_settings_item_selector"
+    android:paddingRight="0dp">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/zm_padding_normal_size">
+        <TextView
+            android:id="@+id/txtLabel"
+            style="@style/UIKitTextView.BuddyName"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            tools:text="Namefdsaffffffffffffffffffffffffffffffffffffffffffew"
+            android:layout_marginRight="18dp"/>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/zm_group_type_select"
+            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+            android:id="@+id/ivSelect"
+            android:visibility="visible"
+            />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_v1_purple_50_alpha9"
+        android:id="@+id/divider"/>
+</LinearLayout>
+
+
+

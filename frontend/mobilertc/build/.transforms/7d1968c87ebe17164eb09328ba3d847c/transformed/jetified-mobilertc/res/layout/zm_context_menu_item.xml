@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/zm_action_sheet_menu_min_height"
+    android:gravity="center"
+    android:background="@drawable/zm_v2_bg_menu">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size">
+        <TextView
+            android:id="@+id/menu_text"
+            style="@style/ZmTextView.Content.Primary"
+            android:textColor="@color/zm_v2_btn_black_text_color"
+            android:maxLines="@integer/maximum_lines"
+            android:gravity="left"
+            tools:text="Reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/menu_desc"
+            style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+            android:gravity="left"
+            tools:text="ashlee.york@gmail.com"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:maxLines="@integer/maximum_lines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/menu_icon"
+        tools:src="@drawable/zm_menu_icon_copy"
+        android:layout_width="@dimen/zm_btn_smallest_height"
+        android:layout_height="@dimen/zm_btn_smallest_height"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="@dimen/zm_margin_small_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        tools:ignore="ContentDescription"/>
+</LinearLayout>

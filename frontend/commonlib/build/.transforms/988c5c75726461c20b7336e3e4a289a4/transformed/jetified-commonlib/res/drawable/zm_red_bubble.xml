@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+android:shape="rectangle">
+<size android:height="16dp" android:width="16dp"/>
+<solid android:color="@color/zm_v1_red_A300" />
+<corners
+    android:bottomLeftRadius="180dp"
+    android:bottomRightRadius="180dp"
+    android:topLeftRadius="180dp"
+    android:topRightRadius="180dp"/>
+
+<padding
+    android:left="4dp"
+    android:right="4dp"/>
+
+</shape>

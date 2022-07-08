@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zm_conf_toolbar_width_percent">0.6</dimen>
+</resources>

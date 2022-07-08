@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_video_unit_label_bg"
+    android:gravity="center_vertical"
+    android:importantForAccessibility="no"
+    android:paddingStart="@dimen/zm_padding_smallest_minus_size"
+    android:paddingEnd="@dimen/zm_padding_smallest_minus_size">
+
+    <ImageView
+        android:id="@+id/imgNetwork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_smallest_plus_size"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_network_good"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imgAudio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_smallest_plus_size"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_btn_unmute_audio_normal_small"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imgSpotlight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_smallest_plus_size"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_icon_video_spotlight"
+        tools:visibility="visible" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_smallest_plus_size"
+        android:ellipsize="end"
+        android:importantForAccessibility="no"
+        android:maxLines="3"
+        android:textColor="@color/zm_v1_white"
+        android:textSize="@dimen/zm_ui_kit_text_size_11sp"
+        android:visibility="gone"
+        tools:text="Tristan Cheng"
+        tools:visibility="visible" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtAudioConnectStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_smallest_plus_size"
+        android:importantForAccessibility="no"
+        android:textColor="@color/zm_v1_white"
+        android:textSize="@dimen/zm_ui_kit_text_size_11sp"
+        android:visibility="gone"
+        tools:text="connecting"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/imgAudioConnectStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_audio_connect_status_2"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animAudioConnectStatus"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
+</LinearLayout>

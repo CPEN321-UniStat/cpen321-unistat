@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_v2_bg_menu"
+    android:gravity="center"
+    android:minHeight="@dimen/zm_action_sheet_menu_min_height">
+
+    <TextView
+        android:id="@+id/menu_text"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:gravity="left"
+        android:maxLines="@integer/maximum_lines"
+        android:textColor="@color/zm_v2_btn_black_text_color"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="replyreplyreplyreplyreply" />
+
+    <ImageView
+        android:id="@+id/menu_beta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/menu_text"
+        app:layout_constraintStart_toEndOf="@id/menu_text"
+        app:layout_constraintTop_toTopOf="@id/menu_text"
+        app:layout_constraintHorizontal_bias="0.0"
+        tools:ignore="ContentDescription"
+        android:src="@drawable/zm_ic_whiteboard_new_tag" />
+
+    <TextView
+        android:id="@+id/menu_desc"
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:maxLines="@integer/maximum_lines"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/menu_text"
+        app:layout_constraintTop_toBottomOf="@id/menu_text"
+        tools:text="ashlee.york@gmail.com" />
+
+    <ImageView
+        android:id="@+id/menu_icon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_btn_smallest_height"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/zm_menu_icon_copy" />
+</androidx.constraintlayout.widget.ConstraintLayout>

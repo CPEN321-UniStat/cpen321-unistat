@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zipow.videobox.view.ToolbarDragView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2dp"
+        android:orientation="vertical">
+
+        <us.zoom.uicommon.widget.view.ZMToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_toolbar_annotation_bgcolor"
+            android:orientation="horizontal">
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnAnnotation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_toolbar_annotation_bgcolor"
+                android:ellipsize="end"
+                zoom:zm_icon="@drawable/zm_screenshare_anno"
+                zoom:zm_text="@string/zm_btn_start_annotation"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnShareAudio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_toolbar_share_audio_bgcolor"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_screenshare_audio_enable"
+                zoom:zm_text="@string/zm_btn_share_audio_on_118397"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnSpotlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_spotlight"
+                zoom:zm_text="@string/zm_btn_spotlight"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnPen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_pen"
+                zoom:zm_text="@string/zm_btn_pen"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnHighlight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_highlight"
+                zoom:zm_text="@string/zm_btn_highlight"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnAutoLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_line"
+                zoom:zm_text="@string/zm_btn_autoLine"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnRectangle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_rectangle"
+                zoom:zm_text="@string/zm_btn_rectangle"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnOval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_oval"
+                zoom:zm_text="@string/zm_btn_oval"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnUndo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_undo"
+                zoom:zm_text="@string/zm_bnt_undo"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnRedo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:focusable="true"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_redo"
+                zoom:zm_text="@string/zm_bnt_redo"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:ellipsize="end"
+                android:visibility="gone"
+                zoom:zm_icon="@drawable/zm_anno_clear"
+                zoom:zm_text="@string/zm_bnt_clear"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+
+            <RelativeLayout
+                android:id="@+id/btnColorIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_toolbar_screenshare_bg"
+                android:orientation="vertical"
+                android:paddingTop="4dp"
+                android:visibility="gone">
+
+                <com.zipow.videobox.share.ColorSelectedImage
+                    android:id="@+id/colorImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/ic_anno_color" />
+
+                <TextView
+                    style="@style/ZMTextView.ToolbarBtnLabel"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/colorImage"
+                    android:layout_centerHorizontal="true"
+                    android:duplicateParentState="true"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/zm_btn_color"
+                    android:textSize="8sp" />
+            </RelativeLayout>
+
+            <com.zipow.videobox.view.ToolbarButton
+                android:id="@+id/btnStopShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_toolbar_stopshare_bgcolor"
+                android:ellipsize="end"
+                zoom:zm_icon="@drawable/zm_screenshare_stop"
+                zoom:zm_text="@string/zm_btn_stop_share"
+                zoom:zm_textSize="8sp"
+                zoom:zm_titleLines="2"
+                zoom:zm_titleSingleLine="false" />
+        </us.zoom.uicommon.widget.view.ZMToolbarLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/toolbar_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignLeft="@+id/tool_bar"
+        android:layout_alignTop="@+id/tool_bar"
+        android:layout_alignRight="@+id/tool_bar"
+        android:layout_alignBottom="@+id/tool_bar"
+        android:background="@drawable/zm_screenshare_toolbar_bg_normal" />
+
+    <com.zipow.videobox.view.panel.ZmLegalNoticeAnnotationShareScreenPanel
+        android:id="@+id/panelScreenAnnotationLegelNotice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tool_bar"
+        android:layout_alignRight="@+id/tool_bar"
+        android:layout_below="@+id/tool_bar"
+        android:layout_marginTop="@dimen/zm_margin_smallest"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/btnToggleToolbar"
+        android:layout_width="@dimen/zm_view_height_40dp"
+        android:layout_height="@dimen/zm_view_height_40dp"
+        android:layout_marginLeft="@dimen/zm_margin_small"
+        android:layout_toRightOf="@+id/toolbar_bg"
+        android:clipChildren="true"
+        android:focusable="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/btnToggleToolbarArrow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/zm_dimen_smallest"
+            android:layout_gravity="center"
+            android:background="@drawable/zm_toolbar_annotation_bgcolor"
+            android:focusable="false"
+            android:padding="6dp"
+            android:src="@drawable/zm_screenshare_toggle_left"
+            tools:ignore="ContentDescription" />
+
+        <View
+            android:id="@+id/btnToggleToolbarBg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/zm_screenshare_toolbar_bg_normal"
+            android:focusable="false" />
+
+    </FrameLayout>
+
+
+</com.zipow.videobox.view.ToolbarDragView>

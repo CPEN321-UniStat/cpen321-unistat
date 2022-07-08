@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/zm_v1_gray_2150"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/tabContainer"
+        layout="@layout/zm_view_video_effects_tab_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/settingContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/containerApplyToAll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_accessible_btn_min_size"
+            android:minHeight="@dimen/zm_accessible_btn_min_size"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/txtApplyToAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/zm_margin_small_size"
+                android:importantForAccessibility="no"
+                android:text="@string/zm_video_effects_apply_to_all_meeting_210764"
+                android:textColor="@color/zm_v1_white"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkApplyToAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/zm_margin_small_size"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/containerMirrorMyVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_accessible_btn_min_size"
+            android:minHeight="@dimen/zm_accessible_btn_min_size"
+            android:clickable="true"
+            android:focusable="true">
+
+            <TextView
+                android:id="@+id/txtMirrorMyVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="@dimen/zm_margin_small_size"
+                android:importantForAccessibility="no"
+                android:text="@string/zm_video_effects_mirror_my_video_210764"
+                android:textColor="@color/zm_v1_white"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkMirrorMyVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/zm_margin_small_size"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/action_sheet_container"
+    zoom:layout_constraintStart_toStartOf="parent"
+    zoom:layout_constraintEnd_toEndOf="parent"
+    zoom:layout_constraintBottom_toBottomOf="parent"
+    android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+    android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+    android:maxWidth="@dimen/zm_action_sheet_max_width"
+    android:background="@drawable/zm_bottom_sheet_round_rect_bg">
+
+    <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+        android:id="@+id/menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        zoom:autoHeight="true"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ZmButton.Medium.Text.ActionSheet"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/menu_list"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:text="@string/zm_btn_cancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

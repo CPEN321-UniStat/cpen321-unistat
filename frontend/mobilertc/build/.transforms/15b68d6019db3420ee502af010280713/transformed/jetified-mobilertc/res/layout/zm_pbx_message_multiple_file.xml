@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/panelContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btnCancel"
+        android:padding="2dp">
+
+        <ImageView
+            android:id="@+id/imgFileIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:src="@drawable/zm_ic_filetype_doc"
+            tools:ignore="ContentDescription" />
+
+        <com.zipow.videobox.view.ZMSimpleEmojiTextView
+            android:id="@+id/txtFileName"
+            style="@style/ZmTextView.Content.Primary"
+            android:gravity="left|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@+id/imgFileIcon"
+            android:ellipsize="middle"
+            android:singleLine="true" />
+
+        <TextView
+            android:id="@+id/txtFileSize"
+            style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+            android:gravity="left|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtFileName"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="6dp"
+            android:layout_toRightOf="@+id/imgFileIcon"
+            android:text="10 M" />
+
+        <ImageView
+            android:id="@+id/imgFileStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/imgFileIcon"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/zm_filebadge_error"
+            tools:ignore="ContentDescription" />
+
+        <ProgressBar
+            android:id="@+id/pbFileStatus"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:visibility="gone"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="25dp"
+            android:layout_alignBaseline="@+id/imgFileIcon"
+            android:indeterminateDrawable="@drawable/zm_filebadge_downloading"/>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/downloadPercent"
+        style="@style/DownloadingProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/panelContent"
+        android:visibility="gone"
+        android:progress="30" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ZMButton.NoBackground.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:text="@string/zm_btn_cancel" />
+</RelativeLayout>

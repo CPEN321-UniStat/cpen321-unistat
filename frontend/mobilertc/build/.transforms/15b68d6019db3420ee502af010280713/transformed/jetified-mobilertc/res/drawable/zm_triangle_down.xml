@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <rotate
+            android:fromDegrees="45"
+            android:pivotX="135%"
+            android:pivotY="15%">
+            <shape android:shape="rectangle">
+                <size
+                    android:width="@dimen/zm_sip_emergency_top_arc_height"
+                    android:height="@dimen/zm_sip_emergency_top_arc_height" />
+                <solid android:color="@color/zm_v2_schedule_force_tip_bg" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

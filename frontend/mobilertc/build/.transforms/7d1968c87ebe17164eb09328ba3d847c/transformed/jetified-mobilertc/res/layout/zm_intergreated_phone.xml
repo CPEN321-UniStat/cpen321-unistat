@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/zm_window_bg">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnRight"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton.Dark"
+            android:contentDescription="@string/zm_btn_back" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_title_intergreated_phone_67420" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:id="@+id/panelOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zm_window_bg" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/optionCallForwardTurnOnState"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/zm_btn_height_32dp"
+                    android:background="@color/zm_pbx_setting_call_forward_turn_on_status_bg"
+                    android:gravity="center"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/zm_padding_large_size"
+                    android:paddingRight="@dimen/zm_padding_large_size"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txtCallForwardTurnOnInfo"
+                        style="@style/ZmTextView.Content.Primary.MediumPlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zm_pbx_call_forward_setting_state_356266"
+                        tools:text="Calls forwarded to tommy111111"
+                        zoom:layout_constrainedWidth="true"
+                        zoom:layout_constraintTop_toTopOf="parent"
+                        zoom:layout_constraintBottom_toBottomOf="parent"
+                        zoom:layout_constraintEnd_toStartOf="@+id/txtCallForwardTurnOff"
+                        zoom:layout_constraintHorizontal_chainStyle="packed"
+                        zoom:layout_constraintStart_toStartOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txtCallForwardTurnOff"
+                        style="@style/ZmTextView.Content.Primary.MediumPlus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        zoom:layout_constraintTop_toTopOf="@+id/txtCallForwardTurnOnInfo"
+                        android:text="@string/zm_pbx_call_forward_setting_turn_off_356266"
+                        android:textColor="@color/zm_pbx_setting_call_forward_turn_off_btn"
+                        zoom:layout_constraintEnd_toEndOf="parent"
+                        zoom:layout_constraintStart_toEndOf="@+id/txtCallForwardTurnOnInfo" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/zm_setting_item_group_spacing"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/optionDirectNumber"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/txtTitleDirectNumber"
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_title_direct_number_184616" />
+
+                        <LinearLayout
+                            android:id="@+id/directContainer"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            android:gravity="right">
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/optionCompanyNumber"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/txtCompanyNumberTitle"
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_title_company_number_184616" />
+
+                        <TextView
+                            android:id="@+id/txtCompanyNumber"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/optionLocalDialing"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_title_local_dialing_184616" />
+
+                        <TextView
+                            android:id="@+id/txtLocalDialing"
+                            style="@style/ZmSettingItemContent"
+                            android:maxLines="1"
+                            android:text="@string/zm_intergeated_phone_not_set_31439" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/optionAreaCode"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_title_area_code_184616" />
+
+                        <TextView
+                            android:id="@+id/txtAreaCode"
+                            style="@style/ZmSettingItemContent"
+                            android:maxLines="1"
+                            android:text="@string/zm_intergeated_phone_not_set_31439" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <TextView
+                    android:id="@+id/txtPBXTips"
+                    style="@style/ZmSettingDescription"
+                    android:text="@string/zm_intergeated_phone_tips_115402" />
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catReceiveCallsFromCallQueues"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/optionReceiveCallsFromCallQueues"
+                        style="@style/ZmSettingItem">
+
+                        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                            style="@style/ZmSettingItemTitle"
+                            android:textColor="@color/zm_v2_txt_primary_color"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_title_receive_calls_from_call_queues_184616"
+                            android:id="@+id/txtReceiveCallsFromCallQueues"/>
+
+                        <TextView
+                            style="@style/ZmSettingItemContent"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
+                            android:layout_marginRight="@dimen/zm_margin_normal"
+                            android:visibility="invisible"
+                            android:maxLines="1"
+                            android:id="@+id/txtOptOutReason" />
+
+                        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                            android:id="@+id/chkReceiveCallsFromCallQueues"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:duplicateParentState="true"
+                            android:checkMark="@drawable/zm_btn_toggle_default"
+                            />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <com.zipow.videobox.view.mm.MMCallQueueOptRecyclerView
+                    android:id="@+id/callQueueOptList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catCallForward"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/optionCallForward"
+                        style="@style/ZmSettingItem.UnClick">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_pbx_call_forward_setting_title_356266" />
+
+                        <TextView
+                            android:id="@+id/txtCallForwardState"
+                            style="@style/ZmSettingItemContent"
+                            android:ellipsize="start"
+                            android:text="@string/zm_switch_off_186458"
+                            android:paddingRight="14dp"/>
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catReceiveCallsFromSLG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/optionReceiveCallsFromSLG"
+                        style="@style/ZmSettingItem">
+
+                        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                            style="@style/ZmSettingItemTitle"
+                            android:textColor="@color/zm_v2_txt_primary_color"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_title_receive_calls_from_SLG"
+                            android:id="@+id/txtReceiveCallsFromSLG"/>
+
+                        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                            android:id="@+id/chkReceiveCallsFromSLG"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:checkMark="@drawable/zm_btn_toggle_default"
+                            android:duplicateParentState="true"/>
+                    </LinearLayout>
+
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catCallControls"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/tvCallControl"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_sip_call_control_setting_263745" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/optionLocation"
+                        style="@style/ZmSettingItem.UnClick">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_title_pbx_location_setting_186458" />
+
+                        <TextView
+                            android:id="@+id/txtLocationState"
+                            style="@style/ZmSettingItemContent"
+                            android:ellipsize="start"
+                            android:text="@string/zm_switch_off_186458"
+                            android:paddingRight="14dp"/>
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+                <TextView
+                    android:id="@+id/txtLocationDescription"
+                    style="@style/ZmSettingDescription"
+                    android:text="@string/zm_des_pbx_location_setting_332597" />
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/catAutoLiveTranscript"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/optionAutoLiveTranscript"
+                        style="@style/ZmSettingItem">
+
+                        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                            android:id="@+id/txtAutoLiveTranscript"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_pbx_setting_transcript_automatically_288876"
+                            android:textColor="@color/zm_v2_txt_primary_color" />
+
+                        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                            android:id="@+id/chkAutoLiveTranscript"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checkMark="@drawable/zm_btn_toggle_default"
+                            android:clickable="false"
+                            android:duplicateParentState="true"
+                            android:gravity="center" />
+                    </LinearLayout>
+
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <TextView
+                    android:id="@+id/txtAutoLiveTranscriptTips"
+                    style="@style/ZmSettingDescription"
+                    android:text="@string/zm_pbx_setting_transcript_automatically_description_288876" />
+
+                <us.zoom.uicommon.widget.view.ZMSettingsLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/zm_margin_medium_size"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:id="@+id/panelVideoGreeting">
+
+                    <TextView
+                        android:id="@+id/txtTitleVideoGreeting"
+                        style="@style/ZmSettingOptionTitle"
+                        android:text="@string/zm_pbx_setting_title_video_greeting_290287" />
+
+                    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                        android:id="@+id/catVideoGreeting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        tools:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/optionVideoGreeting"
+                            style="@style/ZmSettingItem">
+
+                            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                                android:id="@+id/txtVideoGreeting"
+                                style="@style/ZmSettingItemTitle"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="@string/zm_pbx_setting_video_greeting_290287"
+                                android:textColor="@color/zm_v2_btn_blue_text_color2" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/optionDeleteVideoGreeting"
+                            style="@style/ZmSettingItem">
+
+                            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                                android:id="@+id/txtDeleteVideoGreeting"
+                                style="@style/ZmSettingItemTitle"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:text="@string/zm_lbl_delete"
+                                android:textColor="@color/zm_v2_btn_red_text_color" />
+
+                        </LinearLayout>
+
+                    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                    <TextView
+                        android:id="@+id/txtDescVideoGreeting"
+                        style="@style/ZmSettingDescription"
+                        android:text="@string/zm_pbx_setting_desc_video_greeting_290287" />
+                </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/btnDiagnoistic"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_sip_send_log_title_150295" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+            </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

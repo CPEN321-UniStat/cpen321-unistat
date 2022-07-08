@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/extInfoPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/txtStarDes"
+        style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        tools:text="From a thread"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/txtPinDes"
+        style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        tools:text="Pinned by Darrel Steward"
+        tools:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/zm_mm_pinned_icon"
+        android:visibility="gone" />
+</LinearLayout>

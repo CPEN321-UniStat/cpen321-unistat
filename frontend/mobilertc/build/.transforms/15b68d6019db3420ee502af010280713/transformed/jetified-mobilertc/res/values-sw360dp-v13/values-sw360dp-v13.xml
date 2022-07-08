@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zm_qa_btn_max_width">54dp</dimen>
+    <dimen name="zm_qa_tab_width">110dp</dimen>
+</resources>
