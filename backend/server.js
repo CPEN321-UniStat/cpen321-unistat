@@ -34,17 +34,17 @@ const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET)
 
 app.use(express.json());
 
-app.get("/createZoomMeeting", async (req, res) => {
+app.post("/createZoomMeeting", async (req, res) => {
     email = "manekgujral11@gmail.com"; // your zoom developer email account
     var options = {
         method: "POST",
         uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
         body: {
-        topic: "Zoom Meeting Using Node JS", //db
+        topic: req.body.meetingTopic, //db
         type: 1,
         timezone: "America/Vancouver",
-        start_time: "2022-07-08T11:30:00", //db
-        duration: "5", //db
+        start_time: req.body.meetingStartTime, //db
+        end_time: req.body.meetingEndTime,
         type: 2,
         "settings": {
             join_before_host:1,
@@ -66,7 +66,8 @@ app.get("/createZoomMeeting", async (req, res) => {
     requestPromise(options)
     .then(function (response) {
     console.log("response is: ", response)
-    res.send("create meeting result: " + JSON.stringify(response))
+    var jsonResp = {"status" : response}
+    res.status(200).send(JSON.stringify(jsonResp))
     })
     .catch(function (err) {
     // API call failed...
@@ -311,13 +312,28 @@ app.get("/meetings/:email", async (req, res) => {
     })
 })
 
+app.post("/meetingsById/", async (req, res) => {
+    
+    var query = {"mId": req.body.mId}
+
+    client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
+        var jsonResp = {"meeting" : result}
+        res.status(200).send(JSON.stringify(jsonResp))
+    })
+})
+
 app.put("/meetings", async (req, res) => {
     // Update stat data
     try {
         console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
         console.log(req.body)
         find_query = {"mId" : req.body.mId}
-        update_query = {"$set": {"status": req.body.status, "mColor": req.body.mColor}}
+        update_query = {"$set": {
+            "status": req.body.status, 
+            "mColor": req.body.mColor, 
+            "zoomId": req.body.zoomId, 
+            "zoomPassword": req.body.zoomPassword
+        }}
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         var jsonResp = {
             "status": `Meeting status updated`
