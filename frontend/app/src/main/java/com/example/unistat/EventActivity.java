@@ -2,6 +2,7 @@ package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,15 +20,18 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.Payment.CheckoutActivity;
 import com.example.unistat.Meeting.Meeting;
+import com.example.unistat.Payment.PaymentsUtil;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.Constants;
+import com.google.android.gms.wallet.PaymentsClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,7 +55,6 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
 
         getAndSetMeetingInfo();
-
         addButtonListeners();
     }
 
@@ -133,6 +136,7 @@ public class EventActivity extends AppCompatActivity {
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
+                joinMeetingButton.setClickable(false);
                 makePaymentButton.setVisibility(View.VISIBLE);
             }
         });
@@ -157,6 +161,7 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent checkoutActivity = new Intent(EventActivity.this, CheckoutActivity.class);
+                checkoutActivity.putExtra("price", meeting.getPaymentAmount());
                 startActivity(checkoutActivity);
             }
         });
@@ -182,7 +187,6 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
-                        Toast.makeText(EventActivity.this, "Your meeting response has been sent", Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {

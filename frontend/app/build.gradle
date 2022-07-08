@@ -45,4 +45,5 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.8'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    implementation 'com.paypal.sdk:paypal-android-sdk:2.14.2'
 }

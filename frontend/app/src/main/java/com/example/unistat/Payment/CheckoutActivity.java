@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.unistat.EventActivity;
 import com.example.unistat.R;
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -40,58 +41,36 @@ public class CheckoutActivity extends AppCompatActivity {
     // A client for interacting with the Google Pay API.
     private PaymentsClient paymentsClient;
 
-    private View googlePayButton;
-
-    private JSONArray garmentList;
-    private JSONObject selectedGarment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        googlePayButton = findViewById(R.id.googlePayButton);
-        googlePayButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        requestPayment(view);
-                    }
-                });
+        paymentsClient = PaymentsUtil.createPaymentsClient(this);
+        Bundle extras = getIntent().getExtras();
+        Double price = (Double) extras.get("price");
+
+        requestPayment(price);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void requestPayment(View view) {
-
-        // Disables the button to prevent multiple clicks.
-        googlePayButton.setClickable(false);
-
-        // The price provided to the API should include taxes and shipping.
-        // This price is not displayed to the user.
-        try {
-            double garmentPrice = selectedGarment.getDouble("price");
-            long garmentPriceCents = Math.round(garmentPrice * PaymentsUtil.CENTS_IN_A_UNIT.longValue());
-            long priceCents = garmentPriceCents;
-
-            Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(priceCents);
-            if (!paymentDataRequestJson.isPresent()) {
-                return;
-            }
-
-            PaymentDataRequest request =
-                    PaymentDataRequest.fromJson(paymentDataRequestJson.get().toString());
-
-            // Since loadPaymentData may show the UI asking the user to select a payment method, we use
-            // AutoResolveHelper to wait for the user interacting with it. Once completed,
-            // onActivityResult will be called with the result.
-            if (request != null) {
-                AutoResolveHelper.resolveTask(
-                        paymentsClient.loadPaymentData(request),
-                        this, LOAD_PAYMENT_DATA_REQUEST_CODE);
-            }
-
-        } catch (JSONException e) {
-            throw new RuntimeException("The price cannot be deserialized from the JSON object.");
+    public void requestPayment(Double price) {
+        Optional<JSONObject> paymentDataRequestJson = PaymentsUtil.getPaymentDataRequest(price.longValue());
+        if (!paymentDataRequestJson.isPresent()) {
+            return;
         }
+
+        PaymentDataRequest request =
+                PaymentDataRequest.fromJson(paymentDataRequestJson.get().toString());
+
+        // Since loadPaymentData may show the UI asking the user to select a payment method, we use
+        // AutoResolveHelper to wait for the user interacting with it. Once completed,
+        // onActivityResult will be called with the result.
+        if (request != null) {
+            AutoResolveHelper.resolveTask(
+                    paymentsClient.loadPaymentData(request),
+                    this, LOAD_PAYMENT_DATA_REQUEST_CODE);
+        }
+
     }
 
     public static PaymentsClient createPaymentsClient(Activity activity) {
@@ -108,8 +87,8 @@ public class CheckoutActivity extends AppCompatActivity {
         return new JSONObject() {{
             put("type", "PAYMENT_GATEWAY");
             put("parameters", new JSONObject() {{
-                put("gateway", "example");
-                put("gatewayMerchantId", "exampleGatewayMerchantId");
+                put("gateway", "PAYPAL");
+                put("gatewayMerchantId", "AbysR1tl1hndnxlJ_MmFbXc10vhpBs9zvBJf_cEdqtJfLb6nWhgi7QbJFMutot5vUbgHlIOUgbAd30Ux");
             }});
         }};
     }
@@ -169,39 +148,6 @@ public class CheckoutActivity extends AppCompatActivity {
 
         } catch (JSONException e) {
             return Optional.empty();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void possiblyShowGooglePayButton() {
-
-        final Optional<JSONObject> isReadyToPayJson = PaymentsUtil.getIsReadyToPayRequest();
-        if (!isReadyToPayJson.isPresent()) {
-            return;
-        }
-
-        // The call to isReadyToPay is asynchronous and returns a Task. We need to provide an
-        // OnCompleteListener to be triggered when the result of the call is known.
-        IsReadyToPayRequest request = IsReadyToPayRequest.fromJson(isReadyToPayJson.get().toString());
-        Task<Boolean> task = paymentsClient.isReadyToPay(request);
-        task.addOnCompleteListener(this,
-                new OnCompleteListener<Boolean>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Boolean> task) {
-                        if (task.isSuccessful()) {
-                            setGooglePayAvailable(task.getResult());
-                        } else {
-                            Log.w("isReadyToPay failed", task.getException());
-                        }
-                    }
-                });
-    }
-
-    private void setGooglePayAvailable(boolean available) {
-        if (available) {
-            googlePayButton.setVisibility(View.VISIBLE);
-        } else {
-            Toast.makeText(this, R.string.googlepay_status_unavailable, Toast.LENGTH_LONG).show();
         }
     }
 
@@ -268,10 +214,8 @@ public class CheckoutActivity extends AppCompatActivity {
                         handleError(status.getStatusCode());
                         break;
                 }
-
-                // Re-enables the Google Pay payment button.
-                googlePayButton.setClickable(true);
         }
+        finish();
     }
 
     /**
@@ -300,7 +244,7 @@ public class CheckoutActivity extends AppCompatActivity {
             final JSONObject info = paymentMethodData.getJSONObject("info");
             final String billingName = info.getJSONObject("billingAddress").getString("name");
             Toast.makeText(
-                    this, "getString(R.string.payments_show_name, billingName)",
+                    this, "Successfully paid!",
                     Toast.LENGTH_LONG).show();
 
             // Logging token string.
