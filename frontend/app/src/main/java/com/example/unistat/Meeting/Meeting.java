@@ -1,5 +1,6 @@
 package com.example.unistat.Meeting;
 
+import android.graphics.Color;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
@@ -30,14 +31,8 @@ public class Meeting extends WeekViewEvent {
         this.mentorEmail = mentorEmail;
         this.menteeEmail = menteeEmail;
         this.paymentAmount = paymentAmount;
-        this.status = status;
+        setStatus(status);
         this.meetingLogs = meetingLogs;
-    }
-
-    private String getUTCDateTimeString(Calendar calendar) {
-        Date date = calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        return dateFormat.format(date);
     }
 
     public String getMentorEmail() {
@@ -70,6 +65,12 @@ public class Meeting extends WeekViewEvent {
 
     public void setStatus(Status status) {
         this.status = status;
+        if (status == Status.ACCEPTED){
+            this.setColor(Color.rgb(15,157,88));
+        }
+        else if (status == Status.REJECTED) {
+            this.setColor(Color.rgb(219,68,55));
+        }
     }
 
     public List<MeetingLog> getMeetingLogs() {

@@ -15,6 +15,7 @@ import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -130,6 +131,19 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("Resuming to calendar");
+        mWeekView.notifyDatasetChanged();
+    }
+
+
     private void viewEvent(WeekViewEvent event) throws Exception {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
@@ -174,6 +188,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+        System.out.println("Loading MEETINGS in calendar");
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;

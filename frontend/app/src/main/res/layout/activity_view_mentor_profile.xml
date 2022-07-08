@@ -64,7 +64,7 @@
 
             <TextView
                 android:id="@+id/userUnivHeading"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/user_univ_text"
@@ -78,7 +78,7 @@
 
             <TextView
                 android:id="@+id/univNameText"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans"
@@ -91,7 +91,7 @@
 
             <TextView
                 android:id="@+id/userMajorHeading"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_major_text"
@@ -105,7 +105,7 @@
 
             <TextView
                 android:id="@+id/univMajorText"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans"
@@ -119,7 +119,7 @@
 
             <TextView
                 android:id="@+id/userGpaHeading"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_gpa_text"
@@ -133,7 +133,7 @@
 
             <TextView
                 android:id="@+id/univGpaText"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans"
@@ -147,7 +147,7 @@
 
             <TextView
                 android:id="@+id/userEntranceScoreHeading"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_entrance_score_text"
@@ -161,7 +161,7 @@
 
             <TextView
                 android:id="@+id/univEntranceScoreText"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans"
@@ -174,7 +174,7 @@
 
             <TextView
                 android:id="@+id/userBioHeading"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/user_story_text"
@@ -188,7 +188,7 @@
 
             <TextView
                 android:id="@+id/uniBioText"
-                android:layout_width="258dp"
+                android:layout_width="315dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="0dp"
                 android:fontFamily="@font/open_sans"
@@ -201,9 +201,9 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/requestMeetingButton"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="262dp"
+                android:layout_height="58dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="25dp"
                 android:text="@string/request_meeting_button_text"
