@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/zm_bottom_sheet_half_rect_bg"
+    android:padding="@dimen/zm_padding_medium_size">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/zm_padding_small"
+        android:text="@string/zm_btn_mute_all"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="@dimen/zm_padding_small"
+        android:text="@string/zm_mute_all_sheet_hint_230832"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+
+    <Button
+        android:id="@+id/btnMuteAll"
+        style="@style/ZmButton.Medium"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        android:text="@string/zm_btn_mute_all" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ZmButton.Medium.Secondary"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        android:text="@string/zm_btn_cancel" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_medium_minus_size"
+        android:background="@color/zm_black_2" />
+
+    <LinearLayout
+        android:id="@+id/panelAllowUnmute"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:focusable="true"
+        android:clickable="true"
+        android:layout_margin="@dimen/zm_margin_medium_minus_size">
+
+        <TextView
+            style="@style/ZmSettingItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:text="@string/zm_msg_mute_all_allow_unmute_self_150992"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+
+        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+            android:id="@+id/chkAllowUnmute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:checkMark="@drawable/zm_btn_toggle_default"
+            android:gravity="center" />
+    </LinearLayout>
+
+
+</LinearLayout>

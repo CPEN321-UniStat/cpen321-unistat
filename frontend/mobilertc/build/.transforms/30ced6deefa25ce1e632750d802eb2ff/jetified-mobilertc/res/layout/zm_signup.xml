@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        android:elevation="0dp"
+        zoom:zm_leftButton="@+id/btnBackPanel"
+        zoom:zm_rightButton="@+id/btnSignup"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <LinearLayout
+            android:id="@+id/btnBackPanel"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton"
+                android:contentDescription="@string/zm_btn_back" />
+
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction"
+                android:contentDescription="@string/zm_btn_close"
+                android:text="@string/zm_btn_close"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:text="@string/zm_title_signup" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:fillViewport="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp">
+
+                <LinearLayout
+                    android:id="@+id/panelSignup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/zm_setting_item_group_spacing"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    tools:visibility="gone">
+
+                    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/zm_edit_text_normal_height"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/zm_padding_normal_size"
+                            android:paddingRight="@dimen/zm_padding_normal_size">
+
+                            <EditText
+                                android:id="@+id/edtEmail"
+                                style="@style/ZmInputBox"
+                                android:hint="@string/zm_hint_email"
+                                android:imeOptions="actionDone"
+                                android:inputType="textEmailAddress"
+                                android:maxLength="128" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/zm_edit_text_normal_height"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/zm_padding_normal_size"
+                            android:paddingRight="@dimen/zm_padding_normal_size">
+
+                            <EditText
+                                android:id="@+id/edtFirstName"
+                                style="@style/ZmInputBox"
+                                android:hint="@string/zm_hint_first_name"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences"
+                                android:maxLength="64" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:minHeight="@dimen/zm_edit_text_normal_height"
+                            android:orientation="horizontal"
+                            android:paddingLeft="@dimen/zm_padding_normal_size"
+                            android:paddingRight="@dimen/zm_padding_normal_size">
+
+                            <EditText
+                                android:id="@+id/edtLastName"
+                                style="@style/ZmInputBox"
+                                android:hint="@string/zm_hint_last_name"
+                                android:imeOptions="actionNext"
+                                android:inputType="textCapSentences"
+                                android:maxLength="63" />
+
+                        </LinearLayout>
+
+                    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/zm_margin_small_size"
+                        android:orientation="horizontal"
+                        android:paddingLeft="@dimen/zm_padding_normal_size"
+                        android:paddingRight="@dimen/zm_padding_normal_size">
+
+                        <CheckBox
+                            android:id="@+id/chkAcceptTerms"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="10dp"
+                            android:visibility="gone"
+                            tools:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/linkAcceptTerms"
+                            style="@style/ZmTextView.Content.Primary.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="@integer/maximum_lines"
+                            android:text="@string/zm_lbl_accept_terms_159086" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnSignup"
+                        style="@style/ZmButton"
+                        android:layout_width="match_parent"
+                        android:layout_marginLeft="@dimen/zm_margin_medium_size"
+                        android:layout_marginTop="@dimen/zm_margin_medium_size"
+                        android:layout_marginRight="@dimen/zm_margin_medium_size"
+                        android:text="@string/zm_btn_signup" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/panelWaiting"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="40dp"
+                    tools:visibility="gone">
+
+                    <ProgressBar
+                        android:id="@+id/progressBar1"
+                        style="@style/ZMProgressBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <TextView
+                        android:id="@+id/txtWaiting"
+                        style="@style/ZMTextView.Medium.DialogMsg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zm_msg_signingup" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/panelSuccess"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/zm_margin_larger_size"
+                    android:background="@color/zm_white"
+                    android:orientation="vertical"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtSuccessMsg"
+                            style="@style/ZmTextView.Title.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/zm_margin_normal_size"
+                            android:text="@string/zm_msg_active_email_sent_224978" />
+
+                        <TextView
+                            style="@style/ZmTextView.Content.Secondary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+                            android:maxLines="@integer/maximum_lines"
+                            android:text="@string/zm_msg_check_email_sent_224978" />
+
+                        <Button
+                            android:id="@+id/btnResendActiveEmail"
+                            style="@style/ZmButton.Small.Text"
+                            android:textSize="@dimen/zm_font_normal_size"
+                            android:background="@null"
+                            android:layout_marginBottom="@dimen/zm_margin_largest_size"
+                            android:text="@string/zm_btn_send_activation_email_again_224978" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/zm_sign_up_invitation"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            style="@style/ZMTextView.Normal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@string/zm_msg_signup_verified_on_other_device"
+                            android:visibility="gone" />
+
+                        <Button
+                            android:id="@+id/btnSignIn"
+                            style="@style/ZMButton.NoBackground.Small"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/zm_btn_login"
+                            android:visibility="gone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</LinearLayout>
+

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/zm_cloud_whiteboard_pages_item_width"
+    android:layout_height="@dimen/zm_cloud_whiteboard_pages_item_height">
+
+    <ImageView
+        android:id="@+id/whiteboardThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:padding="@dimen/zm_margin_smallest_size"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <FrameLayout
+        android:id="@+id/addNew"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_whiteborad_accessibility_pages_add_289013"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="@id/whiteboardThumbnail"
+        app:layout_constraintEnd_toEndOf="@id/whiteboardThumbnail"
+        app:layout_constraintStart_toStartOf="@id/whiteboardThumbnail"
+        app:layout_constraintTop_toTopOf="@id/whiteboardThumbnail"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/ivNew"
+            android:layout_width="wrap_content"
+            tools:ignore="ContentDescription"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:focusable="false"
+            android:src="@drawable/zm_ic_whiteboard_pages_add" />
+
+
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/zm_padding_smaller_size"
+        android:src="@drawable/zm_whiteboard_delete_page"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_whiteborad_accessibility_pages_delete_289013"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivReload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/zm_padding_smaller_size"
+        android:src="@drawable/zm_ic_whiteboard_reload_page_default"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_whiteborad_accessibility_pages_reload_289013"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/flLoading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/zm_margin_normal_size"
+            android:layout_height="@dimen/zm_margin_normal_size"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/zm_whiteboard_loading_auto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtSipError"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

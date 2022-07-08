@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/confStateCallConnecting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_audiocall_bg">
+
+    <LinearLayout
+        android:id="@+id/panelTitleCenter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/zm_calling_top_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/zm_padding_large"
+        android:paddingTop="@dimen/zm_margin_smallest"
+        android:paddingRight="@dimen/zm_padding_large"
+        android:paddingBottom="@dimen/zm_margin_smallest"
+        app:layout_constrainedWidth="true"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/panelBottomBar">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtScreenName"
+            style="@style/ZMTextView.CallerName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:singleLine="true"
+            android:text="Reed Yang" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtMsgCalling"
+            style="@style/ZMTextView.Calling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_msg_audio_calling" />
+    </LinearLayout>
+
+
+    <com.zipow.videobox.view.AvatarView
+        android:id="@+id/avatarView"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_centerInParent="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        zoom:zm_cornerRadiusRatio="0.32"></com.zipow.videobox.view.AvatarView>
+
+
+    <LinearLayout
+        android:id="@+id/panelBottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="30dp"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btnEndCall"
+            style="@style/ZMButton.Red"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="@string/zm_btn_end_call"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

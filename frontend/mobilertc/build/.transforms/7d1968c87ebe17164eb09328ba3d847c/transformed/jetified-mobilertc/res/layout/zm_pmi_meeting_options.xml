@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.zipow.videobox.view.schedule.ZMMeetingSecurityOptionLayout
+        android:id="@+id/zmMeetingSecurityOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/optionHostVideo"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_host_video_on" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkHostVideo"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/optionAttendeeVideo"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_attendee_video_on_127873" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkAttendeeVideo"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:id="@+id/optionAudio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/zm_padding_small_size"
+            android:paddingBottom="@dimen/zm_padding_small_size"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
+                    android:text="@string/zm_lbl_audio_option_127873" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/txtAudioOption"
+                    style="@style/ZmSettingItemContent"
+                    android:text="@string/zm_lbl_audio_option_voip_and_telephony_detail_127873" />
+
+                <ImageView
+                    android:id="@+id/imgAudioMore"
+                    style="@style/ZmSettingItemArrow"
+                    android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                    tools:ignore="ContentDescription"/>
+            </LinearLayout>
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtDialInDesc"
+                style="@style/ZmSettingItemContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/zm_padding_smallest_size"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:id="@+id/option3rdPartyAudioInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:paddingRight="@dimen/zm_padding_small_size">
+
+            <EditText
+                android:id="@+id/edt3rdPartyAudioInfo"
+                style="@style/ZMEditText.SettingsItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/zm_hint_enter_3rd_party_audio_info"
+                android:maxLength="1024" />
+        </LinearLayout>
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/tvAdvancedOptions"
+            style="@style/ZmTitleBarAction"
+            android:textSize="@dimen/zm_font_normal_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left|center_vertical"
+            android:text="@string/zm_btn_schedule_advanced_options_21201"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/optionPmiEnableJBH"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_enable_jbh_127873" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkPmiEnableJBH"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/optionEnableCNMeeting"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_host_cn_meeting_127873" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkEnableCNMeeting"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/zmOptionRequestUnmute"
+            style="@style/ZmSettingItem.UnClick" >
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_request_unmute_participants_169895" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/zmChkRequestUnmute"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionAudioWaterMark"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_audio_watermark_127873" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkAudioWaterMark"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/optionAutoRecording"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_auto_recording_127873" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkAutoRecording"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/optionRecordLocation"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_record_location_152688" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtRecordLocationDesc"
+                style="@style/ZmSettingItemContent"  />
+
+            <ImageView
+                android:id="@+id/imgRecordMore"
+                style="@style/ZmSettingItemArrow"
+                android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionFoucsMode"
+            style="@style/ZmSettingItem.UnClick" >
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_chk_enable_foucs_mode_316389" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkFoucsMode"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionAdditional"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:text="@string/zm_lbl_select_additional_title_151081"
+                android:layout_width="0dp"
+                android:layout_weight="1"/>
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtAdditionalData"
+                style="@style/ZmSettingItemContent"
+                android:text="@string/zm_lbl_repeat_never_in_list"
+                android:layout_weight="0"
+                android:layout_width="wrap_content"
+                />
+
+            <ImageView  style="@style/ZmSettingItemArrow"
+                android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                tools:ignore="ContentDescription"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionApproveOrBlock"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_select_approve_block_title_151081" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtApproveOrBlock"
+                style="@style/ZmSettingItemContent"
+                android:layout_weight="0"
+                android:layout_width="@dimen/zm_btn_width_60dp"
+                android:text="@string/zm_lbl_repeat_never_in_list"
+                android:singleLine="true"
+                android:ellipsize="end"/>
+
+            <ImageView  style="@style/ZmSettingItemArrow"
+                android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                tools:ignore="ContentDescription"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionAlterHost"
+            style="@style/ZmSettingItem.UnClick">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:text="@string/zm_lbl_schedule_alter_host_127873" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtAlterHost"
+                style="@style/ZmSettingItemContent"
+                android:singleLine="true" />
+
+            <ImageView  style="@style/ZmSettingItemArrow"
+                android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                tools:ignore="ContentDescription"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/optionAllowAltHostEditPoll"
+            style="@style/ZmSettingItem.UnClick">
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_schedule_alter_host_edit_poll_337032" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkAltHostEditPoll"
+                style="@style/ZMScheduleCheckBox" />
+        </LinearLayout>
+        <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+            android:id="@+id/zmTrackingField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+</LinearLayout>

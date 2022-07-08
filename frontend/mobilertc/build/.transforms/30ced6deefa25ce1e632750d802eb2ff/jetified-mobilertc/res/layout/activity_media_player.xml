@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_black"
+        app:controller_layout_id="@layout/media_player_playback_control"
+        />
+
+    <RelativeLayout
+        android:id="@+id/panelTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_v1_black_alpha79"
+        >
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton.Dark"
+            android:contentDescription="@string/zm_btn_back"
+            />
+    </RelativeLayout>
+
+</FrameLayout>

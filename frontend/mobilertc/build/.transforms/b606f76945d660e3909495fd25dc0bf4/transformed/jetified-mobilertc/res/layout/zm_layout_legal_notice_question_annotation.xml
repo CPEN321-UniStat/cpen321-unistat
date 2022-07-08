@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/zm_padding_small"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/zm_legal_notice_light_bg"
+    android:orientation="horizontal">
+
+    <TextView
+        style="@style/ZMTextView.Normal"
+        android:id="@+id/tvLegalNoticeQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_gravity="left|center_vertical"
+        android:drawableLeft="@drawable/ic_data_privacy_whiteboard"
+        android:drawablePadding="@dimen/zm_padding_small"
+        android:text="@string/zm_legal_notice_question_annotation_260953"
+        android:clickable="false"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@color/zm_v1_black_50_alpha56"/>
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/zm_padding_small"
+        android:paddingRight="@dimen/zm_padding_medium"
+        android:paddingTop="@dimen/zm_padding_medium"
+        android:paddingBottom="@dimen/zm_padding_medium"
+        android:src="@drawable/zm_btn_legal_tip_close_gray"
+        android:contentDescription="@string/zm_btn_close"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
+

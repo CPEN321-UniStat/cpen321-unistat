@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="@dimen/zm_dimen_smallest"/>
+            <solid android:color="@color/zm_v2_light_bg_selected"/>
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <solid android:color="@color/zm_ui_kit_color_blue_0E71EB"/>
+                <corners android:radius="@dimen/zm_dimen_smallest"/>
+            </shape>
+        </clip>
+    </item>
+</layer-list>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zm_meeting_number_max_width">384dp</dimen>
+    <dimen name="zm_profile_top_padding">24dp</dimen>
+    <dimen name="zm_sub_settings_list_land_margin">16dp</dimen>
+    <dimen name="zm_sub_settings_list_margin">56dp</dimen>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/viewAlertUseWebSetting"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@color/zm_v1_blue_D100"
+    >
+    <TextView
+        android:id="@+id/txtAlertUseWebSettingDesc"
+        style="@style/ZMTextView.Small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="@dimen/zm_font_small_size"
+        android:paddingBottom="@dimen/zm_padding_medium_size"
+        android:paddingTop="@dimen/zm_padding_medium_size"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:textColor="@color/zm_v1_white"
+        android:text="@string/zm_alert_use_web_setting_169895"
+        />
+    <ImageView
+        android:id="@+id/ivCloseAlert"
+        android:src="@drawable/zm_ic_alert_close"
+        android:contentDescription="@string/zm_btn_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/zm_padding_medium_size"/>
+</LinearLayout>

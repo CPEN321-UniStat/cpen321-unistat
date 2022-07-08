@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/annotate_bar_height"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btnLine"
+        android:layout_width="@dimen/zm_pbx_message_min_image_height"
+        android:layout_height="@dimen/zm_pbx_message_min_image_height"
+        android:focusable="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/zm_padding_smallest_size"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+        android:background="@color/zm_transparent"
+        android:src="@drawable/zm_anno_wb_line"
+        android:contentDescription="@string/zm_btn_autoLine" />
+
+    <ImageButton
+        android:id="@+id/btnRectangle"
+        android:layout_width="@dimen/zm_pbx_message_min_image_height"
+        android:layout_height="@dimen/zm_pbx_message_min_image_height"
+        android:focusable="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/zm_padding_smallest_size"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+        android:background="@color/zm_transparent"
+        android:src="@drawable/zm_anno_wb_rec"
+        android:contentDescription="@string/zm_btn_rectangle" />
+
+    <ImageButton
+        android:id="@+id/btnOval"
+        android:layout_width="@dimen/zm_pbx_message_min_image_height"
+        android:layout_height="@dimen/zm_pbx_message_min_image_height"
+        android:focusable="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/zm_padding_smallest_size"
+        android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+        android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+        android:layout_marginRight="@dimen/zm_padding_smallest_size"
+        android:background="@color/zm_transparent"
+        android:src="@drawable/zm_anno_wb_oval"
+        android:contentDescription="@string/zm_btn_oval" />
+
+</LinearLayout>

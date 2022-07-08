@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="15dp"
+    android:height="16dp"
+    android:viewportWidth="15"
+    android:viewportHeight="16">
+  <path
+      android:pathData="M0.75,14.5736V1.4262C0.75,0.4615 1.7965,-0.1396 2.6298,0.3465L13.899,6.9202C14.7259,7.4025 14.7259,8.5973 13.899,9.0796L2.6298,15.6533C1.7965,16.1394 0.75,15.5383 0.75,14.5736Z"
+      android:fillColor="@color/zm_v2_voice_talk_play_icon_bg" />
+</vector>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/liveWebinarView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_backstage_live_webinar_bg"
+    android:paddingHorizontal="@dimen/zm_padding_normal"
+    android:paddingVertical="@dimen/zm_padding_medium">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/webinarTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text="@string/zm_gr_live_webinar_feed_344378"
+        android:textColor="@color/zm_v1_white_alpha80"
+        android:textSize="@dimen/zm_picker_text_size_small"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/webinarInProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:drawableStart="@drawable/zm_live_webinar_inprogress"
+        android:drawablePadding="6dp"
+        android:text="@string/zm_transfer_meeting_inprogress_273688"
+        android:textColor="#FF5C5C"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/webinarTopic" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/webinarTimeAndHost"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/zm_v1_white_alpha80"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@+id/webinarInProgress"
+        app:layout_constraintEnd_toStartOf="@+id/webinarCC"
+        app:layout_constraintStart_toEndOf="@+id/webinarInProgress"
+        app:layout_constraintTop_toTopOf="@+id/webinarInProgress"
+        app:layout_goneMarginEnd="6dp"
+        tools:text="9:00-12:30 AM · Host name" />
+
+    <ImageView
+        android:id="@+id/webinarCC"
+        android:layout_width="@dimen/zm_btn_height_24dp"
+        android:layout_height="@dimen/zm_btn_height_24dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/zm_accessibility_gr_cc_disable_267913"
+        android:src="@drawable/zm_live_webinar_cc_on"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/webinarAudio"
+        app:layout_goneMarginEnd="4dp" />
+
+    <ImageView
+        android:id="@+id/webinarAudio"
+        android:layout_width="@dimen/zm_btn_height_24dp"
+        android:layout_height="@dimen/zm_btn_height_24dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/zm_accessibility_gr_audio_mute_267913"
+        android:src="@drawable/zm_live_webinar_audio_on"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

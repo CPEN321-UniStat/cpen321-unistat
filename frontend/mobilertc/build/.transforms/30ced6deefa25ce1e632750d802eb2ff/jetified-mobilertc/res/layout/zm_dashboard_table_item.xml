@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_thumb"
+        android:layout_width="@dimen/zm_dashborad_list_item_tablet_width"
+        android:layout_height="@dimen/zm_dashborad_list_item_tablet_height"
+        tools:ignore="ContentDescription"
+        android:padding="1px"
+        android:background="@drawable/zm_dashboard_item_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_small_6dp"
+        android:layout_marginLeft="@dimen/zm_margin_small_6dp"
+        android:singleLine="true"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_picker_text_size_small"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_thumb"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@+id/iv_thumb"
+        app:layout_constraintTop_toBottomOf="@+id/iv_thumb"
+        tools:text="New WhiteboardNew WhiteboardNew WhiteboardNew Whiteboard" />
+</androidx.constraintlayout.widget.ConstraintLayout>

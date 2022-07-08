@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/zm_meeting_chat_msg_item_margin_start">
+
+    <com.zipow.videobox.view.AvatarView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/zm_meeting_chat_avatar_size"
+        android:layout_height="@dimen/zm_meeting_chat_avatar_size"
+        android:layout_gravity="center_vertical"
+        android:duplicateParentState="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtMsgContainer"
+        app:zm_cornerRadiusRatio="0.32"
+        app:zm_description_enable="false" />
+
+    <LinearLayout
+        android:id="@+id/layoutMsgHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_meeting_chat_msg_head_margin_start"
+        android:layout_marginTop="@dimen/zm_meeting_chat_msg_head_margin_top"
+        android:layout_marginEnd="@dimen/zm_meeting_chat_msg_head_margin_end"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        app:layout_constraintStart_toStartOf="@+id/txtMsgContainer"
+        app:layout_constraintTop_toTopOf="parent">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtMsgLabel"
+            style="@style/ZMTextView.ExSmall.ForInMeetingChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="From Andy to Everyone" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtPrivateStatus"
+            style="@style/ZMTextView.Small.Warn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_meeting_chat_msg_head_direct_msg_margin_start"
+            android:text="@string/zm_webinar_txt_direct_message_label_185482"
+            android:textColor="@color/zm_v1_red_A300" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/txtMsgContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_accessible_btn_min_size"
+        android:minHeight="@dimen/zm_accessible_btn_min_size"
+        android:layout_marginStart="@dimen/zm_meeting_chat_msg_margin_start"
+        android:layout_marginTop="@dimen/zm_meeting_chat_msg_margin_top"
+        android:layout_marginEnd="@dimen/zm_meeting_chat_msg_margin_end"
+        android:duplicateParentState="false"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avatar"
+        app:layout_constraintTop_toBottomOf="@+id/layoutMsgHead">
+
+        <us.zoom.uicommon.widget.view.ZMTextView
+            android:id="@+id/txtMsgValue"
+            style="@style/ZMTextView.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is webinar messag\nThis is webinar message"
+            app:showLink="true" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

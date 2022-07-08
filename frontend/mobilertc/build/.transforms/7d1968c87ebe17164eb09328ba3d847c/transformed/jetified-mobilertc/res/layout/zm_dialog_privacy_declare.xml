@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_bg_dialog_privacy_declare"
+    android:layout_margin="@dimen/zm_padding_small_size"
+    android:orientation="vertical">
+
+    <WebView
+        android:id="@+id/webiewPage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/zm_dialog_margin_16dp"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/ZmButton.Secondary"
+            android:id="@+id/btnDisagree"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textStyle="normal"
+            android:textColor="@color/zm_addrbook_item_details_black_text_color"
+            android:text="@string/zm_btn_disagree_41396" />
+
+        <Button
+            style="@style/ZmButton"
+            android:id="@+id/btnAgree"
+            android:textStyle="normal"
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/zm_dialog_margin_16dp"
+            android:layout_weight="1"
+            android:text="@string/zm_btn_agree_41396" />
+    </LinearLayout>
+</LinearLayout>

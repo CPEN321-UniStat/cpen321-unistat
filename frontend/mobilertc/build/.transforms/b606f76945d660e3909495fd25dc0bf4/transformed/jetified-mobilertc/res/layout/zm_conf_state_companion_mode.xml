@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dynamicTopic"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:visibility="visible">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtTopic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_white"
+        android:gravity="center"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+</FrameLayout>

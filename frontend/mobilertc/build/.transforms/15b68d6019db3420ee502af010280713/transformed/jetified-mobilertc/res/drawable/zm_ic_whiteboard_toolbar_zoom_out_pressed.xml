@@ -1,0 +1,14 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+  <path
+      android:pathData="M0,16C0,7.1634 7.1634,0 16,0C24.8366,0 32,7.1634 32,16C32,24.8366 24.8366,32 16,32C7.1634,32 0,24.8366 0,16Z"
+      android:fillColor="@color/zm_v2_whiteboard_toolbar_icon_border"
+      android:fillAlpha="0.18"/>
+  <path
+      android:pathData="M15,19.75C17.6234,19.75 19.75,17.6234 19.75,15C19.75,12.3766 17.6234,10.25 15,10.25C12.3766,10.25 10.25,12.3766 10.25,15C10.25,17.6234 12.3766,19.75 15,19.75ZM15,21C16.4317,21 17.7463,20.4985 18.7778,19.6616L21.5581,22.4419C21.8021,22.686 22.1979,22.686 22.4419,22.4419C22.686,22.1979 22.686,21.8021 22.4419,21.5581L19.6616,18.7778C20.4985,17.7463 21,16.4317 21,15C21,11.6863 18.3137,9 15,9C11.6863,9 9,11.6863 9,15C9,18.3137 11.6863,21 15,21ZM12.625,14.45C12.2798,14.45 12,14.7298 12,15.075C12,15.4201 12.2798,15.7 12.625,15.7H17.375C17.7202,15.7 18,15.4201 18,15.075C18,14.7298 17.7202,14.45 17.375,14.45H12.625Z"
+      android:fillColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"
+      android:fillType="evenOdd"/>
+</vector>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v1_white_300">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZMTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zoom:zm_leftButton="@+id/btnClose"
+        zoom:zm_title="@+id/txtTitle">
+
+        <ImageView
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/zm_btn_cancel"
+            android:scaleType="fitCenter"
+            android:src="@drawable/btn_camera_close"
+            zoom:layout_constraintStart_toStartOf="parent" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZMTextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:paddingRight="@dimen/zm_padding_larger_size"
+            android:singleLine="true"
+            android:text="@string/zm_subscription_title_287238"
+            zoom:layout_constraintEnd_toEndOf="@+id/panelTitleBar"
+            zoom:layout_constraintStart_toStartOf="@+id/btnClose" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_zoom_icon"
+        zoom:layout_constraintBottom_toTopOf="@+id/txtSubTitle"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/panelTitleBar"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txtSubTitle"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:layout_marginBottom="@dimen/zm_margin_32dp"
+        android:gravity="center_horizontal"
+        android:text="@string/zm_subscription_subtitle_369375"
+        android:textSize="@dimen/zm_font_largest_size"
+        android:textStyle="bold"
+        zoom:layout_constraintBottom_toTopOf="@+id/imgDone"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgDone"
+        android:layout_width="@dimen/zm_dialog_margin_12dp"
+        android:layout_height="@dimen/zm_dialog_margin_12dp"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:src="@drawable/ic_done"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtMessage1"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txtMessage1"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/zm_margin_smaller_size"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:text="@string/zm_subscription_message_1_287238"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintBottom_toTopOf="@+id/txtMessage2"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/imgDone" />
+
+    <ImageView
+        android:id="@+id/imgDone2"
+        android:layout_width="@dimen/zm_dialog_margin_12dp"
+        android:layout_height="@dimen/zm_dialog_margin_12dp"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:src="@drawable/ic_done"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtMessage2"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txtMessage2"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/zm_margin_smaller_size"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:text="@string/zm_subscription_message_2_287238"
+        android:textSize="16sp"
+        zoom:layout_constraintBottom_toTopOf="@+id/guidelineHorizontal2"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/imgDone2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        zoom:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        zoom:layout_constraintGuide_percent="0.6" />
+
+    <ProgressBar
+        android:id="@+id/progressBarLoading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+
+        zoom:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal3" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginTop="@dimen/zm_margin_normal_size"
+        android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+        android:background="@color/zm_v1_purple_50_alpha18"
+
+        zoom:layout_constraintEnd_toStartOf="@+id/txtSelect"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2" />
+
+
+    <TextView
+        android:id="@+id/txtSelect"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_width_60dp"
+        android:gravity="center"
+        android:text="@string/zm_subscription_select_287238"
+        android:textColor="@color/zm_v1_black_50_alpha56"
+        android:textSize="@dimen/zm_font_smaller_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2" />
+
+    <TextView
+        android:id="@+id/txtDiscount"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_width_48dp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="@dimen/zm_font_smaller_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:layout_marginStart="@dimen/zm_margin_smaller_size"
+        android:layout_marginTop="@dimen/zm_margin_normal_size"
+        android:layout_marginEnd="@dimen/zm_margin_normal_size"
+        android:background="@color/zm_v1_purple_50_alpha18"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/txtSelect"
+        zoom:layout_constraintTop_toBottomOf="@+id/guidelineHorizontal2" />
+
+    <Button
+        android:id="@+id/btnProMonthly"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_subscription_plan_button_height"
+        android:layout_marginStart="@dimen/zm_margin_normal_size"
+        android:layout_marginRight="@dimen/zm_margin_smaller_size"
+        android:background="@drawable/zm_ui_kit_btn_bg_normal_gray_small_round_corner"
+        android:gravity="center"
+        android:padding="@dimen/zm_dialog_margin_16dp"
+        tools:visibility="invisible"
+        zoom:layout_constraintEnd_toEndOf="@+id/guidelineVertical"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtSelect" />
+
+    <TextView
+        android:id="@+id/txtMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/zm_subscription_manage_plan_billing_monthly_287238"
+        android:textColor="@color/zm_ui_kit_color_black_232333"
+        android:textSize="@dimen/zm_dialog_margin_16dp"
+        android:textStyle="bold"
+        android:focusable="false"
+        tools:text="Monthly plan btn"
+        tools:visibility="visible"
+        zoom:layout_constrainedWidth="true"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnProMonthlyFreeTrial"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProMonthly"
+        zoom:layout_constraintStart_toStartOf="@id/btnProMonthly" />
+
+    <TextView
+        android:id="@+id/btnProMonthlyFreeTrial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/zm_ui_kit_color_black_232333"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:textStyle="bold"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintBottom_toBottomOf="@+id/btnProMonthly"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProMonthly"
+        zoom:layout_constraintStart_toStartOf="@id/btnProMonthly"
+        zoom:layout_constraintTop_toTopOf="@+id/btnProMonthly" />
+
+    <TextView
+        android:id="@+id/btnProMonthlyPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/zm_v1_black_50_alpha56"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProMonthly"
+        zoom:layout_constraintStart_toStartOf="@id/btnProMonthly"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnProMonthlyFreeTrial" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        zoom:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/btnProAnnual"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_subscription_plan_button_height"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:background="@drawable/zm_ui_kit_btn_bg_action_small_round_corner"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:padding="@dimen/zm_dialog_margin_16dp"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/guidelineVertical"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtSelect" />
+
+    <TextView
+        android:id="@+id/txtAnnual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/zm_subscription_manage_plan_billing_annual_287238"
+        android:textColor="@color/zm_ui_kit_color_white_ffffff"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:textStyle="bold"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnProAnnualFreeTrial"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProAnnual"
+        zoom:layout_constraintStart_toStartOf="@id/btnProAnnual" />
+
+    <TextView
+        android:id="@+id/btnProAnnualFreeTrial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/zm_ui_kit_color_white_ffffff"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:textStyle="bold"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintBottom_toBottomOf="@+id/btnProAnnual"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProAnnual"
+        zoom:layout_constraintStart_toStartOf="@id/btnProAnnual"
+        zoom:layout_constraintTop_toTopOf="@+id/btnProAnnual" />
+
+    <TextView
+        android:id="@+id/btnProAnnualPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textColor="@color/zm_ui_kit_color_white_ffffff"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:focusable="false"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProAnnual"
+        zoom:layout_constraintStart_toStartOf="@id/btnProAnnual"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnProAnnualFreeTrial" />
+
+    <Button
+        android:id="@+id/btnDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_v1_green_600"
+        android:paddingLeft="@dimen/zm_padding_smaller_size"
+        android:paddingRight="@dimen/zm_padding_smaller_size"
+        android:paddingTop="@dimen/zm_padding_smallest_minus_size"
+        android:paddingBottom="@dimen/zm_padding_smallest_minus_size"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:maxLines="1"
+        android:textColor="@color/zm_v1_white"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintEnd_toEndOf="@+id/btnProAnnual"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtDiscount" />
+
+    <TextView
+        android:id="@+id/txtDescription"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginTop="@dimen/zm_dialog_margin_16dp"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:textColor="@color/zm_v1_black_50_alpha56"
+        android:textSize="@dimen/zm_font_smaller_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnProMonthly" />
+
+    <TextView
+        android:id="@+id/txtErrorMsg"
+        style="@style/ZMCertificateViewerText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_32dp"
+        android:layout_marginTop="@dimen/zm_dialog_margin_16dp"
+        android:layout_marginEnd="@dimen/zm_margin_32dp"
+        android:textColor="@color/zm_v1_black_50_alpha56"
+        android:text="@string/zm_subscription_error_message_287238"
+        android:visibility="gone"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:gravity="center"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnProMonthly" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

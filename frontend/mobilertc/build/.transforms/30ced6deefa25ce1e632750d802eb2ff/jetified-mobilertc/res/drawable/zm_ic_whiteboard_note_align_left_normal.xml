@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportHeight="32"
+    android:viewportWidth="32">
+    <path
+        android:strokeColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"
+        android:strokeWidth="1.25"
+        android:strokeLineCap="round"
+        android:pathData="M9,12H23"/>
+
+    <path
+        android:strokeColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"
+        android:strokeWidth="1.25"
+        android:strokeLineCap="round"
+        android:pathData="M9,16H16"/>
+
+    <path
+        android:strokeColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"
+        android:strokeWidth="1.25"
+        android:strokeLineCap="round"
+        android:pathData="M9,20H19"/>
+
+</vector>

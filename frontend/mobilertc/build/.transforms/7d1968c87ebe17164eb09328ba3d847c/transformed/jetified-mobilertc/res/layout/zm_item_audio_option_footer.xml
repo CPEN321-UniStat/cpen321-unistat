@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTitleBarAction"
+        android:id="@+id/txtEditCountry"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/zm_btn_large_height"
+        android:gravity="left|center_vertical"
+        android:layout_marginTop="0dp"
+        android:paddingTop="@dimen/zm_margin_smaller_size"
+        android:paddingBottom="@dimen/zm_margin_smaller_size"
+        android:text="@string/zm_btn_edit_country_127873" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmSettingDescription"
+        android:id="@+id/txtEditCountryDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|center_vertical"
+        android:layout_marginBottom="@dimen/zm_margin_medium_size"
+        android:layout_marginTop="@dimen/zm_margin_smallest_size"
+        android:text="@string/zm_lbl_desc_dial_in_countries_127873" />
+    <View
+        android:id="@+id/viewFooterDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="-20dp"
+        android:background="@drawable/zm_settings_center_divider" />
+    <LinearLayout
+        style="@style/ZmSettingItem.UnClick"
+        android:id="@+id/optionIncludeTollFree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmSettingItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:text="@string/zm_btn_include_toll_free_127873" />
+
+        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+            android:id="@+id/chkIncludeTollFree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkMark="@drawable/zm_btn_toggle_default"
+            android:clickable="false" />
+    </LinearLayout>
+
+</LinearLayout>

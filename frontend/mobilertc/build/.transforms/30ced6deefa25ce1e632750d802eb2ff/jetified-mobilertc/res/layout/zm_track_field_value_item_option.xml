@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnOK"
+        zoom:zm_title="@+id/txtTitle">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_back" />
+
+        <Button
+            android:id="@+id/btnOK"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_ok"
+            android:visibility="gone"/>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:paddingLeft="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_smallest_size"
+            />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:paddingRight="@dimen/zm_padding_normal_size"
+        android:background="@color/zm_white"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingTop="@dimen/zm_padding_smallest_minus_size"
+        android:paddingBottom="@dimen/zm_padding_smallest_minus_size">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmSettingItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_lbl_tracking_field_185075" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTrackField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:textColor="@color/zm_v2_txt_secondary"
+            android:textSize="@dimen/zm_font_normal_size" />
+    </LinearLayout>
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmSettingOptionTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_lbl_select_mtvalue_185075" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zm_white"
+            android:layout_marginBottom="@dimen/zm_margin_large_size"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="vertical"
+            android:background="@color/zm_v2_svg_setting_option"
+            android:minHeight="@dimen/zm_settings_item_min_height"
+            >
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtAddValue"
+        style="@style/ZmTitleBarAction"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:gravity="left|center_vertical"
+        android:minHeight="@dimen/zm_btn_large_height"
+        android:text="@string/zm_lbl_add_value_185075"
+        android:visibility="gone"
+         />
+
+            <LinearLayout
+                android:id="@+id/zmInputValuePanel"
+                style="@style/ZmSettingItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingRight="0dp">
+
+                <ImageView
+                    android:id="@+id/imgSelected"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+                    android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                    android:scaleType="center"
+                    android:src="@drawable/zm_group_type_select"
+                    android:visibility="invisible" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/txtTrackValue"
+                    style="@style/ZmSettingItemContent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:singleLine="false" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/btnEdit"
+                    style="@style/ZmTitleBarAction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="false"
+                    android:text="@string/zm_btn_edit"
+                    android:textSize="@dimen/zm_font_normal_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

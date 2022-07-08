@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <us.zoom.uicommon.widget.view.ZMViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </us.zoom.uicommon.widget.view.ZMViewPager>
+
+    <com.zipow.videobox.navigation.ZMTabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_home_page_bottom_tab_bar_height"
+        android:background="@color/zm_v2_tab"
+        app:tabMaxWidth="0dp"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingEnd="0dp"
+        app:tabRippleColor="@null"
+        app:tabIndicator="@null"/>
+</merge>

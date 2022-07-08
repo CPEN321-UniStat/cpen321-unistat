@@ -1,0 +1,17 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="@dimen/zm_btn_height_24dp"
+    android:orientation="horizontal"
+    android:focusable="true">
+
+    <us.zoom.uicommon.widget.view.ZMTextButton
+        style="@style/ZmFlexBoxItemBg"
+        android:id="@+id/btnStopCameraControl"
+        android:drawableLeft="@drawable/zm_ic_stop_camera_control"
+        android:drawablePadding="@dimen/zm_margin_smallest"
+        android:textColor="@color/zm_v2_white_alpha80"
+        android:textSize="@dimen/zm_toolbar_text_size"
+        android:layout_marginRight="@dimen/zm_padding_small"
+        android:text="@string/zm_fecc_btn_stop_cam_ctrl_245134" />
+
+</FrameLayout>

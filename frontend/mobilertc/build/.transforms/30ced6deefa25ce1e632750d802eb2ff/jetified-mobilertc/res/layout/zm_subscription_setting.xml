@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZMTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZMTextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:paddingRight="@dimen/zm_dialog_margin_24dp"
+            android:singleLine="true"
+            android:text="@string/zm_subscription_manage_plan_title_287238" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <TextView
+        android:id="@+id/txtCurrentPlan"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/zm_dialog_margin_24dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="@dimen/zm_dialog_margin_24dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_manage_plan_current_plan_287238"
+        android:textSize="16sp"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/panelTitleBar" />
+
+    <TextView
+        android:id="@+id/txtSubscriptionName"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/zm_dialog_margin_24dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:gravity="end"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/panelTitleBar" />
+
+    <TextView
+        android:id="@+id/txtPlanDetail1"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="@dimen/zm_dialog_margin_12dp"
+        android:layout_marginTop="@dimen/zm_dialog_margin_12dp"
+        android:layout_marginEnd="0dp"
+
+        android:gravity="left"
+        android:textSize="@dimen/zm_font_smaller_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtCurrentPlan" />
+
+    <TextView
+        android:id="@+id/txtPlanDetail2"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_height_36dp"
+        android:layout_marginStart="@dimen/zm_dialog_margin_12dp"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:gravity="left"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPlanDetail1" />
+
+    <TextView
+        android:id="@+id/txtPaymentMethodTitle"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_manage_plan_billing_payment_method_287238"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPlanDetail2" />
+
+    <TextView
+        android:id="@+id/txtPaymentMethod"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:gravity="end"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_manage_plan_billing_google_play_287238"
+
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPlanDetail2" />
+
+    <TextView
+        android:id="@+id/txtPaymentPeriod"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_manage_plan_billing_period_287238"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="@+id/txtBillingPeriod"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentMethodTitle" />
+
+    <TextView
+        android:id="@+id/txtBillingPeriod"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:gravity="end"
+        android:paddingTop="@dimen/zm_dialog_margin_12dp"
+        android:paddingBottom="@dimen/zm_dialog_margin_12dp"
+        android:paddingRight="@dimen/zm_height_36dp"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentMethodTitle" />
+
+    <ImageView
+        android:id="@+id/imgArrow"
+        style="@style/ZmSettingItemArrow"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        tools:ignore="ContentDescription"
+        android:layout_marginEnd="@dimen/zm_margin_small_minus_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentMethodTitle"
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtBillingPeriod"/>
+
+    <TextView
+        android:id="@+id/txtRenewal"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:paddingRight="0dp"
+        android:textSize="@dimen/zm_font_smaller_size"
+        android:gravity="left"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentPeriod" />
+
+    <TextView
+        android:id="@+id/txtBillingCancel"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:layout_marginRight="0dp"
+        android:text="@string/zm_subscription_manage_plan_cancel_287238"
+        android:textColor="@color/zm_v1_blue_C900"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:visibility="gone"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtRenewal" />
+
+    <TextView
+        android:id="@+id/txtBillingReactive"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_manage_plan_reactive_287238"
+        android:textColor="@color/zm_v1_blue_C900"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:visibility="gone"
+        android:layout_marginRight="0dp"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtRenewal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toTopOf="@+id/txtCurrentPlan" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+
+        zoom:layout_constraintTop_toBottomOf="@+id/txtCurrentPlan" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPlanDetail2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        android:layout_marginStart="@dimen/zm_margin_small_minus_size"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentMethodTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtPaymentPeriod" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtRenewal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtBillingCancel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

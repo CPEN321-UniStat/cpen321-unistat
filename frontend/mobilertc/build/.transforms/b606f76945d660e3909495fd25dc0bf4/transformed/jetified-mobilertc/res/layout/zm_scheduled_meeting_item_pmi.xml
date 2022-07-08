@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="5dp"
+    android:paddingTop="@dimen/zm_padding_medium"
+    android:paddingRight="5dp"
+    android:paddingBottom="@dimen/zm_meeting_list_pmi_component_padding_bottom"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:descendantFocusability="blocksDescendants">
+    
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTextView.Content.Secondary.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_meeting_list_pmi_component_title_margin"
+        android:text="@string/zm_lbl_personal_meeting_id" />
+        
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTextView.Title.Medium"
+        android:id="@+id/txtMeetingNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_meeting_list_pmi_component_meeting_id_margin"
+        tools:text="111-111-111" />
+    
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZMTextView.Normal.OnLight"
+        android:id="@+id/txtVanityURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_meeting_list_pmi_component_vanity_url_margin"
+        android:layout_marginLeft="@dimen/zm_margin_normal"
+        android:layout_marginRight="@dimen/zm_margin_normal"
+        android:textSize="@dimen/zm_ui_kit_text_size_12sp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textColor="@color/zm_v2_txt_primary" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_meeting_list_pmi_component_button_margin"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnStart"
+                style="@style/ZmButton.Small.Secondary"
+                android:duplicateParentState="false"
+                android:text="@string/zm_btn_start" />
+
+            <Button
+                android:id="@+id/btnInvite"
+                style="@style/ZmButton.Small.Secondary"
+                android:layout_marginLeft="12dp"
+                android:duplicateParentState="false"
+                android:text="@string/zm_btn_send_invitation" />
+
+            <Button
+                android:id="@+id/btnEdit"
+                style="@style/ZmButton.Small.Secondary"
+                android:layout_marginLeft="12dp"
+                android:duplicateParentState="false"
+                android:text="@string/zm_btn_edit" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+    
+</LinearLayout>
+

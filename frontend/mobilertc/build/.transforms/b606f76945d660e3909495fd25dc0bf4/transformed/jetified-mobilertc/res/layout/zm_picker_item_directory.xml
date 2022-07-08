@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:padding="@dimen/zm_padding_small_size"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <ImageView
+      android:id="@+id/iv_dir_cover"
+      android:layout_width="60dip"
+      android:layout_height="60dip"
+      android:layout_marginRight="10dip"
+      tools:src="@drawable/zm_image_placeholder"
+      android:scaleType="centerCrop"
+      tools:ignore="ContentDescription" />
+  <LinearLayout
+      android:gravity="center"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_gravity="center"
+      android:layout_height="wrap_content">
+
+      <TextView
+          android:id="@+id/tv_dir_name"
+          style="@style/ZmTextView.Content.Primary"
+          android:gravity="left|center_vertical"
+          tools:text="Folder Name"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/tv_dir_count"
+          style="@style/ZmTextView.Content.Primary.Small"
+          android:gravity="left|center_vertical"
+          tools:text="1234"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+
+  </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/videoItemLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <com.zipow.videobox.view.ZMGifView
+        android:id="@+id/videoPreviewImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"/>
+    <View
+        android:id="@+id/uploadMask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@id/videoPreviewImage"
+        android:layout_alignBottom="@id/videoPreviewImage"
+        android:layout_alignLeft="@id/videoPreviewImage"
+        android:layout_alignRight="@id/videoPreviewImage"
+        android:background="@color/zm_v1_black_alpha40"
+        android:visibility="gone"
+        />
+    <ImageView
+        android:id="@+id/btnPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/zm_ic_btn_play"
+        android:contentDescription="@string/exo_controls_play_description" />
+    <com.zipow.videobox.view.mm.message.MessageSimpleCircularProgressView
+        android:id="@+id/uploadProgressBar"
+        android:layout_width="@dimen/zm_btn_height_24dp"
+        android:layout_height="@dimen/zm_btn_height_24dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:backColor="@color/zm_v1_purple_50_alpha18"
+        app:progColor="@color/zm_v1_white"
+        app:progWidth="2.5dp"
+        app:progress="0"
+        />
+</RelativeLayout>

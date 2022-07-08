@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/zm_margin_medium_size"
+    android:orientation="vertical">
+    <!-- Meeting password -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmSettingOptionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="left"
+            android:text="@string/zm_lbl_in_meeting_settings_security_147675" />
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/optionMeetingPasscode"
+                style="@style/ZmSettingItem.UnClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ZmPanelPasscodeDes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:minHeight="0dp"
+                        android:paddingBottom="0dp"
+                        android:text="@string/zm_txt_request_passcode_166840" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/ZmPasscodeDes"
+                        style="@style/ZmSettingItemContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="@dimen/zm_padding_medium_size"
+                        android:text="@string/zm_txt_passcode_embedded_216417" />
+                </LinearLayout>
+
+                <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                    android:id="@+id/chkMeetingPasscode"
+                    style="@style/ZMScheduleCheckBox" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearPasscodeInput"
+                style="@style/ZmSettingItem.UnClick">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="left|center_vertical"
+                    android:text="@string/zm_lbl_h323_meeting_passcode_171920" />
+
+                <EditText
+                    android:id="@+id/editPasscode"
+                    style="@style/ZmInputBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:hint="@string/zm_hint_passcode_schedule_171920"
+                    android:maxLength="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/optionEnableWaitingRoom"
+                style="@style/ZmSettingItem.UnClick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:minHeight="0dp"
+                        android:paddingBottom="0dp"
+                        android:text="@string/zm_lbl_enable_waiting_room_127873" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:paddingTop="0dp"
+                        android:paddingBottom="@dimen/zm_padding_medium_size"
+                        android:text="@string/zm_txt_waiting_room_description_216417" />
+                </LinearLayout>
+
+                <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                    android:id="@+id/chkEnableWaitingRoom"
+                    style="@style/ZMScheduleCheckBox" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/optionOnlyAllowAuthUser"
+                style="@style/ZmSettingItem.UnClick">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItemTitle"
+                    android:text="@string/zm_chk_only_allow_auth_user_202232"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"/>
+
+                <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                    android:id="@+id/chkOnlyAllowAuthUser"
+                    style="@style/ZMScheduleCheckBox" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/optionChooseUserType"
+                style="@style/ZmSettingItem.UnClick"
+                android:visibility="gone">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItemTitle"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="@string/zm_lbl_allow_join_meeting_202232" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/txtJoinUserType"
+                    style="@style/ZmSettingItemContent"
+                    />
+
+                <ImageView
+                    style="@style/ZmSettingItemArrow"
+                    android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                    tools:ignore="ContentDescription"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/optionE2EEncryption"
+                style="@style/ZmSettingItem.UnClick">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingItemTitle"
+                    android:text="@string/zm_lbl_end_to_end_encryption_172332" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/txtE2EEncryption"
+                    style="@style/ZmSettingItemContent"
+                    android:text="@string/zm_lbl_repeat_never_in_list" />
+
+                <ImageView
+                    style="@style/ZmSettingItemArrow"
+                    android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    </LinearLayout>
+</LinearLayout>

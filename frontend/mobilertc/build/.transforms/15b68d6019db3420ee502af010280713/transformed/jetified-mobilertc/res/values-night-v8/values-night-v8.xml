@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="backgroundColors">
+        <item>#EB1807</item>
+        <item>#FF8A00</item>
+        <item>#F8C200</item>
+        <item>#138A00</item>
+        <item>#006FFA</item>
+        <item>#9846FF</item>
+        <item>#E20094</item>
+        <item>#2E525280</item>
+    </array>
+    <array name="textColors">
+        <item>#FF4343</item>
+        <item>#FF8A00</item>
+        <item>#FFD600</item>
+        <item>#49D61E</item>
+        <item>#2F8BFF</item>
+        <item>#AB68FF</item>
+        <item>#FF36C7</item>
+        <item>#F5F5F5</item>
+    </array>
+    <color name="settings_background_color">@color/zm_v1_black_200</color>
+    <color name="settings_background_normal_color">@color/zm_v1_black_200</color>
+    <color name="settings_background_selected_color">@color/zm_v1_gray_500_alpha15</color>
+    <color name="settings_profile_background">@color/zm_v1_black_alpha15</color>
+    <color name="zm_bg_color_popup_window">@color/zm_v1_gray_1800</color>
+    <color name="zm_channel_preview_network_error_icon_color">@color/zm_v1_yellow_500</color>
+    <color name="zm_chat_typing_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_dashboard_tip_icon">@color/zm_v1_white</color>
+    <color name="zm_deep_link_highlight_background_color">@color/zm_v1_blue_C600</color>
+    <color name="zm_deep_link_normal_background_color">@color/zm_v1_gray_1800</color>
+    <color name="zm_im_search_shadow">@color/zm_v1_white_alpha9</color>
+    <color name="zm_pbx_setting_call_forward_turn_off_btn">#4793F1</color>
+    <color name="zm_pbx_setting_call_forward_turn_on_status_bg">#001F45</color>
+    <color name="zm_pbx_sms_bg_receive">@color/zm_v1_gray_F900</color>
+    <color name="zm_pbx_sms_bg_sent">@color/zm_v1_green_800</color>
+    <color name="zm_progress_hub_background">@color/zm_v1_gray_F650</color>
+    <color name="zm_progress_hub_text">@color/zm_v1_white</color>
+    <color name="zm_settings_more_background_color">@color/zm_v1_black_200</color>
+    <color name="zm_settings_more_header_color">@color/zm_v1_gray_500_alpha15</color>
+    <color name="zm_v2_arrow">@color/zm_v1_white_500</color>
+    <color name="zm_v2_arrow_right">@color/zm_v1_gray_D300</color>
+    <color name="zm_v2_black_bg">@color/zm_v1_white</color>
+    <color name="zm_v2_bottom_sheet_top_bar">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_btn_gray_bkg">@color/zm_v1_white_alpha18</color>
+    <color name="zm_v2_chat_audio_record_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_chat_audio_record_text_color">@color/zm_v1_white</color>
+    <color name="zm_v2_chat_audio_record_title_text_color">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_filter_icon_bg">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_meeting_normal_btn_fill">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_meeting_normal_btn_fill_disabled">@color/zm_v1_gray_D300</color>
+    <color name="zm_v2_meeting_normal_btn_stroke">@color/zm_v1_white_alpha0</color>
+    <color name="zm_v2_meeting_normal_btn_stroke_disabled">@color/zm_v1_gray_D300</color>
+    <color name="zm_v2_meeting_normal_btn_text">@color/zm_v1_white_500</color>
+    <color name="zm_v2_meeting_normal_label">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_meeting_normal_tab_bg">@color/zm_v1_white_500</color>
+    <color name="zm_v2_meeting_normal_tab_text_selected">@color/zm_v1_black_200</color>
+    <color name="zm_v2_plist_archive_icon_fillcolor">@color/zm_v1_white</color>
+    <color name="zm_v2_plist_item_guest_bg">@color/zm_v1_red_300_alpha8</color>
+    <color name="zm_v2_plist_item_normal_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_polling_nps_btn_pressed">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_polling_pre_btn_bg">@color/zm_v1_white_500</color>
+    <color name="zm_v2_polling_pre_btn_select_bg">@color/zm_v1_white</color>
+    <color name="zm_v2_schedule_flashing">@color/zm_v1_blue_C600</color>
+    <color name="zm_v2_schedule_force_bg">@color/zm_v1_black</color>
+    <color name="zm_v2_schedule_force_tip_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_schedule_force_tip_text">@color/zm_v1_white_500</color>
+    <color name="zm_v2_svg_sip_avatar_bg1">@color/zm_v1_blue_B400_alpha3</color>
+    <color name="zm_v2_svg_sip_avatar_bg2">@color/zm_v1_blue_B400_alpha8</color>
+    <color name="zm_v2_tab_bg_normal">@color/zm_v1_gray_B600</color>
+    <color name="zm_v2_tab_bg_select">@color/zm_v1_white_500</color>
+    <color name="zm_v2_tab_path_normal_alpha">@color/zm_v1_white_A100_alpha50</color>
+    <color name="zm_v2_tab_tablet_selected">@color/zm_v1_white</color>
+    <color name="zm_v2_title_tab_textcolor_select">@color/zm_v1_white_500</color>
+    <color name="zm_v2_title_tab_textcolor_select_loading">@color/zm_v1_white_alpha40</color>
+    <color name="zm_v2_title_tab_textcolor_unselect">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_title_tab_textcolor_unselect_loading">@color/zm_v1_gray_D300</color>
+    <color name="zm_v2_voice_talk_cancel_bg">@color/zm_v1_white_500</color>
+    <color name="zm_v2_voice_talk_play_icon_bg">@color/zm_v1_white_500</color>
+    <color name="zm_v2_waiting_room_button_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_waiting_room_button_content">@color/zm_v1_white_500</color>
+    <color name="zm_v2_whiteboard_icon_arrow">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_whiteboard_progressbar_tint">@color/zm_v1_white</color>
+    <color name="zm_v2_whiteboard_share_span_bg">@color/zm_v1_white_alpha27</color>
+    <color name="zm_v2_whiteboard_text_black">@color/zm_v1_white_500</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_black_border_selected">@color/zm_v1_gray_E700</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_black_normal">@color/zm_v1_gray_E900</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_border">@color/zm_v1_purple_50</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_default_gray">@color/zm_v1_white_500</color>
+</resources>

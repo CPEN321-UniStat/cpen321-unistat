@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnChatMute"
+        zoom:zm_title="@+id/title" >
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZmTitleBarAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/zm_btn_close" />
+
+        <ImageView
+            android:id="@+id/btnChatMute"
+            style="@style/ZmTitleBarAction"
+            android:layout_width="@dimen/zm_avatar_size"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_smallest_size"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/zm_ic_chat_notification_on"
+            tools:ignore="ContentDescription" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title">
+
+            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                zoom:layout_constraintStart_toStartOf="parent"
+                zoom:layout_constraintEnd_toEndOf="parent"
+                zoom:layout_constraintBottom_toTopOf="@+id/txtModeration"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/zm_title_webinar_chat" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    style="@style/ZmSettingDescription"
+                    android:id="@+id/txtModeration"
+                    android:layout_width="wrap_content"
+                    zoom:layout_constraintStart_toStartOf="parent"
+                    zoom:layout_constraintEnd_toEndOf="parent"
+                    zoom:layout_constraintTop_toTopOf="@+id/txtTitle"
+                    android:drawableLeft="@drawable/ic_chat_moderation"
+                    android:drawablePadding="@dimen/zm_padding_smallest_size"
+                    android:visibility="gone"
+                    android:text="@string/zm_mm_lbl_dlp_enable_chat_title_344615"/>
+
+            <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtDlp"
+                style="@style/ZmSettingDescription"
+                android:layout_width="wrap_content"
+                android:drawableLeft="@drawable/ic_dlp_locked"
+                android:drawablePadding="@dimen/zm_padding_smallest_size"
+                android:text="@string/zm_chat_dlp_enable_title_344217"
+                android:visibility="gone"
+                zoom:layout_constraintEnd_toEndOf="parent"
+                zoom:layout_constraintStart_toStartOf="parent"
+                zoom:layout_constraintTop_toBottomOf="@+id/txtTitle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <FrameLayout
+        android:id="@+id/tipLayer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.zipow.videobox.view.ConfChatListView
+            android:id="@+id/chatListView"
+            style="@style/MMChatListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null" />
+
+        <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/dlpTip"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_medium"
+            android:layout_marginLeft="@dimen/zm_margin_largest"
+            android:layout_marginRight="@dimen/zm_margin_largest"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_chat_dlp_enable_msg_344217"
+            android:textSize="@dimen/zm_ui_kit_text_size_14sp"
+            android:textColor="@color/zm_v1_gray_2700"
+            android:padding="@dimen/zm_margin_medium"
+            android:background="@drawable/zm_round_corner_tip_light"
+            android:visibility="gone"
+            />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/chatBuddyPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_accessible_btn_min_size"
+        android:minHeight="@dimen/zm_accessible_btn_min_size"
+        android:background="@color/zm_white"
+        android:paddingTop="@dimen/zm_padding_smallest_minus_size"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_dimen_stroke_smallest"
+            android:background="@drawable/zm_list_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_padding_normal_size"
+            android:duplicateParentState="true"
+            android:paddingRight="@dimen/zm_padding_normal_size">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMTextView.BuddyName.Medium.Dimmed"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                android:textColor="@color/zm_v2_txt_primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/zm_webinar_txt_send_to" />
+
+            <Button
+                style="@style/ZMButton.NoBackground"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtCurrentItem"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:duplicateParentState="true"
+                android:drawableRight="@drawable/zm_dropdown"
+                android:text="@string/zm_mi_everyone_122046" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/zm_padding_medium_size"
+        android:paddingLeft="@dimen/zm_margin_smallest_size"
+        android:paddingRight="@dimen/zm_margin_smallest_size"
+        android:paddingTop="@dimen/zm_padding_smallest_size"
+        android:background="@color/zm_white"
+        android:weightSum="1" >
+
+        <LinearLayout
+            android:id="@+id/inputBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_padding_smallest_size"
+            android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+            android:layout_weight="1"
+            android:background="@drawable/in_meeting_chat_edit_text_bg"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edtMessage"
+                style="@style/InMeetingChatEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:imeOptions="actionSend"
+                android:inputType="textMultiLine"
+                android:maxLength="1024"
+                android:maxLines="4"
+                android:paddingTop="@dimen/zm_padding_smaller_size"
+                android:paddingBottom="@dimen/zm_padding_smaller_size"
+                android:gravity="bottom"
+                tools:ignore="LabelFor">
+
+                <!--
+                 Do not use requestFocus tag here. Else the soft keyboard cannot be opened
+                 by clicking this EditText on some Android 3.x Tablets.
+                -->
+                <!-- <requestFocus /> -->
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/btnEmoji"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_accessible_btn_min_size"
+                android:minHeight="@dimen/zm_accessible_btn_min_size"
+                android:layout_marginRight="@dimen/zm_padding_smallest_minus_size"
+                android:background="@null"
+                android:contentDescription="@string/zm_description_mm_btn_mode_emoji_23159"
+                android:padding="@dimen/zm_margin_smallest_size"
+                android:src="@drawable/zm_mm_emoji_btn" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_accessible_btn_min_size"
+            android:minHeight="@dimen/zm_accessible_btn_min_size"
+            android:background="@drawable/zm_mm_chat_input_send_btn_bg"
+            android:contentDescription="@string/zm_btn_send"
+            android:layout_margin="@dimen/zm_margin_small"
+            android:src="@drawable/zm_mm_btn_send"
+            android:layout_gravity="bottom"/>
+    </LinearLayout>
+
+    <com.zipow.videobox.view.emoji.CommonIEmojiPanelView
+        android:id="@+id/emojiPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/llDisabledAlert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_dimen_stroke_smallest"
+            android:background="@drawable/zm_list_divider" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtDisabledAlert"
+            style="@style/ZMTextView.Instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zm_white"
+            android:gravity="center"
+            android:text="@string/zm_webinar_txt_chat_disabled_65892"
+            android:textColor="@color/zm_text_disable" />
+    </LinearLayout>
+
+    <us.zoom.uicommon.widget.view.ZmLegelNoticeQuestionPanel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/panelLegelNotice"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+</LinearLayout>

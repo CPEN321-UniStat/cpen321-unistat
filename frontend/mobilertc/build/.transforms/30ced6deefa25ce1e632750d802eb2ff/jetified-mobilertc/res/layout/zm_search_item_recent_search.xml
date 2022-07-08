@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:background="@color/zm_white"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants"
+    android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+    android:paddingRight="@dimen/zm_ui_kit_page_left_padding">
+
+    <com.zipow.videobox.view.ZMSimpleEmojiTextView
+        android:id="@+id/txt_item_recent_search"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_weight="1"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/zm_ic_search_item_recent_search"
+        android:drawablePadding="@dimen/zm_ui_kit_page_left_padding"
+        android:text="@string/zm_btn_view_more"/>
+        <ImageButton
+            android:id="@+id/btn_clear_item"
+            android:layout_width="@dimen/zm_btn_height_32dp"
+            android:layout_height="@dimen/zm_btn_height_32dp"
+            android:padding="@dimen/zm_ui_kit_page_left_padding"
+            android:background="@color/zm_white"
+            android:src="@drawable/ic_close_search_history"
+            android:contentDescription="@string/zm_bnt_clear"/>
+
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <us.zoom.uicommon.widget.view.TouchImageView
+        android:id="@+id/imageview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FF000000" >
+    </us.zoom.uicommon.widget.view.TouchImageView>
+    
+    <!-- The toolbar is for aligning with drawing view, the height should be same -->
+    <View 
+        android:id="@+id/shareImageToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <com.zipow.videobox.conference.viewgroup.ZmShareImageControlView
+        android:id="@+id/panelShareControl"
+        android:layout_width="@dimen/zm_control_view_width"
+        android:layout_height="@dimen/zm_control_view_heigth"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="@dimen/zm_margin_small"
+        android:layout_marginBottom="@dimen/zm_control_view_margin_bottom"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</FrameLayout>

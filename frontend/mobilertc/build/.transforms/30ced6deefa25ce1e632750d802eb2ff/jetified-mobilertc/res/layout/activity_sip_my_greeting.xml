@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/contentView"
+    android:paddingTop="@dimen/zm_sip_greeting_player_padding_top">
+
+    <FrameLayout
+        android:id="@+id/topContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageButton
+        android:id="@+id/btnRefresh"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:background="@null"
+        android:contentDescription="@string/zm_btn_refresh"
+        android:scaleType="fitXY"
+        android:src="@drawable/zm_player_fresh"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/topContainer"
+        app:layout_constraintLeft_toLeftOf="@id/topContainer"
+        app:layout_constraintRight_toRightOf="@id/topContainer"
+        app:layout_constraintTop_toTopOf="@id/topContainer"
+        tools:visibility="gone" />
+
+    <com.zipow.videobox.view.sip.videomail.SipInRecordGreetingPanelView
+        android:id="@+id/panelInCall"
+        android:layout_width="@dimen/zm_sip_dialpad_width"
+        android:layout_height="wrap_content"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topContainer"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="visible" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

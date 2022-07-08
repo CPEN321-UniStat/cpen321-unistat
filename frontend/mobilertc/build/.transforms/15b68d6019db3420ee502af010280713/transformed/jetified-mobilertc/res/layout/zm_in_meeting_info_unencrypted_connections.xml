@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/in_meeting_info_bg"
+    android:paddingLeft="@dimen/zm_dialog_margin_24dp"
+    android:paddingTop="@dimen/zm_margin_normal_size"
+    android:paddingRight="@dimen/zm_dialog_margin_24dp"
+    android:paddingBottom="@dimen/zm_margin_normal_size">
+
+    <LinearLayout
+        android:id="@+id/verifyCodeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:letterSpacing="0.02"
+            android:maxLines="1"
+            android:text="@string/zm_e2e_meeting_unencrypted_connections_title_211920"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+            android:textStyle="bold" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtVerifyHint"
+            style="@style/ZMInMeetingInfoItemContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+            android:maxLines="@integer/zm_unencrypted_connections_show_max_lines"
+            android:lines="@integer/zm_unencrypted_connections_show_max_lines"
+            android:scrollbars="vertical"
+            android:text="" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:layout_marginBottom="@dimen/zm_margin_medium_size"
+            android:drawableLeft="@drawable/ic_back_blue"
+            android:drawablePadding="@dimen/zm_padding_small_size"
+            android:text="@string/zm_btn_back"
+            android:textColor="@color/zm_v1_blue_B400" />
+    </LinearLayout>
+</LinearLayout>

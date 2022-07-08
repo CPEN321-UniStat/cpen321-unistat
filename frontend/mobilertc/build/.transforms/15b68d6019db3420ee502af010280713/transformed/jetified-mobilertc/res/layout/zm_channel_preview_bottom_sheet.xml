@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_bottom_sheet_round_rect_white_bg"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="@dimen/zm_preview_sheet_padding_top"
+    android:paddingBottom="@dimen/zm_preview_sheet_padding_bottom">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/channel_preview_title"
+                style="@style/UIKitTextView.BuddyName.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="@string/zm_title_channel_information_59554"
+                >
+
+            </TextView>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="300dp"
+                >
+                <LinearLayout
+                    android:id="@+id/channel_preview_content_linear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/channel_preview_info_linear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:visibility="visible"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+                        <TextView
+                            style="@style/UIKitTextView.CellTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/zm_mm_lbl_channel_preview_info_311630">
+
+                        </TextView>
+
+                        <TextView
+                            style="@style/UIKitTextView.PrimaryText.Medium"
+                            android:id="@+id/channel_preview_info"
+                            android:layout_width="wrap_content"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:layout_height="wrap_content"
+                            tools:text="Product Designers, UX Writers, Design Technologists in the US + CN"
+                            android:layout_marginTop="8dp">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        style="@style/UIKitTextView.CellTitle"
+                        android:id="@+id/channel_preview_members"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="15 Members"
+                        android:layout_marginTop="32dp">
+
+                    </TextView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/channel_preview_members_listview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                    <TextView
+                        style="@style/UIKitTextView.CellTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zm_mm_lbl_channel_preview_recent_311630"
+                        android:layout_marginTop="32dp">
+
+                    </TextView>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="50dp"
+                        android:layout_marginTop="8dp">
+                        <us.zoom.uicommon.widget.listview.ZMChildListView
+                            android:id="@+id/channel_preview_recent_messages"
+                            android:layout_width="match_parent"
+                            android:visibility="gone"
+                            android:layout_height="wrap_content">
+
+                        </us.zoom.uicommon.widget.listview.ZMChildListView>
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/channel_preview_recent_messages_error"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/UIKitTextView.SecondaryText">
+
+                        </TextView>
+                        <ProgressBar
+                            android:id="@+id/channel_preview_recent_messages_progress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="160dp"
+                            android:layout_gravity="center"
+                            style="@style/ZMProgressBar.Small">
+
+                        </ProgressBar>
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:id="@+id/channel_preview_content_progress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    style="@style/ZMProgressBar.Small">
+
+                </ProgressBar>
+                <TextView
+                    android:id="@+id/channel_preview_content_error"
+                    style="@style/UIKitTextView.SecondaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/zm_mm_channel_preview_content_error_311630"
+                    android:visibility="gone">
+
+                </TextView>
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/zm_preview_sheet_btn_margin_top"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnJoin"
+            android:text="@string/zm_mm_lbl_channel_preview_join_channel_311630"
+            android:minHeight="48dp"
+            style="@style/ZMButton.NewHappyPath.Medium"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minWidth="@dimen/zm_btn_width_48dp"
+            android:id="@+id/btnClose"
+            android:layout_marginTop="15dp"
+            android:minHeight="48dp"
+            android:text="@string/zm_btn_close"
+            style="@style/ZMButton.Gray.Medium"/>
+    </LinearLayout>
+
+
+</LinearLayout>

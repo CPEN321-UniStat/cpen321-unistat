@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/zmTrackingField"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        style="@style/ZmSettingItem.UnClick"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/zm_padding_small_size"
+        android:paddingBottom="@dimen/zm_padding_small_size">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="0dp"
+        android:gravity="center_vertical">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTrackTitle"
+            style="@style/ZmSettingItemTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="0dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTrackValue"
+            style="@style/ZmSettingItemContent"
+            android:layout_gravity="center_vertical"
+            android:ellipsize="end"
+            android:maxLines="1"
+            />
+
+        <ImageView style="@style/ZmSettingItemArrow"
+            android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtTrackDesc"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/zm_padding_smallest_size"
+        android:text="@string/zm_lbl_track_option_185075"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_divider_height"
+        android:background="@color/zm_line_divider"
+        android:layout_marginLeft="@dimen/zm_margin_small_size"/>
+</LinearLayout>

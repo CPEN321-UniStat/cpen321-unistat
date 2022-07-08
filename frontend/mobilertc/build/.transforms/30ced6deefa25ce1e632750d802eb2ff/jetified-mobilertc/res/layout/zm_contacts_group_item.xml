@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:background="@drawable/zm_list_selector_white_bg"
+    android:minHeight="@dimen/zm_chat_session_item_min_height"
+    android:paddingTop="@dimen/zm_padding_smaller_size"
+    android:paddingBottom="@dimen/zm_padding_smaller_size"
+    android:paddingLeft="@dimen/zm_padding_normal_size"
+    android:paddingRight="@dimen/zm_padding_normal_size">
+
+    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+        android:id="@+id/check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginLeft="10dp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="center_vertical" />
+
+    <FrameLayout
+        android:layout_width="55dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="10dp">
+        <com.zipow.videobox.view.AvatarView
+            android:id="@+id/avatarView"
+            android:layout_width="@dimen/zm_avatar_size"
+            android:layout_height="@dimen/zm_avatar_size"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_gravity="center_vertical"
+            zoom:zm_description_enable="false" />
+        <ImageView
+            android:id="@+id/imgE2EFlag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            android:src="@drawable/zm_e2e_flag"
+            tools:ignore="ContentDescription" />
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:minHeight="50dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <com.zipow.videobox.view.ZMSimpleEmojiTextView
+                android:id="@+id/txtGroupName"
+                style="@style/ZmTextView.Content.Primary"
+                android:gravity="left|center_vertical"
+                android:layout_width="wrap_content"
+                android:paddingLeft="0dp"
+                android:paddingRight="@dimen/zm_padding_smaller_size"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                tools:text="Group no 1234" />
+
+            <TextView
+                android:id="@+id/txtMemberNo"
+                style="@style/ZmTextView.Content.Primary.Medium"
+                android:paddingLeft="@dimen/zm_padding_smallest"
+                android:paddingRight="@dimen/zm_padding_smallest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                tools:text="1234" />
+        </LinearLayout>
+
+        <com.zipow.videobox.view.ZMSimpleEmojiTextView
+            android:id="@+id/txtGroupdes"
+            style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+            android:gravity="left|center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="3dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="1234"/>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/imgChecked"
+        style="@style/ZmSettingItemArrow"
+        android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+        android:src="@drawable/zm_group_type_select"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+</LinearLayout>

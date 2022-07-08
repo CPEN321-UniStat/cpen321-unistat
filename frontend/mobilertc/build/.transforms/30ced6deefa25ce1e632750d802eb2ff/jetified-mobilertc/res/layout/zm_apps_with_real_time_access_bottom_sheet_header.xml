@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="#c8000000">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtAppsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:letterSpacing="0.02"
+        android:maxLines="3"
+        tools:text="Apps With Real Time Access"
+        android:textColor="@color/zm_v1_white"
+        android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+        android:textStyle="bold" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtAppsDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="@dimen/zm_margin_small"
+        android:layout_marginBottom="@dimen/zm_margin_medium"
+        style="@style/ZMTextView.Normal.gray.darkMode"
+        tools:text="These apps have real time access to your information in this meeting. Tap on an app to learn more about what information it is getting now.\nRemember the account owner and other participants can share your information from this meeting with other apps at any time."
+        android:textColor="@color/zm_v1_white_alpha54" />
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnSendCode"
+        style="@style/ZmButton.Small.Secondary"
+        android:duplicateParentState="false"
+        android:maxWidth="@dimen/zm_btn_medium_min_width"
+        android:ellipsize="end"
+        android:maxLines="@integer/small_lines"
+        tools:visibility="visible"
+        android:text="@string/zm_btn_send_code_109213" />
+
+    <TextView
+        android:id="@+id/txtSending"
+        style="@style/ZmTextView.Button.Secondary.Small"
+        android:textColor="@color/zm_v2_txt_secondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="@dimen/zm_btn_medium_min_width"
+        android:maxLines="@integer/small_lines"
+        android:visibility="gone"
+        tools:visibility="gone"
+        android:text="@string/zm_btn_send_code_109213" />
+
+</FrameLayout>

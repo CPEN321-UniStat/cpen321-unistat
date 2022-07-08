@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtName"
+        style="@style/ZmTextView.Button.Secondary"
+        android:focusable="true"
+        android:clickable="false"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="+1 (500) 555-1234" />
+
+    <ListView
+        android:id="@+id/headSmallTitles"
+        android:layout_width="match_parent"
+        android:divider="@null"
+        android:background="@null"
+        android:layout_height="wrap_content">
+    </ListView>
+</LinearLayout>

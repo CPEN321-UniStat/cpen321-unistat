@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="600dp"
+    android:orientation="vertical">
+    
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        android:gravity="center_vertical"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnSchedule"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_cancel" />
+        
+        <Button
+            style="@style/ZmTitleBarAction"
+            android:id="@+id/btnSchedule"
+            android:text="@string/zm_btn_done" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:paddingLeft="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_smallest_size"
+            android:text="@string/zm_title_schedule_meeting" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    <com.zipow.videobox.view.panel.ZmAlertDisablePmiPanel
+        android:id="@+id/panelAlertDisablePMI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <com.zipow.videobox.view.panel.ZmAlertUseWebSettingPanel
+        android:id="@+id/panelAlertUseWebSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+    <ScrollView
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        android:id="@+id/scrollView">
+        
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingTop="0dp"
+            android:paddingRight="0dp"
+            zoom:zm_settingsCategorySpacing="0dp">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtTip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_snackbar_warning_bkg"
+                android:paddingLeft="@dimen/zm_setting_item_padding_left"
+                android:paddingTop="@dimen/zm_padding_small"
+                android:paddingRight="@dimen/zm_setting_item_padding_right"
+                android:paddingBottom="@dimen/zm_padding_small"
+                android:text="@string/zm_lbl_ncp_epidemic_cn_schedule_137975"
+                android:textColor="@color/zm_ui_kit_color_black_232333"
+                android:textSize="@dimen/zm_ui_kit_text_size_13sp"
+                android:visibility="gone" />
+
+            <!-- Meeting topic -->
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/zm_setting_item_group_spacing"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/zm_setting_item_padding_left"
+                    android:paddingRight="@dimen/zm_setting_item_padding_right">
+
+                    <EditText
+                        android:id="@+id/edtTopic"
+                        style="@style/ZmInputBox"
+                        android:gravity="left"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:maxLength="128"
+                        android:hint="@string/zm_lbl_topic_default"
+                        android:maxLines="3">
+
+                        <requestFocus />
+                    </EditText>
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtTopicCannotEditTip"
+                style="@style/ZmSettingDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:paddingTop="@dimen/zm_margin_smallest_size"
+                android:paddingBottom="@dimen/zm_margin_smaller_size"
+                android:layout_marginTop="0dp"
+                android:text="@string/zm_msg_meeting_topic_edit_tip_121401"
+                android:visibility="invisible"/>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                >
+
+                <!-- Date -->
+                <LinearLayout
+                    android:id="@+id/optionDate"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_date_on_schedle" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtDate"
+                        style="@style/ZmSettingItemContent"
+                        android:text="Thu 2012-09-27" />
+
+                    <ImageView
+                        style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+                <!-- Start time -->
+                <LinearLayout
+                    android:id="@+id/optionTimeFrom"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_from" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtTimeFrom"
+                        style="@style/ZmSettingItemContent"
+                        android:text="09:00 am" />
+
+                    <ImageView style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+                <!-- End time -->
+                <LinearLayout
+                    android:id="@+id/optionTimeTo"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_to" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtTimeTo"
+                        style="@style/ZmSettingItemContent"
+                        android:text="10:00 am" />
+
+                    <ImageView style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+                <!-- time zone -->
+                <LinearLayout
+                    android:id="@+id/optionTimeZone"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_time_zone" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtTimeZone"
+                        style="@style/ZmSettingItemContent"
+                        android:text="GMT+08:00 China Stardard Time" />
+
+                    <ImageView style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+                <!-- Repeat -->
+                <LinearLayout
+                    android:id="@+id/optionRepeat"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_repeat" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtRepeatType"
+                        style="@style/ZmSettingItemContent"
+                        android:text="@string/zm_lbl_repeat_never" />
+
+                    <ImageView style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+                
+                <!-- End Repeat -->
+                
+                <LinearLayout
+                    android:id="@+id/optionEndRepeat"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_end_repeat" />
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        android:id="@+id/txtEndRepeat"
+                        style="@style/ZmSettingItemContent"
+                        android:text="@string/zm_lbl_end_repeat_never" />
+
+                    <ImageView style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+                <LinearLayout
+                    style="@style/ZmSettingItem.UnClick"
+                    android:id="@+id/optionUsePMI"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                       <us.zoom.uicommon.widget.view.ZMCommonTextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="0dp"
+                            android:minHeight="0dp"
+                            android:gravity="left|center_vertical"
+                            android:text="@string/zm_lbl_use_pmi" />
+                       <us.zoom.uicommon.widget.view.ZMCommonTextView
+                            android:id="@+id/txtUsePMI"
+                            style="@style/ZmSettingItemContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="@dimen/zm_padding_medium_size"
+                            android:gravity="left|center_vertical"
+                            />
+                        </LinearLayout>
+
+                    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                        android:id="@+id/chkUsePMI"
+                        style="@style/ZMScheduleCheckBox" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <FrameLayout
+                android:id="@+id/zmSecurityPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                       <us.zoom.uicommon.widget.view.ZMCommonTextView
+                            android:id="@+id/txtPMIAlert"
+                            style="@style/ZmSettingDescription"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="left"
+                            android:maxLines="5"
+                            android:paddingTop="0dp"
+                            android:text="@string/zm_description_schedule_pmi_21201" />
+
+                    </LinearLayout>
+
+                    <com.zipow.videobox.view.schedule.ZMScheduleMeetingOptionLayout
+                        android:id="@+id/zmMeetingOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </FrameLayout>
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/zm_margin_medium_size"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/optionAddToCalendar"
+                    style="@style/ZmSettingItem.UnClick">
+
+                   <us.zoom.uicommon.widget.view.ZMCommonTextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_chk_add_to_calendar"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"/>
+
+                    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                        android:id="@+id/chkAddToCalendar"
+                        style="@style/ZMScheduleCheckBox" />
+                </LinearLayout>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+	        
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+        
+    </ScrollView>
+    
+</LinearLayout>

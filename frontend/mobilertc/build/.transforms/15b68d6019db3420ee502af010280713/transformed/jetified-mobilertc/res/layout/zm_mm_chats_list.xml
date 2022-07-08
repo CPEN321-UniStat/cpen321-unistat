@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/panelTitleLeft"
+        zoom:zm_rightButton="@+id/panelTitleRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <LinearLayout
+            android:id="@+id/panelTitleRight"
+            tools:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnSearch"
+                style="@style/ZmBackButton.Dark"
+                android:src="@drawable/zm_ic_btn_search_white"
+                android:contentDescription="@string/zm_description_mm_btn_search" />
+
+            <ImageButton
+                android:id="@+id/btnNewChat"
+                style="@style/ZmBackButton.Dark"
+                android:src="@drawable/zm_ic_btn_new_chat_white"
+                android:contentDescription="@string/zm_description_btn_new_chat" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelTitleLeft"
+            tools:visibility="visible"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+                <ImageButton
+                    android:id="@+id/btnSettings"
+                    style="@style/ZmBackButton.Dark"
+                    android:src="@drawable/zm_ic_btn_settings_white"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:contentDescription="@string/zm_description_tab_setting" />
+
+            <com.zipow.videobox.view.panel.ZmPairRoomPanel
+                android:id="@+id/panelPairRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_title_chats" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <FrameLayout
+        android:id="@+id/panelPairedZR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_v2_head"
+        android:clickable="true"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/tvPairedZR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/zm_v2_title_tab_textcolor_select_loading"
+            android:layout_marginTop="@dimen/zm_share_toolbar_margin"
+            android:layout_marginBottom="@dimen/zm_share_toolbar_margin"
+            android:clickable="false"
+            android:focusable="false"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:drawableLeft="@drawable/zm_ic_pin_light"
+            android:drawableRight="@drawable/zm_ic_drop_down"
+            android:drawablePadding="@dimen/zm_padding_smallest" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <LinearLayout
+                android:id="@+id/panelDiskFullAlert"
+                style="@style/ZmSettingItem"
+                android:background="@drawable/zm_notification_background"
+                android:paddingTop="@dimen/zm_padding_small_size"
+                android:paddingBottom="@dimen/zm_padding_small_size" >
+                <TextView
+                    style="@style/ZmTextView.Content.Primary.Small.OnLight"
+                    android:paddingLeft="0dp"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:maxLines="@integer/maximum_lines"
+                    android:gravity="left"
+                    android:layout_marginRight="@dimen/zm_margin_smaller_size"
+                    android:text="@string/zm_mm_msg_out_of_storage_29760"
+                    android:contentDescription="@string/zm_mm_msg_out_of_storage_29760" />
+                <!--todo svg-->
+                <ImageButton
+                    android:id="@+id/btnCloseDiskFullAlert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/zm_btn_time_chat_hint_closed"
+                    android:contentDescription="@string/zm_mm_btn_dismiss_content_description_57731" />
+            </LinearLayout>
+
+            <com.zipow.videobox.view.mm.MMConnectAlertView
+                android:id="@+id/panelConnectionAlert"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+
+            <com.zipow.videobox.view.mm.MMPersonalNoteAlertView
+                android:id="@+id/panelPersonalNoteAlert"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <FrameLayout
+                android:id="@+id/listContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.zipow.videobox.view.schedule.MeetingToolbar
+                    android:id="@+id/meetingToolbar"
+                    android:visibility="gone"
+                    android:background="@color/zm_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/llContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/zm_white"
+                    android:orientation="vertical"
+                    >
+
+                    <com.zipow.videobox.view.mm.MMChatsListView
+                        android:id="@+id/chatsListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:divider="@null"
+                        android:dividerHeight="1dp"
+                        android:listSelector="@color/zm_white" />
+
+                    <ViewStub
+                        android:id="@+id/addContactsFTEViewStub"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/zm_mm_chats_list_add_contacts_fte_view" />
+
+                    <ViewStub
+                        android:id="@+id/startNewChatViewStub"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout="@layout/zm_mm_chats_list_start_new_chat_view" />
+
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

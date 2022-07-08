@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_ui_kit_color_black_060608"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/imageLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+            android:id="@+id/panelContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.zipow.videobox.view.ZMGifView
+                android:id="@+id/imgGifView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/zm_black"
+                android:visibility="gone" />
+
+            <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+                android:id="@+id/imageview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/zm_black"
+                android:visibility="gone"/>
+            <LinearLayout
+                android:id="@+id/imageProgressPanel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imgThumbnail"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/imgTranslateSpeed"
+                    style="@style/ZMTextView.Normal.Dimmed.OnDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="" />
+
+                <ProgressBar
+                    android:id="@+id/imgProgressBar"
+                    style="@style/PollingPercentBar"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:max="100" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/zm_ic_image_bottom_bg"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            android:id="@+id/imgLayoutBottomBar"
+            android:paddingLeft="10dp"
+            >
+
+            <TextView
+                android:id="@+id/txtFileSharees"
+                style="@style/ZMTextView.Small.OnDark"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtFileDes"
+                android:layout_marginRight="70dp"
+                android:layout_marginTop="3dp"
+                android:text="private" />
+
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/txtFileSharees"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@+id/btnMore"
+                android:padding="10dp"
+                android:background="@null"
+                android:visibility="invisible"
+                android:src="@drawable/zm_btn_viewer_share"
+                android:contentDescription="@string/zm_btn_share" />
+
+            <ImageButton
+                android:id="@+id/btnMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                android:layout_alignBottom="@id/txtFileSharees"
+                android:layout_alignParentRight="true"
+                android:background="@null"
+                android:layout_marginRight="5dp"
+                android:contentDescription="@string/zm_btn_more_no_dot"
+                android:padding="10dp"
+                android:src="@drawable/zm_ic_btn_more" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/zm_ic_image_header_bg"
+            android:orientation="horizontal"
+            android:id="@+id/imgLayoutTitleBar"
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <LinearLayout
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txtImgName"
+                    style="@style/UIKitTextView.Large.OnDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:ellipsize="end"
+                    android:gravity="left|center_vertical"
+                    android:visibility="gone"
+                    android:maxLines="2"
+                    android:text="" />
+                <TextView
+                    android:id="@+id/txtImgDes"
+                    style="@style/ZMTextView.Small.OnDark"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:ellipsize="middle"
+                    android:text="" />
+
+
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                android:background="@null"
+                android:padding="10dp"
+                android:src="@drawable/zm_btn_viewer_close"
+                android:contentDescription="@string/zm_btn_close"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/viewPlaceHolder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_below="@id/imgLayoutTitleBar"
+            android:layout_above="@id/imgLayoutBottomBar"
+            android:background="@color/zm_dimmed_forground"
+            android:orientation="vertical"
+            android:focusable="false">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_image_download_error"
+                android:focusable="false"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txtMessage"
+                style="@style/ZMTextView.Normal.Dimmed.OnDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:focusable="false"
+                android:text="@string/zm_mm_msg_download_image_failed" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fileLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_white"
+        android:visibility="gone"
+        >
+        <ViewStub
+            android:id="@+id/videoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/zm_content_file_video_viewer"
+            />
+        <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+            android:id="@+id/fileTitleBar"
+            style="@style/ZmTitleBar"
+            android:elevation="0dp"
+            zoom:zm_leftButton="@+id/btnBack"
+            zoom:zm_rightButton="@+id/btnMoreOption"
+            zoom:zm_title="@+id/txtTitle" >
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton"
+                android:contentDescription="@string/zm_btn_back" />
+
+            <ImageButton
+                android:id="@+id/btnMoreOption"
+                style="@style/ZmMoreButton"
+                android:contentDescription="@string/zm_btn_more"/>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle.Dark"
+                android:visibility="gone"/>
+        </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+        <RelativeLayout
+            android:id="@+id/fileContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/fileTitleBar"
+            >
+
+            <com.zipow.videobox.pdf.PDFView
+                android:id="@+id/pdfView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/zm_black"
+                android:visibility="gone"
+                />
+
+            <com.zipow.videobox.view.ZMFileReaderView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/ZmTextView.Content"
+                android:gravity="left"
+                android:visibility="gone"
+                android:id="@+id/txtContent"/>
+
+            <LinearLayout
+                android:id="@+id/panelFileProgress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/fileTypeIcon"
+                    android:layout_width="@dimen/zm_btn_width_60dp"
+                    android:layout_height="@dimen/zm_btn_width_60dp"
+                    android:layout_marginBottom="@dimen/zm_margin_normal_size"
+                    android:src="@drawable/zm_ic_filetype_zip"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/fileName"
+                    style="@style/ZmTextView.Button.Secondary.Medium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/zm_margin_small_size"
+                    tools:text="DesignGuidelines.zip" />
+
+                <TextView
+                    android:id="@+id/txtFileTranslateSpeed"
+                    style="@style/ZmTextView.Content.Primary.Medium"
+                    android:layout_marginBottom="@dimen/zm_margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="91 KB/782 KB (26.9 KB/s)" />
+                <ProgressBar
+                    android:id="@+id/fileProgressBar"
+                    style="@style/PollingPercentBar"
+                    android:layout_marginBottom="@dimen/zm_margin_larger_size"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/btnMain"
+                    style="@style/ZmButton"
+                    android:layout_width="320dp"
+                    android:layout_marginBottom="@dimen/zm_margin_medium_minus_size"
+                    android:layout_marginLeft="@dimen/zm_margin_large_size"
+                    android:layout_marginRight="@dimen/zm_margin_large_size"
+                    android:text="@string/zm_btn_download" />
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/ZmButton.Medium.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/zm_margin_normal_size"
+                    android:text="@string/zm_btn_cancel"
+                    android:visibility="invisible"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/zm_padding_small"
+    android:paddingBottom="@dimen/zm_padding_small"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/zm_list_selector_background">
+
+    <com.zipow.videobox.view.AvatarView
+        android:id="@+id/zm_folder_avatarView"
+        android:layout_width="@dimen/zm_avatar_size"
+        android:layout_height="@dimen/zm_avatar_size"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:duplicateParentState="true"
+        android:layout_marginLeft="@dimen/zm_padding_normal"
+        android:layout_marginRight="@dimen/zm_font_size_medium"
+        android:clickable="false"/>
+
+    <TextView
+        style="@style/UIKitTextView.CellTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/zm_annotation_popup_text_max_width"
+        android:singleLine="true"
+        android:clickable="false"
+        android:duplicateParentState="true"
+        android:text="@string/zm_mm_header_folder_357393" />
+
+</LinearLayout>

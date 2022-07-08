@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/in_meeting_info_bg"
+    android:paddingLeft="@dimen/zm_dialog_margin_24dp"
+    android:paddingTop="30dp"
+    android:paddingRight="@dimen/zm_dialog_margin_24dp"
+    android:paddingBottom="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtMeetingTtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:letterSpacing="0.02"
+            android:maxLines="3"
+            android:text="Hana Song’s Personal Meeting Room"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/zm_ui_kit_text_size_20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/meetingIdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_dialog_margin_24dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtMeetingIdTitle"
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_lbl_meeting_id2" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtMeetingIdContent"
+                style="@style/ZMInMeetingInfoItemContent"
+                android:text="888 966 8888" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtHostTitle"
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_lbl_waiting_room_chat_title_host" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtHostContent"
+                style="@style/ZMInMeetingInfoItemContent"
+                android:text="Hana Song" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/passwordContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_lbl_passcode_171920" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtPasswordContent"
+                style="@style/ZMInMeetingInfoItemContent"
+                android:text="124599" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/inviteLinkContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_lbl_invite_link_151880" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtInviteLinkContent"
+                style="@style/ZMInMeetingInfoItemContent"
+                android:text="https://success.zoom.us/j/92330808057?pwd=bUpqeG5TcU11WDZwV1Z2UzhMQ2NaZz09" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/eventPageContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_meeting_info_event_page_167537" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtEventPageContent"
+                style="@style/ZMInMeetingInfoItemContent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/participantIdContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_lbl_participant_id" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtParticipantIdContent"
+                style="@style/ZMInMeetingInfoItemContent"
+                android:text="18" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/e2eContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZMInMeetingInfoItemTitle"
+                android:text="@string/zm_e2e_meeting_info_e2e_title_171869" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:orientation="horizontal"
+                app:alignContent="flex_start"
+                app:alignItems="flex_start"
+                app:dividerDrawable="@drawable/zm_floatbtn_flexbox_divider"
+                app:flexWrap="wrap"
+                app:showDivider="middle">
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/encryptionType"
+                    style="@style/ZMInMeetingInfoItemContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zm_encryption_enabled_e2e_211920" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/e2eVerifyBtn"
+                    style="@style/ZMInMeetingInfoItemContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="@dimen/zm_margin_medium"
+                    android:text="@string/zm_e2e_meeting_info_verify_171869"
+                    android:textColor="@color/zm_v1_blue_B400" />
+
+               <us.zoom.uicommon.widget.view.ZMCommonTextView
+                    android:id="@+id/encryptionExceptions"
+                    style="@style/ZMInMeetingInfoItemContent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 Exceptions"
+                    android:textColor="@color/zm_v1_yellow_500" />
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+        </LinearLayout>
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtDataCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_dialog_margin_24dp"
+            android:letterSpacing="-0.01"
+            android:text="@string/zm_msg_meeting_info_data_center_299543"
+            android:textColor="@color/zm_v2_txt_secondary_ondark"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtSecuritySettingOverview"
+            style="@style/ZmTextView.Button.Bottom"
+            android:minHeight="@dimen/zm_accessible_btn_min_size"
+            android:minWidth="@dimen/zm_accessible_btn_min_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/zm_msg_meeting_security_settings_overview_299543"
+            android:layout_marginTop="@dimen/zm_dialog_margin_24dp"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp"
+            android:gravity="left"
+            android:textColor="@color/zm_v2_txt_action"
+            android:letterSpacing="-0.01" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

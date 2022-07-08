@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+  <path
+      android:pathData="M50,100C77.614,100 100,77.614 100,50C100,22.386 77.614,0 50,0C22.386,0 0,22.386 0,50C0,77.614 22.386,100 50,100Z"
+      android:fillColor="@color/zm_picker_titlebar_btn_normal"
+      android:fillType="evenOdd"/>
+  <path
+      android:pathData="M60.158,40.924L38.119,40.909C36.189,40.908 35.324,43.34 36.817,44.568L42.304,49.083C43.029,49.679 44.006,49.862 44.895,49.568L50.718,47.639C51.457,47.395 51.965,48.382 51.339,48.846L46.405,52.503C45.652,53.062 45.235,53.969 45.3,54.907L45.791,62.017C45.925,63.951 48.4,64.648 49.515,63.066L62.251,44.993C63.454,43.286 62.24,40.925 60.158,40.924Z"
+      android:fillColor="@color/zm_v1_white"/>
+</vector>

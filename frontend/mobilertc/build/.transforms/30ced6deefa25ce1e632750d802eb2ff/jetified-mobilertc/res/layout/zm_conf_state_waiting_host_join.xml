@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/confStateWaitJoin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/topbar"
+    android:elevation="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constrainedHeight="true"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent">
+
+
+    <TextView
+        android:id="@+id/center"
+        style="@style/ZMTextView.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="Reed Yang&apos;s Meeting Reed Yang&apos;s Meeting"
+        android:textColor="@color/zm_v2_txt_primary"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_min="@dimen/zm_title_bar_height"
+        />
+
+    <Button
+        android:id="@+id/btnLeave"
+        style="@style/ZMButton.NoBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/zm_btn_leave_conf"
+        app:layout_constrainedWidth="true"
+        app:layout_goneMarginEnd="@dimen/zm_margin_small_size"
+        app:layout_constraintWidth_min="60dp"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/placehoder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topbar"
+        app:layout_constraintBottom_toBottomOf="@id/topbar"
+        android:background="@color/zm_leave_panel_tab_bg"
+        />
+
+    <Button
+        android:id="@+id/btnCancelLeaveMeeting"
+        style="@style/UIRedButton.Cancel"
+        android:paddingRight="@dimen/zm_margin_medium"
+        android:paddingLeft="@dimen/zm_margin_medium"
+        android:layout_marginEnd="@dimen/zm_margin_medium"
+        android:layout_marginStart="@dimen/zm_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/placehoder"
+        app:layout_constraintBottom_toBottomOf="@id/placehoder"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:text="@string/zm_btn_cancel"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/leaveCancelGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnCancelLeaveMeeting,placehoder"
+        android:visibility="gone"
+        tools:visibility="gone"
+        />
+    <!--progress bar-->
+    <View
+        android:id="@+id/progressView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/zm_v1_green_600"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topbar" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="@style/ZMProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/progressView"
+        app:layout_constraintEnd_toStartOf="@+id/txtWaiting"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/progressView"
+        app:layout_constraintTop_toTopOf="@id/progressView" />
+
+    <TextView
+        android:id="@+id/txtWaiting"
+        style="@style/ZMTextView.Medium.OnDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:text="@string/zm_msg_waiting_for_scheduler"
+        android:textSize="@dimen/zm_font_medium_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="@id/progressView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@id/progressBar1"
+        app:layout_constraintTop_toTopOf="@id/progressView" />
+
+
+    <TableLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:paddingLeft="@dimen/zm_setting_item_padding_left"
+        android:paddingTop="@dimen/zm_setting_item_padding_bottom"
+        android:paddingRight="@dimen/zm_setting_item_padding_right"
+        android:paddingBottom="@dimen/zm_setting_item_padding_top"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progressView">
+
+        <TableRow
+            android:id="@+id/tableRowMeetingId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <TextView
+                style="@style/ZMTextView.Large.OnLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/zm_lbl_meeting_id" />
+
+            <TextView
+                android:id="@+id/txtMeetingId"
+                style="@style/ZMTextView.Medium.DialogMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="111-111-111" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                style="@style/ZMTextView.Large.OnLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/zm_lbl_date" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                style="@style/ZMTextView.Medium.DialogMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Wes, Jun 14, 2012" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRowTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                style="@style/ZMTextView.Large.OnLight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="@string/zm_lbl_time" />
+
+            <TextView
+                android:id="@+id/txtTime"
+                style="@style/ZMTextView.Medium.DialogMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:maxWidth="180dp"
+                android:text="This is a recurring meeting" />
+        </TableRow>
+    </TableLayout>
+
+
+    <LinearLayout
+        android:id="@+id/panelForScheduler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal|bottom"
+        app:layout_constrainedHeight="true"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/content"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/txtForScheduler"
+            style="@style/ZMTextView.Medium.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/zm_msg_notify_scheduler_login" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            style="@style/UIKitItinactivatedBtn.Large"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="15dp"
+            android:text="@string/zm_btn_login" />
+    </LinearLayout>
+    <us.zoom.uicommon.widget.view.ZMTipLayer
+        android:id="@+id/tipLayerForWaitingHost"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

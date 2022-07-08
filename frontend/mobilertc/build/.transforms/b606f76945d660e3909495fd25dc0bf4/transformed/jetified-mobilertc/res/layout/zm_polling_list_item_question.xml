@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ZMTextView.Medium"
+        android:id="@+id/questionText"
+        android:textColor="@color/zm_v2_btn_black_text_color"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/answerRv"
+        tools:text="question 1"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/answerRv"/>
+
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/zm_padding_normal"
+    android:paddingRight="@dimen/zm_padding_normal">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_alignParentTop="true"
+        android:background="@color/zm_v2_cell_divider" />
+
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:src="@drawable/zm_ic_add_normal"
+        tools:ignore="ContentDescription" />
+
+    <RelativeLayout
+        android:id="@+id/right_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true">
+
+        <ImageView
+            android:id="@+id/active"
+            android:layout_width="@dimen/zm_login_ic_size"
+            android:layout_height="@dimen/zm_login_ic_size"
+            android:src="@drawable/ic_domains_selected"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="@dimen/zm_login_ic_size"
+            android:layout_height="@dimen/zm_login_ic_size"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_domains_delete"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/textArea"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_height_64dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/right_icon"
+        android:layout_toRightOf="@id/add"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/zm_padding_medium"
+        android:paddingRight="@dimen/zm_padding_medium">
+
+        <TextView
+            android:id="@+id/url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="url"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_ui_kit_text_size_16sp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/zm_padding_smallest"
+            android:text="desc"
+            android:textColor="@color/zm_v2_txt_secondary"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp"
+            android:visibility="visible" />
+    </LinearLayout>
+
+</RelativeLayout>

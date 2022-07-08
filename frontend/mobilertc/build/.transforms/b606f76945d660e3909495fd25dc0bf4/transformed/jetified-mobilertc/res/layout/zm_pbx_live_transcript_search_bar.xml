@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zipow.videobox.view.ZMSearchBar
+        android:id="@+id/search_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:imeOptions="actionSearch"
+        app:indicatorMode="true"
+        app:layout_constraintEnd_toStartOf="@id/iv_up"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/zm_pbx_live_transcript_accessibility_previous_button_288876"
+        android:src="@drawable/zm_pbx_live_transcript_up"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar"
+        app:layout_constraintEnd_toStartOf="@id/iv_down"
+        app:layout_constraintStart_toEndOf="@id/search_bar"
+        app:layout_constraintTop_toTopOf="@id/search_bar" />
+
+    <ImageView
+        android:id="@+id/iv_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/zm_pbx_live_transcript_accessibility_next_button_288876"
+        android:src="@drawable/zm_pbx_live_transcript_down"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar"
+        app:layout_constraintEnd_toStartOf="@id/tv_cancel"
+        app:layout_constraintStart_toEndOf="@id/iv_up"
+        app:layout_constraintTop_toTopOf="@id/search_bar" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        style="@style/ZmTitleBarAction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:padding="0dp"
+        android:text="@string/zm_pbx_live_transcript_search_cancel_288876"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/search_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_down"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_down"
+        app:layout_constraintTop_toTopOf="@id/search_bar" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/gp_right_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="iv_up,iv_down,tv_cancel"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

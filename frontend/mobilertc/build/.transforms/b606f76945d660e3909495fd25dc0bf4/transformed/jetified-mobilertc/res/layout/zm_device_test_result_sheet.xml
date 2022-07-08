@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/action_sheet_container"
+    zoom:layout_constraintStart_toStartOf="parent"
+    zoom:layout_constraintEnd_toEndOf="parent"
+    zoom:layout_constraintBottom_toBottomOf="parent"
+    android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+    android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+    android:background="@drawable/zm_bottom_sheet_round_rect_bg"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ZmTextView.Button.Secondary"
+        android:textStyle="bold"
+        android:id="@+id/tvHeader"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/help"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_device_test_result_239946"
+        android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+        android:paddingLeft="0dp"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"/>
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_gravity="center_horizontal"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/zm_btn_close"
+        zoom:layout_constraintTop_toTopOf="@+id/tvHeader"
+        zoom:layout_constraintBottom_toBottomOf="@+id/tvHeader"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+
+        android:src="@drawable/zm_ic_close_test"
+        tools:ignore="ContentDescription" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/ZmTextView.Button.Secondary"
+        android:textSize="@dimen/zm_font_medium_size"
+
+        android:id="@+id/help"
+        android:paddingLeft="0dp"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/tvHeader"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_need_help_239946"
+        android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+        android:paddingRight="0dp"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"/>
+
+
+    <TextView
+        android:id="@+id/txtMicroPhonePermission"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_microphone_239946"
+        tools:ignore="ContentDescription"
+        android:textStyle="bold"
+        android:importantForAccessibility="no"
+        android:paddingLeft="0dp"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/help" />
+
+    <TextView
+        android:id="@+id/txtMicroPhoneAccess"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:gravity="left|center_vertical"
+        android:paddingRight="@dimen/zm_padding_smaller_size"
+        android:text="@string/zm_gain_access_239946"
+
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtMicroPhonePermission"
+        zoom:layout_constraintEnd_toStartOf="@+id/statusMicroPhone"
+        zoom:layout_constraintTop_toTopOf="@+id/txtMicroPhonePermission" />
+
+    <ImageView
+        android:id="@+id/statusMicroPhone"
+
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+
+        android:src="@drawable/zm_ic_grant_permission"
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtMicroPhonePermission"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtMicroPhonePermission"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/txtCameraPermission"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        android:paddingLeft="0dp"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_camera_239946"
+        tools:ignore="ContentDescription"
+        android:textStyle="bold"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtMicroPhonePermission" />
+
+    <TextView
+        android:id="@+id/txtCameraAccess"
+        style="@style/ZmTextView.Content.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/zm_padding_smallest"
+        android:gravity="left|center_vertical"
+        android:paddingRight="@dimen/zm_padding_smaller_size"
+        android:text="@string/zm_gain_access_239946"
+
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtCameraPermission"
+        zoom:layout_constraintEnd_toStartOf="@+id/statusCamera"
+        zoom:layout_constraintTop_toTopOf="@+id/txtCameraPermission" />
+
+    <ImageView
+        android:id="@+id/statusCamera"
+
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/zm_ic_grant_permission"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtCameraPermission"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtCameraPermission"
+        tools:ignore="ContentDescription" />
+
+
+    <Button
+        android:id="@+id/btnEndTest"
+        style="@style/ZmButton"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtCameraPermission"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:text="@string/zm_end_test_239946" />
+</androidx.constraintlayout.widget.ConstraintLayout>

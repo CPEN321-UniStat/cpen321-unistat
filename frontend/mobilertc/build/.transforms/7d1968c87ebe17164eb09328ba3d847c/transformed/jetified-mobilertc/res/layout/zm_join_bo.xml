@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v1_gray_1800"
+    android:orientation="vertical">
+
+
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_title="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZMBackButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_margin_small_size"/>
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textColor="@color/zm_text_on_dark"
+            android:paddingLeft="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_smallest_size"
+            android:text="@string/zm_bo_btn_breakout" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/zmJoinBOlist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="@dimen/zm_padding_normal_size"
+            android:layout_marginBottom="@dimen/zm_btn_small_min_width"
+            android:layout_marginLeft="@dimen/zm_margin_small_size"
+            android:layout_marginRight="@dimen/zm_margin_small_size"/>
+        <Button
+            android:id="@+id/btnJoinBO"
+            style="@style/ZmButton"
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/zm_margin_small_size"
+            android:layout_marginLeft="@dimen/zm_margin_medium_size"
+            android:layout_marginRight="@dimen/zm_margin_medium_size"
+            android:text="@string/zm_bo_btn_join_bo" />
+    </FrameLayout>
+</LinearLayout>

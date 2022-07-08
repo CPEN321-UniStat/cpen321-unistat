@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    tools:context="com.zipow.annotate.whiteboard.ZmCloudWhiteBoardTopbar"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivCloudSaving"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:ignore="ContentDescription"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:src="@drawable/zm_ic_whiteboard_cloud_saved"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvState"
+        style="@style/ZmTextView.Content.Primary.Small.Dimmed"
+        android:layout_width="wrap_content"
+        android:maxLines="@integer/smaller_lines"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@+id/title"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:layout_marginEnd="@dimen/zm_margin_normal_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivCloudSaving"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        tools:text="You are Viewing on xxxYou are Viewing on xxxYou are Viewing on xxxYou are Viewing on xxxYou are Viewing on xxx" />
+
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/ZmTitleBarTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:maxLines="@integer/smaller_lines"
+        tools:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintWidth_percent="0.4"
+        tools:text="UntitledUntitledUntitledUntitledUntitledUntitledUntitled" />
+
+    <com.zipow.annotate.share.ZmWhiteboardAvatarView
+        android:id="@+id/avatarView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_small_height"
+        android:layout_marginEnd="@dimen/zm_margin_small_minus_size"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shareBtn"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@+id/title"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        style="@style/ZmButton.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_small_height"
+        android:id="@+id/shareBtn"
+        android:visibility="visible"
+        app:layout_constraintEnd_toStartOf="@id/moreBtn"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/zm_whiteboard_share_dialog_share_289013"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_small_height"
+        android:id="@+id/moreBtn"
+        style="@style/ZmMoreButton"
+        android:visibility="gone"
+        android:src="@drawable/zm_ic_btn_more_black"
+        android:contentDescription="@string/zm_whiteboard_accessibility_more_289013"
+        tools:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1.0" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:focusable="false"
+        tools:ignore="ContentDescription"
+        android:background="@drawable/zm_whiteboard_topbar_divider"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</merge>

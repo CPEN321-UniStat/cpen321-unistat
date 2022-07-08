@@ -1,0 +1,38 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M8,6C5.3333,8 5.3333,12.6371 8,14.5"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_sip_icon_black"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M5,3C1,7 1,14 5,17.5"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_sip_icon_black"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M16,6C18.6667,8 18.6667,12.6371 16,14.5"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_sip_icon_black"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M19,3C23,7 23,14 19,17.5"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_sip_icon_black"
+      android:strokeLineCap="round"/>
+  <path
+      android:pathData="M11.1863,16.1392C11.5851,15.5809 12.4149,15.5809 12.8138,16.1392L15.8706,20.4188C16.3433,21.0806 15.8702,22 15.0568,22H8.9432C8.1298,22 7.6567,21.0806 8.1295,20.4188L11.1863,16.1392Z"
+      android:fillColor="@color/zm_v2_sip_icon_black"/>
+  <path
+      android:pathData="M12,10m-2.25,0a2.25,2.25 0,1 1,4.5 0a2.25,2.25 0,1 1,-4.5 0"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_sip_icon_black"/>
+</vector>

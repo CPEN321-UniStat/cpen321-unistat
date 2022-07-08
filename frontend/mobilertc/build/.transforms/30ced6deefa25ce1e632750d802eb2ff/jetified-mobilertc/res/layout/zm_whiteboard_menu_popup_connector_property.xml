@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_whiteboard_common_toolbar_bg"
+    android:orientation="horizontal"
+    android:padding="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin">
+
+    <ImageView
+        android:id="@+id/ivThin"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_marginStart="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:contentDescription="@string/zm_whiteboard_accessibility_thin_289013"
+        android:src="@drawable/zm_whiteboard_connector_thin" />
+
+
+    <ImageView
+        android:id="@+id/ivThick"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:contentDescription="@string/zm_whiteboard_accessibility_thick_289013"
+        android:src="@drawable/zm_whiteboard_connector_thick" />
+
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:background="@drawable/zm_ic_whiteboard_divider_vertical" />
+
+    <ImageView
+        android:id="@+id/ivSolid"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_marginStart="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:contentDescription="@string/zm_whiteboard_accessibility_solid_289013"
+        android:src="@drawable/zm_whiteboard_connector_solid" />
+
+    <ImageView
+        android:id="@+id/ivDashed"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_icon_size"
+        android:contentDescription="@string/zm_whiteboard_accessibility_dashed_289013"
+        android:src="@drawable/zm_whiteboard_connector_dashed" />
+</LinearLayout>

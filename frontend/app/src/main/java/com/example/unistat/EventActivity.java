@@ -2,6 +2,7 @@ package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +35,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import us.zoom.sdk.JoinMeetingOptions;
+import us.zoom.sdk.JoinMeetingParams;
+import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.ZoomSDK;
+import us.zoom.sdk.ZoomSDKInitParams;
+import us.zoom.sdk.ZoomSDKInitializeListener;
+
 public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = "EventActivity";
@@ -52,8 +60,42 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
+        initZoom(this);
+
         getAndSetMeetingInfo();
         addButtonListeners();
+    }
+
+    private void initZoom(Context context) {
+        ZoomSDK sdk = ZoomSDK.getInstance();
+        ZoomSDKInitParams params = new ZoomSDKInitParams();
+        params.appKey = "ABj2ki7HAdTM9dFc44KdbMnjjlo5v26P46MY";
+        params.appSecret = "1ImANl0EeqLEorNO98DptPpNBn0t6DySJtXH";
+        params.domain = "zoom.us";
+        params.enableLog = true;
+
+        ZoomSDKInitializeListener listener = new ZoomSDKInitializeListener() {
+            @Override
+            public void onZoomSDKInitializeResult(int i, int i1) {
+
+            }
+
+            @Override
+            public void onZoomAuthIdentityExpired() {
+
+            }
+        };
+        sdk.initialize(context, listener, params);
+    }
+
+    private void joinZoomMeeting(Context context) {
+        MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
+        JoinMeetingOptions options = new JoinMeetingOptions();
+        JoinMeetingParams params = new JoinMeetingParams();
+        params.displayName = "Kush Arora";
+        params.meetingNo = "9419977292";
+        params.password = "5bCwMU";
+        meetingService.joinMeetingWithParams(context, params, options);
     }
 
     private void getAndSetMeetingInfo() {
@@ -155,8 +197,7 @@ public class EventActivity extends AppCompatActivity {
         joinMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent joinMeeting = new Intent(EventActivity.this, ZoomMeetingActivity.class);
-                startActivity(joinMeeting);
+                joinZoomMeeting(EventActivity.this);
             }
         });
         makePaymentButton.setOnClickListener(new View.OnClickListener() {

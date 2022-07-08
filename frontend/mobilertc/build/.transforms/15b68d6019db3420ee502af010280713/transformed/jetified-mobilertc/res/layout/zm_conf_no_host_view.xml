@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_black">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topbar"
+        android:background="@drawable/zm_top_toolbar_bg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constrainedHeight="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <Button
+            android:id="@+id/btnLeave"
+            style="@style/ZMButton.TitleBar.Warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="@string/zm_btn_leave_meeting" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:id="@+id/center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/encryption"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_encryption_gcm_on_dark"
+                tools:ignore="ContentDescription" />
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtMeetingNumber"
+                style="@style/ZMTextView.Medium.OnDark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/zm_padding_smallest_size"
+                android:layout_marginRight="@dimen/zm_padding_smaller_size"
+                android:layout_gravity="center_vertical"
+                android:text="Zoom" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dropDown"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/ic_drop_down_on_dark"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/placehoder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topbar"
+        app:layout_constraintBottom_toBottomOf="@id/topbar"
+        android:background="@color/zm_leave_panel_tab_bg"
+       />
+
+    <Button
+        android:id="@+id/btnCancelLeaveMeeting"
+        style="@style/UIRedButton.Cancel"
+        android:paddingRight="@dimen/zm_margin_medium"
+        android:paddingLeft="@dimen/zm_margin_medium"
+        android:layout_marginEnd="@dimen/zm_margin_medium"
+        android:layout_marginStart="@dimen/zm_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/placehoder"
+        app:layout_constraintBottom_toBottomOf="@id/placehoder"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:text="@string/zm_btn_cancel"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/leaveCancelGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnCancelLeaveMeeting,placehoder"
+        android:visibility="gone"
+        />
+
+
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:text="@string/zm_msg_host_lot_connection_159719"
+        android:textColor="@color/zm_text_on_dark"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtMeetingTopic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtMeetingTopic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        android:text="Doctor Watson’s Classroom"
+        android:textColor="@color/zm_v2_txt_secondary_ondark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnCancel"
+        zoom:zm_rightButton="@+id/btnAdd"
+        zoom:zm_title="@+id/txtTitle">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_cancel" />
+
+        <Button
+            android:id="@+id/btnAdd"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_pbx_voicemail_forward_btn_add_330349" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:paddingLeft="@dimen/zm_padding_smallest_size"
+            android:paddingRight="@dimen/zm_padding_smallest_size"
+            android:text="@string/zm_pbx_voicemail_forward_select_title_330349" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_white"
+        android:orientation="horizontal">
+
+        <us.zoom.uicommon.widget.view.ZMEditText
+            android:id="@+id/edtSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/zm_white"
+            android:hint="@string/zm_pbx_voicemail_forward_search_hint_330349"
+            android:imeOptions="actionDone"
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1.3"
+            android:maxLines="4"
+            android:paddingStart="@dimen/zm_padding_small_size"
+            android:paddingTop="@dimen/zm_padding_small_size"
+            android:paddingEnd="@dimen/zm_padding_small_size"
+            android:paddingBottom="@dimen/zm_padding_small_size"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvSelectedCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@color/zm_white"
+            android:textColor="@color/zm_v2_txt_secondary"
+            android:textSize="12sp"
+            tools:text="10/10" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zipow.videobox.view.sip.voicemail.forward.PBXVoicemailForwardSelectListView
+            android:id="@+id/multiSelectListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tvEmptyView"
+            style="@style/ZMTextView.SettingsItem.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/zm_white"
+            android:gravity="center_horizontal|top"
+            android:paddingTop="30dp"
+            android:text="@string/zm_lbl_search_result_empty"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

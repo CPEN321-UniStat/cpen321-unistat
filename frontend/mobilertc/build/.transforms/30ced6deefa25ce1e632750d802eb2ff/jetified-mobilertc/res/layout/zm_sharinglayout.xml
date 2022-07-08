@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <FrameLayout
+        android:id="@+id/shareContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+    </FrameLayout>
+
+
+    <ImageButton
+        android:id="@+id/imgBtnFlashLight"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:background="@color/zm_transparent"
+        android:src="@drawable/zm_ic_flashlight_off"
+        android:contentDescription="@string/zm_accessibility_flashlight_off_202108"
+        tools:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/btnDrawing"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/imgBtnFlashLight"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:src="@drawable/zm_ic_annotation_drawing"
+        android:contentDescription="@string/zm_description_btn_share_draw"
+        tools:visibility="visible"/>
+
+</RelativeLayout>

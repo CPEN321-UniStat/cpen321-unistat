@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZMTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_title="@+id/txtTitle">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZMBackButton"
+            android:layout_width="@dimen/zm_btn_height_24dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZMTextView.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_horizontal"
+            android:paddingRight="@dimen/zm_dialog_margin_24dp"
+            android:singleLine="true"
+            android:text="@string/zm_subscription_upgrade_billing_period_287271" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <TextView
+        android:id="@+id/txtBillingOptions"
+        style="@style/ZmSettingItemContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="0dp"
+        android:gravity="left"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:text="@string/zm_subscription_upgrade_billing_options_287271"
+        android:textColor="@color/zm_v2_txt_secondary"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/panelTitleBar" />
+
+    <TextView
+        android:id="@+id/txtYearly"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:paddingLeft="@dimen/zm_dialog_margin_12dp"
+        android:paddingTop="@dimen/zm_dialog_margin_12dp"
+        android:paddingBottom="@dimen/zm_dialog_margin_12dp"
+        tools:text="Monthly plan btn"
+        tools:visibility="visible"
+        android:textSize="@dimen/zm_font_normal_size"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtBillingOptions" />
+
+    <ImageView
+        android:id="@+id/imgYearly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:src="@drawable/zm_ic_check"
+        android:visibility="gone"
+        android:importantForAccessibility="no"
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtYearly"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtYearly"
+        android:contentDescription="Yearly plan selected" />
+
+    <TextView
+        android:id="@+id/txtMonthly"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@color/zm_v2_svg_setting_option"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:textSize="@dimen/zm_font_normal_size"
+        tools:text="Monthly plan btn"
+        tools:visibility="visible"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtYearly" />
+
+    <ImageView
+        android:id="@+id/imgMonthly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:padding="@dimen/zm_dialog_margin_12dp"
+        android:src="@drawable/zm_ic_check"
+        android:visibility="gone"
+        android:importantForAccessibility="no"
+
+        zoom:layout_constraintBottom_toBottomOf="@+id/txtMonthly"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="@+id/txtMonthly"
+        android:contentDescription="Monthly plan selected"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtBillingOptions" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtYearly" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dimen_stroke_smallest"
+        android:background="@color/zm_v2_svg_setting_divider"
+        zoom:layout_constraintTop_toBottomOf="@+id/txtMonthly" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

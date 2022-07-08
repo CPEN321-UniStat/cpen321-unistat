@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/hostSecurityPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtSecurity"
+        style="@style/ZmSettingOptionTitle"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:text="@string/zm_lbl_in_meeting_settings_settings_200528" />
+    <!--lock meeting option-->
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:id="@+id/panelOptionLockMeeting"
+        zoom:zm_showTopDivider="false"
+        zoom:zm_dividerHeight="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_marginTop="0dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:focusable="true"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/zm_setting_item_padding_right">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                android:id="@+id/txtLockMeeting"
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/zm_mi_lock_meeting" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkLockMeeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    <!--waiting room option-->
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:id="@+id/optionEnableWaitingRoom"
+        zoom:zm_showTopDivider="false"
+        zoom:zm_dividerHeight="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:focusable="true"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/zm_setting_item_padding_right">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/zm_lbl_in_meeting_settings_enable_waiting_room_150183" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkEnableWaitingRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    <!--hide profile pictures option-->
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:id="@+id/optionHideProfilePictures"
+        zoom:zm_showTopDivider="false"
+        zoom:zm_dividerHeight="1px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            style="@style/ZmSettingItem.UnClick"
+            android:focusable="true"
+            android:gravity="left|center_vertical"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/zm_setting_item_padding_right">
+
+           <us.zoom.uicommon.widget.view.ZMCommonTextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="left|center_vertical"
+                android:text="@string/zm_btn_hide_profile_pictures_200528" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkHideProfilePictures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false" />
+        </LinearLayout>
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    <!--Add watermark to share content option-->
+<!--    <us.zoom.uicommon.widget.view.ZMSettingsCategory-->
+<!--        android:id="@+id/optionWatermark"-->
+<!--        android:visibility="visible"-->
+<!--        zoom:zm_showTopDivider="false"-->
+<!--        zoom:zm_dividerHeight="1px"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        >-->
+
+<!--        <LinearLayout-->
+<!--            style="@style/ZmSettingItem.UnClick"-->
+<!--            android:focusable="true"-->
+<!--            android:gravity="left|center_vertical"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:paddingRight="@dimen/zm_setting_item_padding_right">-->
+
+<!--           <us.zoom.uicommon.widget.view.ZMCommonTextView-->
+<!--                style="@style/ZmSettingItemTitle"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:gravity="left|center_vertical"-->
+<!--                android:text="@string/zm_lbl_in_meeting_settings_add_watermark_147675" />-->
+
+<!--            <us.zoom.uicommon.widget.view.ZMCheckedTextView-->
+<!--                android:id="@+id/chkWatermark"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:checkMark="@drawable/zm_btn_toggle_default"-->
+<!--                android:clickable="false" />-->
+<!--        </LinearLayout>-->
+<!--    </us.zoom.uicommon.widget.view.ZMSettingsCategory>-->
+
+
+    <!--participant/panelist sub-option-->
+    <include
+        layout="@layout/zm_in_meeting_settings_allow_participants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <!--attendee sub-option-->
+    <include
+        layout="@layout/zm_in_meeting_settings_allow_attendees"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

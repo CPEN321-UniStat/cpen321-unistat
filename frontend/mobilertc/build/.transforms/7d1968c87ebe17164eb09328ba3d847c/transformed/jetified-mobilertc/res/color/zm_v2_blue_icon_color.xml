@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/zm_v2_blue_icon_color_pressed" android:state_pressed="true"/>
+    <item android:color="@color/zm_v2_chat_input_hint_color" android:state_enabled="false"/>
+    <item android:color="@color/zm_v2_txt_action"/>
+</selector>

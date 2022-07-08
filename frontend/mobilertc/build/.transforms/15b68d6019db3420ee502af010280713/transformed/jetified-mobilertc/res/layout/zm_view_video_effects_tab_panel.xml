@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/zm_btn_height_32dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/zm_padding_smallest_minus_minus_size"
+        tools:background="@color/zm_v1_black">
+
+        <TextView
+            android:id="@+id/tabItemBackgrounds"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="@dimen/zm_btn_width_48dp"
+            android:minHeight="@dimen/zm_btn_width_48dp"
+            android:layout_marginStart="@dimen/zm_margin_medium_plus_size"
+            android:layout_marginEnd="@dimen/zm_margin_medium_plus_size"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/zm_video_effects_tab_item_background_327545"
+            android:textColor="@color/zm_v1_white_500"
+            android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tabItemFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="@dimen/zm_btn_width_48dp"
+            android:minHeight="@dimen/zm_btn_width_48dp"
+            android:layout_marginStart="@dimen/zm_margin_medium_plus_size"
+            android:layout_marginEnd="@dimen/zm_margin_medium_plus_size"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/zm_video_effects_tab_item_filters_327545"
+            android:textColor="@color/zm_v1_white_alpha54"
+            android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tabItemEffects"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/zm_margin_medium_plus_size"
+            android:layout_marginEnd="@dimen/zm_margin_medium_plus_size"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/zm_video_effects_tab_item_effects_327545"
+            android:textColor="@color/zm_v1_white_alpha54"
+            android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tabItemAvatars"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/zm_margin_medium_plus_size"
+            android:layout_marginEnd="@dimen/zm_margin_medium_plus_size"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/zm_video_effects_tab_item_avatars_210764"
+            android:textColor="@color/zm_v1_white_alpha54"
+            android:textSize="@dimen/zm_ui_kit_text_size_17sp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</HorizontalScrollView>

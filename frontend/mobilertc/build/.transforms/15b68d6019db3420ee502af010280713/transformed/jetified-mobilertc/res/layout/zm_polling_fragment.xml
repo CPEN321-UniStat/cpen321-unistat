@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v2_menu_bg_normal"
+    android:fitsSystemWindows="true"
+    zoom:layout_constraintBottom_toBottomOf="parent"
+    zoom:layout_constraintEnd_toEndOf="parent"
+    zoom:layout_constraintStart_toStartOf="parent"
+    zoom:layout_constraintTop_toTopOf="parent">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        android:background="@color/zm_v2_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_pt_titlebar_height"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent"
+        android:fitsSystemWindows="true"
+        zoom:zm_leftButton="@+id/btnClose"
+        zoom:zm_rightButton="@+id/btnRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <Button
+            android:id="@+id/btnClose"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_close" />
+
+        <Button
+            android:id="@+id/btnRight"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_polling_btn_submit" />
+
+        <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|center_horizontal"
+            android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+            android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+            android:text="@string/zm_msg_polling_title_233656" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:id="@+id/previewBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        zoom:layout_constraintBottom_toTopOf="@+id/banner"
+        zoom:layout_constraintTop_toBottomOf="@id/panelTitleBar" >
+
+        <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmTextView.Content.Secondary.Medium.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pollTypeText"
+            tools:text="Poll"
+            android:layout_marginStart="@dimen/zm_margin_small_size"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="@dimen/zm_margin_small_size"
+            android:id="@+id/divider"
+            android:background="@color/zm_v2_dialog_divider"/>
+
+        <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmTextView.Content.Secondary.Medium.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/questionCountTip"
+            tools:text="9 questions"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:layout_marginStart="@dimen/zm_margin_smaller_size"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"/>
+
+    </LinearLayout>
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_quick_search_list_item_header_min_height"
+        android:background="@color/zm_v2_btn_gray"
+        android:id="@+id/banner"
+        android:gravity="center"
+        android:visibility="gone"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/previewBanner"
+        zoom:layout_constraintBottom_toTopOf="@+id/pollingTitle"
+        tools:text="@string/zm_msg_polling_host_and_panelist_cannot_vote_233656" />
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTextView.Title.Medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/pollingTitle"
+        android:maxLines="2"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:layout_marginEnd="@dimen/zm_margin_medium_size"
+        android:gravity="center|left"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginTop="@dimen/zm_margin_small_size"
+        zoom:layout_constraintTop_toBottomOf="@+id/banner"
+        zoom:layout_constraintBottom_toTopOf="@+id/pollRecyclerView"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintHorizontal_bias="0"
+        tools:text="Polling TitleTitleTitleTitleTitleTitleTitleTitleTitleTitle "/>
+
+    <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+        android:id="@+id/pollRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fitsSystemWindows="true"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginEnd="@dimen/zm_margin_medium_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_super_large_size"
+        zoom:layout_goneMarginTop="@dimen/zm_margin_small_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/pollingTitle"
+        zoom:layout_constraintBottom_toTopOf="@+id/verticalProgress"/>
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/requiredTip"
+        style="@style/ZMTextView.Medium"
+        android:textColor="@color/zm_v2_txt_desctructive"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnPrevious"
+        tools:visibility="visible"
+        android:text="@string/zm_msg_polling_select_answer_tip_233656" />
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/maxlengthTip"
+        style="@style/ZMTextView.Large.NotBold"
+        android:textColor="@color/zm_v2_txt_desctructive"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnNext"
+        tools:visibility="visible"
+        android:text="2000/2000" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/bottomBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:visibility="visible"
+        zoom:constraint_referenced_ids="progress,btnNext"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnPrevious"
+        style="@style/ZmButton.Medium.Secondary"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:background="@drawable/zm_poll_previous_btn"
+        android:minWidth="@dimen/zm_btn_large_height"
+        android:contentDescription="@string/zm_ax_polling_btn_prev_307501"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_normal_size"
+        android:layout_marginStart="@dimen/zm_margin_small_size"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/panelLegalNotice"/>
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/progress"
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_normal_size"
+        android:gravity="center_vertical"
+        android:text="1 0f 20"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toStartOf="@+id/btnNext"
+        zoom:layout_constraintStart_toEndOf="@+id/btnPrevious"
+        zoom:layout_constraintBottom_toTopOf="@+id/panelLegalNotice"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/ZmButton.Medium"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_normal_size"
+        android:background="@drawable/zm_poll_next_btn"
+        android:contentDescription="@string/zm_ax_polling_btn_next_307501"
+        android:minWidth="@dimen/zm_btn_large_height"
+        android:layout_marginEnd="@dimen/zm_margin_small_size"
+        zoom:layout_constraintBottom_toTopOf="@+id/panelLegalNotice"
+        zoom:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/verticalBottomBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:visibility="gone"
+        zoom:constraint_referenced_ids="verticalProgress,submitBtn"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent" />
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/verticalProgress"
+        style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:gravity="center_vertical"
+        android:text="1 0f 20"
+        android:layout_marginStart="@dimen/zm_margin_medium_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_normal_size"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintBottom_toTopOf="@+id/panelLegalNotice" />
+
+    <Button
+        android:id="@+id/submitBtn"
+        style="@style/ZmButton.Medium"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        zoom:layout_goneMarginBottom="@dimen/zm_margin_normal_size"
+        android:text="@string/zm_polling_btn_submit"
+        android:minWidth="@dimen/zm_btn_large_height"
+        android:layout_marginEnd="@dimen/zm_margin_small_size"
+        zoom:layout_constraintHorizontal_bias="1"
+        zoom:layout_constraintTop_toTopOf="@+id/verticalProgress"
+        zoom:layout_constraintBottom_toBottomOf="@+id/verticalProgress"
+        zoom:layout_constraintStart_toEndOf="@+id/verticalProgress"
+        zoom:layout_constraintEnd_toEndOf="@+id/pollRecyclerView" />
+
+    <us.zoom.uicommon.widget.view.ZmLegelNoticeQuestionPanel
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_accessible_btn_min_size"
+        android:minHeight="@dimen/zm_accessible_btn_min_size"
+        android:id="@+id/panelLegalNotice"
+        android:visibility="gone"
+        tools:visibility="visible"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"/>
+
+    <us.zoom.uicommon.widget.view.ZMKeyboardDetector
+        android:id="@+id/keyboardDetector"
+        android:layout_width="match_parent"
+        tools:visibility="gone"
+        android:layout_height="match_parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

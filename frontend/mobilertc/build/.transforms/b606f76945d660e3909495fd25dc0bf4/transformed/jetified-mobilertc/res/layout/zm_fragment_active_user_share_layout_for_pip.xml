@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v1_black">
+
+    <com.zipow.videobox.confapp.meeting.scene.share.ZmUserShareView
+        android:id="@+id/shareVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <com.zipow.videobox.conference.ui.view.render.ZmActiveUserVideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/panelThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_transparent">
+        <com.zipow.videobox.conference.ui.view.render.ZmThumbnailRenderView
+            android:id="@+id/thumbnailRenderView"
+            android:layout_gravity="top|right"
+            android:focusable="true"
+            android:clickable="true"
+            android:layout_width="1px"
+            android:layout_height="1px"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</FrameLayout>

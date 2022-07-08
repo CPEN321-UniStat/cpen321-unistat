@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/zm_white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:background="@color/zm_v2_head"
+        android:layout_height="@dimen/zm_pt_titlebar_height">
+
+        <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+            android:id="@+id/panelTitleBar"
+            style="@style/ZmTitleBar.Dark"
+            zoom:zm_leftButton="@+id/leftButton"
+            zoom:zm_rightButton="@+id/panelTitleRight"
+            zoom:zm_title="@+id/txtTitle">
+
+            <FrameLayout
+                android:id="@+id/leftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btnClose"
+                    style="@style/ZmTitleBarAction.Tablet"
+                    android:duplicateParentState="true"
+                    android:minWidth="@dimen/zm_btn_width_48dp"
+                    android:minHeight="@dimen/zm_btn_width_48dp"
+                    android:text="@string/zm_btn_close"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    style="@style/ZmBackButton.Dark"
+                    android:contentDescription="@string/zm_btn_back"
+                    android:duplicateParentState="true"
+                    android:minWidth="@dimen/zm_btn_width_48dp"
+                    android:minHeight="@dimen/zm_btn_width_48dp" />
+            </FrameLayout>
+
+            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle.Dark"
+                android:text="@string/zm_title_addrbook" />
+
+        </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+        <LinearLayout
+            android:id="@+id/searchBarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnCancelSearch"
+                style="@style/ZmTitleBarAction.Dark"
+                android:contentDescription="@string/zm_btn_cancel"
+                android:text="@string/zm_btn_cancel" />
+
+            <com.zipow.videobox.view.ZMSearchBar
+                android:id="@+id/panelSearch"
+                style="@style/ZMTitleBar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingRight="16dp"
+                android:elevation="0dp"
+                zoom:editTextHint="@string/zm_hint_search_im_18680"
+                zoom:imeOptions="actionDone"
+                zoom:noMargin="true"
+                zoom:onDark="true" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.zipow.videobox.view.ZMSearchBar
+        android:id="@+id/panelSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        zoom:editTextHint="@string/zm_hint_search_im_18680"
+        zoom:imeOptions="actionDone"
+        zoom:cursorVisible="false"
+        zoom:focusable="false"
+        />
+    <View
+        android:id="@+id/searchBarDivideLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_im_search_shadow"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mListContainer">
+
+        <com.zipow.videobox.fragment.settings.ringtone.SelectContactListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:background="@color/zm_white"
+            android:id="@+id/directoryListView">
+
+        </com.zipow.videobox.fragment.settings.ringtone.SelectContactListView>
+
+        <TextView
+            android:id="@+id/txtEmptyView"
+            style="@style/ZMTextView.SettingsItem.Secondary"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/zm_white"
+            android:paddingTop="30dp"
+            android:gravity="center_horizontal|top"
+            android:text="@string/zm_lbl_search_result_empty"
+            android:visibility="gone" />
+
+        <View
+            android:id="@+id/listForeground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/zm_dimmed_forground"
+            android:visibility="gone" />
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:duplicateParentState="true"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                android:text="@string/zm_btn_cancel"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:contentDescription="@string/zm_btn_back"
+                android:duplicateParentState="true"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp" />
+        </FrameLayout>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_pbx_call_forward_time_limit_356266" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:id="@+id/panelOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingTop="@dimen/zm_setting_item_group_spacing"
+            android:paddingRight="0dp"
+            android:paddingBottom="0dp">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:id="@+id/radioGroupTimeLimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="?android:attr/dividerVertical"
+                    android:dividerPadding="@dimen/zm_setting_item_padding_left"
+                    android:showDividers="middle">
+
+                    <RadioButton
+                        android:id="@+id/radioTimeLimit15Min"
+                        style="@style/ZmPhoneSettingRadioButtonItem"
+                        android:text="@string/zm_pbx_call_forward_time_limit_15_min_356266" />
+
+                    <RadioButton
+                        android:id="@+id/radioTimeLimit30Min"
+                        style="@style/ZmPhoneSettingRadioButtonItem"
+                        android:text="@string/zm_pbx_call_forward_time_limit_30_min_356266" />
+
+                    <RadioButton
+                        android:id="@+id/radioTimeLimit1Hour"
+                        style="@style/ZmPhoneSettingRadioButtonItem"
+                        android:text="@string/zm_pbx_call_forward_time_limit_1_hour_356266" />
+
+                    <RadioButton
+                        android:id="@+id/radioTimeLimit2Hour"
+                        style="@style/ZmPhoneSettingRadioButtonItem"
+                        android:text="@string/zm_pbx_call_forward_time_limit_2_hours_356266" />
+
+                    <RadioButton
+                        android:id="@+id/radioTimeLimitUntilStop"
+                        style="@style/ZmPhoneSettingRadioButtonItem"
+                        android:text="@string/zm_pbx_call_forward_time_limit_until_stop_356266" />
+                </RadioGroup>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+    </ScrollView>
+</LinearLayout>

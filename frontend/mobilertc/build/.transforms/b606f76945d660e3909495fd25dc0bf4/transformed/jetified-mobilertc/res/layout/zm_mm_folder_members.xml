@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/moreBtn"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/moreBtn"
+            style="@style/ZmBackButton.Dark"
+            android:src="@drawable/zm_ic_more_ondark"
+            android:contentDescription="@string/zm_description_mm_btn_more" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_title_folders_357393" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ListView
+        android:id="@+id/zm_mm_folder_members_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+</LinearLayout>
