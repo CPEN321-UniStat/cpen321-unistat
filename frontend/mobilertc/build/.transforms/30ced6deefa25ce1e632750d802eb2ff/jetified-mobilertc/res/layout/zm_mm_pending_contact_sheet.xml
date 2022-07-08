@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingRight="24dp"
+    android:paddingLeft="24dp"
+    android:paddingBottom="53dp"
+    android:background="@drawable/bottom_sheet_white_bg"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/UIKitTextView.DialogTitle"
+        android:layout_marginTop="48dp"
+        android:text="@string/zm_mm_lbl_pending_contact_request_dialog_title_218927">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/subTitleTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/UIKitTextView.Small"
+        >
+
+    </TextView>
+
+    <Button
+        android:id="@+id/viewRequestBtn"
+        android:layout_width="match_parent"
+        style="@style/UIKitItinactivatedBtn.Large"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/zm_mm_lbl_pending_contact_request_dialog_confirm_btn_218927">
+
+    </Button>
+
+    <Button
+        android:id="@+id/cancelBtn"
+        android:layout_width="match_parent"
+        style="@style/UIKitItinactivatedBtn.Large.Secondary"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/zm_btn_not_now_87408">
+
+    </Button>
+
+</LinearLayout>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/zmForceEnableSecurityPopView"
+    android:layout_width="296dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="end"
+    android:background="@drawable/zm_force_tip_bg"
+    android:elevation="@dimen/zm_margin_smaller_size">
+
+    <RelativeLayout
+        android:id="@+id/panelTipContent"
+        android:layout_width="@dimen/zm_security_enable_waitingroom_width"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginEnd="@dimen/zm_margin_small_size"
+        android:background="@drawable/zm_force_tip_content_bg"
+        android:elevation="@dimen/zm_margin_smaller_size">
+
+        <LinearLayout
+            android:id="@+id/zmCloseBtn"
+            android:layout_width="@dimen/zm_text_btn_medium_min_width"
+            android:layout_height="@dimen/zm_text_btn_medium_min_width"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:contentDescription="@string/zm_btn_close">
+
+            <ImageView
+                android:layout_width="@dimen/zm_security_close_btn_width"
+                android:layout_height="@dimen/zm_security_close_btn_width"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:scaleType="center"
+                android:src="@drawable/zm_icon_close"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/zmSecurityTitle"
+            style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_padding_small_size"
+            android:layout_marginTop="@dimen/zm_padding_small_size"
+            android:layout_marginBottom="@dimen/zm_padding_small_size"
+            android:layout_toStartOf="@id/zmCloseBtn"
+            android:gravity="start"
+            android:maxLines="5"
+            android:text="@string/zm_tip_msg_force_enable_waitingroom_201331"
+            android:textColor="@color/zm_v2_schedule_force_tip_text" />
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/iv_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/panelTipContent"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="@dimen/zm_margin_large_minus_size"
+        android:elevation="@dimen/zm_margin_smaller_size"
+        android:src="@drawable/zm_triangle_down"
+        tools:ignore="ContentDescription" />
+</RelativeLayout>

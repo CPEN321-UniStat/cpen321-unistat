@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    >
+    <stroke
+        android:color="@color/zm_v2_txt_primary_ondark"
+        android:width="@dimen/zm_stroke_small_size"/>
+    <padding
+        android:left="@dimen/zm_padding_large"
+        android:right="@dimen/zm_padding_large"
+        android:top="@dimen/zm_padding_large"
+        android:bottom="@dimen/zm_padding_large"/>
+
+</shape>

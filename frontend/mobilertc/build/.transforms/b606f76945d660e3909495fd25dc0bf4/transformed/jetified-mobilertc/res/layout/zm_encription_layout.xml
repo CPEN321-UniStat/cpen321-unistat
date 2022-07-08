@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_title="@+id/txtTitle">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_back"
+            />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:text="@string/zm_lbl_end_to_end_encryption_172332"/>
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    <TextView
+        style="@style/ZMTextView.SettingsItemDesc.Small"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:gravity="bottom"
+        android:paddingTop="@dimen/zm_padding_small"
+        android:text="@string/zm_txt_select_one_172332"
+        android:textSize="@dimen/zm_ui_kit_text_size_13sp"
+        android:paddingBottom="@dimen/zm_margin_smaller_size"/>
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/optionEnhance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:focusable="true">
+
+        <TextView
+            style="@style/ZMTextView.SettingsItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+            android:text="@string/zm_lbl_end_to_end_enhance_172332"/>
+
+        <ImageView
+            android:id="@+id/imgEnhanceSelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_medium"
+            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+            android:src="@drawable/zm_group_type_select"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/optionE2E"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:focusable="true">
+
+        <TextView
+            style="@style/ZMTextView.SettingsItem"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="left|center_vertical"
+            android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+            android:text="@string/zm_lbl_end_to_end_172332"/>
+
+        <ImageView
+            android:id="@+id/imgE2ESelected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_medium"
+            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+            android:src="@drawable/zm_group_type_select"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    <TextView
+        style="@style/ZmSettingDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_gravity="bottom"
+        android:text="@string/zm_msg_end_to_end_des_172332"
+        android:lineSpacingExtra="1.2dp"/>
+    <TextView
+        android:id="@+id/txtEncryption"
+        style="@style/ZmSettingDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:layout_gravity="bottom"
+        android:text="@string/zm_msg_end_to_end_enhance_172332"
+        android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+        android:lineSpacingExtra="1.2dp"/>
+</LinearLayout>

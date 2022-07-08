@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:layout_height="match_parent">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/viewRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/viewRight"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_save"/>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_lbl_receive_notifications_add_keywords_31156" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/zm_notification_keywords_editText"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:contentDescription="@string/zm_lbl_receive_notifications_add_keywords_31156"
+            android:gravity="start"
+            android:padding="16dp"
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
+
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+    <TextView
+        style="@style/ZmSettingDescription"
+        android:text="@string/zm_lbl_receive_notifications_add_keywords_describe_31156"/>
+</LinearLayout>

@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+  <group>
+    <clip-path
+        android:pathData="M3,12.7008V3.2992C3,2.307 4.0733,1.682 4.9419,2.1685L13.3358,6.8693C14.2214,7.3653 14.2214,8.6347 13.3358,9.1307L4.9419,13.8315C4.0733,14.318 3,13.693 3,12.7008Z"/>
+    <path
+        android:pathData="M0,0h16v16h-16z"
+        android:fillColor="@color/zm_v2_voice_talk_cancel_bg"/>
+  </group>
+</vector>

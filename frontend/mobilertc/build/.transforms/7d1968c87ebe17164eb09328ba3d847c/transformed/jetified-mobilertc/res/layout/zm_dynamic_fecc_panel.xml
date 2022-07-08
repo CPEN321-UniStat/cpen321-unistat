@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 5:39 PM
+  ~ Last modified 6/29/21 5:39 PM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dynamicFecc"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="380dp"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginBottom="@dimen/zm_control_view_margin_bottom"
+    android:background="@color/zm_transparent">
+
+
+    <com.zipow.videobox.view.ZMPieView
+        android:id="@+id/pieView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <ImageView
+        android:id="@+id/btnSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/zm_ic_cam_switch"
+        app:layout_constraintCircle="@+id/pieView"
+        app:layout_constraintCircleAngle="270"
+        app:layout_constraintCircleRadius="140dp"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/zm_ic_cam_release"
+        app:layout_constraintCircle="@+id/pieView"
+        app:layout_constraintCircleAngle="90"
+        app:layout_constraintCircleRadius="140dp"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/btnZoomIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/zm_ic_cam_zoomin"
+        app:layout_constraintCircle="@+id/pieView"
+        app:layout_constraintCircleAngle="135"
+        app:layout_constraintCircleRadius="140dp"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/btnZoomOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/zm_ic_cam_zoomout"
+        app:layout_constraintCircle="@+id/pieView"
+        app:layout_constraintCircleAngle="225"
+        app:layout_constraintCircleRadius="140dp"
+        tools:ignore="ContentDescription" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

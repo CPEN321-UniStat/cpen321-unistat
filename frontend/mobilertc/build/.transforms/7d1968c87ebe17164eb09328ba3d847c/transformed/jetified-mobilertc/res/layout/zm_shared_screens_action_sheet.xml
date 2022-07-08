@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/action_sheet_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bottom_sheet_round_rect_bg"
+    android:maxWidth="@dimen/zm_action_sheet_max_width"
+    android:paddingLeft="@dimen/zm_padding_smallest_minus_size"
+    android:paddingRight="@dimen/zm_padding_smallest_minus_size"
+    zoom:layout_constraintBottom_toBottomOf="parent"
+    zoom:layout_constraintEnd_toEndOf="parent"
+    zoom:layout_constraintStart_toStartOf="parent">
+
+    <TextView
+        android:id="@+id/header"
+        style="@style/ZmTextView.Button.Secondary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:gravity="left|center_vertical"
+        android:text="@string/zm_title_choose_multi_share_action_sheet_315033"
+        android:textStyle="bold"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent" />
+
+    <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+        android:id="@+id/menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        zoom:autoHeight="true"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnCancel"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@id/header"
+        tools:listitem="@layout/zm_item_multi_share_user"
+        tools:itemCount="10"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/ZmButton.Medium.Text.ActionSheet"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+        android:text="@string/zm_btn_cancel"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/menu_list" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

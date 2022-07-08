@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="zm_meeting_list_pmi_component_button_margin">16dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_meeting_id_margin">16dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_padding_bottom">32dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_title_margin">32dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_vanity_url_margin">16dp</dimen>
+    <dimen name="zm_profile_top_padding">24dp</dimen>
+    <dimen name="zm_sub_settings_list_land_margin">16dp</dimen>
+    <dimen name="zm_sub_settings_list_margin">24dp</dimen>
+</resources>

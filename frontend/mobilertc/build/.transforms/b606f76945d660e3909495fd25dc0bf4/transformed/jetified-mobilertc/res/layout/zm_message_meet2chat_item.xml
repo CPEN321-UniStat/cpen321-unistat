@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panelMsgLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/zm_padding_normal_size"
+    android:paddingTop="@dimen/zm_padding_smallest_size"
+    android:paddingRight="@dimen/zm_padding_normal_size"
+    android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+
+    <ViewStub
+        android:id="@+id/messageHeader"
+        android:layout="@layout/zm_mm_starred_message_header_view"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:id="@+id/zm_message_list_item_title_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="56dp"
+        android:orientation="horizontal">
+        <com.zipow.videobox.view.ZMSimpleEmojiTextView
+            android:id="@+id/txtScreenName"
+            style="@style/ZmTextView.Content.Secondary.Small.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/zm_lbl_meeting2chat_post_meeting_218634" />
+
+        <TextView
+            android:id="@+id/newMessage"
+            style="@style/ZmTextView.Content.Secondary.Small.Dimmed"
+            android:textColor="@color/zm_v2_txt_desctructive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="@string/zm_mm_lbl_new_message_14491"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:id="@+id/panelAvatar"
+            android:layout_marginRight="4dp">
+            <com.zipow.videobox.view.AvatarView
+                android:id="@+id/avatarView"
+                android:layout_width="@dimen/zm_avatar_small_size"
+                android:layout_height="@dimen/zm_avatar_small_size"
+                android:layout_gravity="top"
+                app:zm_avatarBorderSize="0dp" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_meeting2chat_icon"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <com.zipow.videobox.view.mm.MMMeetingCardInfoView
+            android:layout_width="@dimen/zm_mm_bubble_file_width"
+            android:layout_height="wrap_content"
+            android:id="@+id/panelMeetingInfo"/>
+
+        <ImageView
+            android:id="@+id/zm_mm_starred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/zm_mm_starred_icon_on_v2"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imgStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:src="@drawable/zm_mm_msg_state_fail"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+    <include
+        layout="@layout/zm_message_pin_info_layout"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <include
+        layout="@layout/zm_message_reaction_labels_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp" />
+</LinearLayout>

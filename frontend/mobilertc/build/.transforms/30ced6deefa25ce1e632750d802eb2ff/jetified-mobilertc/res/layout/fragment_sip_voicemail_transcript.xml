@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panelVoicemailTranscript"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible"
+    tools:visibility="visible">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_line_divider" />
+
+    <RelativeLayout
+        android:id="@+id/panelTranscriptLoading"
+        android:layout_width="match_parent"
+        android:visibility="visible"
+        android:layout_height="122dp"
+        tools:visibility="gone">
+        <TextView
+            android:id="@+id/tvTranscriptLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="24dp"
+            android:lineSpacingExtra="2sp"
+            android:text="@string/zm_sip_transcribe_processing_61402"
+            android:textColor="@color/zm_ui_kit_color_gray_8E8E93"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/pbTranscriptLoadingProgress"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/tvTranscriptLoading"
+            android:indeterminateDrawable="@drawable/zm_sip_transcript_loading" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/transcript"
+            style="@style/UIKitTextView.SecondaryText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="24dp"
+            android:lineSpacingExtra="2sp"
+            android:text=""
+            android:textIsSelectable="true" />
+
+        <LinearLayout
+            android:id="@+id/seeMore"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/transcript"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="24dp"
+            android:background="@color/zm_white"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/UIKitTextView.SecondaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="..." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/zm_sip_see_more_61381"
+                android:textColor="@color/zm_v2_txt_action"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_v2_cell_divider" />
+</LinearLayout>

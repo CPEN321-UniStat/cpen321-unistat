@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="500dp"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        style="@style/ZMTextView.Large.OnLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/zm_msg_change_panelist_appearance_331754" />
+
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/zm_msg_change_panelist_appearance_hint_name_331754"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="text"
+        android:maxLength="50"
+        android:text=""
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/editDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/zm_msg_change_panelist_appearance_hint_description_331754"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="text"
+        android:maxLength="50"
+        android:text=""
+        tools:ignore="LabelFor" />
+
+    <EditText
+        android:id="@+id/editPronouns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:hint="@string/zm_msg_change_panelist_appearance_hint_pronouns_331754"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="text"
+        android:maxLength="50"
+        android:text=""
+        tools:ignore="LabelFor" />
+
+</LinearLayout>

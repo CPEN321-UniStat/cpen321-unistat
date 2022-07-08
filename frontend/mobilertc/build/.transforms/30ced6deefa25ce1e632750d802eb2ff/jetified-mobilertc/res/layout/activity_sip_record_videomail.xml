@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topContainer"/>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:ellipsize="none"
+        android:fadingEdgeLength="48dp"
+        android:gravity="center"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:requiresFadingEdge="horizontal"
+        android:singleLine="true"
+        android:text="@string/zm_title_sip_videomail_290287"
+        android:textColor="@color/zm_v2_txt_primary"
+        android:textSize="@dimen/zm_font_normal_size"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/panelInCall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topContainer" />
+
+    <com.zipow.videobox.view.sip.videomail.SipInRecordVideomailPanelView
+        android:id="@+id/panelInCall"
+        android:layout_width="@dimen/zm_sip_dialpad_width"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:fadingEdge="none"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.68"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/btnEndCall"
+        android:layout_width="@dimen/zm_sip_dialpad_key_width"
+        android:layout_height="@dimen/zm_sip_dialpad_key_width"
+        android:layout_marginBottom="@dimen/zm_sip_hangup_btn_margin_bottom"
+        android:contentDescription="@string/zm_accessbility_btn_end_call_14480"
+        android:src="@drawable/zm_sip_end_call"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

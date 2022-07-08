@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panelMsgLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left|center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/zm_padding_normal_size"
+    android:paddingTop="@dimen/zm_padding_smallest_size"
+    android:paddingRight="@dimen/zm_padding_normal_size"
+    android:paddingBottom="@dimen/zm_padding_smallest_size">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/zm_message_list_item_title_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtScreenName"
+                style="@style/ZmTextView.Content.Secondary.Small.Dimmed"
+                tools:text="@string/zm_lbl_content_you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.zipow.videobox.view.AvatarView
+                android:id="@+id/avatarView"
+                android:layout_width="@dimen/zm_avatar_small_size"
+                android:layout_height="@dimen/zm_avatar_small_size"
+                android:layout_gravity="top"
+                android:layout_marginRight="8dp" />
+
+            <LinearLayout
+                android:id="@+id/panel_textMessage"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.zipow.videobox.view.EmojiTextView
+                    android:id="@+id/txtMessage"
+                    style="@style/ZmTextView.Content.Primary"
+                    android:paddingLeft="0dp"
+                    tools:visibility="visible"
+                    tools:text="@string/zm_msg_file_transfer_disabled_86061"
+                    android:maxLines="@integer/maximum_lines"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:showLink="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:maxWidth="@dimen/zm_mm_bubble_width" />
+
+                <com.zipow.videobox.view.EmojiTextView
+                    android:id="@+id/txtMessageForBigEmoji"
+                    style="@style/ZmTextView.Content.Primary"
+                    android:maxLines="@integer/maximum_lines"
+                    android:paddingLeft="0dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:showLink="true"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="left|center_vertical"
+                    android:maxWidth="@dimen/zm_mm_bubble_width"
+                    android:textSize="20sp"
+                    android:visibility="gone"
+                    tools:text="123456"
+                    tools:visibility="visible"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <include
+        layout="@layout/zm_message_pin_info_layout"
+        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

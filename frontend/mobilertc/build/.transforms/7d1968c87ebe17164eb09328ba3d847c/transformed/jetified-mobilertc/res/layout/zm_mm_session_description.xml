@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/btnDone"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone"
+                />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnDone"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_save" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_lbl_description_text_108993" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <RelativeLayout
+        android:id="@+id/pannel_Desc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:paddingRight="@dimen/zm_padding_normal_size"
+        android:paddingBottom="@dimen/zm_margin_medium_size">
+
+        <com.zipow.videobox.view.EmojiEditText
+            android:id="@+id/edtDesc"
+            style="@style/ZMEditText.SettingsItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/zm_hintl_not_set"
+            android:maxLength="500"
+            android:inputType="textMultiLine|textCapSentences"
+            android:gravity="left"
+            android:text=""
+            zoom:zm_enableLine="false">
+        </com.zipow.videobox.view.EmojiEditText>
+        <TextView
+            android:id="@+id/letterNumber"
+            style="@style/ZmTextView.Content.Primary.Medium"
+            tools:text="1234"
+            android:textColor="@color/zm_toolbar_stopshare_noraml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|end"
+            android:layout_alignBottom="@+id/edtDesc"
+            android:paddingBottom="16dp"/>
+    </RelativeLayout>
+</LinearLayout>

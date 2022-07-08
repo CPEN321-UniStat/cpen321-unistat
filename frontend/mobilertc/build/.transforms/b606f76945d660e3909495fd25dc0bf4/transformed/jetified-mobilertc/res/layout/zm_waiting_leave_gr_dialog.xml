@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/zm_v1_white_alpha9_corner"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:layout_marginTop="@dimen/zm_margin_large">
+        <us.zoom.uicommon.widget.bar.ZmCircleProgressbar
+            android:layout_width="@dimen/zm_btn_large_height"
+            android:layout_height="@dimen/zm_btn_large_height"
+            android:id="@+id/circleProgressBar"
+            android:textColor="#F5F5F5"
+            android:textSize="@dimen/zm_font_largest_size"
+            android:text="5"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            />
+    </LinearLayout>
+
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#F5F5F5"
+        android:layout_marginBottom="@dimen/zm_margin_large"
+        android:layout_marginLeft="@dimen/zm_margin_large"
+        android:layout_marginRight="@dimen/zm_margin_large"
+        android:textSize="@dimen/zm_font_normal_size"
+        android:contentDescription="@string/zm_accessibility_gr_you_will_join_in_five_sec_267913"
+        android:text="@string/zm_gr_waiting_leave_gr_267913"/>
+
+</LinearLayout>

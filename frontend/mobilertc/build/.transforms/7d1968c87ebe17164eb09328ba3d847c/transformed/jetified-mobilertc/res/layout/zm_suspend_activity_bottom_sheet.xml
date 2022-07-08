@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bottom_sheet_round_rect_bg">
+
+    <LinearLayout
+        android:id="@+id/itemContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/zm_margin_normal_size">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/zm_lbl_suspend_activity_title_200528"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_ui_kit_text_size_24sp" />
+
+        <TextView
+            android:id="@+id/txtSuspendDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:gravity="center"
+            android:text="@string/zm_lbl_suspend_activity_description_200528"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+
+        <Button
+            android:id="@+id/btnSuspendAndReport"
+            style="@style/UILargestButton.RedV2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_small_size"
+            android:text="@string/zm_btn_suspend_and_report_200528" />
+
+        <Button
+            android:id="@+id/btnSuspend"
+            style="@style/UILargestButton.GrayV2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_small_size"
+            android:text="@string/zm_btn_suspend_200528"
+            android:textColor="@color/zm_v2_txt_desctructive" />
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/UILargestButton.GrayV2"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/zm_margin_small_size"
+            android:text="@string/zm_btn_cancel" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

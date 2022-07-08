@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.ScrollView"
+    tools:context="com.zipow.annotate.whiteboard.ZmCloudWhiteBoardToolbar"
+    android:background="@drawable/zm_whiteboard_toolbar_bg"
+    tools:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/llBtns"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/selectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_select_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_select" />
+
+        <ImageButton
+            android:id="@+id/freenhandBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_draw_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_pen" />
+
+        <ImageButton
+            android:id="@+id/shapeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_shape_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_shape_rectangle" />
+
+        <ImageButton
+            android:id="@+id/lineBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_line_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_line" />
+
+        <ImageButton
+            android:id="@+id/textBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_text_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_text" />
+
+        <ImageButton
+            android:id="@+id/stickyNoteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_sticky_note_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_sticky_note" />
+
+        <ImageButton
+            android:id="@+id/insertImageBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_image_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_insert_image" />
+
+        <ImageButton
+            android:id="@+id/eraserBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_erase_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_eraser" />
+
+        <FrameLayout
+            android:id="@+id/colorsGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/colorsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_margin_smaller_size"
+                android:background="@null"
+                android:contentDescription="@string/zm_whiteboard_accessibility_color_289013"
+                android:src="@drawable/zm_whiteboard_toolbar_colors" />
+
+            <ImageButton
+                android:id="@+id/colorDisableBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_margin_smaller_size"
+                android:background="@null"
+                android:contentDescription="@string/zm_whiteboard_accessibility_color_289013"
+                android:src="@drawable/zm_ic_whiteboard_colors_gray"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_margin_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:clickable="false"
+            android:focusable="false"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/zm_ic_whiteboard_divider" />
+
+        <ImageButton
+            android:id="@+id/undoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_undo_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_undo" />
+
+        <ImageButton
+            android:id="@+id/redoBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_redo_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_redo" />
+
+        <ImageView
+            android:id="@+id/divider2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_margin_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:clickable="false"
+            android:focusable="false"
+            tools:ignore="ContentDescription"
+            android:src="@drawable/zm_ic_whiteboard_divider" />
+
+        <ImageButton
+            android:id="@+id/pagesBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/zm_margin_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_smaller_size"
+            android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_whiteboard_accessibility_pages_289013"
+            android:src="@drawable/zm_whiteboard_toolbar_pages" />
+    </LinearLayout>
+</merge>

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v2_window_gb"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/titleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_title="@+id/txtTitle">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton"
+            android:contentDescription="@string/zm_btn_back" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:text="@string/zm_sso_signin_title_216537" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <LinearLayout
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleBar"
+        android:layout_alignParentStart="true"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/zm_padding_larger_size">
+
+        <LinearLayout
+            android:id="@+id/layoutInputDomain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/viewHintDomainNormal"
+                style="@style/ZMTextView.Small.Dimmed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:gravity="left"
+                android:paddingLeft="@dimen/zm_padding_medium_size"
+                android:singleLine="false"
+                android:text="@string/zm_mm_lbl_enter_company_domain" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_white"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/edtDomail"
+                        style="@style/ZmInputBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left|center_vertical"
+                        android:hint="@string/zm_hint_company_domain"
+                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="128"
+                        android:minHeight="@dimen/zm_edit_text_normal_height"
+                        android:paddingLeft="@dimen/zm_padding_medium_size"
+                        android:singleLine="true"
+                        android:textColor="@color/zm_v2_txt_primary" />
+
+                    <View
+                        android:id="@+id/viewLineDomainError"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/zm_txt_warn"
+                        android:visibility="gone" />
+
+                    <View
+                        android:id="@+id/viewLineDomainNormal"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/zm_dialog_btn_bg" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSsoDomain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="2dp"
+                    android:paddingTop="6dp"
+                    android:paddingRight="@dimen/zm_padding_medium_size"
+                    android:paddingBottom="6dp">
+
+                    <TextView
+                        android:id="@+id/txtSsoDomain"
+                        style="@style/ZMTextView.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=".zoom.com" />
+
+                    <ImageView
+                        android:id="@+id/imgDownArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="2dp"
+                        android:src="@drawable/ic_drop_down_secondary"
+                        android:contentDescription="@string/zm_accessibility_domains_title_200642"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/viewHintDomainError"
+                style="@style/ZMTextView.Small.Warn"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/zm_mm_lbl_no_match_domain"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutInputEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/zm_padding_medium_size"
+                style="@style/ZMTextView.Small.Dimmed"
+                android:text="@string/zm_sso_signin_email_work_label_216537" />
+
+            <EditText
+                android:id="@+id/edtEmail"
+                style="@style/ZmInputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/zm_white"
+                android:gravity="left|center_vertical"
+                android:hint="@string/zm_hint_company_email"
+                android:imeOptions="actionDone"
+                android:inputType="textEmailAddress"
+                android:maxLength="128"
+                android:minHeight="@dimen/zm_edit_text_normal_height"
+                android:paddingLeft="@dimen/zm_padding_medium_size"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/zm_v2_txt_primary" />
+
+            <View
+                android:id="@+id/viewLineEmailError"
+                android:layout_width="240dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/zm_txt_warn"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/viewHintEmailError"
+                style="@style/ZMTextView.Small.Warn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="@dimen/zm_padding_medium_size"
+                android:paddingBottom="5dp"
+                android:text="@string/zm_mm_lbl_no_match_domain"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/viewHintEmailNormal"
+                style="@style/ZMTextView.Small.Dimmed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:paddingLeft="@dimen/zm_padding_medium_size"
+                android:paddingBottom="5dp"
+                android:text="@string/zm_mm_lbl_find_company_domain" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnContinue"
+            style="@style/ZmButton"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/zm_margin_medium_size"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:layout_marginRight="@dimen/zm_margin_medium_size"
+            android:gravity="center"
+            android:text="@string/zm_btn_continue" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnUnknowCompanyDomain"
+        style="@style/ZMButton.NoBackground.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/input"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/zm_margin_medium_size"
+        android:text="@string/zm_msg_unknow_company_domain" />
+</RelativeLayout>

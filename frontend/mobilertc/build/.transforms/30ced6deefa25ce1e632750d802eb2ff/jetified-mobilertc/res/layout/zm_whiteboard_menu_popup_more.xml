@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/zm_whiteboard_common_toolbar_bg"
+    android:padding="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin">
+    <TextView
+        android:id="@+id/tvCopy"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_copy_289013" />
+
+    <TextView
+        android:id="@+id/tvPaste"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_paste_289013" />
+
+    <TextView
+        android:id="@+id/tvDuplicate"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_duplicate_289013" />
+
+    <TextView
+        android:id="@+id/tvGroup"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        tools:visibility="visible"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_group_289013"
+        android:visibility="gone" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:layout_marginTop="@dimen/zm_margin_smallest_size"
+        android:layout_marginEnd="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:layout_marginBottom="@dimen/zm_margin_smallest_size"
+        android:paddingStart="@dimen/zm_padding_smaller_size"
+        android:paddingEnd="@dimen/zm_padding_smaller_size"
+        android:background="@drawable/zm_ic_whiteboard_divider" />
+
+    <TextView
+        android:id="@+id/tvBringForward"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_bring_forward_289013" />
+
+    <TextView
+        android:id="@+id/tvBringToFront"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_bring_to_front_289013" />
+
+    <TextView
+        android:id="@+id/tvSendBackward"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_send_backward_289013" />
+
+    <TextView
+        android:id="@+id/tvSendToBack"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_send_to_back_289013" />
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:layout_marginTop="@dimen/zm_margin_smallest_size"
+        android:layout_marginEnd="@dimen/zm_cloud_whiteboard_menu_bar_icon_margin"
+        android:layout_marginBottom="@dimen/zm_margin_smallest_size"
+        android:background="@drawable/zm_ic_whiteboard_divider" />
+
+    <TextView
+        android:id="@+id/tvDelete"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_accessibility_delete_289013" />
+
+
+</LinearLayout>

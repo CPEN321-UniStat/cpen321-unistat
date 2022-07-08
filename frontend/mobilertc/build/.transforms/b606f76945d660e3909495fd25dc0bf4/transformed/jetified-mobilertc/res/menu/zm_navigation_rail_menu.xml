@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/zm_icon_home"
+        android:title="@string/zm_tablet_tab_home_306688"/>
+
+    <item
+        android:id="@+id/navigation_chats"
+        android:icon="@drawable/zm_ic_tab_chat"
+        android:title="@string/zm_tablet_tab_chats_306688"/>
+
+    <item
+        android:id="@+id/navigation_meetings"
+        android:icon="@drawable/zm_icon_meeting"
+        android:title="@string/zm_tab_content_meetings_52777"/>
+    <item
+        android:id="@+id/navigation_phone"
+        android:icon="@drawable/zm_icon_sip"
+        android:title="@string/zm_tab_sip_14480"/>
+    <item
+        android:id="@+id/navigation_contacts"
+        android:icon="@drawable/zm_icon_contacts"
+        android:title="@string/zm_tab_content_contact_52777"/>
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/zm_icon_settings_more"
+        android:title="@string/zm_title_settings_more_318150"/>
+</menu>

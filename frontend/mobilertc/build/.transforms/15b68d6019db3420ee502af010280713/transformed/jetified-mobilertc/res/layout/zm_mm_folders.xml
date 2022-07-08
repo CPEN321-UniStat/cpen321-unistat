@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/zm_window_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/addFolderBtn"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/addFolderBtn"
+            style="@style/ZmBackButton.Dark"
+            android:src="@drawable/zm_mm_folders_add_icon"
+            android:contentDescription="@string/zm_mm_btn_add_folder_357393" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_title_folders_357393" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/zm_mm_folders_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/zm_mm_folder_empty_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_mm_folder_create_empty_linear_margin"
+            android:layout_marginRight="@dimen/zm_mm_folder_create_empty_linear_margin"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_folder_empty"
+                android:layout_gravity="center_horizontal"
+                tools:ignore="ContentDescription" >
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/UIKitTextView.CellTitle"
+                android:gravity="center"
+                android:text="@string/zm_mm_folder_empty_357393"
+                android:layout_marginTop="24dp">
+
+            </TextView>
+
+            <Button
+                android:id="@+id/zm_mm_folder_create"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="48dp"
+                android:paddingLeft="@dimen/zm_mm_folder_create_empty_button_margin"
+                android:paddingRight="@dimen/zm_mm_folder_create_empty_button_margin"
+                android:drawableLeft="@drawable/ic_create_new_folder"
+                android:drawablePadding="10dp"
+                android:text="@string/zm_mm_title_folder_create_357393"
+                android:layout_gravity="center_horizontal"
+                style="@style/UIKitItinactivatedBtn">
+
+            </Button>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

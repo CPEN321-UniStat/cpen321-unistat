@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/btnRight"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnRight"
+            style="@style/ZmTitleBarAction.Dark"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_title_feedback" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:id="@+id/panelOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_medium_size"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/panelSendFeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txtWelcome"
+                    style="@style/ZmTextView.Content.Primary"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="0dp"
+                    android:layout_marginBottom="@dimen/zm_margin_small_size"
+                    android:maxLines="@integer/maximum_lines"
+                    android:gravity="left|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zm_msg_feedback_welcome" />
+
+                <EditText
+                    android:id="@+id/edtFeedback"
+                    style="@style/ZmInputBox"
+                    android:contentDescription="@string/zm_accessibility_feedback_edit_178871"
+                    android:background="@color/zm_white"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="top|left"
+                    android:maxLines="@integer/maximum_lines"
+                    android:inputType="textMultiLine"
+                    tools:ignore="LabelFor">
+                <!--
+                  Do not use requestFocus tag here. Else the soft keyboard cannot be opened
+                  by clicking this EditText on some Android 3.x Tablets.
+                -->
+                    <!-- <requestFocus /> -->
+                </EditText>
+
+                <Button
+                    android:id="@+id/btnSend"
+                    style="@style/ZmButton"
+                    android:layout_marginTop="@dimen/zm_margin_medium_size"
+                    android:layout_marginLeft="@dimen/zm_margin_medium_size"
+                    android:layout_marginRight="@dimen/zm_margin_medium_size"
+                    android:layout_width="match_parent"
+                    android:text="@string/zm_btn_send" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtSending"
+                style="@style/ZmTextView.Content.Primary.OnLight"
+                android:gravity="left|center_vertical"
+                android:maxLines="@integer/maximum_lines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_note_tip"
+                android:layout_margin="@dimen/zm_margin_small_size"
+                android:text="@string/zm_msg_sending_feedback" />
+
+            <TextView
+                android:id="@+id/txtSentFailed"
+                style="@style/ZmTextView.Content.Primary.OnLight"
+                android:gravity="left|center_vertical"
+                android:maxLines="@integer/maximum_lines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_note_tip"
+                android:layout_margin="@dimen/zm_margin_small_size"
+                android:text="@string/zm_msg_sent_feedback_failed" />
+
+            <TextView
+                android:id="@+id/txtThanks"
+                style="@style/ZmTextView.Content.Primary.OnLight"
+                android:gravity="left|center_vertical"
+                android:maxLines="@integer/maximum_lines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/zm_note_tip"
+                android:layout_margin="@dimen/zm_margin_small_size"
+                android:text="@string/zm_msg_thanks_for_feedback" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

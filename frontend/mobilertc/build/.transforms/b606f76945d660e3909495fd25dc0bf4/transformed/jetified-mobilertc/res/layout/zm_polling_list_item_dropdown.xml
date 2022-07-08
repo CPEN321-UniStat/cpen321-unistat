@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/dropDownItem"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@drawable/zm_full_round_rect_bg">
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="0dp"
+        android:layout_height="@dimen/zm_action_sheet_menu_min_height"
+        style="@style/ZMTextView.Medium"
+        android:id="@+id/questionContent"
+        android:textColor="@color/zm_v2_btn_black_text_color"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:layout_marginEnd="@dimen/zm_margin_smaller_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/rightBarrier"
+        tools:text="question content"/>
+
+    <ImageButton
+        android:id="@+id/popupList"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_action_sheet_menu_min_height"
+        android:background="@null"
+        android:paddingStart="@dimen/zm_margin_small_size"
+        android:paddingEnd="@dimen/zm_margin_small_size"
+        android:clickable="false"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/zm_poll_dropdown_arrow"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgCorrect"
+        android:src="@drawable/zm_icon_correct"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toEndOf="@+id/questionContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:ignore="ContentDescription" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rightBarrier"
+        app:constraint_referenced_ids="imgCorrect, popupList"
+        app:barrierDirection="start" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zm_window_bg"
+        android:orientation="vertical" >
+        <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+            android:id="@+id/panelTitleBar"
+            style="@style/ZmTitleBar.Dark"
+            zoom:zm_leftButton="@+id/btnBack"
+            zoom:zm_rightButton="@+id/viewRight"
+            zoom:zm_title="@+id/txtTitle">
+
+            <Button
+                android:id="@+id/btnBack"
+                style="@style/ZmTitleBarAction.Dark"
+                android:contentDescription="@string/zm_btn_close"
+                android:text="@string/zm_btn_close" />
+
+            <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle.Dark"
+                android:text="@string/zm_sip_sms_about_conversation_135918" />
+        </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/zm_window_bg">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="0dp"
+                android:paddingTop="24dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="20dp">
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/one_chat_info_panel">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/zm_white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left|center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:duplicateParentState="true">
+
+                                <com.zipow.videobox.view.AvatarView
+                                    android:id="@+id/selfAvatarView"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:duplicateParentState="true"
+                                    zoom:zm_description_enable="false" />
+
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/self_info_layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp"
+                                android:paddingRight="5dp">
+
+                                <com.zipow.videobox.view.ZMSimpleEmojiTextView
+                                    android:id="@+id/txtSelfScreenName"
+                                    style="@style/UIKitTextView.BuddyName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    tools:text="Sophia Mosley (you)" />
+
+                                <TextView
+                                    android:id="@+id/txtSelfNumber"
+                                    style="@style/UIKitTextView.SecondaryText.Medium"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    tools:text="Direct Number: +1(123)456-7890" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:background="@color/zm_white">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="left|center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="16dp"
+                            android:paddingTop="9dp"
+                            android:paddingBottom="10dp"
+                            android:weightSum="1">
+
+                            <RelativeLayout
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:duplicateParentState="true">
+
+                                <com.zipow.videobox.view.AvatarView
+                                    android:id="@+id/peerAvatarView"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentLeft="true"
+                                    android:layout_centerVertical="true"
+                                    android:duplicateParentState="true"
+                                    zoom:zm_description_enable="false" />
+
+                                <com.zipow.videobox.view.PresenceStateView
+                                    android:id="@+id/peerPresenceStateView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentRight="true"
+                                    android:paddingTop="3dp"
+                                    zoom:zm_subpresence_type="0" />
+                            </RelativeLayout>
+
+                            <LinearLayout
+                                android:id="@+id/peer_info_layout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center_vertical"
+                                android:orientation="vertical"
+                                android:layout_marginStart="10dp"
+                                android:paddingRight="5dp">
+
+                                <com.zipow.videobox.view.ZMSimpleEmojiTextView
+                                    android:id="@+id/txtPeerScreenName"
+                                    style="@style/UIKitTextView.BuddyName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    tools:text="EA-Katie Carter" />
+
+                                <TextView
+                                    android:id="@+id/txtPeerNumber"
+                                    style="@style/UIKitTextView.SecondaryText.Medium"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    tools:text="Work: +1(222)333-4444" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/panelMembers"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:id="@+id/members_count_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginRight="0dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:minHeight="46dp"
+                        android:orientation="horizontal"
+                        android:paddingRight="@dimen/zm_setting_item_padding_right">
+
+                        <TextView
+                            android:id="@+id/members_count_tv"
+                            style="@style/ZMTextView.SettingsItem"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|center_vertical"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:clickable="false"
+                            android:duplicateParentState="true"
+                            android:focusable="false"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:clickable="false"
+                            android:duplicateParentState="true"
+                            android:focusable="false"
+                            android:src="@drawable/zm_next_arrow"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:id="@+id/panelShareImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/optionSearchIn"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/txtSearchIn"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_pbx_msg_search_331511"
+                            android:textColor="@color/zm_v2_txt_action"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/optionShareImages"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/txtShareImages"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_mm_lbl_group_images" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/optionShareFiles"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/txtShareFiles"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_mm_lbl_group_files" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/receiveNotificationLayout"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/notificationTitleText"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_sip_sms_receive_notification_224489"
+                            android:clickable="false"/>
+
+                        <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                            android:id="@+id/chkReceiveNotification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:clickable="false"
+                            android:checkMark="@drawable/zm_btn_toggle_default" />
+
+                        <ImageView
+                            android:id="@+id/notificationErrorImageView"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/zm_mm_msg_state_fail"
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/block_layout"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            android:id="@+id/block_caller_tv"
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_sip_block_number_233217"
+                            android:textColor="@color/zm_v2_txt_desctructive" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+        </ScrollView>
+    </LinearLayout>
+
+    <us.zoom.uicommon.widget.view.ZMTipLayer
+        android:id="@+id/tipLayer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</FrameLayout>

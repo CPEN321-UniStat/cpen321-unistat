@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/zm_v1_white"
+    android:layout_height="match_parent">
+
+    <com.zipow.annotate.AnnoContentView
+        android:id="@+id/annoContentView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar" />
+
+    <com.zipow.annotate.AnnoInputView
+        android:id="@+id/annoInputView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar" />
+
+    <com.zipow.annotate.AnnoNoteView
+        android:id="@+id/annoTextBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar"
+        app:noteIsTextBox="true" />
+
+    <com.zipow.annotate.AnnoNoteView
+        android:id="@+id/annoNoteView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar"
+        app:noteIsTextBox="false" />
+
+
+    <com.zipow.annotate.whiteboard.ZmCloudWhiteBoardTopbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/whiteboardTopbar"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.zipow.annotate.whiteboard.ZmCloudWhiteBoardToolbar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/zm_whiteboard_beta_ic_height"
+        android:id="@+id/whiteboardToolbar"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/zm_margin_small_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/whiteboardBottombar"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.zipow.annotate.whiteboard.ZmCloudWhiteBoardBottombar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/whiteboardBottombar"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginEnd="@dimen/zm_margin_large_size" />
+
+    <ImageView
+        android:id="@+id/ivNewTag"
+        android:layout_width="@dimen/zm_whiteboard_beta_ic_width"
+        android:layout_height="@dimen/zm_whiteboard_beta_ic_height"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_whiteboard_accessibility_new_tag_289013"
+        android:src="@drawable/zm_ic_whiteboard_new_tag"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintEnd_toEndOf="@+id/whiteboardToolbar"
+        app:layout_constraintStart_toStartOf="@+id/whiteboardToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardToolbar" />
+
+    <LinearLayout
+        android:id="@+id/llLoading"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:focusable="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whiteboardTopbar">
+
+        <ProgressBar
+            android:layout_width="@dimen/zm_margin_normal_size"
+            android:layout_height="@dimen/zm_margin_normal_size"
+            android:layout_gravity="center"
+            android:indeterminateDrawable="@drawable/zm_whiteboard_loading_black" />
+
+        <TextView
+            style="@style/ZmTextView.Content.Primary.MediumPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+            android:text="@string/zm_dashboard_loading_tip_296308"
+            android:textColor="@color/zm_v1_gray_2100" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

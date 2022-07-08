@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/btnSave"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone" />
+            <ImageButton
+                android:id="@+id/btnCancel"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_save" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_title_set_custom_status_13602" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="@dimen/zm_setting_item_group_spacing">
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:orientation="vertical"
+            zoom:zm_showTopDivider="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size">
+
+                <com.zipow.videobox.view.EmojiEditText
+                    android:id="@+id/edtCustomStatus"
+                    style="@style/ZmInputBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left|center_vertical"
+                    android:hint="@string/zm_hint_personal_note_out_287600"
+                    android:imeOptions="actionGo"
+                    android:maxLength="60"
+                    android:maxLines="@integer/maximum_lines"
+                    android:textColorHint="@color/zm_im_search_text_hint"
+                    zoom:zm_enableLine="false">
+
+                    <requestFocus />
+                </com.zipow.videobox.view.EmojiEditText>
+
+                <ImageView
+                    android:id="@+id/imgClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/zm_accessibility_clear_105990"
+                    android:src="@drawable/zm_btn_clear_search_view"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+        <TextView
+            android:id="@+id/customStatusDes"
+            style="@style/ZmSettingDescription"
+            android:text="@string/zm_lbl_custom_status_des_109011"
+            android:visibility="gone" />
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:id="@+id/optionReminder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout style="@style/ZmSettingItem.UnClick">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_personal_note_reminder_287600" />
+
+                    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                        android:id="@+id/chkReminder"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checkMark="@drawable/zm_btn_toggle_default"
+                        android:clickable="false"
+                        android:gravity="center" />
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/reminderDes"
+                    style="@style/ZmSettingDescription"
+                    android:layout_marginTop="@dimen/zm_margin_smallest_size"
+                    android:paddingBottom="@dimen/zm_padding_medium_size"
+                    android:text="@string/zm_lbl_personal_note_desc_315590" />
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:id="@+id/optionDisplayTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btnDisplayTime"
+                style="@style/ZmSettingItem">
+
+                <TextView
+                    style="@style/ZmSettingItemTitle"
+                    android:text="@string/zm_lbl_personal_note_display_time_287600" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:duplicateParentState="true"
+                    android:gravity="right|center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtDisplayTime"
+                        style="@style/ZmTextView.Content.Primary.Dimmed"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:duplicateParentState="true"
+                        android:focusable="false"
+                        android:gravity="right"
+                        android:paddingRight="0dp"
+                        android:maxLines="@integer/small_lines"
+                        android:text="@string/zm_lbl_im_alert_always" />
+
+                    <ImageView
+                        style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_smaller_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+    </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+</LinearLayout>

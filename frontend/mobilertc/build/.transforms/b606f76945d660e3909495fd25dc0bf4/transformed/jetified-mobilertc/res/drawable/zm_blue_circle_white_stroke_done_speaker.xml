@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval"
+    >
+    <stroke
+        android:color="@color/zm_white"
+        android:width="@dimen/zm_stroke_small_size"/>
+    <solid android:color="@color/zm_drivermode_btn_done_speak_color"/>
+    <padding
+        android:left="@dimen/zm_padding_large"
+        android:right="@dimen/zm_padding_large"
+        android:top="@dimen/zm_padding_large"
+        android:bottom="@dimen/zm_padding_large"/>
+
+</shape>

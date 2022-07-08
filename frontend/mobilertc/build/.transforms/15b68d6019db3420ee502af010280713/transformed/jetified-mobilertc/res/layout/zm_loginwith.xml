@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/viewLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:minWidth="500dp"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnSignup"
+        zoom:zm_title="@+id/title">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/ZmTitleBarAction"
+            android:contentDescription="@string/zm_btn_cancel"
+            android:text="@string/zm_btn_cancel" />
+
+        <Button
+            android:id="@+id/btnSignup"
+            style="@style/ZmTitleBarAction"
+            android:contentDescription="@string/zm_btn_signup"
+            android:text="@string/zm_btn_signup" />
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/titleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true">
+
+                <ImageView
+                    android:id="@+id/titleIcon"
+                    android:layout_width="92dp"
+                    android:layout_height="21dp"
+                    android:layout_centerHorizontal="true"
+                    android:contentDescription="@string/zm_app_name"
+                    android:src="@drawable/zm_blue_logo" />
+
+                <TextView
+                    android:id="@+id/titleDomain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/titleIcon"
+                    android:layout_centerHorizontal="true"
+                    android:text="zoom.com"
+                    android:textColor="@color/zm_v2_txt_secondary"
+                    android:textSize="@dimen/zm_ui_kit_text_size_9sp" />
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/titleDropDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="0dp"
+                android:layout_toRightOf="@id/titleText"
+                android:contentDescription="@string/zm_accessibility_domains_title_200642"
+                android:padding="@dimen/zm_padding_smallest"
+                android:src="@drawable/ic_drop_down_secondary" />
+
+        </RelativeLayout>
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="0dp"
+            android:paddingTop="@dimen/zm_setting_item_group_spacing"
+            android:paddingRight="0dp"
+            android:paddingBottom="30dp">
+
+            <!-- Login Zoom -->
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelLoginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/zm_edit_text_normal_height"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/zm_padding_normal_size"
+                    android:paddingRight="@dimen/zm_padding_normal_size">
+
+                    <EditText
+                        android:id="@+id/edtUserName"
+                        style="@style/ZmInputBox"
+                        android:hint="@string/zm_hint_zoom_account"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="128" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/zm_edit_text_normal_height"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/zm_padding_normal_size"
+                    android:paddingRight="@dimen/zm_padding_normal_size">
+
+                    <EditText
+                        android:id="@+id/edtPassword"
+                        style="@style/ZmInputBox"
+                        android:hint="@string/zm_hint_zoom_pwd"
+                        android:inputType="textPassword"
+                        android:maxLength="99"
+                        android:selectAllOnFocus="true" />
+                </LinearLayout>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <Button
+                android:id="@+id/btnLoginZoom"
+                style="@style/ZmButton"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/zm_margin_medium_size"
+                android:layout_marginTop="@dimen/zm_margin_medium_size"
+                android:layout_marginRight="@dimen/zm_margin_medium_size"
+                android:text="@string/zm_btn_login" />
+
+            <RelativeLayout
+                android:id="@+id/rlCnSignForgotPasswdPanel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/zm_margin_medium_size"
+                android:layout_marginTop="@dimen/zm_margin_medium_minus_size"
+                android:layout_marginRight="@dimen/zm_margin_medium_size"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <Button
+                    android:id="@+id/linkSmsSign"
+                    style="@style/ZmButton.Small.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:text="@string/zm_btn_sms_login_137212" />
+
+                <Button
+                    android:id="@+id/linkCnForgetPassword"
+                    style="@style/ZmButton.Small.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="@string/zm_lbl_forget_password_57079" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/linkForgetPassword"
+                style="@style/ZmButton.Small.Text"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/zm_margin_medium_minus_size"
+                android:text="@string/zm_lbl_forget_password_57079" />
+
+            <!-- Divider -->
+            <ViewStub
+                android:id="@+id/viewStubInternational"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/zm_view_international_login" />
+
+            <ViewStub
+                android:id="@+id/viewStubChina"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout="@layout/zm_view_china_login" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+

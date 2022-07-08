@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:importantForAccessibility="no"
+    android:orientation="horizontal"
+    android:padding="@dimen/zm_padding_smallest_minus_minus_size">
+
+    <ImageView
+        android:id="@+id/emoji_raise_hand"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/reaction_270b"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/emoji_normal"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="@dimen/zm_margin_smallest"
+        android:layout_marginRight="@dimen/zm_margin_smallest"
+        android:importantForAccessibility="no"
+        android:src="@drawable/reaction_1f389"
+        android:visibility="gone"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+
+    <com.zipow.videobox.view.EmojiTextView
+        android:id="@+id/emoji_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_smallest"
+        android:layout_marginRight="@dimen/zm_margin_smallest"
+        android:importantForAccessibility="no"
+        android:textSize="19sp"
+        android:visibility="gone"
+        tools:ignore="ContentDescription" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/emoji_anim"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginLeft="-6dp"
+        android:layout_marginRight="-4dp"
+        android:importantForAccessibility="no"
+        android:scaleType="centerInside"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        tools:ignore="ContentDescription" />
+
+    <LinearLayout
+        android:id="@+id/panel_emoji_nvf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/zm_video_emoji_reaction_nvf_bg"
+        android:gravity="center_vertical"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal"
+        android:padding="@dimen/zm_padding_smallest_minus_size">
+
+        <ImageView
+            android:id="@+id/emoji_nvf"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/reaction_slower"
+            tools:ignore="ContentDescription" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/emoji_nvf_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/zm_margin_smallest"
+            android:importantForAccessibility="no"
+            android:text="@string/zm_reaction_label_slower_211853"
+            android:textColor="@color/zm_v1_white"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

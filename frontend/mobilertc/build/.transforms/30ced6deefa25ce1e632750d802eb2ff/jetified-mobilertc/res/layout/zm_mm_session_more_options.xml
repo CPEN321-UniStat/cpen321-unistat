@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone"
+                />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_mm_lbl_more_options_text_108993" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zm_window_bg">
+        <us.zoom.uicommon.widget.view.ZMSettingsLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/zm_setting_item_group_spacing"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingTop="@dimen/zm_margin_medium_size" >
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelChangeChannelType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:id="@+id/btnChangeChannelType"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_lbl_create_group_type_text_160938" />
+
+                    <TextView
+                        android:id="@+id/txtChannelType"
+                        style="@style/ZmSettingItemContent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_create_public_group_160938" />
+
+                    <ImageView
+                        android:id="@+id/imgChannelTypeArrow"
+                        style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_small_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelSetExternal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/optionIncludeExternal"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_create_group_edit_external_160938" />
+
+                    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                        android:id="@+id/chkSetExternal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:checkMark="@drawable/zm_btn_toggle_default" />
+                </LinearLayout>
+
+                <!--//-->
+                <LinearLayout
+                    android:id="@+id/panelAllMembers"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_create_group_all_members_181697" />
+                    <ImageView
+                        android:id="@+id/imgByAll"
+                        style="@style/ZmSettingItemArrow"
+                        android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                        android:src="@drawable/zm_group_type_select"
+                        android:visibility="gone" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/panelOnlySameOrg"
+                    style="@style/ZmSettingItem"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_create_group_same_organization_only_181697" />
+                    <ImageView
+                        android:id="@+id/imgByOnlySameOrg"
+                        style="@style/ZmSettingItemArrow"
+                        android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                        android:src="@drawable/zm_group_type_select"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelAccessHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/optionAccessHistory"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_lbl_edit_group_history_message_hint_160938" />
+
+                    <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                        android:id="@+id/chkAccessHistory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:clickable="false"
+                        android:checkMark="@drawable/zm_btn_toggle_default" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelTransferAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:contentDescription="@string/zm_mm_lbl_transfer_admin_131024" >
+
+                <LinearLayout
+                    android:id="@+id/btnTransferAdmin"
+                    style="@style/ZmSettingItem"
+                    android:contentDescription="@string/zm_mm_lbl_transfer_admin_131024" >
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:text="@string/zm_mm_lbl_transfer_admin_131024" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelPostPermission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+                <LinearLayout
+                    android:id="@+id/btnPostPermission"
+                    style="@style/ZmSettingItem">
+
+                    <TextView
+                        style="@style/ZmSettingItemTitle"
+                        android:text="@string/zm_mm_lbl_posting_permissions_128567" />
+
+                    <TextView
+                        android:id="@+id/txtPermissionType"
+                        style="@style/ZmSettingItemContent"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/zm_mm_lbl_posting_permissions_everyone_128567" />
+
+                    <ImageView
+                        style="@style/ZmSettingItemArrow"
+                        android:layout_marginLeft="@dimen/zm_margin_small_size"
+                        tools:ignore="ContentDescription" />
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelConvertToChannel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/btnConvertToChannel"
+                    style="@style/ZmSettingItem"
+                    android:contentDescription="@string/zm_convert_to_channel_312009" >
+
+                    <TextView
+                        android:id="@+id/txtConvertToChannel"
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:text="@string/zm_convert_to_channel_312009" />
+
+                </LinearLayout>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/btnClearHistory"
+                    style="@style/ZmSettingItem"
+                    android:contentDescription="@string/zm_mm_btn_clear_chat_history" >
+
+                    <TextView
+                        android:id="@+id/txtClearHistory"
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:text="@string/zm_mm_btn_clear_chat_history" />
+
+                </LinearLayout>
+
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+            <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                android:id="@+id/panelQuitGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:contentDescription="@string/zm_mm_btn_delete_and_quit_group_chat_59554" >
+
+                <LinearLayout
+                    android:id="@+id/btnQuitGroup"
+                    style="@style/ZmSettingItem"
+                    android:contentDescription="@string/zm_mm_btn_delete_and_quit_group_chat_59554" >
+
+                    <TextView
+                        android:id="@+id/txtQuitGroup"
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:text="@string/zm_mm_btn_delete_and_quit_group_chat_59554" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btnDeleteGroup"
+                    style="@style/ZmSettingItem"
+                    android:contentDescription="@string/zm_mm_btn_delete_group_chat_59554" >
+
+                    <TextView
+                        android:id="@+id/txtDeleteGroup"
+                        style="@style/ZmSettingItemTitle"
+                        android:layout_width="match_parent"
+                        android:text="@string/zm_mm_btn_delete_group_chat_59554"
+                        android:textColor="@color/zm_v2_txt_desctructive" />
+
+                </LinearLayout>
+            </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+        </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+    </ScrollView>
+</LinearLayout>

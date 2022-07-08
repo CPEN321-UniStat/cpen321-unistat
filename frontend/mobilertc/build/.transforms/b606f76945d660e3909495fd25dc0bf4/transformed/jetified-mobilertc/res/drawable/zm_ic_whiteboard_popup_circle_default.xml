@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+  <path
+      android:pathData="M16,16m-7.375,0a7.375,7.375 0,1 1,14.75 0a7.375,7.375 0,1 1,-14.75 0"
+      android:strokeWidth="1.25"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/zm_v2_whiteboard_toolbar_icon_default_gray"/>
+</vector>

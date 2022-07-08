@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minWidth="@dimen/zm_cloud_whiteboard_menu_bar_more_popup_width"
+    android:background="@drawable/zm_whiteboard_common_toolbar_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/zm_margin_smaller_size">
+
+    <TextView
+        android:id="@+id/btn_editor"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_share_dialog_permission_editor_289013" />
+
+    <TextView
+        android:id="@+id/btn_commenter"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_share_dialog_permission_commenter_289013" />
+
+    <TextView
+        android:layout_marginTop="@dimen/zm_margin_smaller_size"
+        android:id="@+id/btn_viewer"
+        style="@style/ZmTextView.Content.Primary.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/zm_cloud_whiteboard_menu_bar_text_size_popup_height"
+        android:gravity="center_vertical"
+        android:text="@string/zm_whiteboard_share_dialog_permission_viewer_289013" />
+
+</LinearLayout>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/zm_v2_window_gb"
+    tools:context="com.zipow.videobox.conference.ui.dialog.ZmBaseDashboardFragment"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/ZMTitleBar"
+        android:background="@color/zm_white">
+
+        <Button
+            android:id="@+id/btnClose"
+            style="@style/ZmTitleBarAction"
+            android:text="@string/zm_btn_close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/zm_dashboard_title_296308"
+            android:drawablePadding="@dimen/zm_padding_medium_size"
+            android:drawableEnd="@drawable/zm_ic_whiteboard_new_tag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnClose"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llCreate"
+            style="@style/ZmTitleBarAction"
+            android:orientation="horizontal"
+            android:background="@drawable/zm_v2_bg_small_primary_btn"
+            android:contentDescription="@string/zm_dashboard_create_296308"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/zm_ic_dashboard_create"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmTextView.Content.Primary.MediumPlus.Dark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/zm_margin_smallest"
+                android:text="@string/zm_dashboard_create_296308" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View style="@style/ZMLightLine" />
+
+    <com.zipow.videobox.view.ZMSearchBar
+        android:id="@+id/searchBar"
+        style="@style/ZmTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_dashborad_searchbar_height"
+        android:layout_marginTop="@dimen/zm_margin_normal"
+        android:background="@null"
+        android:elevation="0dp"
+        android:paddingLeft="@dimen/zm_padding_normal_size"
+        android:paddingRight="@dimen/zm_padding_normal_size"
+        app:layout_constraintTop_toBottomOf="@+id/btnClose"
+        zoom:editTextHint="@string/zm_dashboard_search_keyword_296308"
+        zoom:imeOptions="actionSearch" />
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/mSwipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

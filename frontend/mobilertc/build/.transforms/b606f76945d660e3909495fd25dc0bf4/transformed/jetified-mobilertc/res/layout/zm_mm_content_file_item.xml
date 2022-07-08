@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_list_selector_white_bg"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <com.zipow.videobox.view.ZMGifView
+            android:id="@+id/imgFileLogo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zm_ic_filetype_image" />
+
+        <ImageView
+            android:id="@+id/iconVideo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/zm_ic_btn_play"
+            android:visibility="gone"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.zipow.videobox.view.ZMSimpleEmojiTextView
+                android:id="@+id/txtFileName"
+                style="@style/UIKitTextView.CellTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:singleLine="true"
+                tools:text="A. Explorations Exploration.pptx" />
+
+            <ImageView
+                android:id="@+id/externalFileLinkIndicatorImageView"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:src="@drawable/ic_external_link"
+                android:contentDescription="@string/zm_external_link_accessibility_350330" />
+        </LinearLayout>
+
+        <com.zipow.videobox.view.ZMSimpleEmojiTextView
+            android:id="@+id/txtFileOwner"
+            style="@style/UIKitTextView.SecondaryText.Small.Dimmed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smallest"
+            android:singleLine="true"
+            tools:text="File owner" />
+
+        <TextView
+            android:id="@+id/txtFileGroups"
+            style="@style/UIKitTextView.SecondaryText.Small.Dimmed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_smallest"
+            tools:text="shared in Test Group" />
+
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:id="@+id/panelTranslate"-->
+        <!--            android:orientation="horizontal" >-->
+        <!--            -->
+        <!--			<ImageView android:layout_width="wrap_content"-->
+        <!--			    android:layout_height="wrap_content"-->
+        <!--			    android:id="@+id/imgPendingType"-->
+        <!--			    android:src="@drawable/zm_mm_content_upload"-->
+        <!--                tools:ignore="ContentDescription" />-->
+        <!--			-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/txtTranslateSpeed"-->
+        <!--                style="@style/UIKitTextView.SecondaryText.Small.Dimmed"-->
+        <!--                android:text=""-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content" />-->
+        <!--        </LinearLayout>-->
+
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/progressBarPending"-->
+        <!--            style="@style/PollingPercentBar"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:max="100" />-->
+    </LinearLayout>
+
+    <!--    <Button-->
+    <!--        android:id="@+id/btnCancel"-->
+    <!--        style="@style/ZMButton.NoBackground"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginLeft="10dp"-->
+    <!--        android:text="@string/zm_btn_cancel"-->
+    <!--        android:visibility="gone" />-->
+
+    <ImageView
+        android:id="@+id/imgShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/zm_description_share"
+        android:padding="5dp"
+        android:src="@drawable/zm_ic_share_to" />
+
+</LinearLayout>

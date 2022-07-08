@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/ZmSettingItem"
+        android:minHeight="@dimen/zm_error_panel_min_height"
+        android:background="@drawable/zm_notification_background"
+        android:paddingTop="@dimen/zm_padding_small_size"
+        android:paddingBottom="@dimen/zm_padding_small_size" >
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtAlert"
+            style="@style/ZmTextView.Content.Primary.Small.OnLight"
+            android:paddingLeft="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:maxLines="@integer/maximum_lines"
+            android:gravity="left"
+            android:layout_marginRight="@dimen/zm_margin_smaller_size"
+            tools:text="@string/zm_mm_msg_out_of_storage_29760"
+            android:contentDescription="@string/zm_mm_msg_out_of_storage_29760" />
+        <!--todo svg-->
+        <ImageButton
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/zm_btn_time_chat_hint_closed"
+            android:contentDescription="@string/zm_mm_btn_dismiss_content_description_57731" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/zm_list_divider"
+        tools:ignore="ContentDescription" />
+
+</LinearLayout>

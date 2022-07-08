@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bottom_sheet_white_bg"
+    android:paddingLeft="@dimen/zm_margin_32dp"
+    android:paddingTop="@dimen/zm_margin_32dp"
+    android:paddingRight="@dimen/zm_margin_32dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/zm_sip_sms_release_title_224489"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_ui_kit_text_size_24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textDesc"
+            style="@style/UIKitTextView.SecondaryText.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/releaseBtn"
+            style="@style/ZmButton"
+            android:layout_marginTop="@dimen/zm_margin_32dp"
+            android:text="@string/zm_sip_sms_release_224489" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            style="@style/ZmButton.Secondary"
+            android:layout_marginTop="@dimen/zm_margin_normal"
+            android:text="@string/zm_btn_cancel" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="31dp"
+            android:background="@color/zm_v2_cell_divider" />
+
+        <LinearLayout
+            android:id="@+id/layoutDoNotShowAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/zm_margin_small_6dp"
+            android:layout_marginBottom="@dimen/zm_margin_small_6dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_sip_sms_release_do_not_show_224489" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkDoNotShowAgain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:clickable="false"
+                android:checkMark="@drawable/zm_btn_toggle_default" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

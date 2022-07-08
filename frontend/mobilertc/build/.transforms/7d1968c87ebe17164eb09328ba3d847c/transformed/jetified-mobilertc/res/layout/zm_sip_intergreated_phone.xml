@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/zm_window_bg" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/btnBack"
+        zoom:zm_rightButton="@+id/btnRight"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            style="@style/ZmBackButton.Dark"
+            android:contentDescription="@string/zm_btn_back" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_title_intergreated_phone_67420" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <ScrollView
+        android:id="@+id/panelOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/zm_window_bg" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <us.zoom.uicommon.widget.view.ZMSettingsLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="0dp"
+                android:paddingTop="@dimen/zm_setting_item_group_spacing"
+                android:paddingRight="0dp"
+                android:paddingBottom="0dp"
+                android:id="@+id/settingLayout">
+
+                <TextView
+                    android:id="@+id/txtRegError"
+                    style="@style/ZmTextView.Content.Primary"
+                    android:gravity="left"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/zm_ui_kit_color_yellow_FAE280"
+                    tools:text="error"
+                    android:padding="@dimen/zm_ui_kit_page_left_padding"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_domain_74435" />
+
+                        <TextView
+                            android:id="@+id/txtDomain"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_register_server_74435" />
+
+                        <TextView
+                            android:id="@+id/txtRegisterServer"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_transport_protocol_74435" />
+
+                        <TextView
+                            android:id="@+id/txtTransportProtocol"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_proxy_server_74435" />
+
+                        <TextView
+                            android:id="@+id/txtProxyServer"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_registration_expiry_80317" />
+
+                        <TextView
+                            android:id="@+id/txtRegistrationExpiry"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_last_registration_74435" />
+
+                        <TextView
+                            android:id="@+id/txtLastRegistration"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_username_149054" />
+
+                        <TextView
+                            android:id="@+id/txtSipUsername"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_password_74435" />
+
+                        <TextView
+                            android:id="@+id/txtSipPassword"
+                            style="@style/ZmSettingItemContent"
+                            android:inputType="textPassword"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"
+                            android:ellipsize="start"
+                            android:importantForAccessibility="no"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_authorization_name_74435" />
+
+                        <TextView
+                            android:id="@+id/txtAuthorizationName"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_zoom_user_identity_74435" />
+
+                        <TextView
+                            android:id="@+id/txtUserIdentity"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:text="@string/zm_sip_voicemail_74435" />
+
+                        <TextView
+                            android:id="@+id/txtVoicemail"
+                            style="@style/ZmSettingItemContent"
+                            android:text="@string/zm_intergeated_phone_not_set_31439"/>
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+                <us.zoom.uicommon.widget.view.ZMSettingsCategory
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:id="@+id/btnDiagnoistic"
+                        style="@style/ZmSettingItem">
+
+                        <TextView
+                            style="@style/ZmSettingItemTitle"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="@string/zm_sip_send_log_title_150295" />
+
+                        <ImageView
+                            style="@style/ZmSettingItemArrow"
+                            tools:ignore="ContentDescription" />
+                    </LinearLayout>
+                </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+            </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

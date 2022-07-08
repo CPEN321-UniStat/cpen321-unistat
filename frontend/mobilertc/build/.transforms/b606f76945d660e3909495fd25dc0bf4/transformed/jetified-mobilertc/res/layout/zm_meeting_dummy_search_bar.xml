@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edtSearchDummy"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="@dimen/zm_margin_small_size"
+    android:layout_marginRight="@dimen/zm_margin_small_size"
+    android:background="@drawable/zm_im_search_bar_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:src="@drawable/zm_ic_im_search"
+        tools:ignore="ContentDescription" />
+
+    <EditText
+        style="@style/ZmInputBox"
+        android:gravity="left|center_vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/zm_padding_smaller_size"
+        android:layout_weight="1"
+        android:hint="@string/zm_hint_search"
+        android:cursorVisible="false"
+        android:imeOptions="actionDone"
+        android:textColorHint="@color/zm_im_search_text_hint" />
+
+</LinearLayout>

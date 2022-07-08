@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_line"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/zm_white"
+    android:orientation="vertical"
+    android:paddingStart="32dp"
+    android:paddingLeft="32dp">
+
+    <View
+        android:id="@+id/line_vertical_divider"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="17dp"
+        android:background="@color/zm_line_divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/tv_caller_user_name"
+        style="@style/UIKitTextView.BuddyName.Normal.SingleLine"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:layout_constraintStart_toEndOf="@id/line_vertical_divider"
+        app:layout_constraintEnd_toStartOf="@id/iv_action1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Hana Song" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/tv_divider"
+        style="@style/UIKitTextView.SecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:text="·"
+        app:layout_constraintStart_toEndOf="@id/tv_duration"
+        app:layout_constraintTop_toBottomOf="@id/tv_caller_user_name"
+        app:layout_constraintEnd_toStartOf="@id/tv_callee_user_name"/>
+
+    <Chronometer
+        android:id="@+id/tv_duration"
+        style="@style/UIKitTextView.SecondaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintEnd_toStartOf="@id/tv_divider"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/tv_caller_user_name"
+        app:layout_constraintTop_toBottomOf="@id/tv_caller_user_name"
+        tools:text="00:27" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/tv_callee_user_name"
+        style="@style/UIKitTextView.SecondaryText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
+        app:layout_constraintEnd_toStartOf="@id/iv_action1"
+        app:layout_constraintStart_toEndOf="@id/tv_divider"
+        app:layout_constraintTop_toBottomOf="@id/tv_caller_user_name"
+        app:layout_constraintWidth_default="wrap"
+        tools:text="Lena Oxton" />
+
+    <ImageView
+        android:id="@+id/iv_more_options"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:contentDescription="@string/zm_description_mm_btn_more"
+        android:scaleType="centerInside"
+        android:src="@drawable/zm_sip_history_list_more_action"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_action1"
+        android:layout_width="@dimen/zm_sip_inlist_icon_width"
+        android:layout_height="@dimen/zm_sip_inlist_icon_width"
+        android:layout_marginEnd="@dimen/zm_sip_inlist_icon_margin"
+        android:layout_marginRight="@dimen/zm_sip_inlist_icon_margin"
+        android:background="@drawable/zm_sip_dialpad_key_bg"
+        android:contentDescription="@string/zm_btn_sip_listen_131441"
+        android:padding="11dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/zm_sip_ic_listen"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/iv_action2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_action2"
+        android:layout_width="@dimen/zm_sip_inlist_icon_width"
+        android:layout_height="@dimen/zm_sip_inlist_icon_width"
+        android:layout_marginEnd="@dimen/zm_sip_inlist_icon_margin"
+        android:layout_marginRight="@dimen/zm_sip_inlist_icon_margin"
+        android:background="@drawable/zm_sip_dialpad_key_bg"
+        android:contentDescription="@string/zm_sip_whisper_148065"
+        android:padding="11dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/zm_sip_ic_whisper"
+        android:visibility="gone"
+        app:layout_constraintEnd_toStartOf="@id/iv_more_options"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <View
+        android:id="@+id/bottom_divider"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/zm_line_divider"
+        app:layout_constraintStart_toEndOf="@id/line_vertical_divider"
+        app:layout_constraintTop_toBottomOf="@id/tv_callee_user_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

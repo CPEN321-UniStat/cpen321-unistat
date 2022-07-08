@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2021. Zoom Video Communication. All rights reserved.
+  ~ Created by Jake Wang on 6/29/21 8:03 AM
+  ~ Last modified 6/29/21 8:02 AM
+  ~
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dynamicConnectingPanel"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_transparent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/topbar"
+        android:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/zm_padding_medium"
+        android:paddingBottom="@dimen/zm_padding_medium"
+        android:background="@drawable/zm_top_toolbar_bg"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ProgressBar
+        android:id="@+id/progressbarConnecting"
+        style="@style/ZMProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/zm_margin_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/txtConnecting"
+        app:layout_constraintEnd_toStartOf="@+id/txtConnecting"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/txtConnecting"
+        style="@style/ZMTextView.Medium.OnDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/zm_msg_connecting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/progressbarConnecting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/progressbarConnecting" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/placehoder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topbar"
+        app:layout_constraintBottom_toBottomOf="@id/topbar"
+        android:background="@color/zm_leave_panel_tab_bg"
+        />
+
+    <Button
+        android:id="@+id/btnCancelLeaveMeeting"
+        style="@style/UIRedButton.Cancel"
+        android:paddingRight="@dimen/zm_margin_medium"
+        android:paddingLeft="@dimen/zm_margin_medium"
+        android:layout_marginEnd="@dimen/zm_margin_medium"
+        android:layout_marginStart="@dimen/zm_margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topbar"
+        app:layout_constraintBottom_toBottomOf="@id/topbar"
+        android:ellipsize="middle"
+        android:singleLine="true"
+        android:text="@string/zm_btn_cancel"
+        />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/leaveCancelGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="btnCancelLeaveMeeting,placehoder"
+        android:visibility="gone"
+        tools:visibility="visible"
+        />
+
+    <us.zoom.uicommon.widget.view.ZMTipLayer
+        android:id="@+id/tipLayerForConnecting"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

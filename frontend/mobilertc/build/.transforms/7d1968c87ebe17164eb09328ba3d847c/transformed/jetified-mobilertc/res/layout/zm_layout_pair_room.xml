@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/zm_mm_chats_list">
+
+    <ImageButton
+        android:id="@+id/zm_btn_pair"
+        style="@style/ZmBackButton.Dark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        android:contentDescription="@string/zm_btn_room_btn_pair_179549"
+        android:layout_gravity="center"
+        android:src="@drawable/zm_btn_room_controller" />
+
+    <ProgressBar
+        android:id="@+id/zm_pair_processbar"
+        style="@style/ZMProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_margin_large"
+        android:visibility="visible"
+        android:layout_gravity="center" />
+
+    <ImageButton
+        android:id="@+id/zm_btn_unpair"
+        style="@style/ZmBackButton.Dark"
+        android:background="@color/zm_transparent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/zm_btn_room_btn_unpair_179549"
+        android:visibility="visible"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:src="@drawable/zm_btn_room_paired_controller"/>
+</FrameLayout>

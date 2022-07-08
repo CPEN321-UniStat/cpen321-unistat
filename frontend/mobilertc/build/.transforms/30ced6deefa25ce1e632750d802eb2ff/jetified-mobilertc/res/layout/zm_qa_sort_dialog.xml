@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_bg_dialog_security_settings_overview_sheet"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/zm_margin_small"
+    android:paddingBottom="@dimen/zm_margin_small">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        style="@style/ZmTitleBarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_padding_small_size"
+        android:layout_marginBottom="@dimen/zm_padding_normal_size"
+        android:gravity="left"
+        android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+        android:text="@string/zm_lbl_sort_by_119637"
+        android:textSize="@dimen/zm_font_larger_minus_size" />
+
+    <View
+        style="@style/ZmSecuritySettingsOverviewSheetStyle"
+        android:layout_marginLeft="@dimen/zm_dialog_margin_16dp"
+        android:layout_marginBottom="0dp" />
+
+    <LinearLayout
+        android:id="@+id/zm_qa_sort_by_recent"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_item_height_normal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+        android:paddingRight="@dimen/zm_dialog_margin_16dp">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmTextView.Button.Secondary.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_large"
+            android:paddingLeft="0dp"
+            android:text="@string/zm_lbl_search_sort_by_recent_119637"
+            android:textColor="@color/zm_v2_btn_black_text_color" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/zm_qa_sort_img_recent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zm_ic_tick"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <View
+        style="@style/ZmSecuritySettingsOverviewSheetStyle"
+        android:layout_marginLeft="@dimen/zm_dialog_margin_16dp"
+        android:layout_marginBottom="0dp" />
+
+    <LinearLayout
+        android:id="@+id/zm_qa_sort_by_upvote"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_item_height_normal"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+        android:paddingRight="@dimen/zm_dialog_margin_16dp">
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            style="@style/ZmTextView.Button.Secondary.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/zm_margin_large"
+            android:paddingLeft="0dp"
+            android:text="@string/zm_lbl_search_sort_by_upvotes_307413"
+            android:textColor="@color/zm_v2_btn_black_text_color" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/zm_qa_sort_img_upvote"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/zm_ic_tick"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <View
+        style="@style/ZmSecuritySettingsOverviewSheetStyle"
+        android:layout_marginBottom="0dp" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/closeDialog"
+        style="@style/ZmTextView.Button.Secondary.Dimmed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_padding_normal_size"
+        android:layout_marginBottom="@dimen/zm_padding_normal_size"
+        android:text="@string/zm_btn_close" />
+</LinearLayout>

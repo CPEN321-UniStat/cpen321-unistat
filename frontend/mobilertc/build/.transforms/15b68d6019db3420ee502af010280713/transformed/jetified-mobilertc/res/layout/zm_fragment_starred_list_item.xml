@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/zm_starred_list_item_suggested_linear"
+        android:visibility="gone"
+        tools:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="@string/zm_mm_starred_channel_suggested_owp40" />
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="@dimen/zm_margin_small_size">
+            <com.zipow.videobox.view.AvatarView
+                android:id="@+id/zm_starred_list_item_avatarView"
+                android:layout_width="@dimen/zm_avatar_size"
+                android:layout_height="@dimen/zm_avatar_size">
+
+            </com.zipow.videobox.view.AvatarView>
+
+            <com.zipow.videobox.view.PresenceStateView
+                android:id="@+id/presenceStateView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                zoom:zm_subpresence_type="0"/>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <!--ListView bug need layout_width="wrap_content" and layout_weight="1"-->
+                <TextView
+                    android:id="@+id/zm_starred_list_item_Name"
+                    style="@style/ZmTextView.Content.Primary"
+                    tools:text="@tools:sample/full_names"
+                    android:paddingLeft="0dp"
+                    android:gravity="left|center_vertical"
+                    android:layout_marginLeft="@dimen/zm_margin_small_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:id="@+id/txtExternalUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/UIKitTextView.SecondaryLabel"
+                    android:paddingLeft="@dimen/zm_padding_smallest"
+                    android:paddingRight="@dimen/zm_padding_smallest"
+                    android:gravity="center"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/zm_lbl_external_user_bg"
+                    android:text="@string/zm_lbl_external_128508"
+                    android:contentDescription="@string/zm_lbl_external_acc_128508"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right|center_vertical"
+            android:layout_marginLeft="5dp">
+            <TextView
+                android:id="@+id/txtAt"
+                style="@style/ZmTextView.Content.Primary.Small"
+                android:textColor="@color/zm_v2_txt_desctructive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:duplicateParentState="true"
+                android:layout_marginRight="5dp"
+                android:visibility="gone"
+                tools:text="all"
+                tools:visibility="visible"/>
+            <View
+                android:id="@+id/unreadBubble"
+                android:background="@drawable/zm_ic_red_dot"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:duplicateParentState="true"
+                android:layout_marginRight="5dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:text=""
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/imgErrorMessage"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/zm_error_message"
+                android:contentDescription="@string/zm_msg_delivery_error_70196"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/txtNoteBubble"
+                style="@style/ZMTextView.UnreadMessageCount.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:duplicateParentState="true"
+                android:gravity="center_vertical|center_horizontal"
+                android:visibility="visible" />
+
+             <ImageView
+                 android:id="@+id/zm_starred_list_item_star_btn"
+                 android:layout_marginRight="10dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:padding="9dp"
+                 android:src="@drawable/zm_mm_starred_icon_on"
+                 tools:ignore="ContentDescription" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

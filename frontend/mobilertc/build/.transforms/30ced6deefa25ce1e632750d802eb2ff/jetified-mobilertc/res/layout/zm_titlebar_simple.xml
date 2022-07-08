@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panelTitleBar"
+    style="@style/ZmTitleBar.Dark"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/zm_titlebar_height"
+    zoom:zm_leftButton="@+id/panelTitleLeft"
+    zoom:zm_rightButton="@+id/panelTitleRight"
+    zoom:zm_title="@+id/panelTitleCenter">
+
+    <FrameLayout
+        android:id="@+id/panelTitleLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnCancel"
+            style="@style/ZmTitleBarAction.Dark"
+            android:contentDescription="@string/zm_btn_cancel"
+            android:text="@string/zm_btn_cancel" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/panelTitleRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelTitleCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:orientation="vertical" >
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_sip_title_new_sms_117773" />
+
+    </LinearLayout>
+</us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>

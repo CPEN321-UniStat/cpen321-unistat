@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:orientation="horizontal"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:gravity="center_vertical">
+
+    <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/zm_launcher"
+        tools:ignore="ContentDescription"
+        />
+
+    <TextView
+        android:id="@+id/call_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Notification.Title"
+        android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:layout_weight="1"
+        android:layout_marginLeft="8dp"
+        tools:text="dddddddddddddddddddddddddddddddd"
+        />
+
+    <TextView
+        android:id="@+id/call_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Material.Notification.Line2"
+        android:textSize="@dimen/zm_ui_kit_text_size_14sp"
+        android:layout_marginLeft="16dp"
+        tools:text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        android:maxWidth="100dp"
+        android:maxLines="1"/>
+</LinearLayout>

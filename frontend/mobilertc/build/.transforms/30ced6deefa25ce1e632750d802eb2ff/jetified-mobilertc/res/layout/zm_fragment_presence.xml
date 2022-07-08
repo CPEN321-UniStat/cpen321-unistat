@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zm_window_bg"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/viewRight"
+        zoom:zm_title="@+id/txtTitle">
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:duplicateParentState="true"
+                android:text="@string/zm_btn_close"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:contentDescription="@string/zm_btn_back"
+                android:duplicateParentState="true" />
+
+        </FrameLayout>
+
+        <View
+            android:id="@+id/viewRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_lbl_presence_status_312112" />
+
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_setting_item_group_spacing"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/panelPsAvailable"
+            style="@style/ZmSettingItem">
+
+            <ImageView
+                android:id="@+id/imgPsAvailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:src="@drawable/zm_status_available"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_presence_status_available_40739" />
+
+            <ImageView
+                android:id="@+id/chkPsAvailable"
+                style="@style/ZmSettingItemArrow"
+                android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                android:src="@drawable/zm_group_type_select"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelPsAway"
+            style="@style/ZmSettingItem">
+
+            <ImageView
+                android:id="@+id/imgPsAway"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:src="@drawable/zm_away"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_presence_status_away_40739" />
+
+            <ImageView
+                android:id="@+id/chkPsAway"
+                style="@style/ZmSettingItemArrow"
+                android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                android:src="@drawable/zm_group_type_select"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelPsBusy"
+            style="@style/ZmSettingItem"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <ImageView
+                android:id="@+id/imgPsBusy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:src="@drawable/zm_status_busy"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_presence_status_busy_256131" />
+
+            <ImageView
+                android:id="@+id/chkPsBusy"
+                style="@style/ZmSettingItemArrow"
+                android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                android:src="@drawable/zm_group_type_select"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelPsOffline"
+            style="@style/ZmSettingItem"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:src="@drawable/zm_status_offline"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Offline" />
+
+            <ImageView
+                android:id="@+id/chkPsOffline"
+                style="@style/ZmSettingItemArrow"
+                android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                android:src="@drawable/zm_group_type_select"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+
+    <us.zoom.uicommon.widget.view.ZMSettingsCategory
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_setting_item_group_spacing"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/panelPsDnd"
+            style="@style/ZmSettingItem">
+
+            <ImageView
+                android:id="@+id/imgPsDnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+                android:src="@drawable/zm_status_dnd" />
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_presence_status_dnd_40739" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:duplicateParentState="true"
+                android:gravity="right|center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTimeInterval"
+                    style="@style/ZmTextView.Content.Primary.MediumPlus.Dimmed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/zm_margin_normal"
+                    android:layout_marginEnd="@dimen/zm_margin_normal"
+                    android:clickable="false"
+                    android:duplicateParentState="true"
+                    android:focusable="false"
+                    android:gravity="right"
+                    android:textColor="@color/zm_v1_blue_C900"
+                    tools:text="1h 20m" />
+
+                <ImageView
+                    style="@style/ZmSettingItemArrow"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelPsDndScheduled"
+            style="@style/ZmSettingItem">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="@string/zm_lbl_notification_scheduled_312112" />
+
+            <us.zoom.uicommon.widget.view.ZMCheckedTextView
+                android:id="@+id/chkPsDndScheduled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkMark="@drawable/zm_btn_toggle_default"
+                android:clickable="false"
+                android:gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelDndFrom"
+            style="@style/ZmSettingItem">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:text="@string/zm_lbl_from_19898" />
+
+            <TextView
+                android:id="@+id/txtScheduledDndFrom"
+                style="@style/ZmSettingItemContent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                tools:text="5:00 PM" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelDndTo"
+            style="@style/ZmSettingItem">
+
+            <TextView
+                style="@style/ZmSettingItemTitle"
+                android:text="@string/zm_lbl_to_19898" />
+
+            <TextView
+                android:id="@+id/txtScheduledDndTo"
+                style="@style/ZmSettingItemContent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                tools:text="9:00 AM" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/ZmSettingDescription"
+            android:text="@string/zm_lbl_notification_dnd_des_361276" />
+
+    </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+</LinearLayout>

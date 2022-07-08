@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.zipow.videobox.view.SimpleAnimCloseView
+        android:id="@+id/btn_ignore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="@dimen/zm_ui_kit_page_left_padding"
+        android:contentDescription="@string/zm_sip_accessibility_btn_close_356516"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tvTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:orientation="horizontal">
+        <us.zoom.uicommon.widget.bar.ZmCircleProgressbar
+            android:id="@+id/circleProgressBar"
+            android:layout_width="104dp"
+            android:layout_height="104dp"
+            android:text="10"
+            android:textColor="@color/zm_v2_txt_primary"
+            android:textSize="@dimen/zm_font_larger_size"
+            android:textStyle="bold"
+            app:circleColor="@color/zm_v2_svg_avatar_1"
+            app:progressLineColor="@color/zm_v2_btn_desctructive"
+            app:progressLineWidth="6dp"
+            app:isHollow="true"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@id/tvTitle"
+        style="@style/UIKitTextView.BuddyName.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginRight="20dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:paddingBottom="40dp"
+        android:text="@string/zm_emergency_automation_title_356516"
+        android:textSize="@dimen/zm_ui_kit_text_size_28sp" />
+
+    <include
+        layout="@layout/zm_sip_call_emergency_addr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/panelCallBtns"
+        android:layout_below="@id/tvTitle"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="-1dp" />
+
+    <LinearLayout
+        android:id="@+id/panelCallBtns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center_horizontal|top"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/panelEndCall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnEndCall"
+                android:layout_width="@dimen/zm_sip_dialpad_key_width"
+                android:layout_height="@dimen/zm_sip_dialpad_key_width"
+                android:contentDescription="@string/zm_emergency_automation_stop_356516"
+                android:scaleType="fitXY"
+                android:src="@drawable/zm_sip_end_call" />
+
+            <TextView
+                android:id="@+id/txtEndCall"
+                style="@style/ZMTextView.Normal.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:importantForAccessibility="no"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/zm_emergency_automation_stop_356516" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/panelAcceptCall"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/btnAcceptCall"
+                android:layout_width="@dimen/zm_sip_dialpad_key_width"
+                android:layout_height="@dimen/zm_sip_dialpad_key_width"
+                android:contentDescription="@string/zm_emergency_automation_connect_356516"
+                android:scaleType="fitXY"
+                android:src="@drawable/zm_sip_start_call" />
+
+            <TextView
+                android:id="@+id/txtAccpetCall"
+                style="@style/ZMTextView.Normal.Grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:importantForAccessibility="no"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/zm_emergency_automation_connect_356516" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

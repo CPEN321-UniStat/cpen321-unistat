@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/btnDone"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:duplicateParentState="true"
+                android:visibility="gone"
+                />
+            <ImageButton
+                android:id="@+id/btnBack"
+                style="@style/ZmBackButton.Dark"
+                android:duplicateParentState="true"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btnDone"
+            style="@style/ZmTitleBarAction.Dark"
+            android:text="@string/zm_btn_save" />
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_title_channel_information_59554" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <!--<TextView-->
+        <!--style="@style/ZMTextView.Small"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/zm_setting_item_padding_left"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:text="@string/zm_mm_lbl_chat_topic" />-->
+
+    <us.zoom.uicommon.widget.view.ZMSettingsLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/zm_setting_item_group_spacing"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="@dimen/zm_setting_item_group_spacing" >
+
+        <!-- Meeting topic -->
+
+        <us.zoom.uicommon.widget.view.ZMSettingsCategory
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            zoom:zm_showTopDivider="false" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/zm_padding_normal_size"
+                android:paddingRight="@dimen/zm_padding_normal_size" >
+
+                <com.zipow.videobox.view.EmojiEditText
+                    android:id="@+id/edtTopic"
+                    style="@style/ZmInputBox"
+                    android:maxLines="1"
+                    android:gravity="start|center_vertical"
+                    android:hint="@string/zm_optional_chat_topic_312009"
+                    android:maxLength="256"
+                    android:inputType="textCapSentences"
+                    zoom:zm_enableLine="false">
+
+                    <requestFocus />
+                </com.zipow.videobox.view.EmojiEditText>
+            </LinearLayout>
+        </us.zoom.uicommon.widget.view.ZMSettingsCategory>
+<!--        <TextView-->
+<!--            android:id="@+id/note"-->
+<!--            style="@style/ZmSettingDescription"-->
+<!--            tools:text="@string/zm_mm_lbl_private_group_des_293713"/>-->
+    </us.zoom.uicommon.widget.view.ZMSettingsLayout>
+
+</LinearLayout>

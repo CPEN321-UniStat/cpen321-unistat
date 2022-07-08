@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zipow.videobox.view.photopicker.SquareItemLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <ImageView
+      android:padding="1dip"
+      android:layout_gravity="center"
+      android:id="@+id/iv_photo"
+      android:scaleType="centerCrop"
+      android:layout_width="match_parent"
+      android:background="@drawable/zm_picker_photo_bg"
+      android:layout_height="match_parent"
+      android:adjustViewBounds="true"
+      tools:ignore="ContentDescription" />
+
+  <ImageView
+      android:layout_alignParentTop="true"
+      android:layout_alignParentRight="true"
+      android:clickable="true"
+      android:layout_marginTop="4dp"
+      android:layout_marginRight="4dp"
+      android:importantForAccessibility="no"
+      android:id="@+id/v_selected"
+      android:src="@drawable/zm_picker_checkbox_bg"
+      android:layout_width="24dp"
+      android:layout_height="24dp"
+      android:focusable="true"
+      tools:ignore="ContentDescription" />
+  <View
+      android:id="@+id/mask"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_alignTop="@id/videoPreviewImage"
+      android:layout_alignBottom="@id/videoPreviewImage"
+      android:layout_alignLeft="@id/videoPreviewImage"
+      android:layout_alignRight="@id/videoPreviewImage"
+      android:background="@color/zm_v1_black_alpha20"
+      android:visibility="gone"
+      tools:visibility="visible"
+      />
+  <TextView
+      android:id="@+id/txtDuration"
+      style="@style/ZmTextView.Content.Primary.Small.Dark"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentRight="true"
+      android:padding="4dp"
+      android:visibility="gone"
+      tools:visibility="visible"
+      tools:text="18:88"
+      />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cover"
+        android:background="@color/zm_half_translucent_white"
+        android:visibility="gone"/>
+
+
+</com.zipow.videobox.view.photopicker.SquareItemLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/zm_v1_black"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/waitingAnimation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/zm_anim_bo_connecting_1"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/joiningImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:layout_toLeftOf="@id/waitingAnimation"
+                android:background="@drawable/zm_ic_bo_join_arrow"
+                tools:ignore="ContentDescription" />
+
+            <ImageView
+                android:id="@+id/leavingImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/zm_margin_small_size"
+                android:layout_toLeftOf="@id/waitingAnimation"
+                android:background="@drawable/zm_ic_bo_leave_arrow"
+                android:visibility="gone"
+                tools:ignore="ContentDescription" />
+        </RelativeLayout>
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtJoiningPrompt"
+            style="@style/ZMTextView.ExtremLarge.OnDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/zm_margin_large_minus_size"
+            android:gravity="center"
+            android:text="@string/zm_bo_lbl_joining_prompt_183819" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:id="@+id/txtLeavingPrompt"
+            style="@style/ZMTextView.ExtremLarge.OnDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/zm_margin_large_minus_size"
+            android:text="@string/zm_bo_lbl_leaving_prompt"
+            android:visibility="gone" />
+
+       <us.zoom.uicommon.widget.view.ZMCommonTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/zm_margin_medium_minus_size"
+            android:text="@string/zm_bo_lbl_waiting_prompt"
+            android:textColor="#F8F8F8"
+            android:textSize="@dimen/zm_font_small_size" />
+    </LinearLayout>
+
+</FrameLayout>

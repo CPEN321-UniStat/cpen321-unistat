@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/zm_padding_normal_size"
+    android:paddingTop="@dimen/zm_padding_smaller_size"
+    android:paddingRight="@dimen/zm_padding_normal_size"
+    android:paddingBottom="@dimen/zm_padding_smaller_size">
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/ZMMovePanelistDeclaration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SELECT PANELISTS YOU WANT TO MOVE BACKSTAGE:"
+        android:textColor="@color/zm_v2_txt_secondary"
+        android:textSize="13sp" />
+</LinearLayout>

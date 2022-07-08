@@ -1,0 +1,3111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="backgroundColors">
+  <item>#FF4343</item>
+  <item>#FF8A00</item>
+  <item>#FFD600</item>
+  <item>#49D61E</item>
+  <item>#2F8BFF</item>
+  <item>#AB68FF</item>
+  <item>#FF36C7</item>
+  <item>#00FFFFFF</item>
+ </array>
+    <array name="colors">
+        <item>#000000</item>
+        <item>#0000FF</item>
+    </array>
+    <array name="textColors">
+  <item>#EB1807</item>
+  <item>#FF8A00</item>
+  <item>#F8C200</item>
+  <item>#138A00</item>
+  <item>#006FFA</item>
+  <item>#9846FF</item>
+  <item>#E20094</item>
+  <item>#222230</item>
+ </array>
+    <attr name="image_text_orientation">
+        <enum name="horizontal" value="0"/>
+        <enum name="vertical" value="1"/>
+    </attr>
+    <attr format="integer|dimension" name="round_corner_v2"/>
+    <bool name="zm_is_large_mode">false</bool>
+    <color name="black">#FF000000</color>
+    <color name="black_overlay">@color/zm_v1_black_alpha40</color>
+    <color name="colorAccent">#27ae60</color>
+    <color name="colorPrimary">#F67eF2</color>
+    <color name="colorPrimaryDark">#e74c3c</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="settings_background_color">@color/zm_v1_white</color>
+    <color name="settings_background_normal_color">@color/zm_v1_white</color>
+    <color name="settings_background_selected_color">@color/zm_v1_purple_50_alpha18</color>
+    <color name="settings_profile_background">@color/zm_v1_white_300</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="zm_abbr_avatar_bg_1">@color/zm_v1_yellow_100</color>
+    <color name="zm_abbr_avatar_bg_10">@color/zm_v1_blue_A100</color>
+    <color name="zm_abbr_avatar_bg_11">@color/zm_v1_blue_600</color>
+    <color name="zm_abbr_avatar_bg_12">@color/zm_v1_yellow_400</color>
+    <color name="zm_abbr_avatar_bg_2">@color/zm_v1_yellow_B100</color>
+    <color name="zm_abbr_avatar_bg_3">@color/zm_v1_yellow_B200</color>
+    <color name="zm_abbr_avatar_bg_4">@color/zm_v1_blue_B500</color>
+    <color name="zm_abbr_avatar_bg_5">@color/zm_v1_blue_B300</color>
+    <color name="zm_abbr_avatar_bg_6">@color/zm_v1_blue_B200</color>
+    <color name="zm_abbr_avatar_bg_7">@color/zm_v1_blue_A900</color>
+    <color name="zm_abbr_avatar_bg_8">@color/zm_v1_blue_A800</color>
+    <color name="zm_abbr_avatar_bg_9">@color/zm_v1_blue_A700</color>
+    <color name="zm_abbr_avatar_fg">@color/zm_v1_white</color>
+    <color name="zm_addbuddy_name">@color/zm_v1_gray_E500</color>
+    <color name="zm_addon_action_bar_bg">@color/zm_v1_white_A400_alpha50</color>
+    <color name="zm_addr_book_detail_item_divider">@color/zm_v1_gray_F500_alpha50</color>
+    <color name="zm_addr_book_detail_item_text_color">@color/zm_v1_gray_D200</color>
+    <color name="zm_addr_book_detail_item_text_color_disable">@color/zm_v1_gray_A600</color>
+    <color name="zm_addr_book_detail_item_text_color_press">@color/zm_v1_gray_D700</color>
+    <color name="zm_addrbook_item_details_action_text_disable_color">@color/zm_v1_blue_C900_alpha60</color>
+    <color name="zm_addrbook_item_details_action_text_enable_color">@color/zm_v1_blue_C900</color>
+    <color name="zm_addrbook_item_details_bg_color">@color/zm_v1_white_A200</color>
+    <color name="zm_addrbook_item_details_black_text_color">@color/zm_v1_gray_2100</color>
+    <color name="zm_addrbook_item_details_gray_text_color">@color/zm_v1_gray_D200</color>
+    <color name="zm_annotate_bar_color">@color/zm_v1_white_alpha100</color>
+    <color name="zm_annoter_background">@color/zm_v1_gray_E600_alpha80</color>
+    <color name="zm_bg_alert_toast">@color/zm_v1_green_50</color>
+    <color name="zm_bg_color_popup_window">@color/zm_v1_white</color>
+    <color name="zm_bg_on_dark">@color/zm_v1_gray_E700_alpha50</color>
+    <color name="zm_black">@color/zm_v1_black</color>
+    <color name="zm_black_2">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_black_3">@color/zm_v1_black_alpha99</color>
+    <color name="zm_black_btn_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_black_btn_bg_press">@color/zm_v1_purple_50_alpha9</color>
+    <color name="zm_btn_background_blue">@color/zm_v1_blue_D100</color>
+    <color name="zm_btn_gray_525280">@color/zm_v1_purple_50_alpha9</color>
+    <color name="zm_btn_light">@color/zm_v1_blue_200</color>
+    <color name="zm_btn_light_pressed">@color/zm_v1_blue_A400</color>
+    <color name="zm_btn_light_pressed_blue">@color/zm_v1_blue_700</color>
+    <color name="zm_call_history_name">@color/zm_v1_gray_2100</color>
+    <color name="zm_call_history_name_miss">@color/zm_v1_red_A200</color>
+    <color name="zm_call_history_number">@color/zm_v1_gray_F500</color>
+    <color name="zm_channel_preview_network_error_icon_color">@color/zm_v1_yellow_500</color>
+    <color name="zm_chat_typing_bg">@color/zm_v1_white_400</color>
+    <color name="zm_chats_list_time_normal">@color/zm_v1_gray_A800</color>
+    <color name="zm_chats_list_time_unread">@color/zm_v1_gray_E500</color>
+    <color name="zm_code_view_bottom_txt">@color/zm_v1_gray_B400</color>
+    <color name="zm_color_00A832">#00A832</color>
+    <color name="zm_color_252A30">#252A30</color>
+    <color name="zm_color_2E8CFF">@color/zm_v1_blue_C100</color>
+    <color name="zm_color_3450E5">#3450E5</color>
+    <color name="zm_color_4693DA">#4693DA</color>
+    <color name="zm_color_6FAFFF">#6FAFFF</color>
+    <color name="zm_color_83AE09">#83AE09</color>
+    <color name="zm_color_9A98FF">#9A98FF</color>
+    <color name="zm_color_BCBCBD">@color/zm_v1_gray_A500</color>
+    <color name="zm_color_F7F9FA">#F7F9FA</color>
+    <color name="zm_color_FA6E26">@color/zm_v1_red_700</color>
+    <color name="zm_color_FF6666">#FF6666</color>
+    <color name="zm_context_menu">@color/zm_v1_gray_2100</color>
+    <color name="zm_dark">@color/zm_v1_gray_D900</color>
+    <color name="zm_dashboard_tip_icon">@color/zm_v1_black_50</color>
+    <color name="zm_deep_link_highlight_background_color">@color/zm_v1_blue_700</color>
+    <color name="zm_deep_link_normal_background_color">@color/zm_v1_white</color>
+    <color name="zm_dialog_btn">@color/zm_v1_blue_D100</color>
+    <color name="zm_dialog_option_titlebg">@color/zm_v1_white_alpha0</color>
+    <color name="zm_dialog_text_color_black">@color/zm_v1_black_alpha87</color>
+    <color name="zm_dialog_text_color_gray">@color/zm_v1_black_alpha54</color>
+    <color name="zm_dialog_text_color_green_blue">@color/zm_v1_gray_2300</color>
+    <color name="zm_dim">@color/zm_v1_black_alpha20</color>
+    <color name="zm_dot_panel_background">@color/zm_v1_black_alpha0</color>
+    <color name="zm_dot_selected">@color/zm_v2_txt_secondary</color>
+    <color name="zm_dot_unselected">@color/zm_v1_white_A300</color>
+    <color name="zm_drivermode_btn_done_speak_color">@color/zm_v1_blue_C300</color>
+    <color name="zm_drivermode_text_color_highlight">@color/zm_v1_blue_C300</color>
+    <color name="zm_gray_10">@color/zm_v1_gray_1100_alpha100</color>
+    <color name="zm_gray_1_5">@color/zm_v1_gray_700</color>
+    <color name="zm_gray_2">@color/zm_v1_gray_800</color>
+    <color name="zm_gray_3">@color/zm_v1_gray_C900</color>
+    <color name="zm_gray_5">@color/zm_v1_gray_50</color>
+    <color name="zm_gray_6C6C7F">@color/zm_v1_gray_D400</color>
+    <color name="zm_gray_7">@color/zm_v1_gray_E100</color>
+    <color name="zm_gray_8">@color/zm_v1_gray_D200</color>
+    <color name="zm_green">@color/zm_v1_green_500</color>
+    <color name="zm_grey_text">@color/zm_v1_blue_A600</color>
+    <color name="zm_half_translucent_black">@color/zm_v1_black_alpha40</color>
+    <color name="zm_half_translucent_white">@color/zm_v1_white_alpha50</color>
+    <color name="zm_half_transparent">@color/zm_v1_black_alpha20</color>
+    <color name="zm_highlight">@color/zm_v1_blue_C300</color>
+    <color name="zm_highlight_focused">@color/zm_v1_blue_C200</color>
+    <color name="zm_highlight_pressed">@color/zm_v1_blue_C400</color>
+    <color name="zm_im_buddyname_offline">@color/zm_v1_gray_1300</color>
+    <color name="zm_im_buddyname_online">@color/zm_v1_gray_1300</color>
+    <color name="zm_im_mentioned">@color/zm_v1_red_A200</color>
+    <color name="zm_im_search_item_text_color">@color/zm_v1_gray_F700</color>
+    <color name="zm_im_search_shadow">@color/zm_v1_white_A100</color>
+    <color name="zm_im_search_specified_contents">@color/zm_v1_gray_D200</color>
+    <color name="zm_leave_bg">@color/zm_v1_black_alpha90</color>
+    <color name="zm_leave_panel_tab_bg">@color/zm_v1_black_200</color>
+    <color name="zm_link">@color/zm_v1_blue_B600</color>
+    <color name="zm_list_bg_grey">@color/zm_v1_blue_400</color>
+    <color name="zm_listview_divider">@color/zm_v1_gray_300</color>
+    <color name="zm_live_edit_message_time_82883">@color/zm_v1_gray_D200</color>
+    <color name="zm_meetinglistitem_host">@color/zm_v1_gray_D800</color>
+    <color name="zm_meetinglistitem_id">@color/zm_v1_gray_D800</color>
+    <color name="zm_meetinglistitem_pmi_id">@color/zm_v1_gray_E800</color>
+    <color name="zm_meetinglistitem_time_normal">@color/zm_v1_gray_1200</color>
+    <color name="zm_meetinglistitem_time_today">@color/zm_v1_blue_C300</color>
+    <color name="zm_meetinglistitem_topic">@color/zm_v1_gray_D800</color>
+    <color name="zm_message_hint_bg">@color/zm_v1_blue_C900</color>
+    <color name="zm_message_normal_tip_border">@color/zm_v1_gray_B800</color>
+    <color name="zm_message_tip_background">@color/zm_v1_black_alpha75</color>
+    <color name="zm_message_tip_border">@color/zm_v1_black_alpha0</color>
+    <color name="zm_message_tip_shadow">@color/zm_v1_black_alpha63</color>
+    <color name="zm_mm_edit_message_divider">@color/zm_v1_gray_B100</color>
+    <color name="zm_mm_presence_busy">@color/zm_v2_txt_desctructive</color>
+    <color name="zm_mm_set_muc_info_txt_color">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_mm_slash_popup_avatar_border_color">@color/zm_v1_black_alpha15</color>
+    <color name="zm_mm_unread_message_count_bg_14491">@color/zm_v1_red_900</color>
+    <color name="zm_mm_unread_message_title_bg_14491">@color/zm_v1_red_500</color>
+    <color name="zm_multi_page_bg">@color/zm_v1_white</color>
+    <color name="zm_notification_background">@color/zm_v1_yellow_50</color>
+    <color name="zm_notification_background_blue">@color/zm_v1_blue_C900</color>
+    <color name="zm_notification_background_green">@color/zm_v1_green_200</color>
+    <color name="zm_notification_background_pressed">@color/zm_v1_yellow_800</color>
+    <color name="zm_notification_font_red">@color/zm_v1_red_400</color>
+    <color name="zm_notification_icon_bg">@color/zm_v1_gray_B200</color>
+    <color name="zm_notification_receive_add_keywords_describe">@color/zm_v1_gray_C100</color>
+    <color name="zm_pbx_setting_call_forward_turn_off_btn">#0956B5</color>
+    <color name="zm_pbx_setting_call_forward_turn_on_status_bg">#F2F8FF</color>
+    <color name="zm_pbx_sms_bg_receive">@color/zm_v1_blue_400</color>
+    <color name="zm_pbx_sms_bg_sent">@color/zm_v1_green_10</color>
+    <color name="zm_picker_dropdown_text_color_normal">@color/zm_v1_white_500</color>
+    <color name="zm_picker_dropdown_text_color_pressed">@color/zm_v1_gray_C800</color>
+    <color name="zm_preview_translucent_black">@color/zm_v1_black_alpha44</color>
+    <color name="zm_progress_hub_background">@color/zm_v1_gray_F650</color>
+    <color name="zm_progress_hub_text">@color/zm_v1_white</color>
+    <color name="zm_red">@color/zm_v1_red_A200</color>
+    <color name="zm_red_btn_bg_press">@color/zm_v1_red_A300_alpha47</color>
+    <color name="zm_sdk_conf_toolbar_bg">@color/zm_v1_gray_E300_alpha67</color>
+    <color name="zm_settings_more_background_color">@color/zm_v1_gray_F500</color>
+    <color name="zm_settings_more_header_color">@color/zm_v1_white_A400_alpha50</color>
+    <color name="zm_share_text">@color/zm_v1_gray_200</color>
+    <color name="zm_sharing_title_bg">@color/zm_v1_black_alpha50</color>
+    <color name="zm_sharing_title_half_bg">@color/zm_v1_black_alpha0</color>
+    <color name="zm_sip_dialog_timer_text_color">@color/zm_v1_blue_800</color>
+    <color name="zm_snackbar_error_bkg">@color/zm_v1_yellow_500_alpha100</color>
+    <color name="zm_snackbar_info_bkg">@color/zm_v1_blue_D100_alpha100</color>
+    <color name="zm_snackbar_warning_bkg">@color/zm_v1_yellow_500_alpha100</color>
+    <color name="zm_split_bg">@color/zm_v1_gray_C700</color>
+    <color name="zm_starred_radio_btn_off">@color/zm_v1_gray_D500</color>
+    <color name="zm_starred_radio_btn_on">@color/zm_v1_blue_D100</color>
+    <color name="zm_starred_radio_group_bg">@color/zm_v1_white_700</color>
+    <color name="zm_starred_shadow">@color/zm_v1_black_alpha8</color>
+    <color name="zm_template_danger_btn_pressed">@color/zm_v1_red_A700</color>
+    <color name="zm_template_disable_text">@color/zm_v1_gray_A900</color>
+    <color name="zm_text_blue_bottom_sheet">@color/zm_v1_blue_C850</color>
+    <color name="zm_text_blue_normal">@color/zm_v1_blue_B100</color>
+    <color name="zm_text_blue_pressed">@color/zm_v1_blue_C400</color>
+    <color name="zm_text_color_onlight">@color/zm_v1_gray_1300</color>
+    <color name="zm_text_color_onlight_disable">@color/zm_v1_gray_C300</color>
+    <color name="zm_text_color_onlight_grey">@color/zm_v1_gray_D200</color>
+    <color name="zm_text_dark">@color/zm_v1_black</color>
+    <color name="zm_text_deep_grey">@color/zm_v1_gray_D200</color>
+    <color name="zm_text_dim">@color/zm_v1_gray_B700</color>
+    <color name="zm_text_gray">@color/zm_v1_gray_A850</color>
+    <color name="zm_text_grey">@color/zm_v1_gray_A600</color>
+    <color name="zm_text_highlight">@color/zm_v1_gray_B900</color>
+    <color name="zm_text_light_blue">@color/zm_v1_blue_D500</color>
+    <color name="zm_text_light_dark">@color/zm_v1_gray_2100</color>
+    <color name="zm_text_light_orange">@color/zm_v1_yellow_300</color>
+    <color name="zm_text_listemptyview">@color/zm_v1_blue_A500</color>
+    <color name="zm_text_on_light">@color/zm_v1_gray_1300</color>
+    <color name="zm_text_on_light_disable">@color/zm_v1_gray_1300_alpha70</color>
+    <color name="zm_text_on_medium">@color/zm_v1_gray_D600</color>
+    <color name="zm_text_on_shadow">@color/zm_v1_black_alpha73</color>
+    <color name="zm_toolbar_annotation_focus">@color/zm_v1_gray_F100_alpha75</color>
+    <color name="zm_toolbar_annotation_noraml">@color/zm_v1_gray_F100_alpha50</color>
+    <color name="zm_toolbar_annotation_press">@color/zm_v1_gray_F100_alpha90</color>
+    <color name="zm_toolbar_screenshare_bg">@color/zm_v1_gray_F100_alpha90</color>
+    <color name="zm_toolbar_stopannotation_focus">@color/zm_v1_blue_C200</color>
+    <color name="zm_toolbar_stopannotation_noraml">@color/zm_v1_blue_C300</color>
+    <color name="zm_toolbar_stopannotation_press">@color/zm_v1_blue_C400</color>
+    <color name="zm_toolbar_stopshare_focus">@color/zm_v1_red_50</color>
+    <color name="zm_toolbar_stopshare_noraml">@color/zm_v1_red_A300</color>
+    <color name="zm_toolbar_stopshare_press">@color/zm_v1_red_A100</color>
+    <color name="zm_transparent">@color/zm_v1_white_alpha0</color>
+    <color name="zm_txt_warn">@color/zm_v1_red_100</color>
+    <color name="zm_ui_annotate_color_tip_373740">@color/zm_v1_black_300_alpha80</color>
+    <color name="zm_ui_kit_color_black_060608">@color/zm_v1_black_100</color>
+    <color name="zm_ui_kit_color_black_232333">@color/zm_v1_gray_2100</color>
+    <color name="zm_ui_kit_color_blue_0862D1">@color/zm_v1_blue_D400</color>
+    <color name="zm_ui_kit_color_blue_0E71EB">@color/zm_v1_blue_C900</color>
+    <color name="zm_ui_kit_color_blue_0E71EB_disable">@color/zm_v1_blue_D100_alpha40_1</color>
+    <color name="zm_ui_kit_color_blue_0E71EB_press">@color/zm_v1_blue_D300</color>
+    <color name="zm_ui_kit_color_gray_747487">@color/zm_v1_gray_D200</color>
+    <color name="zm_ui_kit_color_gray_8E8E93">@color/zm_v1_gray_B900</color>
+    <color name="zm_ui_kit_color_gray_BABACC">@color/zm_v1_gray_A600</color>
+    <color name="zm_ui_kit_color_gray_E5E5ED">@color/zm_v1_gray_400</color>
+    <color name="zm_ui_kit_color_gray_E7F1FD">@color/zm_v1_blue_500</color>
+    <color name="zm_ui_kit_color_gray_F2F2F7">@color/zm_v1_white_700</color>
+    <color name="zm_ui_kit_color_gray_F7F7FC">@color/zm_v1_white_400</color>
+    <color name="zm_ui_kit_color_red_FF4242">@color/zm_v1_red_300</color>
+    <color name="zm_ui_kit_color_red_FF4242_press">@color/zm_v1_red_A700</color>
+    <color name="zm_ui_kit_color_yellow_FAE280">@color/zm_v1_yellow_600</color>
+    <color name="zm_ui_kit_color_yellow_FF742E">@color/zm_v1_yellow_300</color>
+    <color name="zm_ui_kit_color_yellow_FF742E_disable">@color/zm_v1_yellow_300_alpha40</color>
+    <color name="zm_ui_kit_color_yellow_FF742E_press">@color/zm_v1_yellow_900</color>
+    <color name="zm_ui_kit_gray_909096">@color/zm_v1_gray_B800</color>
+    <color name="zm_v2_arrow">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_arrow_right">@color/zm_v1_gray_A600</color>
+    <color name="zm_v2_bg_text_btn_dark_focus">@color/zm_v1_white_alpha9</color>
+    <color name="zm_v2_bg_text_btn_dark_pressed">@color/zm_v1_white_alpha18</color>
+    <color name="zm_v2_bg_text_btn_light_focus">@color/zm_v1_blue_C900_alpha5</color>
+    <color name="zm_v2_bg_text_btn_light_pressed">@color/zm_v1_blue_C900_alpha9</color>
+    <color name="zm_v2_black">@color/zm_v1_black_200</color>
+    <color name="zm_v2_bottom_sheet_top_bar">@color/zm_v1_white_500</color>
+    <color name="zm_v2_btn_blue_normal">@color/zm_v1_blue_D100</color>
+    <color name="zm_v2_btn_gray_bkg">@color/zm_v2_txt_primary</color>
+    <color name="zm_v2_chat_audio_record_bg">@color/zm_v1_gray_2400</color>
+    <color name="zm_v2_chat_audio_record_text_color">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_v2_chat_audio_record_title_text_color">@color/zm_v1_gray_2700</color>
+    <color name="zm_v2_dialog_divider">@color/zm_v1_gray_B800</color>
+    <color name="zm_v2_file_type_doc_icon">@color/zm_v1_blue_B400</color>
+    <color name="zm_v2_file_type_pdf_icon">@color/zm_v1_red_200</color>
+    <color name="zm_v2_file_type_ppt_icon">@color/zm_v1_orange_100</color>
+    <color name="zm_v2_file_type_xls_icon">@color/zm_v1_green_700</color>
+    <color name="zm_v2_filter_icon_bg">@color/zm_v1_black_50</color>
+    <color name="zm_v2_light_bg_ondark">@color/zm_v1_white_alpha9</color>
+    <color name="zm_v2_material_touch">@color/zm_v1_black_alpha13_1</color>
+    <color name="zm_v2_meeting_normal_btn_fill">@color/zm_v1_white_alpha0</color>
+    <color name="zm_v2_meeting_normal_btn_fill_disabled">@color/zm_v1_gray_B800</color>
+    <color name="zm_v2_meeting_normal_btn_stroke">@color/zm_v1_blue_C900</color>
+    <color name="zm_v2_meeting_normal_btn_stroke_disabled">@color/zm_v1_blue_C900_alpha60</color>
+    <color name="zm_v2_meeting_normal_btn_text">@color/zm_v1_blue_C900</color>
+    <color name="zm_v2_meeting_normal_label">@color/zm_v1_white_300</color>
+    <color name="zm_v2_meeting_normal_tab_bg">@color/zm_v1_blue_C900</color>
+    <color name="zm_v2_meeting_normal_tab_text_selected">@color/zm_v1_white_500</color>
+    <color name="zm_v2_plist_archive_icon_fillcolor">@color/zm_v1_black_50</color>
+    <color name="zm_v2_plist_item_guest_bg">@color/zm_v1_white_50</color>
+    <color name="zm_v2_plist_item_normal_bg">@color/zm_v1_white_alpha0</color>
+    <color name="zm_v2_polling_nps_btn_pressed">@color/zm_v1_white_500</color>
+    <color name="zm_v2_polling_pre_btn_bg">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_polling_pre_btn_select_bg">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_progress">@color/zm_v1_blue_C300_alpha100</color>
+    <color name="zm_v2_progress_bg">@color/zm_v1_gray_A650_alpha80</color>
+    <color name="zm_v2_schedule_flashing">@color/zm_v1_blue_500</color>
+    <color name="zm_v2_schedule_force_bg">@color/zm_v1_black_alpha8</color>
+    <color name="zm_v2_schedule_force_tip_bg">@color/zm_v1_white</color>
+    <color name="zm_v2_schedule_force_tip_text">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_style_board">@color/zm_v1_gray_C600_alpha88</color>
+    <color name="zm_v2_style_hardware_accelerated_bg">@color/zm_v1_gray_750_alpha88</color>
+    <color name="zm_v2_style_shadow">@color/zm_v1_gray_E300_alpha100</color>
+    <color name="zm_v2_svg_sip_avatar_bg1">@color/zm_v1_blue_D100_alpha3</color>
+    <color name="zm_v2_svg_sip_avatar_bg2">@color/zm_v1_blue_D100_alpha8</color>
+    <color name="zm_v2_svg_sip_hang_up_normal">@color/zm_v1_red_A200</color>
+    <color name="zm_v2_svg_sip_hang_up_pressed">@color/zm_v1_red_A700</color>
+    <color name="zm_v2_tab_bg_normal">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_v2_tab_bg_select">@color/zm_v1_blue_C900</color>
+    <color name="zm_v2_tab_path_normal_alpha">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_v2_tab_tablet_selected">@color/zm_v1_blue_C900</color>
+    <color name="zm_v2_title_tab_textcolor_select">@color/zm_v1_white</color>
+    <color name="zm_v2_title_tab_textcolor_select_loading">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_title_tab_textcolor_unselect">@color/zm_v1_white_alpha82</color>
+    <color name="zm_v2_title_tab_textcolor_unselect_loading">@color/zm_v1_gray_B800</color>
+    <color name="zm_v2_txt_primary_light">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_txt_primary_ondark">@color/zm_v1_white_500</color>
+    <color name="zm_v2_txt_secondary_ondark">@color/zm_v1_white_alpha54</color>
+    <color name="zm_v2_voice_talk_cancel_bg">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_voice_talk_play_icon_bg">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_v2_waiting_room_button_bg">@color/zm_v1_white_700</color>
+    <color name="zm_v2_waiting_room_button_content">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_webinar_cardview_bg">@color/zm_v1_gray_1400</color>
+    <color name="zm_v2_webinar_cardview_divider">@color/zm_v1_white_alpha9</color>
+    <color name="zm_v2_white_alpha62">@color/zm_v1_white_alpha62</color>
+    <color name="zm_v2_white_alpha80">@color/zm_v1_white_alpha80</color>
+    <color name="zm_v2_whiteboard_icon_arrow">@color/zm_v1_black_50_alpha56</color>
+    <color name="zm_v2_whiteboard_progressbar_tint">@color/zm_v1_black</color>
+    <color name="zm_v2_whiteboard_share_span_bg">@color/zm_v1_purple_50_alpha9</color>
+    <color name="zm_v2_whiteboard_text_black">@color/zm_v1_gray_2100</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_black_border_selected">@color/zm_v1_gray_2150</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_black_normal">@color/zm_v1_gray_2150</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_border">@color/zm_v1_purple_50</color>
+    <color name="zm_v2_whiteboard_toolbar_icon_default_gray">@color/zm_v1_gray_2100</color>
+    <color name="zm_video_border_active">@color/zm_v1_green_700</color>
+    <color name="zm_video_border_locked">@color/zm_v1_yellow_200_alpha100</color>
+    <color name="zm_video_border_normal">@color/zm_v1_black_alpha0</color>
+    <color name="zm_warn">@color/zm_v1_red_600</color>
+    <color name="zm_warn_pressed">@color/zm_v1_red_A600</color>
+    <color name="zm_window_translucent_black">@color/zm_black_2</color>
+    <dimen name="annotate_bar_height">56dp</dimen>
+    <dimen name="annotate_dialog_min_width">194dp</dimen>
+    <dimen name="annotate_icon_width">50dp</dimen>
+    <dimen name="zm_action_sheet_max_width">400dp</dimen>
+    <dimen name="zm_action_sheet_menu_min_height">56dp</dimen>
+    <dimen name="zm_addrbook_item_details_action_item_height">75dp</dimen>
+    <dimen name="zm_addrbook_item_details_item_label_width">148dp</dimen>
+    <dimen name="zm_addrbook_item_details_item_margin_size">17dp</dimen>
+    <dimen name="zm_addrbook_item_details_item_spacing_size">24dp</dimen>
+    <dimen name="zm_annotation_popup_min_width">234dp</dimen>
+    <dimen name="zm_annotation_popup_text_max_width">200dp</dimen>
+    <dimen name="zm_avatar_large_size">104dp</dimen>
+    <dimen name="zm_avatar_size">50dp</dimen>
+    <dimen name="zm_avatar_small_size">40dp</dimen>
+    <dimen name="zm_avatar_smaller_size">20dp</dimen>
+    <dimen name="zm_bottom_sheet_height">415dp</dimen>
+    <dimen name="zm_bottom_sheet_item_divider_top_padding">54dp</dimen>
+    <dimen name="zm_bottom_sheet_item_height">55dp</dimen>
+    <dimen name="zm_btn_normal_height">48dp</dimen>
+    <dimen name="zm_btn_width_160dp">160dp</dimen>
+    <dimen name="zm_bubble_dot_size">12dp</dimen>
+    <dimen name="zm_chat_session_item_min_height">66dp</dimen>
+    <dimen name="zm_cloud_document_legal_bottom">72dp</dimen>
+    <dimen name="zm_cloud_whiteboard_bottom_bar_text_min_width">46dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_export_popup_width">63dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_icon_margin">8dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_icon_size">32dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_more_popup_width">100dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_text_size_popup_height">28dp</dimen>
+    <dimen name="zm_cloud_whiteboard_menu_bar_text_size_popup_width">72dp</dimen>
+    <dimen name="zm_cloud_whiteboard_pages_item_height">120dp</dimen>
+    <dimen name="zm_cloud_whiteboard_pages_item_width">168dp</dimen>
+    <dimen name="zm_cloud_whiteboard_share_temp_tip_text_width">230dp</dimen>
+    <dimen name="zm_conf_bottom_tab_bar_height">48dp</dimen>
+    <dimen name="zm_conf_toolbar_width_percent">1.0</dimen>
+    <dimen name="zm_conf_video_preview_percent">1.0</dimen>
+    <dimen name="zm_control_arrow_view_wh">68dp</dimen>
+    <dimen name="zm_control_view_heigth">100dp</dimen>
+    <dimen name="zm_control_view_margin_bottom">70dp</dimen>
+    <dimen name="zm_control_view_width">140dp</dimen>
+    <dimen name="zm_dashborad_list_item_phone_height">68dp</dimen>
+    <dimen name="zm_dashborad_list_item_phone_width">104dp</dimen>
+    <dimen name="zm_dashborad_list_item_tablet_height">120dp</dimen>
+    <dimen name="zm_dashborad_list_item_tablet_width">150dp</dimen>
+    <dimen name="zm_dashborad_searchbar_height">44dp</dimen>
+    <dimen name="zm_dashborad_share_toggle_tip_text_width">230dp</dimen>
+    <dimen name="zm_dialog_margin_12dp">12dp</dimen>
+    <dimen name="zm_dialog_margin_16dp">16dp</dimen>
+    <dimen name="zm_dialog_margin_21dp">21dp</dimen>
+    <dimen name="zm_dialog_margin_24dp">24dp</dimen>
+    <dimen name="zm_dialog_margin_7dp">12dp</dimen>
+    <dimen name="zm_dialog_radius_big">20dp</dimen>
+    <dimen name="zm_dialog_radius_normal">8dp</dimen>
+    <dimen name="zm_dialog_sso_content_h">104dp</dimen>
+    <dimen name="zm_dialog_sso_content_large_h">162dp</dimen>
+    <dimen name="zm_edit_text_normal_height">48dp</dimen>
+    <dimen name="zm_emoji_view_size">20dp</dimen>
+    <dimen name="zm_end_webinar_attendees_marginleft">28dp</dimen>
+    <dimen name="zm_error_panel_min_height">60dp</dimen>
+    <dimen name="zm_font_size_medium">14dp</dimen>
+    <dimen name="zm_font_size_normal">16dp</dimen>
+    <dimen name="zm_gradual_step">1dp</dimen>
+    <dimen name="zm_height_36dp">36dp</dimen>
+    <dimen name="zm_height_64dp">64dp</dimen>
+    <dimen name="zm_height_84dp">72dp</dimen>
+    <dimen name="zm_home_page_bottom_tab_bar_height">49dp</dimen>
+    <dimen name="zm_ic_sip_indicator_size">20dp</dimen>
+    <dimen name="zm_indicator_height">21dp</dimen>
+    <dimen name="zm_item_height_normal">48dp</dimen>
+    <dimen name="zm_language_interpretation_interpreter_lan_height">38dp</dimen>
+    <dimen name="zm_language_interpretation_interpreter_ui_max">394dp</dimen>
+    <dimen name="zm_login_ic_size">24dp</dimen>
+    <dimen name="zm_login_panel_height">72dp</dimen>
+    <dimen name="zm_margin_32dp">32dp</dimen>
+    <dimen name="zm_margin_64dp">64dp</dimen>
+    <dimen name="zm_margin_large">20dp</dimen>
+    <dimen name="zm_margin_large_middle">22dp</dimen>
+    <dimen name="zm_margin_largest">24dp</dimen>
+    <dimen name="zm_margin_login_btn">18dp</dimen>
+    <dimen name="zm_margin_medium">12dp</dimen>
+    <dimen name="zm_margin_medium_plus">14dp</dimen>
+    <dimen name="zm_margin_normal">16dp</dimen>
+    <dimen name="zm_margin_small">8dp</dimen>
+    <dimen name="zm_margin_small_6dp">6dp</dimen>
+    <dimen name="zm_margin_smallest">4dp</dimen>
+    <dimen name="zm_meeting_chat_avatar_size">32dp</dimen>
+    <dimen name="zm_meeting_chat_msg_head_direct_msg_margin_start">5dp</dimen>
+    <dimen name="zm_meeting_chat_msg_head_margin_end">24dp</dimen>
+    <dimen name="zm_meeting_chat_msg_head_margin_start">14dp</dimen>
+    <dimen name="zm_meeting_chat_msg_head_margin_top">20dp</dimen>
+    <dimen name="zm_meeting_chat_msg_item_margin_start">12dp</dimen>
+    <dimen name="zm_meeting_chat_msg_margin_end">24dp</dimen>
+    <dimen name="zm_meeting_chat_msg_margin_start">11dp</dimen>
+    <dimen name="zm_meeting_chat_msg_margin_top">6dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_button_margin">8dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_meeting_id_margin">6dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_padding_bottom">16dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_title_margin">0dp</dimen>
+    <dimen name="zm_meeting_list_pmi_component_vanity_url_margin">0dp</dimen>
+    <dimen name="zm_meeting_number_max_width">160dp</dimen>
+    <dimen name="zm_mm_folder_create_empty_button_margin">50dp</dimen>
+    <dimen name="zm_mm_folder_create_empty_linear_margin">72dp</dimen>
+    <dimen name="zm_new_feature_icon_height">8dp</dimen>
+    <dimen name="zm_new_feature_icon_witdh">18dp</dimen>
+    <dimen name="zm_padding_btn">8dp</dimen>
+    <dimen name="zm_pbx_message_end_margin">84dp</dimen>
+    <dimen name="zm_pbx_message_min_image_height">44dp</dimen>
+    <dimen name="zm_pbx_message_session_item_title_margin_top_empty_session">22dp</dimen>
+    <dimen name="zm_pbx_message_session_item_title_margin_top_normal">12dp</dimen>
+    <dimen name="zm_pbx_message_session_item_title_margin_top_with_extra_info">9dp</dimen>
+    <dimen name="zm_pin_snackbar_height">56dp</dimen>
+    <dimen name="zm_preview_sheet_btn_margin_top">43dp</dimen>
+    <dimen name="zm_preview_sheet_padding_bottom">50dp</dimen>
+    <dimen name="zm_preview_sheet_padding_top">32dp</dimen>
+    <dimen name="zm_preview_width_margin">24dp</dimen>
+    <dimen name="zm_profile_top_padding">8dp</dimen>
+    <dimen name="zm_pt_titlebar_height">44dp</dimen>
+    <dimen name="zm_pzr_list_height">295dp</dimen>
+    <dimen name="zm_qa_btn_max_width">48dp</dimen>
+    <dimen name="zm_qa_tab_width">100dp</dimen>
+    <dimen name="zm_quick_search_list_item_header_min_height">28dp</dimen>
+    <dimen name="zm_rencent_meeting_no_width">130dp</dimen>
+    <dimen name="zm_right_arrow_margin">@dimen/zm_margin_smallest</dimen>
+    <dimen name="zm_schedule_item_layout_weight">5</dimen>
+    <dimen name="zm_schedule_select_textview_weight">1</dimen>
+    <dimen name="zm_schedule_select_title_weight">4</dimen>
+    <dimen name="zm_security_close_btn_width">12dp</dimen>
+    <dimen name="zm_security_enable_waitingroom_width">264dp</dimen>
+    <dimen name="zm_setting_item_divider_height">1dp</dimen>
+    <dimen name="zm_setting_item_group_spacing">24dp</dimen>
+    <dimen name="zm_setting_item_min_height">44dp</dimen>
+    <dimen name="zm_setting_item_padding_bottom">10dp</dimen>
+    <dimen name="zm_setting_item_padding_left">15dp</dimen>
+    <dimen name="zm_setting_item_padding_right">10dp</dimen>
+    <dimen name="zm_setting_item_padding_top">10dp</dimen>
+    <dimen name="zm_settings_item_with_description_min_height">56dp</dimen>
+    <dimen name="zm_share_toolbar_margin">10dp</dimen>
+    <dimen name="zm_share_toolbar_unit_maxWidth">60dp</dimen>
+    <dimen name="zm_simple_anim_close_open_width">80dp</dimen>
+    <dimen name="zm_simple_anim_close_radius">12dp</dimen>
+    <dimen name="zm_simple_anim_close_size">24dp</dimen>
+    <dimen name="zm_sip_audio_progress_size_small">10dp</dimen>
+    <dimen name="zm_sip_call_state_margin">20dp</dimen>
+    <dimen name="zm_sip_dialpad_content_margin_left">40dp</dimen>
+    <dimen name="zm_sip_dialpad_content_margin_left_land">10dp</dimen>
+    <dimen name="zm_sip_dialpad_content_margin_left_large">80dp</dimen>
+    <dimen name="zm_sip_dialpad_key_width">62dp</dimen>
+    <dimen name="zm_sip_dialpad_num_text_size">20sp</dimen>
+    <dimen name="zm_sip_dialpad_row_space">8dp</dimen>
+    <dimen name="zm_sip_dialpad_width">280dp</dimen>
+    <dimen name="zm_sip_emergency_top_arc_height">16dp</dimen>
+    <dimen name="zm_sip_emergency_top_arc_space_height">10dp</dimen>
+    <dimen name="zm_sip_emergency_top_rect_height">260dp</dimen>
+    <dimen name="zm_sip_emergency_top_rect_pop_height">215dp</dimen>
+    <dimen name="zm_sip_float_window_width">98dp</dimen>
+    <dimen name="zm_sip_greeting_player_padding_top">120dp</dimen>
+    <dimen name="zm_sip_hangup_btn_margin_bottom">56dp</dimen>
+    <dimen name="zm_sip_income_avatar_bg1_size">164dp</dimen>
+    <dimen name="zm_sip_income_avatar_bg2_size">126dp</dimen>
+    <dimen name="zm_sip_income_avatar_content_size">111dp</dimen>
+    <dimen name="zm_sip_income_avatar_padding">5dp</dimen>
+    <dimen name="zm_sip_inlist_icon_margin">8dp</dimen>
+    <dimen name="zm_sip_inlist_icon_width">40dp</dimen>
+    <dimen name="zm_sip_panel_incall_botton_content_row_space">15dp</dimen>
+    <dimen name="zm_sip_phone_call_expand_item_height">373dp</dimen>
+    <dimen name="zm_sip_phone_call_expand_item_spam_info_height">21dp</dimen>
+    <dimen name="zm_sip_phone_call_item_height">64dp</dimen>
+    <dimen name="zm_sip_phone_call_normal_expand_item_height">181dp</dimen>
+    <dimen name="zm_sip_phone_call_videomail_expand_item_height">487dp</dimen>
+    <dimen name="zm_sip_phone_call_videomail_expand_second_phase_item_height">595dp</dimen>
+    <dimen name="zm_sip_phone_call_videomail_playerview_height">256dp</dimen>
+    <dimen name="zm_sip_phone_call_videomail_playerview_width">342dp</dimen>
+    <dimen name="zm_sip_phone_recording_transcript_expand_item_height">472dp</dimen>
+    <dimen name="zm_sip_pop_width">216dp</dimen>
+    <dimen name="zm_sip_pop_width_big">280dp</dimen>
+    <dimen name="zm_sip_pop_width_large">296dp</dimen>
+    <dimen name="zm_sip_pop_width_small">240dp</dimen>
+    <dimen name="zm_sip_presence_state_margin">-20dp</dimen>
+    <dimen name="zm_sip_register_num_text_size">10sp</dimen>
+    <dimen name="zm_sub_settings_list_land_margin">8dp</dimen>
+    <dimen name="zm_sub_settings_list_margin">8dp</dimen>
+    <dimen name="zm_subscription_plan_button_height">96dp</dimen>
+    <dimen name="zm_tablet_content_margin_size">80dp</dimen>
+    <dimen name="zm_tablet_navigation_bar_icon_width">48dp</dimen>
+    <dimen name="zm_tablet_navigation_bar_padding">12dp</dimen>
+    <dimen name="zm_tablet_navigation_bar_padding_narrow">0dp</dimen>
+    <dimen name="zm_tablet_navigation_bar_width">96dp</dimen>
+    <dimen name="zm_tablet_navigation_bar_width_narrow">60dp</dimen>
+    <dimen name="zm_text_normal_height">49dp</dimen>
+    <dimen name="zm_text_normal_width">42dp</dimen>
+    <dimen name="zm_timer_view_width">64dp</dimen>
+    <dimen name="zm_toolbar_big_radius">32dp</dimen>
+    <dimen name="zm_toolbar_big_size">100dp</dimen>
+    <dimen name="zm_toolbar_radius">18dp</dimen>
+    <dimen name="zm_toolbar_size">55dp</dimen>
+    <dimen name="zm_toolbar_text_size">12sp</dimen>
+    <dimen name="zm_ui_kit_big_radius">8dp</dimen>
+    <dimen name="zm_ui_kit_large_button_height">52dp</dimen>
+    <dimen name="zm_ui_kit_normal_radius">5dp</dimen>
+    <dimen name="zm_ui_kit_page_left_padding">16dp</dimen>
+    <dimen name="zm_ui_kit_search_bar_height">32dp</dimen>
+    <dimen name="zm_ui_kit_sip_page_left_padding_large">47dp</dimen>
+    <dimen name="zm_ui_kit_text_size_11sp">11sp</dimen>
+    <dimen name="zm_ui_kit_text_size_12sp">12sp</dimen>
+    <dimen name="zm_ui_kit_text_size_13sp">13sp</dimen>
+    <dimen name="zm_ui_kit_text_size_14sp">14sp</dimen>
+    <dimen name="zm_ui_kit_text_size_15sp">15sp</dimen>
+    <dimen name="zm_ui_kit_text_size_16sp">16sp</dimen>
+    <dimen name="zm_ui_kit_text_size_17sp">17sp</dimen>
+    <dimen name="zm_ui_kit_text_size_20sp">20sp</dimen>
+    <dimen name="zm_ui_kit_text_size_22sp">22sp</dimen>
+    <dimen name="zm_ui_kit_text_size_24sp">24sp</dimen>
+    <dimen name="zm_ui_kit_text_size_28sp">28sp</dimen>
+    <dimen name="zm_ui_kit_text_size_9sp">9sp</dimen>
+    <dimen name="zm_view_height_40dp">40dp</dimen>
+    <dimen name="zm_view_larger_height">76dp</dimen>
+    <dimen name="zm_whiteboard_back_btn_width">48dp</dimen>
+    <dimen name="zm_whiteboard_beta_ic_height">16dp</dimen>
+    <dimen name="zm_whiteboard_beta_ic_width">38dp</dimen>
+    <dimen name="zm_whiteboard_beta_tip_text_width">250dp</dimen>
+    <dimen name="zm_whiteboard_gradual_step">1dp</dimen>
+    <dimen name="zm_whiteboard_share_access_popup_width">243dp</dimen>
+    <dimen name="zm_whiteboard_share_btn_width">82dp</dimen>
+    <dimen name="zm_whiteboard_share_dcs_dialog_width">260dp</dimen>
+    <dimen name="zm_whiteboard_share_footer_height">64dp</dimen>
+    <dimen name="zm_whiteboard_share_item_avatar_size">32dp</dimen>
+    <dimen name="zm_whiteboard_share_item_avatar_state_size">12dp</dimen>
+    <dimen name="zm_whiteboard_share_item_drop_down_size">16dp</dimen>
+    <dimen name="zm_whiteboard_share_item_height">56dp</dimen>
+    <dimen name="zm_whiteboard_share_permission_popup_width">124dp</dimen>
+    <dimen name="zm_whiteboard_share_setting_popup_width">508dp</dimen>
+    <dimen name="zm_whiteboard_share_temporary_avatar_list_width">120dp</dimen>
+    <dimen name="zm_whiteboard_share_temporary_item_avatar_size">24dp</dimen>
+    <dimen name="zm_whiteboard_share_warning_ic_size">22dp</dimen>
+    <dimen name="zm_width_50dp">50dp</dimen>
+    <dimen name="zm_width_72dp">72dp</dimen>
+    <dimen name="zm_wlc_join_btn_width">310dp</dimen>
+    <item name="btnLogoutRingCentral" type="id"/>
+    <item name="edtExtension" type="id"/>
+    <item name="edtPhoneNumber" type="id"/>
+    <item name="emojiCategory" type="id"/>
+    <item name="floatingEmojisViewWrapper" type="id"/>
+    <item name="floatingViewWrapper" type="id"/>
+    <item name="leftFragmentContainer" type="id"/>
+    <item name="loginInternational" type="id"/>
+    <item name="optionCountry" type="id"/>
+    <item name="rightFragmentContainer" type="id"/>
+    <item name="rightFragmentPlaceHolder" type="id"/>
+    <item name="sdk_image_key" type="id"/>
+    <item name="stickerPreviewContent" type="id"/>
+    <item name="txtCountry" type="id"/>
+    <item name="zm_last_click_time_flag" type="id"/>
+    <item name="zm_quick_search_list_item_reset_padding_flag" type="id"/>
+    <item name="zm_tag_constraint_helper" type="id"/>
+    <item name="zm_used_for_package_name_retrieval" type="id"/>
+    <item format="integer" name="zm_content_max_images_each_line" type="integer">4</item>
+    <item format="integer" name="zm_group_chat_topic_max_length" type="integer">25</item>
+    <item format="integer" name="zm_qa_question_input_max_lines" type="integer">5</item>
+    <item format="integer" name="zm_qa_question_show_max_lines" type="integer">3</item>
+    <item format="float" name="zm_sip_ic_diable_alpha" type="integer">0.3</item>
+    <item format="integer" name="zm_unencrypted_connections_show_max_lines" type="integer">10</item>
+    <item format="integer" name="zm_widget_refesh_rate" type="integer">60000</item>
+    <string name="zm_app_full_name">Zoom Cloud Meetings</string>
+    <string name="zm_app_pref_provider" translatable="false">us.zoom.videomeetings.ZMPreferencesProvider</string>
+    <string name="zm_app_provider" translatable="false">us.zoom.videomeetings.fileprovider</string>
+    <string name="zm_config_conf_activity">com.zipow.videobox.ConfActivityNormal</string>
+    <string name="zm_dashboard_create_default_name_296308">Untitled</string>
+    <string name="zm_dashboard_loading_tip_296308">Loading your whiteboard experience</string>
+    <string name="zm_dashboard_state_co_editing_phone_289013">Co-editing on %s</string>
+    <string name="zm_dashboard_state_co_editing_tablet_289013">You are co-editing</string>
+    <string name="zm_dashboard_state_collaborating_on_phone_289013">Collaborating on %s</string>
+    <string name="zm_dashboard_state_collaborating_on_tablet_289013">You are collaborating</string>
+    <string name="zm_dashboard_state_viewing_phone_289013">Viewing on %s</string>
+    <string name="zm_dashboard_state_viewing_tablet_289013">You are viewing</string>
+    <string name="zm_display_version">5.11.1 (6928)</string>
+    <item name="zm_rc_alert_logout" type="string"/>
+    <item name="zm_rc_alert_meetings_feature_is_not_enabled" type="string"/>
+    <item name="zm_rc_hint_login_extension" type="string"/>
+    <item name="zm_rc_hint_login_password" type="string"/>
+    <item name="zm_rc_hint_login_phone_number" type="string"/>
+    <item name="zm_rc_lbl_login_extension" type="string"/>
+    <string name="zm_sdk_lbl_min_meeting_cs_2094">Minimize Meeting</string>
+    <string name="zm_version_name">5.11.1.6928</string>
+    <string name="zm_wb_share_dialog_acces_and_permission_anyone_at_289013">Anyone with a Zoom account</string>
+    <string name="zm_wb_share_dialog_acces_and_permission_invited_only_289013">Only Invited users</string>
+    <string name="zm_wb_share_dialog_acces_and_permission_my_org_name_289013">[My org name]</string>
+    <string name="zm_wb_share_dialog_link_anyone_comment_289013">Anyone with a Zoom account can comment</string>
+    <string name="zm_wb_share_dialog_link_anyone_edit_289013">Anyone with a Zoom account can edit</string>
+    <string name="zm_wb_share_dialog_link_anyone_view_289013">Anyone with a Zoom account can view</string>
+    <string name="zm_wb_share_dialog_link_invited_comment_289013">Only Invited users can comment</string>
+    <string name="zm_wb_share_dialog_link_invited_edit_289013">Only Invited users can edit</string>
+    <string name="zm_wb_share_dialog_link_invited_view_289013">Only Invited users can view</string>
+    <string name="zm_wb_share_dialog_link_my_org_comment_289013">Anyone at %s can comment</string>
+    <string name="zm_wb_share_dialog_link_my_org_edit_289013">Anyone at %s can edit</string>
+    <string name="zm_wb_share_dialog_link_my_org_view_289013">Anyone at %s can view</string>
+    <string name="zm_wb_share_dialog_permission_title_289013">User permission</string>
+    <string name="zm_wb_share_dialog_setting_external_user_can_share_289013">External users can share</string>
+    <string name="zm_wb_share_dialog_setting_internal_user_can_share_289013">Internal users can share with external users</string>
+    <string name="zm_wb_share_dialog_setting_title_289013">Advanced sharing settings</string>
+    <string name="zm_wb_share_dialog_setting_user_can_share_289013">Users can share at or below their permission level</string>
+    <string name="zm_wb_share_error_msg_289013">Request failed, please try again later.</string>
+    <string name="zm_wb_share_invitees_header_289013">INVITEES</string>
+    <string name="zm_wb_share_save_289013">Save</string>
+    <string name="zm_wb_share_send_289013">Send</string>
+    <string name="zm_wb_share_setting_acc_289013">Settings</string>
+    <string name="zm_wb_share_share_link_289013">Share Link</string>
+    <string name="zm_wb_share_user_permission_drop_down_289013">Change user permission</string>
+    <string name="zm_whiteboad_cloud_saving_no_saved">Your work is not saved</string>
+    <string name="zm_whiteboad_cloud_saving_saved">Your work is auto-saved</string>
+    <string name="zm_whiteboad_rename">Please type your new name</string>
+    <string name="zm_whiteboard_accessibility_align_289013">Align</string>
+    <string name="zm_whiteboard_accessibility_align_bottom_289013">Align Bottom</string>
+    <string name="zm_whiteboard_accessibility_align_center_289013">Align Center</string>
+    <string name="zm_whiteboard_accessibility_align_horizontal_289013">Align Horizontal</string>
+    <string name="zm_whiteboard_accessibility_align_right_289013">Align Right</string>
+    <string name="zm_whiteboard_accessibility_align_top_289013">Align Top</string>
+    <string name="zm_whiteboard_accessibility_align_vertical_289013">Align Vertical</string>
+    <string name="zm_whiteboard_accessibility_arrow_289013">Arrow</string>
+    <string name="zm_whiteboard_accessibility_back_289013">Back</string>
+    <string name="zm_whiteboard_accessibility_bold_289013">Bold</string>
+    <string name="zm_whiteboard_accessibility_bring_forward_289013">Bring Forward</string>
+    <string name="zm_whiteboard_accessibility_bring_to_front_289013">Bring to Front</string>
+    <string name="zm_whiteboard_accessibility_cancel_289013">Cancel</string>
+    <string name="zm_whiteboard_accessibility_circle_289013">Ellipse</string>
+    <string name="zm_whiteboard_accessibility_color_289013">Color</string>
+    <string name="zm_whiteboard_accessibility_color_black_289013">Black</string>
+    <string name="zm_whiteboard_accessibility_color_blue_289013">Blue</string>
+    <string name="zm_whiteboard_accessibility_color_green_289013">Green</string>
+    <string name="zm_whiteboard_accessibility_color_orange_289013">Orange</string>
+    <string name="zm_whiteboard_accessibility_color_purple_289013">Purple</string>
+    <string name="zm_whiteboard_accessibility_color_red_289013">Red</string>
+    <string name="zm_whiteboard_accessibility_color_white_289013">White</string>
+    <string name="zm_whiteboard_accessibility_color_yellow_289013">Yellow</string>
+    <string name="zm_whiteboard_accessibility_copy_289013">Copy</string>
+    <string name="zm_whiteboard_accessibility_currently_collaborating_289013">Currently collaborating</string>
+    <string name="zm_whiteboard_accessibility_curved_289013">Curved</string>
+    <string name="zm_whiteboard_accessibility_dashed_289013">Dashed</string>
+    <string name="zm_whiteboard_accessibility_delete_289013">Delete</string>
+    <string name="zm_whiteboard_accessibility_diamond_289013">Diamond</string>
+    <string name="zm_whiteboard_accessibility_distribute_289013">Distribute</string>
+    <string name="zm_whiteboard_accessibility_double_arrow_289013">Double Arrow</string>
+    <string name="zm_whiteboard_accessibility_draw_289013">Draw</string>
+    <string name="zm_whiteboard_accessibility_duplicate_289013">Duplicate</string>
+    <string name="zm_whiteboard_accessibility_end_point_289013">End Point</string>
+    <string name="zm_whiteboard_accessibility_erase_289013">Erase</string>
+    <string name="zm_whiteboard_accessibility_filled_289013">Filled</string>
+    <string name="zm_whiteboard_accessibility_group_289013">Group</string>
+    <string name="zm_whiteboard_accessibility_hide_meeting_toolbar_289013">Hide meeting toolbar</string>
+    <string name="zm_whiteboard_accessibility_highlight_289013">Highlighter</string>
+    <string name="zm_whiteboard_accessibility_horizontally_289013">Horizontally</string>
+    <string name="zm_whiteboard_accessibility_image_289013">Image</string>
+    <string name="zm_whiteboard_accessibility_italic_289013">Italic</string>
+    <string name="zm_whiteboard_accessibility_line_289013">Line</string>
+    <string name="zm_whiteboard_accessibility_line_property_289013">Line Property</string>
+    <string name="zm_whiteboard_accessibility_line_shape_289013">Line Shape</string>
+    <string name="zm_whiteboard_accessibility_more_289013">More</string>
+    <string name="zm_whiteboard_accessibility_move_canvas_289013">Move Canvas</string>
+    <string name="zm_whiteboard_accessibility_move_toolbar_289013">Move Toolbar</string>
+    <string name="zm_whiteboard_accessibility_new_tag_289013">New</string>
+    <string name="zm_whiteboard_accessibility_none_289013">None</string>
+    <string name="zm_whiteboard_accessibility_outline_289013">Outline</string>
+    <string name="zm_whiteboard_accessibility_pages_289013">Pages</string>
+    <string name="zm_whiteboard_accessibility_paste_289013">Paste</string>
+    <string name="zm_whiteboard_accessibility_pen_289013">Pen</string>
+    <string name="zm_whiteboard_accessibility_rectangle_289013">Rectangle</string>
+    <string name="zm_whiteboard_accessibility_redo_289013">Redo</string>
+    <string name="zm_whiteboard_accessibility_regular_289013">Regular</string>
+    <string name="zm_whiteboard_accessibility_reset_zoom_289013">Reset to 100%</string>
+    <string name="zm_whiteboard_accessibility_select_289013">Select</string>
+    <string name="zm_whiteboard_accessibility_send_backward_289013">Send Backward</string>
+    <string name="zm_whiteboard_accessibility_send_to_back_289013">Send to Back</string>
+    <string name="zm_whiteboard_accessibility_shape_289013">Shape</string>
+    <string name="zm_whiteboard_accessibility_show_meeting_toolbar_289013">Show meeting toolbar</string>
+    <string name="zm_whiteboard_accessibility_solid_289013">Solid</string>
+    <string name="zm_whiteboard_accessibility_start_point_289013">Start Point</string>
+    <string name="zm_whiteboard_accessibility_sticky_note_289013">Sticky Note</string>
+    <string name="zm_whiteboard_accessibility_straight_289013">Straight</string>
+    <string name="zm_whiteboard_accessibility_text_289013">Text</string>
+    <string name="zm_whiteboard_accessibility_text_align_289013">Text Align</string>
+    <string name="zm_whiteboard_accessibility_text_align_center_289013">Align Center</string>
+    <string name="zm_whiteboard_accessibility_text_align_left_289013">Align Left</string>
+    <string name="zm_whiteboard_accessibility_text_align_right_289013">Align Right</string>
+    <string name="zm_whiteboard_accessibility_text_size_289013">Text Size</string>
+    <string name="zm_whiteboard_accessibility_thick_289013">Thick</string>
+    <string name="zm_whiteboard_accessibility_thin_289013">Thin</string>
+    <string name="zm_whiteboard_accessibility_tips_max_289013">Create up to %d whiteboards</string>
+    <string name="zm_whiteboard_accessibility_transparent_289013">Transparent</string>
+    <string name="zm_whiteboard_accessibility_triangle_289013">Triangle</string>
+    <string name="zm_whiteboard_accessibility_underline_289013">Underline</string>
+    <string name="zm_whiteboard_accessibility_undo_289013">Undo</string>
+    <string name="zm_whiteboard_accessibility_ungroup_289013">Ungroup</string>
+    <string name="zm_whiteboard_accessibility_vertically_289013">Vertically</string>
+    <string name="zm_whiteboard_accessibility_zoom_in_289013">Zoom In</string>
+    <string name="zm_whiteboard_accessibility_zoom_out_289013">Zoom Out</string>
+    <string name="zm_whiteboard_back_title_289013">Whiteboards</string>
+    <string name="zm_whiteboard_beta_tip_289013">Zoom Whiteboard is still in development. Do not use Whiteboard with any live or production data, including protected health information, financial data, or other sensitive, proprietary, or confidential information.</string>
+    <string name="zm_whiteboard_new_tag_tip_289013">Create and collaborate in and out of meetings with the new Whiteboard tool!</string>
+    <string name="zm_whiteboard_new_tag_title_289013">Zoom Whiteboard</string>
+    <string name="zm_whiteboard_saved_to_album">Saved to Album</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_anyone_289013">Anyone</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_anyone_at_289013">Anyone at Zoom</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_back_title_289013">Link Settings</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_invited_only_289013">Invited Only</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_title_289013">Access and Permission</string>
+    <string name="zm_whiteboard_share_dialog_acces_and_permission_with_the_permission_header_289013">WITH THE PERMISSION</string>
+    <string name="zm_whiteboard_share_dialog_advanced_settings_289013">Advanced Settings</string>
+    <string name="zm_whiteboard_share_dialog_advanced_settings_permissions_289013">Permissions</string>
+    <string name="zm_whiteboard_share_dialog_close_289013">Close</string>
+    <string name="zm_whiteboard_share_dialog_collaborators_header_289013">COLLABORATORS</string>
+    <string name="zm_whiteboard_share_dialog_copy_link_289013">Copy Link</string>
+    <string name="zm_whiteboard_share_dialog_copy_link_view_289013">View</string>
+    <string name="zm_whiteboard_share_dialog_error_tip_invalid_email_289013">Invalid email address</string>
+    <string name="zm_whiteboard_share_dialog_error_tip_not_organization_289013">The user is not in %s organization </string>
+    <string name="zm_whiteboard_share_dialog_footer_copied_link_289013">Copied to clipboard</string>
+    <string name="zm_whiteboard_share_dialog_input_hint_369255">Contact, Channel, or Email</string>
+    <string name="zm_whiteboard_share_dialog_link_can_header_289013">ANYONE WITH THE LINK CAN</string>
+    <string name="zm_whiteboard_share_dialog_permission_back_title_289013">Collaborators</string>
+    <string name="zm_whiteboard_share_dialog_permission_co_owner_289013">Co-Owner</string>
+    <string name="zm_whiteboard_share_dialog_permission_commenter_289013">Commenter</string>
+    <string name="zm_whiteboard_share_dialog_permission_editor_289013">Editor</string>
+    <string name="zm_whiteboard_share_dialog_permission_header_289013">COLLABORATOR PERMISSION</string>
+    <string name="zm_whiteboard_share_dialog_permission_owner_289013">Owner</string>
+    <string name="zm_whiteboard_share_dialog_permission_remove_289013">Remove</string>
+    <string name="zm_whiteboard_share_dialog_permission_remove_collaborator_header_289013">REMOVE COLLABORATOR</string>
+    <string name="zm_whiteboard_share_dialog_permission_title_289013">Permission</string>
+    <string name="zm_whiteboard_share_dialog_permission_viewer_289013">Viewer</string>
+    <string name="zm_whiteboard_share_dialog_permissions_can_header_289013">CAN INVITE USERS ON OR BELOW THEIR PERMISSION LEVEL</string>
+    <string name="zm_whiteboard_share_dialog_permissions_can_share_header_289013">CAN SHARE</string>
+    <string name="zm_whiteboard_share_dialog_setting_done_289013">Done</string>
+    <string name="zm_whiteboard_share_dialog_setting_tip_289013">Users can share this whiteboard at or below their permission level</string>
+    <string name="zm_whiteboard_share_dialog_setting_title_289013">Advanced settings</string>
+    <string name="zm_whiteboard_share_dialog_share_289013">Share</string>
+    <string name="zm_whiteboard_share_dialog_temporary_289013">Temporary collaborators</string>
+    <string name="zm_whiteboard_share_dialog_temporary_make_permanent_289013">Make permanent</string>
+    <string name="zm_whiteboard_share_dialog_temporary_tip_289013">Temporary access is given to all the current meeting participants. It is revoked when the meeting ends.</string>
+    <string name="zm_whiteboard_share_dialog_temporary_tip_new_289013">Meeting participants have temporary access during a meeting. Make access permanent to allow collaboration after the meeting ends.</string>
+    <string name="zm_whiteboard_share_dialog_title_289013">Share Whiteboard</string>
+    <string name="zm_whiteboard_share_dialog_who_can_access_header_289013">WHO CAN ACCESS</string>
+    <string name="zm_whiteboard_share_dialog_who_can_access_input_hint_289013">Type Email</string>
+    <string name="zm_whiteboard_share_dialog_who_can_access_title_289013">Who can Access</string>
+    <string name="zm_whiteboard_share_success_tip2_289013">%s has been shared with %s</string>
+    <string name="zm_whiteboard_share_success_tip_289013">%s has been shared with the %s channel</string>
+    <string name="zm_whiteboard_state_editing_289013">Editing</string>
+    <string name="zm_whiteboard_state_viewing_289013">Viewing</string>
+    <string name="zm_whiteboard_tip_load_fail_289013">Loading failed</string>
+    <string name="zm_whiteboard_viewonly_tip_289013">You can only view whiteboards on mobile. For the full experience, use a desktop or tablet.</string>
+    <string name="zm_whiteboard_viewonly_title_289013">View Only</string>
+    <string name="zm_whiteborad_accessibility_pages_add_289013">Add New Page</string>
+    <string name="zm_whiteborad_accessibility_pages_delete_289013">Delete Page</string>
+    <string name="zm_whiteborad_accessibility_pages_fail_289013">Loading Failed</string>
+    <string name="zm_whiteborad_accessibility_pages_reload_289013">Reload</string>
+    <string name="zm_whiteborad_accessibility_pages_sort_289013">Page %d</string>
+    <string name="zm_whiteborad_export_289013">Export</string>
+    <string name="zm_whiteborad_export_pdf_289013">PDF</string>
+    <string name="zm_whiteborad_export_png_289013">PNG</string>
+    <string name="zm_whiteborad_feedback_289013">Leave Feedback</string>
+    <style name="AppNoEnterAnim">
+		<item name="android:windowEnterAnimation">@null</item>
+	</style>
+    <style name="AppTheme" parent="DayNightTheme">
+        <item name="colorPrimary">@color/zm_v2_head</item>
+        <item name="colorPrimaryDark">@color/zm_v2_head</item>
+        <item name="colorAccent">@color/zm_color_accent</item>
+        <item name="toolbarStyle">@style/CustomToolbar</item>
+    </style>
+    <style name="CallControlDialogOptionsRadio">
+		<item name="android:background">@null</item>
+		<item name="android:button">@null</item>
+		<item name="android:drawableLeft">@drawable/zm_btn_radio</item>
+		<item name="android:drawablePadding">34dp</item>
+		<item name="android:paddingStart">2dp</item>
+		<item name="android:checkable">true</item>
+		<item name="android:paddingTop">14dp</item>
+		<item name="android:paddingBottom">14dp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="CallControlSettingOptionsRadio">
+		<item name="android:background">@color/zm_v2_svg_setting_option</item>
+		<item name="android:button">@null</item>
+		<item name="android:checkable">true</item>
+		<item name="android:drawableRight">@drawable/zm_call_control_setting_selector</item>
+		<item name="android:paddingStart">16dp</item>
+		<item name="android:paddingTop">12dp</item>
+		<item name="android:paddingEnd">16dp</item>
+		<item name="android:paddingBottom">12dp</item>
+		<item name="android:textColor">@color/zm_call_control_setting_option_title_color</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="CustomToolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="contentInsetStart">0dp</item>
+    </style>
+    <style name="DayNightTheme" parent="Theme.MaterialComponents.DayNight">
+	</style>
+    <style name="DetailsListView" parent="ZMListView">
+		<item name="android:background">@null</item>
+		<item name="android:dividerHeight">0dip</item>
+		<item name="android:divider">@null</item>
+		<item name="android:listSelector">@drawable/zm_list_selector_half_transparent_background
+		</item>
+	</style>
+    <style name="DialogAnimation">
+		<item name="android:windowEnterAnimation">@anim/zm_slide_in_dialog</item>
+		<item name="android:windowExitAnimation">@anim/zm_slide_out_dialog</item>
+	</style>
+    <style name="DropDownAnimation">
+		<item name="android:windowEnterAnimation">@anim/zm_drop_down_in</item>
+		<item name="android:windowExitAnimation">@anim/zm_drop_down_out</item>
+	</style>
+    <style name="GRTransformDialog" parent="ZMDialog.FullScreen">
+	</style>
+    <style name="InMeetingChatEditText" parent="android:Widget.EditText">
+		<item name="android:minHeight">30dp</item>
+		<item name="android:textColorHint">@color/zm_v2_txt_placeholder</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:layout_marginLeft">8dp</item>
+		<item name="android:paddingLeft">4dp</item>
+		<item name="android:paddingRight">4dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_15sp</item>
+		<item name="android:background">@drawable/in_meeting_chat_edit_text_bg</item>
+	</style>
+    <style name="MMChatListView" parent="ZMListView">
+		<item name="android:listSelector">@color/zm_transparent</item>
+	</style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+		<item name="textAllCaps">false</item>
+		<item name="android:textAllCaps">false</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+    <style name="PollButton" parent="ZMButton">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_poll_center</item>
+	</style>
+    <style name="PollButton.Next" parent="PollButton">
+		<item name="android:background">@drawable/zm_btn_poll_next</item>
+	</style>
+    <style name="PollButton.Prev" parent="PollButton">
+		<item name="android:background">@drawable/zm_btn_poll_prev</item>
+	</style>
+    <style name="SheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:colorBackground">@android:color/transparent</item>
+		<item name="android:backgroundDimEnabled">true</item>
+		<item name="android:backgroundDimAmount">0.6</item>
+		<item name="android:windowFrame">@null</item>
+		<item name="android:windowIsFloating">true</item>
+	</style>
+    <style name="UIKitButton" parent="android:Widget.Button">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_14sp</item>
+		<item name="android:textColor">@color/zm_ui_kit_normal_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_kit_normal_btn_bg</item>
+		<item name="android:paddingLeft">0px</item>
+		<item name="android:paddingRight">0px</item>
+		<item name="android:paddingTop">0px</item>
+		<item name="android:paddingBottom">0px</item>
+		<item name="android:minHeight">0px</item>
+		<item name="android:layout_height">44dp</item>
+	</style>
+    <style name="UIKitButton.Large"/>
+    <style name="UIKitButton.Large.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.Large.OnLight">
+		<item name="android:textColor">@color/zm_ui_kit_normal_blue_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_kit_normal_blue_btn_bg</item>
+	</style>
+    <style name="UIKitButton.Large.OnLight.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.LeaveMeeting" parent="@style/UIKitButton">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+		<item name="android:textColor">@color/zm_ui_kit_inactivated_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_black_btn_bg</item>
+		<item name="android:layout_marginLeft">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginRight">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginTop">@dimen/zm_dialog_margin_24dp</item>
+		<item name="android:layout_height">@dimen/zm_btn_width_48dp</item>
+	</style>
+    <style name="UIKitButton.Medium">
+		<item name="android:layout_height">32dp</item>
+	</style>
+    <style name="UIKitButton.Medium.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.Medium.OnLight">
+		<item name="android:textColor">@color/zm_ui_kit_normal_blue_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_kit_normal_blue_btn_bg</item>
+	</style>
+    <style name="UIKitButton.Medium.OnLight.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.Small">
+		<item name="android:layout_height">24dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+	</style>
+    <style name="UIKitButton.Small.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.Small.OnLight">
+		<item name="android:textColor">@color/zm_ui_kit_normal_blue_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_kit_normal_blue_btn_bg</item>
+	</style>
+    <style name="UIKitButton.Small.OnLight.NoBackground">
+		<item name="android:background">@null</item>
+	</style>
+    <style name="UIKitButton.White">
+        <item name="android:background">@drawable/zm_ui_kit_btn_normal_round_white_selector</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+    </style>
+    <style name="UIKitButton.White.BlueText">
+        <item name="android:textColor">@color/zm_v2_txt_action</item>
+    </style>
+    <style name="UIKitItinactivatedBtn" parent="@style/UIKitButton">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/zm_ui_kit_inactivated_btn_text_color</item>
+		<item name="android:background">@drawable/zm_btn_bg_blue</item>
+	</style>
+    <style name="UIKitItinactivatedBtn.BOLarge">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+		<item name="android:layout_marginLeft">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginRight">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginTop">@dimen/zm_margin_largest</item>
+		<item name="android:layout_height">@dimen/zm_btn_width_48dp</item>
+	</style>
+    <style name="UIKitItinactivatedBtn.GrayBorder">
+        <item name="android:background">@drawable/zm_ui_kit_btn_round_gray_border_selector</item>
+        <!--<item name="android:background"></item>-->
+    </style>
+    <style name="UIKitItinactivatedBtn.GrayBorder.BlackText">
+        <item name="android:textColor">@color/zm_ui_kit_normal_btn_text_color</item>
+        <item name="android:textStyle">normal</item>
+        <!--<item name="android:background"></item>-->
+    </style>
+    <style name="UIKitItinactivatedBtn.Large"/>
+    <style name="UIKitItinactivatedBtn.Large.Secondary">
+		<item name="android:textColor">@color/zm_v2_btn_black_text_color</item>
+		<item name="android:background">@drawable/zm_v2_bg_large_secondary_btn</item>
+	</style>
+    <style name="UIKitItinactivatedBtn.Medium">
+		<item name="android:layout_height">32dp</item>
+	</style>
+    <style name="UIKitItinactivatedBtn.Small">
+		<item name="android:layout_height">24dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+	</style>
+    <style name="UIKitSearchBar" parent="android:Widget.EditText">
+		<item name="android:paddingRight">5dp</item>
+		<item name="android:paddingLeft">5dp</item>
+		<item name="android:drawableLeft">@drawable/zm_ui_kit_search_icon</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_14sp</item>
+		<item name="android:textColor">@color/zm_ui_kit_color_black_232333</item>
+		<item name="android:textColorHint">@color/zm_ui_kit_color_gray_747487</item>
+		<item name="android:layout_height">@dimen/zm_ui_kit_search_bar_height</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:drawablePadding">5dp</item>
+		<item name="android:background">@drawable/zm_ui_kit_search_bar_bg</item>
+	</style>
+    <style name="UIKitTextView" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/zm_v2_txt_primary_color</item>
+	</style>
+    <style name="UIKitTextView.BuddyName">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Bold.Blue">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Bold.Blue.Selector">
+		<item name="android:textColor">@color/zm_txt_blue_selector</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Bold.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Deactivate">
+		<item name="android:textColor">@color/zm_v2_border_disabled</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Large">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_24sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Large.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Normal"/>
+    <style name="UIKitTextView.BuddyName.Normal.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.BuddyName.Normal.SingleLine">
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="UIKitTextView.CellTitle">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_font_normal_size</item>
+	</style>
+    <style name="UIKitTextView.CellTitle.Selector">
+		<item name="android:textColor">@color/zm_textview_textcolor_black_selector</item>
+	</style>
+    <style name="UIKitTextView.CellTitle.blue">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.DialogTitle" parent="UIKitTextView.PrimaryText">
+        <item name="android:textSize">@dimen/zm_ui_kit_text_size_22sp</item>
+    </style>
+    <style name="UIKitTextView.DialogTitle.17SP" parent="UIKitTextView.PrimaryText">
+        <item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+    </style>
+    <style name="UIKitTextView.IconLabel">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_font_smaller_size</item>
+	</style>
+    <style name="UIKitTextView.IconLabel.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.Large">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+	</style>
+    <style name="UIKitTextView.Large.Normal">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="UIKitTextView.Large.Normal.Blue">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.Large.Normal.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.Large.OnDark">
+		<item name="android:textColor">@color/zm_ui_kit_color_white_ffffff</item>
+	</style>
+    <style name="UIKitTextView.LargeTitle">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/zm_font_large_size</item>
+	</style>
+    <style name="UIKitTextView.LargeTitle.Clickable">
+        <item name="android:textColor">@color/zm_v2_txt_action</item>
+        <!--<item name="android:background"></item>-->
+    </style>
+    <style name="UIKitTextView.LargeTitle.OnDark">
+		<item name="android:textColor">@color/zm_white</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/zm_font_normal_size</item>
+		<item name="android:textColorLink">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Medium">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_font_medium_size</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Action">
+		<item name="android:textColor">@color/zm_v2_txt_action_color</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Alpha80White">
+		<item name="android:textColor">@color/zm_v2_white_alpha80</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Big">
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Blue">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.Gray.Selector">
+		<item name="android:textColor">@color/zm_ui_kit_text_color_gray_blue</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.LightWhite">
+		<item name="android:textColor">@color/zm_v2_txt_primary_ondark</item>
+		<item name="android:textSize">@dimen/zm_font_medium_size</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.OnLight">
+		<item name="android:textColor">@color/zm_v2_txt_primary_light</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Normal.White">
+		<item name="android:textColor">@color/zm_ui_kit_color_white_ffffff</item>
+	</style>
+    <style name="UIKitTextView.PrimaryText.Small">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_font_smaller_size</item>
+	</style>
+    <style name="UIKitTextView.ReactionLabel">
+		<item name="android:textColor">@color/zm_ui_kit_color_gray_747487</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+	</style>
+    <style name="UIKitTextView.ReactionLabel.Text">
+		<item name="android:textColor">@color/zm_ui_kit_color_gray_747487</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+	</style>
+    <style name="UIKitTextView.SecondaryLabel">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/zm_v2_label_account_status</item>
+		<item name="android:textSize">@dimen/zm_font_smallest_size</item>
+	</style>
+    <style name="UIKitTextView.SecondaryLabel.OnDark">
+		<item name="android:textColor">@color/zm_v2_label_title_account_status</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText">
+		<item name="android:textSize">@dimen/zm_font_medium_size</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_secondary_color</item>
+		<item name="android:textColorLink">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Deactivate">
+		<item name="android:textColor">@color/zm_v2_txt_placeholder</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Medium">
+		<item name="android:textSize">@dimen/zm_font_small_size</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Medium.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Medium.Dimmed.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Medium.Dimmed.Selector">
+		<item name="android:textColor">@color/zm_ui_kit_text_color_gray</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Medium.warn">
+		<item name="android:textColor">@color/zm_v2_txt_desctructive</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Small">
+		<item name="android:textSize">@dimen/zm_font_smaller_size</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Small.Blue">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="UIKitTextView.SecondaryText.Small.Dimmed">
+		<!--<item name="android:textColor">@color/zm_ui_kit_color_gray_747487</item>-->
+	</style>
+    <style name="UIKitTextView.SecondaryText.Small.warn">
+		<item name="android:textColor">@color/zm_v2_txt_desctructive</item>
+	</style>
+    <style name="UIKitTextView.SectionTitle">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/zm_font_smaller_size</item>
+	</style>
+    <style name="UIKitTextView.SettingsItem" parent="UIKitTextView.PrimaryText.Normal">
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:paddingLeft">@dimen/zm_setting_item_padding_left</item>
+		<item name="android:paddingTop">@dimen/zm_setting_item_padding_top</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:paddingBottom">@dimen/zm_setting_item_padding_bottom</item>
+		<item name="android:minHeight">@dimen/zm_setting_item_min_height</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+	</style>
+    <style name="UIKitTextView.SettingsItemDesc" parent="UIKitTextView.PrimaryText.Normal">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+		<item name="android:gravity">left</item>
+		<item name="android:paddingLeft">@dimen/zm_setting_item_padding_left</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+    <style name="UIKitTextView.SettingsItemLabel" parent="UIKitTextView.SecondaryText.Dimmed">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+	</style>
+    <style name="UIKitTextView.Small">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+	</style>
+    <style name="UIKitTextView.Small.Blue">
+		<item name="android:textColor">@color/zm_addrbook_item_details_action_text_color</item>
+	</style>
+    <style name="UIKitTextView.Small.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="UIKitTextView.Small.Bold.Blue">
+		<item name="android:textColor">@color/zm_ui_kit_normal_blue_btn_text_color</item>
+	</style>
+    <style name="UIKitTextView.Small.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.Small.Normal">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="UIKitTextView.Small.Normal.Gray">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="UIKitTextView.Small.Normal.Gray.Selector">
+		<item name="android:textColor">@color/zm_ui_kit_text_color_gray</item>
+	</style>
+    <style name="UIKitTextView.TabLabel" parent="UIKitTextView.SecondaryText.Small">
+		<item name="android:textColor">@color/zm_tab_text_color</item>
+		<item name="android:shadowRadius">0</item>
+		<item name="android:textSize">10sp</item>
+	</style>
+    <style name="UILargestButton" parent="@style/UIKitButton">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+		<item name="android:layout_height">@dimen/zm_btn_largest_height</item>
+		<item name="android:minWidth">@dimen/zm_accessible_btn_min_size</item>
+		<item name="android:minHeight">@dimen/zm_accessible_btn_min_size</item>
+	</style>
+    <style name="UILargestButton.GrayV2">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:background">@drawable/zm_v2_ui_gray_btn_bg</item>
+	</style>
+    <style name="UILargestButton.RedV2">
+		<item name="android:textColor">@color/zm_ui_kit_inactivated_btn_text_color</item>
+		<item name="android:background">@drawable/zm_v2_ui_red_btn_bg</item>
+	</style>
+    <style name="UIRedButton" parent="@style/UIKitButton">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_17sp</item>
+		<item name="android:textColor">@color/zm_ui_kit_inactivated_btn_text_color</item>
+		<item name="android:background">@drawable/zm_ui_red_btn_bg</item>
+		<item name="android:layout_height">@dimen/zm_btn_width_48dp</item>
+	</style>
+    <style name="UIRedButton.Cancel" parent="@style/UIRedButton">
+		<item name="android:textColor">@color/zm_ui_kit_inactivated_btn_text_color</item>
+		<item name="android:background">@drawable/zm_cancel_btn_bg</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_14sp</item>
+		<item name="android:layout_height">@dimen/zm_btn_height_32dp</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:minWidth">@dimen/zm_width_72dp</item>
+	</style>
+    <style name="UIRedButton.EndMeeting" parent="@style/UIRedButton">
+		<item name="android:layout_marginLeft">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginRight">@dimen/zm_margin_large</item>
+		<item name="android:layout_marginTop">@dimen/zm_dialog_margin_24dp</item>
+	</style>
+    <style name="UploadingProgress" parent="android:Widget.ProgressBar.Horizontal">
+		<item name="android:indeterminateOnly">false</item>
+		<item name="android:progressDrawable">@drawable/zm_uploading_percent</item>
+		<item name="android:indeterminateDrawable">@drawable/zm_uploading_percent_indeterminate
+		</item>
+		<item name="android:minHeight">2dip</item>
+		<item name="android:maxHeight">2dip</item>
+	</style>
+    <style name="UploadingProgress.Ondark" parent="android:Widget.ProgressBar.Horizontal"/>
+    <style name="ZMAppCompatTheme" parent="Theme.AppCompat.NoActionBar">
+		<item name="android:windowBackground">@drawable/zm_window_bg</item>
+		<item name="android:buttonStyle">@style/ZMButton</item>
+		<item name="android:buttonStyleSmall">@style/ZMButton.Small</item>
+		<item name="android:textViewStyle">@style/ZMTextView</item>
+		<item name="android:editTextStyle">@style/ZMEditText</item>
+		<item name="android:windowTitleBackgroundStyle">@style/ZMWindowTitleBackground</item>
+		<item name="android:spinnerStyle">@style/ZMSpinner</item>
+		<item name="android:listSeparatorTextViewStyle">@style/ZMListSeparator</item>
+		<item name="android:listViewStyle">@style/ZMListView</item>
+		<item name="android:scrollViewStyle">@style/ZMScrollView</item>
+		<item name="android:checkboxStyle">@style/ZMCheckbox</item>
+		<item name="android:radioButtonStyle">@style/ZMRadioButton</item>
+		<item name="android:listChoiceIndicatorMultiple">@drawable/zm_btn_check_default</item>
+		<item name="android:progressBarStyle">@style/ZMProgressBar</item>
+		<item name="android:progressBarStyleHorizontal">@style/ZMProgressBar.Horizontal</item>
+		<item name="android:progressBarStyleSmall">@style/ZMProgressBar.Small</item>
+		<item name="android:seekBarStyle">@style/ZMSeekBar</item>
+	</style>
+    <style name="ZMAppCompatTheme.NoTitle">
+		<item name="windowNoTitle">true</item>
+		<item name="windowActionBar">false</item>
+	</style>
+    <style name="ZMBackButton" parent="ZMButton">
+		<item name="android:layout_marginStart">4dp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_back_white</item>
+		<item name="android:contentDescription">@string/zm_btn_back</item>
+
+	</style>
+    <style name="ZMBackButton.OnDark">
+	</style>
+    <style name="ZMBackButton.OnLight">
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:background">@drawable/zm_btn_back</item>
+	</style>
+    <style name="ZMBaseBottomDialogAnimation">
+		<item name="android:windowEnterAnimation">@anim/zm_bottom_in</item>
+		<item name="android:windowExitAnimation">@anim/zm_bottom_out</item>
+	</style>
+    <style name="ZMBlackLine">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:background">#3f3f3f</item>
+	</style>
+    <style name="ZMBottomDialogStyle" parent="Theme.Design.Light.BottomSheetDialog">
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:windowSoftInputMode">adjustResize</item>
+	</style>
+    <style name="ZMBottomSheetModalStyle" parent="Widget.Design.BottomSheet.Modal">
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingLeft">6dp</item>
+		<item name="android:paddingRight">6dp</item>
+	</style>
+    <style name="ZMButton" parent="android:Widget.Button">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:background">@drawable/zm_button_default</item>
+		<item name="android:minWidth">@dimen/zm_accessible_btn_min_size</item>
+		<item name="android:minHeight">@dimen/zm_accessible_btn_min_size</item>
+	</style>
+    <style name="ZMButton.Alert">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_alert</item>
+	</style>
+    <style name="ZMButton.BroadCast">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">#f89c08</item>
+		<item name="android:background">@drawable/zm_broadcast_btn</item>
+		<item name="android:gravity">center</item>
+	</style>
+    <style name="ZMButton.Dialog">
+		<item name="android:background">@drawable/zm_btn_dialog_bg</item>
+		<item name="android:textSize">17sp</item>
+		<item name="android:textColor">@color/zm_popitem_btn_color</item>
+	</style>
+    <style name="ZMButton.Dialog.HappyPath">
+		<!--
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_happypath2</item>
+		 -->
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMButton.Gray">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary_color</item>
+		<item name="android:background">@drawable/zm_btn_bg_gray</item>
+	</style>
+    <style name="ZMButton.Gray.Medium">
+		<item name="android:textSize">17sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary_color</item>
+		<item name="android:background">@drawable/zm_btn_bg_gray</item>
+	</style>
+    <style name="ZMButton.Gray.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMButton.Green" parent="ZMButton">
+		<item name="android:textColor">@drawable/zm_btn_green_text_color</item>
+		<item name="android:background">@drawable/zm_btn_green</item>
+	</style>
+    <style name="ZMButton.HappyPath">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_button_happypath</item>
+	</style>
+    <style name="ZMButton.HappyPath.Gray">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_gray</item>
+		<item name="android:background">@drawable/zm_button_happypath_gray</item>
+	</style>
+    <style name="ZMButton.HappyPath2">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_happypath2</item>
+	</style>
+    <style name="ZMButton.Index">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_btn_index</item>
+	</style>
+    <style name="ZMButton.Index.Bottom">
+		<item name="android:background">@drawable/zm_btn_index_bottom</item>
+	</style>
+    <style name="ZMButton.Material">
+		<item name="android:textColor">@color/zm_white</item>
+		<item name="android:background">@drawable/zm_button_material_bg</item>
+		<item name="android:paddingLeft">5dp</item>
+		<item name="android:paddingRight">5dp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:minHeight">30dp</item>
+	</style>
+    <style name="ZMButton.Mini" parent="android:Widget.Button.Small">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:minHeight">0dp</item>
+		<item name="android:minWidth">60dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:background">@drawable/zm_button_default_small</item>
+	</style>
+    <style name="ZMButton.NewHappyPath">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@color/zm_v1_white</item>
+		<item name="android:background">@drawable/zm_btn_bg_blue</item>
+	</style>
+    <style name="ZMButton.NewHappyPath.Medium">
+		<item name="android:textSize">17sp</item>
+	</style>
+    <style name="ZMButton.NoBackground">
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:background">@null</item>
+		<item name="android:paddingLeft">5dp</item>
+		<item name="android:paddingRight">5dp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:minHeight">30dp</item>
+	</style>
+    <style name="ZMButton.NoBackground.Medium">
+		<item name="android:textSize">16sp</item>
+	</style>
+    <style name="ZMButton.NoBackground.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMButton.Red" parent="ZMButton">
+		<item name="android:textColor">@drawable/zm_btn_green_text_color</item>
+		<item name="android:background">@drawable/zm_btn_red</item>
+	</style>
+    <style name="ZMButton.ScheduleMeeting">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_12sp</item>
+		<item name="android:textColor">@color/zm_v2_meeting_normal_btn_text</item>
+		<item name="android:background">@drawable/zm_btn_r6_rect_state_bg</item>
+		<item name="android:gravity">center</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingTop">4dp</item>
+		<item name="android:paddingBottom">4dp</item>
+	</style>
+    <style name="ZMButton.SettingsItem">
+		<item name="android:background">@null</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:minHeight">@dimen/zm_setting_item_min_height</item>
+	</style>
+    <style name="ZMButton.SettingsItem.Highlight">
+		<item name="android:textColor">@drawable/zm_button_setting_item_text_color_highlight</item>
+	</style>
+    <style name="ZMButton.SignIn" parent="ZMButton.NoBackground.Small">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">0dp</item>
+		<item name="android:layout_centerVertical">true</item>
+		<item name="android:maxLines">3</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMButton.Small" parent="android:Widget.Button.Small">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:minHeight">0dp</item>
+		<item name="android:background">@drawable/zm_button_default_small</item>
+	</style>
+    <style name="ZMButton.Small.OnDark">
+		<item name="android:background">@drawable/zm_btn_small_on_dark</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+	</style>
+    <style name="ZMButton.Small.OnLight">
+		<item name="android:background">@drawable/zm_btn_small_on_light</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+	</style>
+    <style name="ZMButton.Small.SideGray">
+		<item name="android:textColor">@color/zm_v2_txt_primary_color</item>
+		<item name="android:background">@drawable/zm_btn_bg_side_gray</item>
+	</style>
+    <style name="ZMButton.Small.happypath">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_button_happypath</item>
+	</style>
+    <style name="ZMButton.TitleBar" parent="ZMButton.NoBackground">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+	</style>
+    <style name="ZMButton.TitleBar.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMButton.TitleBar.OnDark">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+	</style>
+    <style name="ZMButton.TitleBar.Search">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="ZMButton.TitleBar.Small">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMButton.TitleBar.Small.OnDark">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+	</style>
+    <style name="ZMButton.TitleBar.Warning">
+		<item name="android:textColor">@drawable/zm_button_text_color_warn</item>
+	</style>
+    <style name="ZMButton.VoiceRecord">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+		<item name="android:background">@drawable/zm_voice_rcd_btn</item>
+		<item name="android:gravity">center</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingTop">6dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingBottom">6dp</item>
+	</style>
+    <style name="ZMButton.dialog.blue" parent="android:Widget.Button">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:textColor">@drawable/zm_button_text_color_on_dark</item>
+		<item name="android:background">@drawable/zm_dialog_btn_bg</item>
+	</style>
+    <style name="ZMCertificateViewerText">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_marginStart">@dimen/zm_padding_normal_size</item>
+		<item name="android:layout_marginEnd">@dimen/zm_padding_normal_size</item>
+		<item name="android:padding">@dimen/zm_padding_smallest_minus_size</item>
+		<item name="android:textColor">@color/zm_text_light_dark</item>
+		<item name="android:textSize">@dimen/zm_font_large_size</item>
+	</style>
+    <style name="ZMCheckbox" parent="android:Widget.CompoundButton.CheckBox">
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:button">@drawable/zm_btn_check_default</item>
+	</style>
+    <style name="ZMCheckbox.Normal">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMCheckbox.Normal.OnLight">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_light</item>
+	</style>
+    <style name="ZMContextMenu" parent="android:Widget.TextView">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+		<item name="android:gravity">center</item>
+	</style>
+    <style name="ZMContextMenu.Secondary" parent="ZMContextMenu">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMDialog" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@drawable/zm_dialog_bg</item>
+		<item name="android:buttonStyle">@style/ZMButton</item>
+		<item name="android:textViewStyle">@style/ZMTextView</item>
+		<item name="android:editTextStyle">@style/ZMEditText</item>
+		<item name="android:windowTitleBackgroundStyle">@style/ZMWindowTitleBackground</item>
+		<item name="android:spinnerStyle">@style/ZMSpinner</item>
+		<item name="android:listSeparatorTextViewStyle">@style/ZMListSeparator</item>
+		<item name="android:listViewStyle">@style/ZMListView</item>
+		<item name="android:scrollViewStyle">@style/ZMScrollView</item>
+		<item name="android:checkboxStyle">@style/ZMCheckbox</item>
+		<item name="android:progressBarStyle">@style/ZMProgressBar</item>
+		<item name="android:progressBarStyleHorizontal">@style/ZMProgressBar.Horizontal</item>
+		<item name="android:progressBarStyleSmall">@style/ZMProgressBar.Small</item>
+		
+		<item name="zm_tipAppearance">@style/ZMTip</item>
+	</style>
+    <style name="ZMDialog.FullScreen" parent="android:Theme.Dialog">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowBackground">@color/zm_transparent</item>
+		<item name="android:windowIsFloating">false</item>
+	</style>
+    <style name="ZMDialog.FullScreen.Title" parent="android:Theme.Dialog">
+		<item name="android:windowNoTitle">false</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowBackground">@color/zm_transparent</item>
+		<item name="android:windowIsFloating">false</item>
+	</style>
+    <style name="ZMDialog.HideSoftKeyboard">
+        <item name="android:windowSoftInputMode">stateHidden|adjustResize</item>
+    </style>
+    <style name="ZMDialog.Material">
+        <item name="android:windowBackground">@color/zm_white</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+		<item name="android:editTextStyle">@style/ZMEditText.Dialog</item>
+		<item name="android:buttonStyle">@style/ZMButton.dialog.blue</item>
+	</style>
+    <style name="ZMDialog.Material.RoundRect">
+        <item name="android:windowBackground">@drawable/zm_dialog_white_roundrect_bg</item>
+	</style>
+    <style name="ZMDialog.Material.RoundRect.BigCorners">
+		<item name="android:windowBackground">@drawable/zm_dialog_white_big_corner_roundrect_bg
+		</item>
+	</style>
+    <style name="ZMDialog.Material.RoundRect.NormalCorners">
+		<item name="android:windowBackground">@drawable/zm_dialog_white_normal_corner_roundrect_bg
+		</item>
+	</style>
+    <style name="ZMDialog.Material.Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+	</style>
+    <style name="ZMDialog.Material.Transparent.FullScreen">
+		<item name="android:windowFullscreen">true</item>
+	</style>
+    <style name="ZMDialog.Slide" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@null</item>
+		<item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@style/DialogAnimation</item>
+        <item name="android:background">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+	</style>
+    <style name="ZMDialog.Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+	</style>
+    <style name="ZMDialogFadeInFadeOutAnimation">
+		<item name="android:windowEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:windowExitAnimation">@anim/zm_fade_out</item>
+	</style>
+    <style name="ZMDialog_NoTitle" parent="android:Theme.Dialog">
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowFullscreen">false</item>
+		<item name="android:windowBackground">@color/zm_white</item>
+		<item name="android:windowIsFloating">false</item>
+	</style>
+    <style name="ZMEditText" parent="android:Widget.EditText">
+		<item name="android:textColorHint">@color/zm_v2_txt_secondary</item>
+		<item name="android:background">@drawable/zm_edit_text</item>
+	</style>
+    <style name="ZMEditText.ContextSearch">
+		<item name="android:background">@drawable/zm_search_bg_normal</item>
+		<item name="android:textSize">14sp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColorHint">@color/zm_im_search_text_hint</item>
+	</style>
+    <style name="ZMEditText.Dialog">
+		<item name="android:textSize">18sp</item>
+		<item name="android:textColorHint">@color/zm_text_highlight</item>
+		<item name="android:textColor">@color/zm_black</item>
+		<item name="android:background">@color/zm_transparent</item>
+	</style>
+    <style name="ZMEditText.GlobalSearch">
+		<item name="android:background">@drawable/zm_transparent</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColorHint">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMEditText.Line">
+		<item name="android:background">@drawable/zm_edit_text_line</item>
+	</style>
+    <style name="ZMEditText.NoBorder">
+		<item name="android:background">@null</item>
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+    <style name="ZMEditText.NoBorder.OnLight">
+		<item name="android:textColor">@color/zm_black</item>
+		<item name="android:textColorHint">@color/zm_dark</item>
+	</style>
+    <style name="ZMEditText.SettingsItem" parent="ZMEditText.NoBorder">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+		<item name="android:gravity">left|center_vertical</item>
+	</style>
+    <style name="ZMEditText.SettingsItem.Small" parent="ZMEditText.SettingsItem">
+		<item name="android:textSize">16sp</item>
+	</style>
+    <style name="ZMEditText.Small">
+		<item name="android:minHeight">35dp</item>
+	</style>
+    <style name="ZMInMeetingInfoItemContent">
+		<item name="android:layout_weight">8</item>
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary_ondark</item>
+		<item name="android:letterSpacing">-0.01</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:maxLines">3</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+    <style name="ZMInMeetingInfoItemTitle">
+		<item name="android:layout_weight">3</item>
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_secondary_ondark</item>
+		<item name="android:letterSpacing">-0.01</item>
+		<item name="android:maxLines">1</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+    <style name="ZMLightLine">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:background">@drawable/zm_list_divider</item>
+	</style>
+    <style name="ZMListSeparator" parent="android:Widget.TextView">
+		<!--
+                <item name="android:background">#212421</item>
+                <item name="android:textSize">16sp</item>
+                <item name="android:layout_width">match_parent</item>
+                <item name="android:layout_height">wrap_content</item>
+                <item name="android:textStyle">bold</item>
+                <item name="android:textColor">@color/zoom_white</item>
+                <item name="android:gravity">center_vertical</item>
+                <item name="android:paddingLeft">5sp</item>
+         -->
+	</style>
+    <style name="ZMListView" parent="android:Widget.ListView">
+		<item name="android:background">@drawable/zm_listview_bg</item>
+		<item name="android:cacheColorHint">@android:color/transparent</item>
+		<item name="android:dividerHeight">0.5dip</item>
+		<item name="android:divider">@color/zm_v2_cell_divider</item>
+		<item name="android:fadeScrollbars">true</item>
+		<item name="android:listSelector">@drawable/zm_list_selector_background</item>
+		<item name="android:overScrollFooter">@null</item>
+	</style>
+    <style name="ZMLoginButtons" parent="ZMButton.HappyPath">
+		<item name="android:minHeight">50dp</item>
+	</style>
+    <style name="ZMMaterialButton" parent="ZMMaterialTextView">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMMaterialDefaultButton" parent="android:Widget.TextView">
+		<item name="android:background">@drawable/zm_material_btn_default</item>
+		<item name="android:padding">8dp</item>
+		<item name="android:textColor">@color/zm_white</item>
+	</style>
+    <style name="ZMMaterialDefaultButton.Large">
+		<item name="android:textSize">20sp</item>
+	</style>
+    <style name="ZMMaterialDefaultButton.Medium">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMMaterialDefaultButton.Normal">
+		<item name="android:textSize">16sp</item>
+	</style>
+    <style name="ZMMaterialTextView" parent="android:Widget.TextView">
+		<item name="android:textSize">16sp</item>
+		<item name="android:padding">8dp</item>
+		<item name="android:layout_gravity">center</item>
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+	</style>
+    <style name="ZMPhoneAlertTextView">
+		<item name="android:textSize">14sp</item>
+		<item name="android:gravity">center</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">44dp</item>
+		<item name="android:background">@color/zm_notification_background</item>
+	</style>
+    <style name="ZMPlistButton" parent="android:Widget.Button.Small">
+		<item name="android:textSize">13sp</item>
+		<item name="android:minHeight">0dp</item>
+		<item name="android:minWidth">60dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item>
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingRight">10dp</item>
+		<item name="android:background">@drawable/zm_btn_r6_rect_state_bg</item>
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="ZMPollingDialog" parent="ZMDialog.FullScreen">
+
+	</style>
+    <style name="ZMProgressBar" parent="android:Widget.ProgressBar">
+		<!-- 		<item name="android:indeterminateDrawable">@drawable/zm_progress_default</item> -->
+	</style>
+    <style name="ZMProgressBar.Horizontal" parent="android:Widget.ProgressBar.Horizontal">
+		<!-- 		<item name="android:progressDrawable">@drawable/zm_progress_horizontal</item> -->
+	</style>
+    <style name="ZMProgressBar.Large" parent="android:Widget.ProgressBar.Large">
+		<!-- 		<item name="android:indeterminateDrawable">@drawable/zm_progress_default</item> -->
+	</style>
+    <style name="ZMProgressBar.Small" parent="android:Widget.ProgressBar.Small">
+		<!-- 		<item name="android:indeterminateDrawable">@drawable/zm_progress_default</item> -->
+	</style>
+    <style name="ZMProgressHUD">
+		<item name="android:windowExitAnimation">@anim/zm_fade_out</item>
+	</style>
+    <style name="ZMRadioButton" parent="android:Widget.CompoundButton.RadioButton">
+		<item name="android:textColor">@drawable/zm_button_text_color</item>
+		<item name="android:button">@android:drawable/btn_radio</item>
+	</style>
+    <style name="ZMRadioButton.Normal">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMRadioButton.Normal.OnLight">
+		<item name="android:textColor">@drawable/zm_button_text_color_on_light</item>
+	</style>
+    <style name="ZMReportIssueItem">
+		<item name="android:background">@drawable/zm_list_selector_normal</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="ZMReportIssueItemText">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:layout_marginLeft">16dp</item>
+		<item name="android:layout_marginTop">16dp</item>
+		<item name="android:layout_marginBottom">16dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+		<item name="android:layout_gravity">center_vertical|left</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="ZMReportIssueItemTick">
+		<item name="android:src">@drawable/zm_group_type_select</item>
+		<item name="android:scaleType">fitCenter</item>
+		<item name="android:layout_marginRight">19dp</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical|right</item>
+		<item name="android:contentDescription">@string/zm_accessibility_icon_item_selected_19247
+		</item>
+		<item name="android:visibility">gone</item>
+	</style>
+    <style name="ZMReportIssueTitle">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:layout_marginLeft">14dp</item>
+		<item name="android:layout_marginTop">8dp</item>
+		<item name="android:layout_marginBottom">8dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_15sp</item>
+		<item name="android:layout_gravity">center_vertical|left</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="ZMRoundBottomSheetDialogTheme" parent="Theme.Design.BottomSheetDialog">
+		<item name="bottomSheetStyle">@style/ZMBottomSheetModalStyle</item>
+	</style>
+    <style name="ZMScheduleCheckBox">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:clickable">false</item>
+		<item name="android:checkMark">@drawable/zm_btn_toggle_default</item>
+	</style>
+    <style name="ZMScheduleCheckTitleTextView" parent="ZMTextView.SettingsItem.Small">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">@dimen/zm_schedule_item_layout_weight</item>
+		<item name="android:gravity">left|center_vertical</item>
+	</style>
+    <style name="ZMScheduleItemLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:gravity">center</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:weightSum">@dimen/zm_schedule_item_layout_weight</item>
+	</style>
+    <style name="ZMScheduleRightArrowImageView">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:duplicateParentState">true</item>
+		<item name="android:src">@drawable/zm_next_arrow</item>
+	</style>
+    <style name="ZMScheduleSelectTextView" parent="ZMTextView.Normal.Dimmed">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginRight">@dimen/zm_right_arrow_margin</item>
+		<item name="android:layout_weight">@dimen/zm_schedule_select_textview_weight</item>
+		<item name="android:gravity">right|center_vertical</item>
+	</style>
+    <style name="ZMScheduleSelectTextViewForShortTitle" parent="ZMTextView.Normal.Dimmed">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginRight">@dimen/zm_right_arrow_margin</item>
+		<item name="android:layout_weight">@dimen/zm_schedule_item_layout_weight</item>
+		<item name="android:gravity">right|center_vertical</item>
+	</style>
+    <style name="ZMScheduleSelectTitleTextView" parent="ZMTextView.SettingsItem.Small">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_weight">@dimen/zm_schedule_select_title_weight</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+	</style>
+    <style name="ZMScheduleSelectTitleTextViewShort" parent="ZMTextView.SettingsItem.Small">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+	</style>
+    <style name="ZMScrollView" parent="android:Widget.ScrollView">
+		<item name="android:fadeScrollbars">true</item>
+	</style>
+    <style name="ZMSeekBar" parent="android:Widget.SeekBar">
+		<item name="android:minHeight">1dip</item>
+		<item name="android:maxHeight">1dip</item>
+		<item name="android:thumb">@drawable/zm_seekbar_thumb</item>
+		<item name="android:progressDrawable">@drawable/zm_progress_horizontal</item>
+		<item name="android:indeterminateDrawable">@drawable/zm_progress_horizontal</item>
+	</style>
+    <style name="ZMSettingOptionIcon">
+		<item name="android:layout_width">24dp</item>
+		<item name="android:layout_height">24dp</item>
+		<item name="android:scaleType">fitCenter</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">24dp</item>
+		<item name="android:layout_marginTop">10dp</item>
+		<item name="android:layout_marginBottom">10dp</item>
+	</style>
+    <style name="ZMSettingsCategory" parent="android:Widget">
+		<item name="zm_showTopDivider">true</item>
+		<item name="zm_showBottomDivider">true</item>
+		<item name="zm_showCenterDivider">true</item>
+		<item name="zm_topDivider">@drawable/zm_settings_top_divider</item>
+		<item name="zm_centerDivider">@drawable/zm_settings_center_divider</item>
+		<item name="zm_bottomDivider">@drawable/zm_settings_top_divider</item>
+		<item name="zm_dividerHeight">@dimen/zm_setting_item_divider_height</item>
+		<item name="zm_settingsItemSelector">@drawable/zm_settings_item_selector</item>
+		<item name="zm_seetingsItemMinHeight">@dimen/zm_setting_item_min_height</item>
+		<item name="zm_settingsCategoryBackground">@color/zm_v2_svg_setting_option</item>
+	</style>
+    <style name="ZMSettingsLayout">
+		<item name="zm_settingsCategorySpacing">@dimen/zm_setting_item_group_spacing</item>
+	</style>
+    <style name="ZMSnackbar" parent="Widget.MaterialComponents.Snackbar">
+		<item name="android:layout_margin">0dp</item>
+	</style>
+    <style name="ZMSpinner" parent="android:Widget.Spinner">
+		<!--
+                <item name="android:background">@drawable/zm_btn_dropdown</item>
+                <item name="android:clickable">true</item>
+         -->
+	</style>
+    <style name="ZMTextView" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/zm_v2_txt_primary_color</item>
+		<item name="android:textColorLink">@color/zm_v2_txt_action</item>
+	</style>
+    <style name="ZMTextView.AddrBookDetails">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_16sp</item>
+	</style>
+    <style name="ZMTextView.AddrBookDetails.Black" parent="ZMTextView.AddrBookDetails">
+		<item name="android:textColor">@color/zm_addrbook_item_details_black_text_color</item>
+	</style>
+    <style name="ZMTextView.AddrBookDetails.Gray" parent="ZMTextView.AddrBookDetails">
+		<item name="android:textColor">@color/zm_addrbook_item_details_gray_text_color</item>
+	</style>
+    <style name="ZMTextView.AnnoMoreItem">
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingBottom">10dp</item>
+	</style>
+    <style name="ZMTextView.AnnoMoreItemAndText">
+		<!--combine two styles above-->
+		<item name="android:layout_marginLeft">4dp</item>
+		<item name="android:layout_marginTop">4dp</item>
+		<item name="android:layout_marginRight">4dp</item>
+		<item name="android:layout_marginBottom">4dp</item>
+		<item name="android:paddingLeft">12dp</item>
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingRight">12dp</item>
+		<item name="android:paddingBottom">10dp</item>
+
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/zm_v1_gray_2100</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:maxWidth">@dimen/zm_annotation_popup_text_max_width</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+    <style name="ZMTextView.AnnoMoreItemText">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">@color/zm_v1_gray_2100</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:maxLines">2</item>
+		<item name="android:maxWidth">@dimen/zm_annotation_popup_text_max_width</item>
+		<item name="android:ellipsize">end</item>
+	</style>
+    <style name="ZMTextView.AppSubTitle" parent="ZMTextView.Normal.OnDark"/>
+    <style name="ZMTextView.BottomSheetItem">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:layout_gravity">center</item>
+	</style>
+    <style name="ZMTextView.BuddyName.ExtremLarge.OnDark" parent="ZMTextView.ExtremXLarge.OnDark"/>
+    <style name="ZMTextView.BuddyName.ExtremLarge.OnLight" parent="ZMTextView.ExtremXLarge.OnLight"/>
+    <style name="ZMTextView.BuddyName.Large" parent="ZMTextView.ExtremLarge">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Large.OnLight">
+		<item name="android:textColor">#333333</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Large.Selector">
+		<item name="android:textColor">@color/zm_textview_textcolor_selector</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Medium" parent="ZMTextView.Large">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Medium.Dimmed">
+		<item name="android:textColor">#666666</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Medium.OnLight">
+		<item name="android:textColor">#333333</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal" parent="ZMTextView.Medium">
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.Dimmed">
+		<item name="android:textColor">#666666</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.OnLight">
+		<item name="android:textColor">@color/zm_im_buddyname_online</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.OnLight.Grey">
+		<item name="android:textColor">@color/zm_text_color_onlight_grey</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.OnLight.Selector">
+		<item name="android:textColor">@color/zm_text_color_onlight_selector</item>
+	</style>
+    <style name="ZMTextView.BuddyName.Normal.Selector">
+		<item name="android:textColor">@color/zm_textview_textcolor_selector</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.CallerName" parent="ZMTextView.Medium.OnDark">
+		<item name="android:textSize">38sp</item>
+	</style>
+    <style name="ZMTextView.Calling" parent="ZMTextView.Medium.OnDark">
+		<item name="android:textSize">24sp</item>
+	</style>
+    <style name="ZMTextView.ChatsListActionItem.Label" parent="ZMTextView.BuddyName.Medium">
+		<item name="android:textColor">@drawable/zm_chats_list_action_item_text_color</item>
+	</style>
+    <style name="ZMTextView.ConfChatItemTime" parent="ZMTextView.Medium.OnLight">
+		<item name="android:textColor">#ffAAAAAA</item>
+	</style>
+    <style name="ZMTextView.ConfChatTitle" parent="ZMTextView.Medium.OnLight">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.ConfChatTitle.Private">
+		<item name="android:textColor">#FFFEB432</item>
+	</style>
+    <style name="ZMTextView.ConfChatTitle.Public">
+		<item name="android:textColor">#FF404040</item>
+	</style>
+    <style name="ZMTextView.DialogItem">
+		<item name="android:textColor">@drawable/zm_dialog_item_text_color</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.DialogItem.highligt">
+		<item name="android:textColor">@drawable/zm_dialog_item_text_highlight_color</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.Dialpad">
+		<item name="android:textSize">32sp</item>
+		<item name="android:textColor">@drawable/zm_text_color_dialpad</item>
+	</style>
+    <style name="ZMTextView.Dialpad.Des">
+		<item name="android:textSize">8sp</item>
+	</style>
+    <style name="ZMTextView.Dialpad.Num">
+		<item name="android:textSize">@dimen/zm_sip_dialpad_num_text_size</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.Dialpad.OnDark">
+		<item name="android:textSize">30sp</item>
+		<item name="android:textColor">@color/zm_ui_kit_color_white_ffffff</item>
+	</style>
+    <style name="ZMTextView.ExSmall">
+		<item name="android:textSize">10sp</item>
+	</style>
+    <style name="ZMTextView.ExSmall.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.ExSmall.Dimmed.OnDark">
+		<item name="android:textColor">@color/zm_text_gray</item>
+	</style>
+    <style name="ZMTextView.ExSmall.Dimmed_Smallest">
+		<item name="android:textSize">8sp</item>
+	</style>
+    <style name="ZMTextView.ExSmall.ForInMeetingChat">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.ExSmall.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.ExSmall.OnDark.Shadow">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+		<item name="android:shadowColor">@color/zm_v1_black</item>
+		<item name="android:shadowDx">0.5</item>
+		<item name="android:shadowDy">0.5</item>
+		<item name="android:shadowRadius">2</item>
+	</style>
+    <style name="ZMTextView.ExSmall.OnLight">
+		<item name="android:textColor">@color/zm_text_on_light</item>
+	</style>
+    <style name="ZMTextView.ExtremLarge">
+		<item name="android:textSize">20sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.ExtremLarge.Dimmed">
+		<item name="android:textColor">@color/zm_text_dim</item>
+	</style>
+    <style name="ZMTextView.ExtremLarge.Dimmed.OnDark">
+	</style>
+    <style name="ZMTextView.ExtremLarge.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.ExtremLarge.OnLight">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.ExtremLargeNormal">
+		<item name="android:textSize">20sp</item>
+	</style>
+    <style name="ZMTextView.ExtremXLarge">
+		<item name="android:textSize">28sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.ExtremXLarge.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.ExtremXLarge.OnLight">
+		<item name="android:textColor">@color/zm_text_on_light</item>
+	</style>
+    <style name="ZMTextView.GroupOwner" parent="ZMTextView.Small.OnLight">
+		<!--item name="android:textColor">#fc3d39</item-->
+	</style>
+    <style name="ZMTextView.IMChatItemDate" parent="ZMTextView.Small.OnLight"/>
+    <style name="ZMTextView.IMChatItemTime" parent="ZMTextView.Medium.OnLight">
+		<item name="android:textColor">#ffAAAAAA</item>
+	</style>
+    <style name="ZMTextView.Instructions" parent="ZMTextView.Medium.OnLight">
+		<item name="android:textColor">#000000</item>
+		<item name="android:background">@color/zm_notification_background</item>
+		<item name="android:paddingLeft">15dp</item>
+		<item name="android:paddingRight">15dp</item>
+		<item name="android:paddingTop">15dp</item>
+		<item name="android:paddingBottom">15dp</item>
+	</style>
+    <style name="ZMTextView.Instructions.ChatWarn">
+		<item name="android:background">@color/zm_v2_txt_desctructive</item>
+	</style>
+    <style name="ZMTextView.Label">
+		<item name="android:textSize">10sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.Label.Small">
+		<item name="android:textSize">8sp</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.Large">
+		<item name="android:textSize">17sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.Large.DialogTitle">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.Large.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.Large.Dimmed.OnDark">
+	</style>
+    <style name="ZMTextView.Large.NotBold">
+		<item name="android:textSize">17sp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.Large.NotBold.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.Large.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.Large.OnLight">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.ListEmptyView">
+		<item name="android:textColor">@color/zm_text_listemptyview</item>
+		<item name="android:textSize">24sp</item>
+	</style>
+    <style name="ZMTextView.MMChatsListTime" parent="ZMTextView.Normal">
+		<item name="android:textColor">@color/zm_chats_list_time_normal</item>
+	</style>
+    <style name="ZMTextView.MMMessage" parent="ZMTextView.Medium"/>
+    <style name="ZMTextView.MMMessage.OnDark" parent="ZMTextView.Medium.OnDark"/>
+    <style name="ZMTextView.MMSystemMessage" parent="UIKitTextView.SecondaryText.Small"/>
+    <style name="ZMTextView.Medium">
+		<item name="android:textSize">16sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.Medium.DialogMsg">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.Medium.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.Medium.Dimmed.OnDark">
+	</style>
+    <style name="ZMTextView.Medium.OnDark">
+		<item name="android:textColor">@android:color/white</item>
+	</style>
+    <style name="ZMTextView.Medium.OnLight">
+		<item name="android:textColor">@color/zm_v2_txt_primary_light</item>
+	</style>
+    <style name="ZMTextView.MeetingEvent" parent="android:Widget.TextView">
+		<item name="android:textColor">@color/zm_v2_txt_action</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_14sp</item>
+	</style>
+    <style name="ZMTextView.Normal">
+		<item name="android:textSize">14sp</item>
+	</style>
+    <style name="ZMTextView.Normal.DialogMsg">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+    <style name="ZMTextView.Normal.DialogMsgLarge">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">13sp</item>
+		<item name="android:textStyle">bold</item>
+		<item name="android:layout_gravity">center_vertical</item>
+		<item name="android:layout_marginLeft">11dp</item>
+	</style>
+    <style name="ZMTextView.Normal.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.Normal.Dimmed.BlueEnableSelector">
+		<item name="android:textColor">@color/zm_ui_text_blue_color</item>
+	</style>
+    <style name="ZMTextView.Normal.Dimmed.OnDark">
+		<item name="android:textColor">@color/zm_v2_txt_secondary_ondark</item>
+	</style>
+    <style name="ZMTextView.Normal.Dimmed747487">
+		<item name="android:textColor">@color/zm_ui_kit_color_gray_747487</item>
+	</style>
+    <style name="ZMTextView.Normal.Grey">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.Normal.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.Normal.OnDark.Bold">
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.Normal.OnDark.Selector">
+		<item name="android:textColor">@color/zm_text_color_ondark_selector</item>
+	</style>
+    <style name="ZMTextView.Normal.OnLight">
+		<item name="android:textColor">@drawable/zm_text_color_onlight</item>
+	</style>
+    <style name="ZMTextView.Normal.gray">
+		<item name="android:textColor">@color/zm_v1_gray_2100</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+    <style name="ZMTextView.Normal.gray.darkMode">
+		<item name="android:textColor">@color/zm_v2_schedule_force_tip_text</item>
+		<item name="android:textSize">13sp</item>
+	</style>
+    <style name="ZMTextView.OnLight">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Large">
+		<item name="android:textSize">17sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.OnLight.Large.DeepGrey">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Large.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Medium">
+		<item name="android:textSize">14sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.OnLight.Medium.DeepGrey">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Medium.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Normal">
+		<item name="android:textSize">16sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.OnLight.Normal.DeepGrey">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Normal.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Small">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+    <style name="ZMTextView.OnLight.Small.DeepGrey">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OnLight.Small.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.OptionTitle">
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">22sp</item>
+	</style>
+    <style name="ZMTextView.PopItem">
+		<item name="android:textColor">@color/zm_popitem_text_color</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.PopItem.disable">
+		<item name="android:textColor">@color/zm_ui_kit_color_gray_747487</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.PopItem.highligt">
+		<item name="android:textColor">@color/zm_popitem_text_highlight_color</item>
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.SettingsItem">
+		<item name="android:textStyle">normal</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+		<item name="android:textSize">18sp</item>
+		<item name="android:gravity">left|center_vertical</item>
+		<item name="android:paddingLeft">@dimen/zm_setting_item_padding_left</item>
+		<item name="android:paddingTop">@dimen/zm_setting_item_padding_top</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:paddingBottom">@dimen/zm_setting_item_padding_bottom</item>
+		<item name="android:minHeight">@dimen/zm_setting_item_min_height</item>
+	</style>
+    <style name="ZMTextView.SettingsItem.NoPadding">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+		<item name="android:paddingRight">0dp</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:minHeight">0dp</item>
+	</style>
+    <style name="ZMTextView.SettingsItem.Secondary">
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.SettingsItem.Small">
+		<item name="android:textSize">16sp</item>
+	</style>
+    <style name="ZMTextView.SettingsItemDesc" parent="ZMTextView.Normal">
+		<item name="android:gravity">left</item>
+		<item name="android:paddingLeft">@dimen/zm_setting_item_padding_left</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:paddingBottom">0dp</item>
+		<item name="android:textColor">@color/zm_v2_txt_secondary</item>
+	</style>
+    <style name="ZMTextView.SettingsItemDesc.MeetingSetting" parent="ZMTextView.SettingsItemDesc">
+		<item name="android:paddingTop">15dp</item>
+		<item name="android:paddingBottom">5dp</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+    <style name="ZMTextView.SettingsItemDesc.Small" parent="ZMTextView.Small.Dimmed">
+		<item name="android:gravity">center</item>
+		<item name="android:paddingLeft">@dimen/zm_setting_item_padding_left</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+		<item name="android:paddingBottom">0dp</item>
+	</style>
+    <style name="ZMTextView.Small">
+		<item name="android:textSize">12sp</item>
+	</style>
+    <style name="ZMTextView.Small.Dimmed">
+		<item name="android:textColor">@color/zm_v2_txt_secondary_color</item>
+	</style>
+    <style name="ZMTextView.Small.Dimmed.OnDark">
+	</style>
+    <style name="ZMTextView.Small.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+	</style>
+    <style name="ZMTextView.Small.OnGray">
+		<item name="android:textColor">@color/zm_half_translucent_white</item>
+	</style>
+    <style name="ZMTextView.Small.OnLight">
+		<item name="android:textColor">@color/zm_text_on_light</item>
+	</style>
+    <style name="ZMTextView.Small.Warn">
+		<item name="android:textColor">@color/zm_txt_warn</item>
+	</style>
+    <style name="ZMTextView.TabLabel" parent="ZMTextView.Small.OnLight">
+		<item name="android:textColor">@color/zm_tab_text_color</item>
+		<item name="android:shadowRadius">0</item>
+		<item name="android:textSize">11sp</item>
+	</style>
+    <style name="ZMTextView.TabLabel.Top">
+		<item name="android:textColor">@drawable/zm_tab_top_text_color</item>
+		<item name="android:textSize">16sp</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.TipMessage" parent="ZMTextView.Medium.OnLight">
+		<item name="android:textColor">#ff000000</item>
+	</style>
+    <style name="ZMTextView.TipMessage.Button" parent="ZMButton.NoBackground">
+		<item name="android:textSize">16sp</item>
+	</style>
+    <style name="ZMTextView.TipMessage.OnDark" parent="ZMTextView.Medium.OnDark">
+		<item name="android:textColor">#ffffffff</item>
+	</style>
+    <style name="ZMTextView.TipMessage.Small.OnDark" parent="ZMTextView.Small.OnDark">
+		<item name="android:textColor">#ffffffff</item>
+	</style>
+    <style name="ZMTextView.TipMessage.Title" parent="ZMTextView.Large.OnLight">
+		<item name="android:textColor">#ff000000</item>
+	</style>
+    <style name="ZMTextView.TipMessage.Title.Medium.OnDark" parent="ZMTextView.Medium.OnDark">
+		<item name="android:textColor">#ffffffff</item>
+	</style>
+    <style name="ZMTextView.TipMessage.Title.OnDark" parent="ZMTextView.Large.OnDark">
+		<item name="android:textColor">#ffffffff</item>
+	</style>
+    <style name="ZMTextView.Title" parent="ZMTextView.ExtremLarge.OnDark">
+		<item name="android:textColor">@color/zm_text_on_dark</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMTextView.Title.OnDark">
+	</style>
+    <style name="ZMTextView.Title.OnLight">
+		<item name="android:textColor">@color/zm_text_on_light</item>
+		<item name="android:minWidth">@dimen/zm_accessible_btn_min_size</item>
+		<item name="android:minHeight">@dimen/zm_accessible_btn_min_size</item>
+	</style>
+    <style name="ZMTextView.Title.Smaller">
+		<item name="android:textSize">18sp</item>
+	</style>
+    <style name="ZMTextView.ToolbarBtnLabel" parent="ZMTextView.Small">
+		<item name="android:textColor">@drawable/zm_toolbar_btn_text_color</item>
+		<item name="android:textSize">11sp</item>
+	</style>
+    <style name="ZMTextView.UnreadMessageCount" parent="ZMTextView.Normal.OnDark">
+		<item name="android:textSize">12sp</item>
+		<item name="android:textStyle">normal</item>
+		<item name="android:background">@drawable/zm_red_bubble</item>
+		<item name="android:minWidth">17dp</item>
+	</style>
+    <style name="ZMTextView.UnreadMessageCount.Gray" parent="ZmTextView.Content.Secondary.Medium">
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_13sp</item>
+		<item name="android:textColor">@color/zm_v1_black_50_alpha56</item>
+		<item name="android:background">@drawable/zm_gray_bubble</item>
+		<item name="android:minWidth">20dp</item>
+	</style>
+    <style name="ZMTextView.UnreadMessageCount.Small">
+		<item name="android:textSize">12sp</item>
+	</style>
+    <style name="ZMTheme" parent="AppTheme">
+		<item name="android:windowBackground">@drawable/zm_window_bg</item>
+		<item name="android:buttonStyle">@style/ZMButton</item>
+		<item name="android:buttonStyleSmall">@style/ZMButton.Small</item>
+		<item name="android:textViewStyle">@style/ZMTextView</item>
+		<item name="android:editTextStyle">@style/ZMEditText</item>
+		<item name="android:windowTitleBackgroundStyle">@style/ZMWindowTitleBackground</item>
+		<item name="android:spinnerStyle">@style/ZMSpinner</item>
+		<item name="android:listSeparatorTextViewStyle">@style/ZMListSeparator</item>
+		<item name="android:listViewStyle">@style/ZMListView</item>
+		<item name="android:scrollViewStyle">@style/ZMScrollView</item>
+		<item name="android:checkboxStyle">@style/ZMCheckbox</item>
+		<item name="android:radioButtonStyle">@style/ZMRadioButton</item>
+		<item name="android:listChoiceIndicatorMultiple">@drawable/zm_btn_check_default</item>
+		<item name="android:progressBarStyle">@style/ZMProgressBar</item>
+		<item name="android:progressBarStyleHorizontal">@style/ZMProgressBar.Horizontal</item>
+		<item name="android:progressBarStyleSmall">@style/ZMProgressBar.Small</item>
+		<item name="android:seekBarStyle">@style/ZMSeekBar</item>
+<!--
+		<item name="android:windowActionBar">false</item>
+		<item name="android:actionBarStyle">@style/ZMActionBar</item>
+		<item name="android:popupMenuStyle">@style/ZMListPopupMenu</item>
+ -->
+
+ 		<item name="zm_tipAppearance">@style/ZMTip</item>
+ 		<item name="zm_settingsLayoutAppearance">@style/ZMSettingsLayout</item>
+ 		<item name="zm_settingsCategoryAppearance">@style/ZMSettingsCategory</item>
+		<item name="snackbarStyle">@style/ZMSnackbar</item>
+	</style>
+    <style name="ZMTheme.Float">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="ZMTheme.FullScreenCamera" parent="ZMTheme.NoTitle">
+		<item name="android:immersive">true</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:windowTranslucentStatus">true</item>
+		<item name="android:windowTranslucentNavigation">true</item>
+	</style>
+    <style name="ZMTheme.MainWindow" parent="ZMTheme.NoTitle">
+	    <item name="android:windowBackground">@drawable/zm_window_bg</item>
+	</style>
+    <style name="ZMTheme.MainWindow.NoEnterAnim">
+        <item name="android:windowAnimationStyle">@style/AppNoEnterAnim</item>
+    </style>
+    <style name="ZMTheme.NoTitle">
+		<item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+	</style>
+    <style name="ZMTheme.SubWindow" parent="ZMTheme.NoTitle">
+	</style>
+    <style name="ZMTheme.SubWindow.Dark">
+		<item name="android:windowBackground">@color/zm_half_translucent_black</item>
+	</style>
+    <style name="ZMTheme.SubWindow.Newtask" parent="ZMTheme.SubWindow">
+		<item name="android:windowBackground">@color/zm_transparent</item>
+		<item name="android:windowTranslucentStatus">true</item>
+		<item name="android:windowNoTitle">true</item>
+		<!--<item name="android:taskOpenEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:taskOpenExitAnimation">@anim/zm_fade_out</item>
+		<item name="android:taskToBackEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:taskToBackExitAnimation">@anim/zm_fade_out</item>
+		<item name="android:taskToFrontEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:taskToFrontExitAnimation">@anim/zm_fade_out</item>
+		<item name="android:activityOpenEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:activityOpenExitAnimation">@anim/zm_fade_out</item>
+		<item name="android:activityCloseEnterAnimation">@anim/zm_fade_in</item>
+		<item name="android:activityCloseExitAnimation">@anim/zm_fade_out</item>-->
+
+
+	</style>
+    <style name="ZMTheme.Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+    <style name="ZMTheme.WithActionBar">
+		<item name="android:windowNoTitle">true</item>
+	</style>
+    <style name="ZMTickMenuItemImageView">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:contentDescription">@string/zm_accessibility_icon_item_selected_19247
+		</item>
+		<item name="android:src">@drawable/zm_group_type_select</item>
+	</style>
+    <style name="ZMTickMenuItemLayout">
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:gravity">center</item>
+		<item name="android:orientation">horizontal</item>
+		<item name="android:paddingRight">@dimen/zm_setting_item_padding_right</item>
+	</style>
+    <style name="ZMTickMenuItemTextView" parent="ZMTextView.SettingsItem.Small">
+		<item name="android:layout_width">0dp</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">left|center_vertical</item>
+		<item name="android:layout_weight">1</item>
+	</style>
+    <style name="ZMTip">
+		<item name="zm_background">@color/zm_ui_kit_color_white_ffffff</item>
+		<!-- <item name="background">@drawable/zm_window_bg</item> -->
+		<item name="zm_borderColor">@color/zm_v2_style_board</item>
+		<item name="zm_shadowColor">@color/zm_v2_style_shadow</item>
+		<item name="zm_backgroundColorIfHardwareAccelerated">@color/zm_v2_style_hardware_accelerated_bg</item>
+	</style>
+    <style name="ZMTitleBar">
+		<item name="android:background">@color/zm_v2_head</item>
+		<item name="android:paddingLeft">3dip</item>
+		<item name="android:paddingRight">3dip</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/zm_titlebar_height</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:elevation">10dp</item>
+	</style>
+    <style name="ZMTitleBar.Dark">
+	</style>
+    <style name="ZMTitleBar.Light">
+		<item name="android:paddingLeft">15dp</item>
+		<item name="android:paddingRight">15dp</item>
+		<item name="android:background">@color/zm_white</item>
+		<item name="android:elevation">0dp</item>
+	</style>
+    <style name="ZMTitleBar.Search">
+		<item name="android:background">@color/zm_white</item>
+	</style>
+    <style name="ZMTitleBar.Search.NoElevation">
+		<item name="android:elevation">0dp</item>
+	</style>
+    <style name="ZMTitleBarNoBackground">
+		<item name="android:paddingLeft">3dip</item>
+		<item name="android:paddingRight">3dip</item>
+		<item name="android:layout_width">match_parent</item>
+		<item name="android:layout_height">@dimen/zm_titlebar_height</item>
+		<item name="android:gravity">center_vertical</item>
+	</style>
+    <style name="ZMTitleButtonLeaveOrEnd">
+		<item name="android:ellipsize">middle</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:background">@drawable/zm_title_end_or_leave_button_bg</item>
+		<item name="android:minWidth">48dp</item>
+		<item name="android:minHeight">0dp</item>
+		<item name="android:paddingLeft">8dp</item>
+		<item name="android:paddingRight">8dp</item>
+		<item name="android:paddingBottom">3dp</item>
+		<item name="android:paddingTop">3dp</item>
+		<item name="android:textSize">@dimen/zm_ui_kit_text_size_14sp</item>
+		<item name="android:textAlignment">center</item>
+		<item name="android:textColor">@android:color/white</item>
+		<item name="android:textStyle">bold</item>
+	</style>
+    <style name="ZMWindowTitleBackground">
+		<!-- 		<item name="android:background">@drawable/zm_window_title_bg</item> -->
+	</style>
+    <style name="ZmDialogFragmentFullScreen" parent="Theme.AppCompat.Dialog">
+		<item name="android:windowIsFloating">false</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:background">@android:color/transparent</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowFullscreen">true</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+	</style>
+    <style name="ZmNavigationRailView" parent="Widget.MaterialComponents.NavigationRailView">
+		<item name="android:background">@color/zm_v2_tab</item>
+		<item name="itemIconTint">@color/zm_navigation_bar_colored_item_tint</item>
+		<item name="itemRippleColor">@color/zm_navigation_bar_colored_ripple_color</item>
+		<item name="itemTextColor">@color/zm_navigation_bar_colored_item_tint</item>
+	</style>
+    <style name="ZmPhoneSettingRadioButtonItem" parent="CallControlSettingOptionsRadio">
+		<item name="android:minHeight">@dimen/zm_settings_item_min_height</item>
+		<item name="android:textColor">@color/zm_v2_txt_primary</item>
+	</style>
+    <style name="ZmSecuritySettingsOverviewSheetStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/zm_gradual_step</item>
+        <item name="android:background">@color/zm_v1_purple_50_alpha18</item>
+        <item name="android:layout_marginBottom">@dimen/zm_margin_medium</item>
+    </style>
+    <style name="ZmSecuritySettingsOverviewSheetStyle.Margin">
+        <item name="android:layout_marginLeft">@dimen/zm_margin_medium</item>
+        <item name="android:layout_marginTop">@dimen/zm_margin_medium</item>
+        <item name="android:layout_marginBottom">0dp</item>
+        <item name="android:layout_marginRight">@dimen/zm_margin_medium</item>
+    </style>
+    <style name="ZmTextViewMultiLines" parent="ZmTextView">
+        <item name="android:maxLines">@integer/small_lines</item>
+    </style>
+    <style name="ZmTextViewMultiLines.Ssos_name">
+        <item name="android:gravity">left</item>
+        <item name="android:layout_marginLeft">@dimen/zm_margin_medium</item>
+        <item name="android:textColor">@color/zm_v2_txt_primary</item>
+    </style>
+    <style name="ZmTextViewMultiLines.Ssos_value">
+        <item name="android:gravity">right</item>
+        <item name="android:layout_marginRight">@dimen/zm_margin_medium</item>
+        <item name="android:textColor">@color/zm_v2_tab_path_normal</item>
+    </style>
+    <style name="zm_popwindow_anim_style">
+		<item name="android:windowEnterAnimation">@anim/zm_pop_show_anim</item>
+		<item name="android:windowExitAnimation">@anim/zm_pop_hide_anim</item>
+	</style>
+    <declare-styleable name="AnnoNoteView">
+        <attr format="boolean" name="noteIsTextBox"/>
+    </declare-styleable>
+    <declare-styleable name="AvatarView">
+        <attr format="float" name="zm_cornerRadiusRatio"/>
+        <attr format="reference|color" name="zm_avatarBorderColor"/>
+        <attr format="dimension" name="zm_avatarBorderSize"/>
+        <attr format="boolean" name="zm_description_enable"/>
+    </declare-styleable>
+    <declare-styleable name="ColorPickerView">
+        <attr format="boolean" name="isTextColor"/>
+        <attr format="dimension" name="colorViewWidth"/>
+        <attr format="dimension" name="colorViewHeight"/>
+        <attr format="dimension" name="colorViewMarginLeft"/>
+        <attr format="dimension" name="colorViewMarginRight"/>
+        <attr format="enum" name="colorViewCheckedType">
+            <enum name="dot" value="0"/>
+            <enum name="checkMark" value="1"/>
+        </attr>
+        <attr format="reference" name="colors"/>
+    </declare-styleable>
+    <declare-styleable name="DialpadNum">
+    	<attr format="string" name="zm_dial_num"/>
+    </declare-styleable>
+    <declare-styleable name="FlexboxLayout">
+        <attr name="flexDirection">
+            <enum name="row" value="0"/>
+            <enum name="row_reverse" value="1"/>
+            <enum name="column" value="2"/>
+            <enum name="column_reverse" value="3"/>
+        </attr>
+
+        <attr name="flexWrap">
+            <enum name="nowrap" value="0"/>
+            <enum name="wrap" value="1"/>
+            <enum name="wrap_reverse" value="2"/>
+        </attr>
+
+        <!--
+            Omitting flex-flow property since it's reflected in the parent flex container.
+            Set the flexDirection and/or flexWrap to the parent flex container explicitly if you
+            want to use the flex-flow similar way to the web.
+         -->
+
+        <attr name="justifyContent">
+            <enum name="flex_start" value="0"/>
+            <enum name="flex_end" value="1"/>
+            <enum name="center" value="2"/>
+            <enum name="space_between" value="3"/>
+            <enum name="space_around" value="4"/>
+            <enum name="space_evenly" value="5"/>
+        </attr>
+
+        <attr name="alignItems">
+            <enum name="flex_start" value="0"/>
+            <enum name="flex_end" value="1"/>
+            <enum name="center" value="2"/>
+            <enum name="baseline" value="3"/>
+            <enum name="stretch" value="4"/>
+        </attr>
+
+        <attr name="alignContent">
+            <enum name="flex_start" value="0"/>
+            <enum name="flex_end" value="1"/>
+            <enum name="center" value="2"/>
+            <enum name="space_between" value="3"/>
+            <enum name="space_around" value="4"/>
+            <enum name="stretch" value="5"/>
+        </attr>
+
+        <attr format="reference" name="dividerDrawable"/>
+        <attr format="reference" name="dividerDrawableHorizontal"/>
+        <attr format="reference" name="dividerDrawableVertical"/>
+
+        <attr name="showDivider">
+            <flag name="none" value="0"/>
+            <flag name="beginning" value="1"/>
+            <flag name="middle" value="2"/>
+            <flag name="end" value="4"/>
+        </attr>
+        <attr name="showDividerHorizontal">
+            <flag name="none" value="0"/>
+            <flag name="beginning" value="1"/>
+            <flag name="middle" value="2"/>
+            <flag name="end" value="4"/>
+        </attr>
+        <attr name="showDividerVertical">
+            <flag name="none" value="0"/>
+            <flag name="beginning" value="1"/>
+            <flag name="middle" value="2"/>
+            <flag name="end" value="4"/>
+        </attr>
+
+        <!--
+            The attribute that specifies the maximum number of flex lines. This attribute is
+            effective only when the flexWrap attribute is "wrap" or "wrap_reverse".
+        -->
+        <attr format="integer" name="maxLine"/>
+
+    </declare-styleable>
+    <declare-styleable name="FlexboxLayout_Layout">
+        <attr format="integer" name="layout_order"/>
+
+        <!-- Negative numbers are invalid. -->
+        <attr format="float" name="layout_flexGrow"/>
+
+        <!-- Negative numbers are invalid. -->
+        <attr format="float" name="layout_flexShrink"/>
+
+        <!--
+            The initial length in a percentage format relative to its parent. This is similar to the
+            flex-basis property in the original CSS specification.
+            (https://www.w3.org/TR/css-flexbox-1/#flex-basis-property)
+            But unlike the flex-basis property, this attribute only accepts a value in fraction
+            (percentage), whereas flex-basis property accepts width values such as 1em, 10px and
+            the 'content' string.
+            But specifying initial fixed width values can be done by specifying width values in
+            layout_width (or layout_height, varies depending on the flexDirection). Also the same
+            effect can be done by specifying "wrap_content" in layout_width (or layout_height) if
+            developers want to achieve the same effect as 'content'.
+            Thus, this attribute only accepts fraction values, which can't be done through
+            layout_width (or layout_height) for simplicity.
+        -->
+        <attr format="fraction" name="layout_flexBasisPercent"/>
+
+        <!--
+            Omitting flex property since it's a shorthand for layout_flexGrow and layout_flexShrink
+            and layout_percentInParent (flex-basis in the original CSS spec).
+        -->
+
+        <attr name="layout_alignSelf">
+            <enum name="auto" value="-1"/>
+            <!-- The values below need to match the values of alignItems -->
+            <enum name="flex_start" value="0"/>
+            <enum name="flex_end" value="1"/>
+            <enum name="center" value="2"/>
+            <enum name="baseline" value="3"/>
+            <enum name="stretch" value="4"/>
+        </attr>
+
+        <attr format="dimension" name="layout_minWidth"/>
+        <attr format="dimension" name="layout_minHeight"/>
+        <attr format="dimension" name="layout_maxWidth"/>
+        <attr format="dimension" name="layout_maxHeight"/>
+
+        <!--
+            This attribute forces a flex line wrapping. i.e. if this is set to true for a
+            flex item, the item will become the first item of a flex line. (A wrapping happens
+            regardless of the flex items being processed in the the previous flex line)
+            This attribute is ignored if the flex_wrap attribute is set to nowrap.
+            The equivalent attribute isn't defined in the original CSS Flexible Box Module
+            specification, but having this attribute is useful for Android developers to flatten
+            the layouts when building a grid like layout or for a situation where developers want
+            to put a new flex line to make a semantic difference from the previous one, etc.
+        -->
+        <attr format="boolean" name="layout_wrapBefore"/>
+    </declare-styleable>
+    <declare-styleable name="FontPickerView">
+        <attr format="enum" name="fontPickerMode">
+            <enum name="size" value="0"/>
+            <enum name="paragraph" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="MessageSimpleCircularProgressView">
+        <attr format="dimension" name="progWidth"/>
+        <attr format="color" name="backColor"/>
+        <attr format="color" name="progColor"/>
+        <attr format="integer" name="progress"/>
+    </declare-styleable>
+    <declare-styleable name="RoomDeviceAutoCompleteTextView">
+        <attr format="enum" name="data_source_type">
+            <enum name="out_meeting" value="0"/>
+            <enum name="in_meeting" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="RoundLayoutAttr">
+        <attr name="round_corner_v2"/>
+        <attr format="color|reference" name="stroke_color"/>
+        <attr format="integer|dimension" name="stroke_width"/>
+    </declare-styleable>
+    <declare-styleable name="RoundLinearLayout">
+        <attr name="round_corner_v2"/>
+    </declare-styleable>
+    <declare-styleable name="RoundedImageView">
+        <attr format="dimension" name="riv_corner_radius"/>
+        <attr format="dimension" name="riv_corner_radius_top_left"/>
+        <attr format="dimension" name="riv_corner_radius_top_right"/>
+        <attr format="dimension" name="riv_corner_radius_bottom_left"/>
+        <attr format="dimension" name="riv_corner_radius_bottom_right"/>
+        <attr format="dimension" name="riv_border_width"/>
+        <attr format="color" name="riv_border_color"/>
+        <attr format="boolean" name="riv_mutate_background"/>
+        <attr format="boolean" name="riv_oval"/>
+        <attr name="android:scaleType"/>
+        <attr name="riv_tile_mode">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+        <attr name="riv_tile_mode_x">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+        <attr name="riv_tile_mode_y">
+            <enum name="clamp" value="0"/>
+            <enum name="repeat" value="1"/>
+            <enum name="mirror" value="2"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ScheduledMeetingsListView">
+        <attr format="boolean" name="inviteMode"/>
+    </declare-styleable>
+    <declare-styleable name="SipIncomeAvatar">
+        <attr format="enum" name="backgroundStyle">
+            <enum name="light" value="0"/>
+            <enum name="dark" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="SubPresence">
+        <attr format="string" name="zm_subpresence_type"/>
+    </declare-styleable>
+    <declare-styleable name="ToolbarButton">
+    	<attr format="reference" name="zm_icon"/>
+    	<attr format="string" name="zm_text"/>
+        <attr format="string" name="zm_axName"/>
+		<attr format="dimension" name="zm_vertical_divide_icon_text"/>
+    	<attr format="dimension" name="zm_textSize"/>
+    	<attr format="reference|color" name="zm_textColor"/>
+        <attr format="boolean" name="zm_titleSingleLine"/>
+        <attr format="integer" name="zm_titleLines"/>
+        <attr format="dimension" name="zm_titlePaddingLeftRight"/>
+    </declare-styleable>
+    <declare-styleable name="VoiceTalkRecordProgressBar">
+        <attr format="reference|color" name="zm_backgroundColor"/>
+        <attr format="reference|color" name="zm_processColor"/>
+        <attr format="dimension" name="zm_ProcessLineHeight"/>
+    </declare-styleable>
+    <declare-styleable name="ZMBaseTheme">
+        <attr format="reference" name="zm_tipAppearance"/>
+        <attr format="reference" name="zm_settingsLayoutAppearance"/>
+        <attr format="reference" name="zm_settingsCategoryAppearance"/>
+    </declare-styleable>
+    <declare-styleable name="ZMBoundedLinearLayout">
+        <attr format="dimension" name="zm_bounded_width"/>
+        <attr format="dimension" name="zm_bounded_height"/>
+    </declare-styleable>
+    <declare-styleable name="ZMDynTextSizeTextView">
+        <attr format="dimension" name="zm_maxReduce"/>
+    </declare-styleable>
+    <declare-styleable name="ZMIOSStyleTitlebarLayout">
+        <attr format="reference" name="zm_leftButton"/>
+        <attr format="reference" name="zm_rightButton"/>
+        <attr format="reference" name="zm_title"/>
+        <attr format="boolean" name="zm_fillOthers"/>
+    </declare-styleable>
+    <declare-styleable name="ZMImageTextButton">
+        <attr format="reference" name="zm_image"/>
+        <attr format="integer" name="zmImageTextOrientation"/>
+    </declare-styleable>
+    <declare-styleable name="ZMMaterialActionButtonLayout">
+        <attr format="string" name="zm_text_positive"/>
+        <attr format="string" name="zm_text_negative"/>
+        <attr format="string" name="zm_text_neutral"/>
+        <attr format="color" name="zm_text_color_positive"/>
+        <attr format="color" name="zm_text_color_negative"/>
+        <attr format="color" name="zm_text_color_neutral"/>
+        <attr format="boolean" name="zm_visible_positive"/>
+        <attr format="boolean" name="zm_visible_negative"/>
+        <attr format="boolean" name="zm_visible_neutral"/>
+        <attr format="dimension" name="zm_text_size"/>
+    </declare-styleable>
+    <declare-styleable name="ZMMaterialEdt">
+        <attr format="color" name="zm_edtNormalColor"/>
+        <attr format="color" name="zm_edtFocusColor"/>
+        <attr format="color" name="zm_edtDisableColor"/>
+        <attr format="boolean" name="zm_enableLine"/>
+    </declare-styleable>
+    <declare-styleable name="ZMMenuListView">
+        <attr format="boolean" name="zm_auto_compute_width"/>
+    </declare-styleable>
+    <declare-styleable name="ZMNavigationView">
+        <attr format="reference" name="menu"/>
+    </declare-styleable>
+    <declare-styleable name="ZMRecyclerView">
+        <attr format="float" name="maxHeightRatio"/>
+        <attr format="boolean" name="autoHeight"/>
+    </declare-styleable>
+    <declare-styleable name="ZMSearchBar">
+        <attr format="reference" name="editTextHint"/>
+        <attr format="boolean" name="focusable"/>
+        <attr format="boolean" name="cursorVisible"/>
+        <attr format="flags" name="imeOptions">
+            <flag name="normal" value="0x00000000"/>
+            <flag name="actionSearch" value="0x00000003"/>
+            <flag name="actionSend" value="0x00000004"/>
+            <flag name="actionNext" value="0x00000005"/>
+            <flag name="actionDone" value="0x00000006"/>
+            <flag name="actionPrevious" value="0x00000007"/>
+        </attr>
+        <attr format="boolean" name="noMargin"/>
+        <attr format="boolean" name="onDark"/>
+        <attr format="integer" name="maxLength"/>
+        <attr format="boolean" name="indicatorMode"/>
+    </declare-styleable>
+    <declare-styleable name="ZMSegmentTabLayout">
+        <!-- indicator -->
+        <attr format="color" name="zm_indicator_color"/>
+        <attr format="dimension" name="zm_indicator_height"/>
+        <attr format="dimension" name="zm_indicator_margin_left"/>
+        <attr format="dimension" name="zm_indicator_margin_top"/>
+        <attr format="dimension" name="zm_indicator_margin_right"/>
+        <attr format="dimension" name="zm_indicator_margin_bottom"/>
+        <attr format="dimension" name="zm_indicator_corner_radius"/>
+        <!-- divider -->
+        <attr format="color" name="zm_divider_color"/>
+        <attr format="dimension" name="zm_divider_width"/>
+        <attr format="dimension" name="zm_divider_padding"/>
+
+        <!-- tab -->
+        <attr format="dimension" name="zm_tab_padding"/>
+        <attr format="dimension" name="zm_tab_width"/>
+
+        <!-- title -->
+        <attr format="dimension" name="zm_textsize"/>
+        <attr format="color" name="zm_textSelectColor"/>
+        <attr format="color" name="zm_textUnselectColor"/>
+        <attr format="enum" name="zm_textBold">
+            <enum name="NONE" value="0"/>
+            <enum name="SELECT" value="1"/>
+            <enum name="BOTH" value="2"/>
+        </attr>
+
+        <attr format="color" name="zm_bar_color"/>
+        <attr format="color" name="zm_bar_stroke_color"/>
+        <attr format="dimension" name="zm_bar_stroke_width"/>
+
+    </declare-styleable>
+    <declare-styleable name="ZMSettingsCategory">
+        <attr format="boolean" name="zm_showTopDivider"/>
+        <attr format="boolean" name="zm_showCenterDivider"/>
+        <attr format="boolean" name="zm_showBottomDivider"/>
+        <attr format="reference" name="zm_topDivider"/>
+        <attr format="reference" name="zm_bottomDivider"/>
+        <attr format="reference" name="zm_centerDivider"/>
+        <attr format="dimension" name="zm_dividerHeight"/>
+        <attr format="reference" name="zm_settingsItemSelector"/>
+        <attr format="dimension" name="zm_seetingsItemMinHeight"/>
+        <attr format="reference|color" name="zm_settingsCategoryBackground"/>
+    </declare-styleable>
+    <declare-styleable name="ZMSettingsLayout">
+        <attr format="dimension" name="zm_settingsCategorySpacing"/>
+    </declare-styleable>
+    <declare-styleable name="ZMSipEmergencyView">
+        <attr format="color" name="foregroundColor"/>
+        <attr format="color" name="backgroundColor"/>
+        <attr format="dimension" name="cornerRadius"/>
+    </declare-styleable>
+    <declare-styleable name="ZMSnackbarView">
+        <attr name="android:maxWidth"/>
+        <attr name="elevation"/>
+
+    </declare-styleable>
+    <declare-styleable name="ZMTextView">
+        <attr format="boolean" name="showLink"/>
+    </declare-styleable>
+    <declare-styleable name="ZMTip">
+        <attr format="color" name="zm_borderColor"/>
+        <attr format="color" name="zm_shadowColor"/>
+        <attr format="color|reference" name="zm_background"/>
+        <attr format="color" name="zm_backgroundColorIfHardwareAccelerated"/>
+    </declare-styleable>
+    <declare-styleable name="ZMToolbarLayout">
+        <attr format="integer" name="zm_show_child_number"/>
+    </declare-styleable>
+    <declare-styleable name="ZMUpArrowView">
+        <attr format="dimension" name="zm_up_arrow_divider_height"/>
+        <attr format="reference|color" name="zm_up_arrow_divider_color"/>
+        <attr format="dimension" name="zm_up_arrow_width"/>
+        <attr format="dimension" name="zm_up_arrow_left_delta"/>
+    </declare-styleable>
+    <declare-styleable name="ZmBaseBottomDraggableView">
+        <attr format="boolean" name="zm_lockFullScreen"/>
+    </declare-styleable>
+    <declare-styleable name="ZmEmojiReactionSendingPanel">
+        <attr format="enum" name="zm_usage">
+            <enum name="more" value="0"/>
+            <enum name="toolbar" value="1"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="ZmFoldableLayout">
+        <attr format="reference" name="firstViewId"/>
+        <attr format="reference" name="secondViewId"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/zm_padding_smaller_size"
+    android:paddingRight="@dimen/zm_padding_smaller_size"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="@color/zm_white">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/zm_padding_smaller_size"
+            android:paddingRight="@dimen/zm_padding_smaller_size"
+            android:paddingTop="@dimen/zm_dialog_margin_16dp"
+            android:paddingBottom="@dimen/zm_dialog_margin_16dp">
+            <TextView
+                android:id="@+id/txt_level_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:focusable="false"
+                android:duplicateParentState="true"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/zm_v2_txt_primary"
+                android:textSize="@dimen/zm_ui_kit_text_size_16sp"
+                tools:text="Account Default"/>
+            <TextView
+                android:id="@+id/txt_level_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/zm_padding_smallest"
+                android:paddingRight="@dimen/zm_padding_smallest"
+                android:gravity="center"
+                android:clickable="false"
+                android:focusable="false"
+                android:duplicateParentState="true"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="10sp"
+                android:textColor="@color/zm_white"
+                tools:text="SECRET"
+                tools:background="@color/zm_v2_tab_bg_select"/>
+
+            <TextView
+                android:id="@+id/txt_level_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:layout_marginTop="@dimen/zm_margin_small_6dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:duplicateParentState="true"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:textColor="@color/zm_v2_txt_secondary"
+                tools:text="@string/zm_lbl_create_public_group_hint_311630" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_selected"
+            style="@style/ZmSettingItemArrow"
+            android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+            android:src="@drawable/zm_group_type_select"
+            android:visibility="gone"
+            tools:visibility="visible"/>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/zm_v2_cell_divider"/>
+</LinearLayout>

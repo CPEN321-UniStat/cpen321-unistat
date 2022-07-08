@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false">
+
+    <us.zoom.uicommon.widget.recyclerview.ZMRecyclerView
+        android:id="@+id/transferListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnStart"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintTop_toTopOf="parent"
+        zoom:layout_constraintVertical_chainStyle="packed"
+       />
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:minHeight="@dimen/zm_btn_width_48dp"
+        android:focusable="true"
+        android:layout_marginTop="@dimen/zm_margin_large"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnSchedule"
+        zoom:layout_constraintEnd_toStartOf="@+id/btnJoin"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/transferListView"
+        zoom:zm_icon="@drawable/zm_ic_big_start_meeting"
+        zoom:zm_text="@string/zm_btn_mm_start_meeting_21854"
+        zoom:zm_textColor="@color/zm_v2_txt_secondary"
+        zoom:zm_textSize="13sp"
+        zoom:zm_vertical_divide_icon_text="6dp" />
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnJoin"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:focusable="true"
+        zoom:layout_constraintBottom_toBottomOf="@+id/btnStart"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/btnStart"
+        zoom:layout_constraintTop_toTopOf="@+id/btnStart"
+        zoom:zm_icon="@drawable/zm_ic_big_join_meeting"
+        zoom:zm_text="@string/zm_bo_btn_join_bo"
+        zoom:zm_textColor="@color/zm_v2_txt_secondary"
+        zoom:zm_textSize="13sp"
+        zoom:zm_vertical_divide_icon_text="6dp" />
+
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnSchedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_large"
+        android:focusable="true"
+        zoom:layout_constraintBottom_toTopOf="@+id/btnCallRoom"
+        zoom:layout_constraintEnd_toStartOf="@+id/btnShareScreen"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnStart"
+        zoom:zm_icon="@drawable/zm_ic_big_schedule_meeting"
+        zoom:zm_text="@string/zm_btn_schedule"
+        zoom:zm_textColor="@color/zm_v2_txt_secondary"
+        zoom:zm_textSize="13sp"
+        zoom:zm_vertical_divide_icon_text="6dp" />
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnShareScreen"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:focusable="true"
+        zoom:layout_constraintBottom_toBottomOf="@+id/btnSchedule"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toEndOf="@+id/btnSchedule"
+        zoom:layout_constraintTop_toTopOf="@+id/btnSchedule"
+        zoom:zm_icon="@drawable/zm_ic_big_share_screen"
+        zoom:zm_text="@string/zm_btn_mm_share_screen_52777"
+        zoom:zm_textColor="@color/zm_v2_txt_secondary"
+        zoom:zm_textSize="13sp"
+        zoom:zm_vertical_divide_icon_text="6dp" />
+
+
+    <com.zipow.videobox.view.ToolbarButton
+        android:id="@+id/btnCallRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        zoom:layout_constraintBottom_toBottomOf="parent"
+        zoom:layout_constraintEnd_toEndOf="parent"
+        zoom:layout_constraintStart_toStartOf="parent"
+        zoom:layout_constraintTop_toBottomOf="@+id/btnSchedule"
+        android:layout_marginTop="@dimen/zm_margin_large"
+        zoom:zm_icon="@drawable/zm_ic_big_call_a_room"
+        zoom:zm_text="@string/zm_btn_call_room_71390"
+        zoom:zm_textColor="@color/zm_v2_txt_secondary"
+        zoom:zm_textSize="13sp"
+        zoom:zm_vertical_divide_icon_text="6dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

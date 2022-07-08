@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/constraintContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/zm_v1_black"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/zm_margin_64dp"
+    android:paddingEnd="@dimen/zm_margin_64dp">
+
+    <LinearLayout
+        android:id="@+id/dynamicLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_v1_white_alpha9"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/zm_margin_medium_size"
+            android:text="@string/zm_gr_backstage_host_will_be_back_267913"
+            android:textColor="#9EFFFFFF"
+            android:textSize="@dimen/zm_font_larger_size" />
+
+        <TextView
+            android:id="@+id/tvNoticePip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/zm_margin_medium_size"
+            android:text="@string/zm_gr_backstage_host_will_be_back_267913"
+            android:textColor="#9EFFFFFF"
+            android:textSize="@dimen/zm_font_smallest_plus_size"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</LinearLayout>

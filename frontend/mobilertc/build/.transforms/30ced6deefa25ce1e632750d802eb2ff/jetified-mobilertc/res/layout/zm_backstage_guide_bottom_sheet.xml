@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/zm_backstage_guide_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/zm_dialog_margin_24dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="206dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/guideViewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/vpIndexer"
+            android:layout_width="wrap_content"
+            android:layout_height="12dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+            android:background="@drawable/zm_backstage_guide_indicator_bg"
+            android:gravity="center"
+            android:importantForAccessibility="no"
+            android:orientation="horizontal" />
+
+        <ImageView
+            android:id="@+id/imgPause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="@dimen/zm_margin_smaller_size"
+            android:layout_marginBottom="@dimen/zm_margin_smaller_size"
+            android:src="@drawable/zm_backstage_pause_icon"
+            tools:ignore="ContentDescription" />
+    </FrameLayout>
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_size"
+        android:drawableRight="@drawable/zm_backstage_guide_welcome_icon"
+        android:drawablePadding="1dp"
+        android:text="@string/zm_gr_backstage_guide_welcome_267913"
+        android:textColor="@color/zm_v1_white"
+        android:textSize="@dimen/zm_ui_kit_text_size_24sp"
+        android:textStyle="bold" />
+
+   <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/txtNotice"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="@string/zm_gr_backstage_guide_notice_267913"
+        android:textColor="@color/zm_v1_white_500"
+        android:textSize="@dimen/zm_ui_kit_text_size_14sp" />
+
+    <Button
+        android:id="@+id/btnGot"
+        style="@style/ZmButton.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_btn_large_height"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:text="@string/zm_btn_got_it" />
+</LinearLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/meeting_widget_rounded_bg"
+    android:orientation="vertical"
+    android:padding="@dimen/zm_padding_small">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_padding_normal"
+        android:layout_marginTop="@dimen/zm_padding_small"
+        android:layout_marginRight="@dimen/zm_font_medium_size"
+        android:layout_marginBottom="@dimen/zm_padding_small"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/imgAccountType"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:importantForAccessibility="no"
+            android:text="@string/zm_widget_upcoming_meetings_371496"
+            android:textColor="@color/zm_v1_blue_C900"
+            android:textSize="@dimen/zm_font_medium_size"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgAccountType"
+            android:layout_width="@dimen/zm_padding_large_size"
+            android:layout_height="@dimen/zm_padding_large_size"
+            android:layout_alignParentRight="true"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:importantForAccessibility="no"
+            android:src="@drawable/zm_ic_setting_zoom"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/meetingsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_no_meetings"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:text="@string/zm_widget_no_upcoming_meetings_371496"
+        android:textSize="@dimen/zm_font_medium_size"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_signin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/zm_widget_please_sign_in_371496"
+        android:textSize="@dimen/zm_font_medium_size"
+        android:visibility="gone" />
+</LinearLayout>

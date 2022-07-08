@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+        android:id="@+id/panelTitleBar"
+        style="@style/ZmTitleBar.Dark"
+        zoom:zm_leftButton="@+id/leftButton"
+        zoom:zm_rightButton="@+id/btnSave"
+        zoom:zm_title="@+id/txtTitle" >
+
+        <FrameLayout
+            android:id="@+id/leftButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            >
+            <Button
+                android:id="@+id/btnClose"
+                style="@style/ZmTitleBarAction.Tablet"
+                android:text="@string/zm_btn_close"
+                android:visibility="gone"
+                />
+            <ImageButton
+                android:id="@+id/btnCancel"
+                style="@style/ZmBackButton.Dark"
+                android:contentDescription="@string/zm_btn_back" />
+        </FrameLayout>
+
+        <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+            android:id="@+id/txtTitle"
+            style="@style/ZmTitleBarTitle.Dark"
+            android:text="@string/zm_lbl_create_group_classification_285659" />
+    </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_view_classification"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/zm_v2_light_bg_opaque"/>
+    <LinearLayout
+        android:id="@+id/panelEmptyView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/txtEmptyViewTitle"
+            style="@style/ZmTextView.Title.Medium.Dimmed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/zm_sip_title_monitor_cq_empty_210373" />
+
+        <TextView
+            android:id="@+id/txtEmptyView"
+            style="@style/ZmTextView.Content.Primary.MediumPlus.Dimmed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="32dp"
+            android:gravity="center"
+            android:maxLines="@integer/maximum_lines"
+            android:text="@string/zm_sip_message_monitor_cq_empty_210373" />
+    </LinearLayout>
+</LinearLayout>

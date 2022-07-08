@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+        <us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+            android:id="@+id/panelTitleBar"
+            style="@style/ZmTitleBar.Dark"
+            zoom:zm_leftButton="@+id/leftButton"
+            zoom:zm_title="@+id/txtTitle">
+
+            <FrameLayout
+                android:id="@+id/leftButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                >
+                <Button
+                    android:id="@+id/btnClose"
+                    style="@style/ZmTitleBarAction.Tablet"
+                    android:text="@string/zm_btn_close"
+                    android:visibility="gone"
+                    />
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    style="@style/ZmBackButton.Dark"
+                    android:contentDescription="@string/zm_btn_back" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/txtTitle"
+                style="@style/ZmTitleBarTitle.Dark"
+                android:text="@string/zm_mm_lbl_group_files" />
+        </us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>
+        <LinearLayout
+            android:id="@+id/panelTimedChatHint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:background="@drawable/zm_notification_background"
+                android:minHeight="@dimen/zm_error_panel_min_height"
+                style="@style/ZmSettingItem"
+                android:visibility="visible"
+                tools:visibility="visible"
+                android:paddingTop="@dimen/zm_padding_small_size"
+                android:paddingBottom="@dimen/zm_padding_small_size" >
+
+                <TextView
+                    android:id="@+id/txtTimedChatHintMsg"
+                    style="@style/ZmTextView.Content.Primary.Small.OnLight"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxLines="@integer/maximum_lines"
+                    tools:text="Messages you send and receive will be removed in 1 day" />
+
+                <ImageButton
+                    android:id="@+id/btnTimedChatHintClose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/zm_btn_time_chat_hint_closed"
+                    android:contentDescription="@string/zm_mm_btn_dismiss_content_description_57731" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/authenticateFileStorageLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zm_v2_search_filter_bg"
+            android:minHeight="@dimen/zm_height_36dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/authTypeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="8dp"
+                android:paddingStart="16dp"
+                android:text="@string/zm_search_authenticate_to_view_212554"
+                android:textColor="@color/zm_im_search_text_hint"
+                android:textSize="13sp"
+                zoom:layout_constraintBottom_toBottomOf="parent"
+                zoom:layout_constraintEnd_toStartOf="@+id/authFileStorageButton"
+                zoom:layout_constraintStart_toStartOf="parent"
+                zoom:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/authFileStorageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/zm_search_authenticate_link_212554"
+                android:gravity="center"
+                android:paddingHorizontal="16dp"
+                android:text="@string/zm_search_authenticate_212554"
+                android:textColor="@color/zm_v2_txt_action"
+                android:textSize="13sp"
+                zoom:layout_constraintBottom_toBottomOf="parent"
+                zoom:layout_constraintEnd_toEndOf="parent"
+                zoom:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <!--        <androidx.constraintlayout.widget.Group-->
+        <!--            android:id="@+id/groupOfThingsToShowWhenNotEmpty"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            zoom:constraint_referenced_ids="edtSearch,panel_listview_content_title,swipeRefreshLayout" />-->
+
+        <com.zipow.videobox.view.ZMSearchBar
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/zm_white"
+            android:paddingHorizontal="16dp"
+            zoom:editTextHint="@string/zm_hint_search_files_212554"
+            zoom:focusable="false"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/panel_listview_content_title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/zm_v2_search_filter_bg"
+            android:elevation="8dp">
+
+            <TextView
+                android:id="@+id/sort_by_button"
+                style="@style/ZmTextView.Content.Primary.Medium.Dimmed"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:contentDescription="@string/zm_lbl_search_sort_by_relevant_acc_text_212356"
+                android:drawableEnd="@drawable/zm_ic_arrow_down"
+                android:focusable="true"
+                android:text="@string/zm_lbl_search_sort_by_relevant_119637"
+                zoom:layout_constraintBottom_toBottomOf="parent"
+                zoom:layout_constraintStart_toStartOf="parent"
+                zoom:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/filters_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackground"
+                android:drawableStart="@drawable/zm_ic_filters"
+                android:gravity="center"
+                android:textColor="@color/zm_im_search_text_hint"
+                android:textSize="13sp"
+                zoom:layout_constraintBottom_toBottomOf="parent"
+                zoom:layout_constraintEnd_toEndOf="parent"
+                zoom:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvItems"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <TextView
+                android:id="@+id/txtLoadingError"
+                style="@style/ZmTextView.Content.Primary.Dimmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/zm_lbl_content_load_error" />
+
+            <TextView
+                android:id="@+id/txtEmptyView"
+                style="@style/ZmTextView.Content.Primary.Dimmed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:maxLines="3"
+                android:paddingLeft="@dimen/zm_margin_normal"
+                android:paddingRight="@dimen/zm_margin_normal"
+                android:text="@string/zm_file_search_empty_212554" />
+        </FrameLayout>
+    </LinearLayout>
+</LinearLayout>

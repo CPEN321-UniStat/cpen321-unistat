@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:id="@+id/transformLayout"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerVertical="true"
+        android:background="@color/zm_black"
+        android:gravity="center" >
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center" >
+
+        <ImageView
+            android:id="@+id/arrowImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/greenroom_arrow_right"
+            android:layout_marginEnd="@dimen/zm_padding_medium_size"
+            tools:ignore="ContentDescription"/>
+
+        <ImageView
+            android:id="@+id/transformImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/greenroom_transforms"
+            tools:ignore="ContentDescription"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/zm_padding_smaller_size"
+            android:layout_marginTop="@dimen/zm_margin_normal_size"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/transformText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textSize="@dimen/zm_font_larger_size"
+                android:textColor="@color/zm_text_on_dark"
+                android:text="@string/zm_gr_joining_backstage"/>
+
+            <TextView
+                android:id="@+id/transformTextTips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_padding_smaller_size"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:textSize="@dimen/zm_font_normal_size"
+                android:textColor="@color/zm_text_on_dark"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    
+</FrameLayout>

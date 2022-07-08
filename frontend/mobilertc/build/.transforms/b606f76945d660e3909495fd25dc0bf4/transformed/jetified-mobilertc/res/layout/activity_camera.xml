@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zipow.videobox.view.AutoFitSurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <View
+        android:id="@+id/overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foreground="@android:color/transparent" />
+
+    <LinearLayout
+        android:id="@+id/tapShootPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <RelativeLayout
+            android:id="@+id/tapShootRl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingLeft="55dp"
+            android:paddingRight="55dp">
+
+            <ImageView
+                android:id="@+id/btnClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:minHeight="@dimen/zm_btn_width_48dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/btn_camera_close"
+                android:contentDescription="@string/zm_btn_cancel"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/btnCapture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/tap_to_shoot"
+                android:contentDescription="@string/zm_accessibility_capture_178874"
+                android:scaleType="fitCenter" />
+
+            <ImageView
+                android:id="@+id/btnSwitchCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_btn_width_48dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/btn_switch_camera"
+                android:contentDescription="@string/zm_accessibility_switch_camera_178874"
+                android:scaleType="fitCenter" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tapShootRl"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:text="@string/zm_mm_tap_to_shoot_144953"
+            android:textColor="@color/zm_v1_white"
+            android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/photoViewer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:contentDescription="@string/zm_accessibility_frame_178874"
+        />
+    <LinearLayout
+        android:id="@+id/previewPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="110dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnRetake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/tap_to_shoot_retake"
+                android:contentDescription="@string/zm_accessibility_retake_178874"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/zm_mm_tap_to_shoot_retake_144953"
+                android:textColor="@color/zm_v1_white"
+                android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="73dp"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/btnSend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="@dimen/zm_accessible_btn_min_size"
+                android:minHeight="@dimen/zm_accessible_btn_min_size"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:background="@drawable/tap_to_shoot_send"
+                android:contentDescription="@string/zm_accessibility_send_178874"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:id="@+id/sendButtonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="@string/zm_mm_tap_to_shoot_send_144953"
+                android:textColor="@color/zm_v1_white"
+                android:textSize="@dimen/zm_ui_kit_text_size_13sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

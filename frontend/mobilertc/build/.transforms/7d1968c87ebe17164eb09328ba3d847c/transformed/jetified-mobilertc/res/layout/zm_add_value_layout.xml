@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/zm_padding_large_size"
+    android:paddingLeft="@dimen/zm_padding_small_size"
+    android:paddingRight="@dimen/zm_padding_small_size"
+    android:paddingTop="@dimen/zm_padding_small_size"
+    android:orientation="vertical" >
+
+    <TextView
+        style="@style/ZMTextView.Large.OnLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/zm_lbl_add_value_185075" />
+    
+    <EditText
+        android:id="@+id/edtValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/zm_margin_small_minus_size"
+        android:layout_marginRight="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_size"
+        android:hint="@string/zm_lbl_add_value_185075"
+        android:textColorHint="@color/zm_im_search_text_hint"
+        android:imeOptions="actionDone|flagNoExtractUi"
+        android:inputType="textPersonName|textCapSentences"
+        android:maxLength="50"/>
+    
+</LinearLayout>

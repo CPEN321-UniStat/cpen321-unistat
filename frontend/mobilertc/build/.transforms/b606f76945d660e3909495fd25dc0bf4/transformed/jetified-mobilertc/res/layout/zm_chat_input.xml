@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/panelActions"
+    android:orientation="vertical"
+    android:background="@color/zm_white">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/photoHorizentalRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zm_picker_bottom_photo_bar_height"
+        android:layout_marginBottom="1dp"
+        android:paddingTop="4dp"
+        android:visibility="gone"
+        android:paddingBottom="6dp"
+        android:background="@color/zm_white"/>
+    <com.zipow.videobox.view.mm.MMFilePreSendView
+        android:id="@+id/filePreSendView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:id="@+id/panelSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_white"
+        android:gravity="bottom"
+        android:paddingTop="@dimen/zm_padding_smallest_size"
+        android:paddingBottom="@dimen/zm_padding_smallest_size"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btnMoreOpts"
+            android:layout_width="@dimen/zm_edit_text_normal_height"
+            android:layout_height="@dimen/zm_edit_text_normal_height"
+            android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_description_mm_more_btn_show_115414"
+            android:padding="@dimen/zm_padding_medium_size"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/zm_mm_more_btn" />
+
+        <ImageButton
+            android:id="@+id/btnEditMsgCancel"
+            android:layout_width="@dimen/zm_edit_text_normal_height"
+            android:layout_height="@dimen/zm_edit_text_normal_height"
+            android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+            android:background="@null"
+            android:contentDescription="@string/zm_description_mm_btn_edit_msg_cancel_134164"
+            android:padding="@dimen/zm_padding_medium_size"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/zm_mm_less_btn"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/panelSendText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            android:visibility="gone"
+            android:weightSum="1"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/inputBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/zm_padding_smallest_size"
+                android:layout_marginBottom="@dimen/zm_padding_smallest_size"
+                android:layout_toLeftOf="@+id/panelSendbtns"
+                android:background="@drawable/zm_chat_input_round_rect_bg"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/zm_padding_medium_size">
+
+                <com.zipow.videobox.view.CommandEditText
+                    android:id="@+id/edtMessage"
+                    style="@style/ZMEditText.Small"
+                    android:layout_gravity="center_vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="1"
+                    android:imeOptions="flagNoFullscreen"
+                    android:hint="@string/zm_lbl_type_message_120867"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLength="4096"
+                    android:maxLines="5"
+                    android:paddingTop="@dimen/zm_padding_smaller_size"
+                    android:paddingBottom="@dimen/zm_padding_smaller_size"
+                    android:text=""
+                    android:textColorHint="@color/zm_v2_chat_input_hint_color"
+                    android:textSize="16sp"
+                    zoom:zm_edtDisableColor="#00000000"
+                    zoom:zm_edtFocusColor="#00000000"
+                    zoom:zm_edtNormalColor="#00000000">
+
+                    <!--
+                         Do not use requestFocus tag here. Else the soft keyboard cannot be opened
+                         by clicking this EditText on some Android 3.x Tablets.
+                    -->
+                    <!-- <requestFocus /> -->
+                </com.zipow.videobox.view.CommandEditText>
+
+
+
+                <ImageButton
+                    android:id="@+id/btnEmoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="@dimen/zm_accessible_btn_min_size"
+                    android:minHeight="@dimen/zm_accessible_btn_min_size"
+                    android:layout_marginRight="@dimen/zm_padding_smallest_size"
+                    android:background="@null"
+                    android:contentDescription="@string/zm_description_mm_btn_mode_emoji_307509"
+                    android:padding="@dimen/zm_padding_smallest_size"
+                    android:src="@drawable/zm_mm_emoji_btn" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/panelSendbtns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/inputBox"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="bottom"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnSend"
+                    android:layout_width="@dimen/zm_edit_text_normal_height"
+                    android:layout_height="@dimen/zm_edit_text_normal_height"
+                    android:minWidth="@dimen/zm_accessible_btn_min_size"
+                    android:minHeight="@dimen/zm_accessible_btn_min_size"
+                    android:background="@drawable/zm_mm_chat_input_send_btn_bg"
+                    android:contentDescription="@string/zm_btn_send"
+                    android:src="@drawable/zm_mm_btn_send"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/btnSetModeVoice"
+                    android:layout_width="@dimen/zm_edit_text_normal_height"
+                    android:layout_height="@dimen/zm_edit_text_normal_height"
+                    android:background="@null"
+                    android:contentDescription="@string/zm_description_mm_btn_mode_voice_190017"
+                    android:padding="@dimen/zm_padding_medium_size"
+                    android:src="@drawable/zm_mm_setmode_voice_btn" />
+
+                <ImageButton
+                    android:id="@+id/btnEditMsgDone"
+                    android:layout_width="@dimen/zm_edit_text_normal_height"
+                    android:layout_height="@dimen/zm_edit_text_normal_height"
+                    android:background="@drawable/zm_mm_chat_input_send_btn_bg"
+                    android:contentDescription="@string/zm_description_mm_btn_edit_msg_send_134164"
+                    android:padding="@dimen/zm_padding_medium_size"
+                    android:src="@drawable/zm_ic_edit_msg_confirm"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtCharatersLeft"
+                style="@style/UIKitTextView.SecondaryText.Small.warn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/panelSendbtns"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+        <com.zipow.videobox.view.mm.VoiceTalkRecordView
+            android:id="@+id/view_voice_talk_record"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/zm_dialog_margin_16dp"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/btnSetModeKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:contentDescription="@string/zm_description_mm_btn_mode_keyboard"
+            android:padding="10dp"
+            android:src="@drawable/zm_mm_setmode_keyboard_btn"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/toolbarGroup"
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <us.zoom.videomeetings.richtext.toolbar.ZMRichTextToolbar
+            android:id="@+id/richTextToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/zm_view_height_40dp"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:background="@color/zm_white"/>
+    </LinearLayout>
+
+    <com.zipow.videobox.view.mm.VoiceTalkView
+        android:id="@+id/btnVoiceTalk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <com.zipow.videobox.view.mm.sticker.StickerInputView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@color/zm_white"
+        android:id="@+id/panelEmojis"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewOpts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/zm_white"/>
+
+</LinearLayout>

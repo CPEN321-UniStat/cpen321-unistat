@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    style="@style/ZmSettingItem">
+
+    <TextView
+        android:id="@+id/nameOption"
+        style="@style/ZmSettingItemTitle"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        tools:text="@string/zm_lbl_im_alert_always" />
+
+    <ImageView
+        android:id="@+id/imgOption"
+        style="@style/ZmSettingItemArrow"
+        android:contentDescription="@string/zm_accessibility_icon_item_selected_19247"
+        android:src="@drawable/zm_group_type_select"
+        android:visibility="visible"
+        tools:visibility="visible" />
+</LinearLayout>

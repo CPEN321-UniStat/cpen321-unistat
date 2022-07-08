@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/zm_margin_small_size"
+    android:paddingBottom="@dimen/zm_margin_small_size"
+    android:id="@+id/itemLayout"
+    android:focusable="true"
+    android:clickable="true">
+
+    <us.zoom.uicommon.widget.view.ZMCommonTextView
+        android:id="@+id/answerTxt"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="1"
+        android:background="@drawable/zm_full_round_rect_nps_bg"
+        android:textColor="@drawable/zm_poll_nps_textview_color"
+        />
+
+</LinearLayout>

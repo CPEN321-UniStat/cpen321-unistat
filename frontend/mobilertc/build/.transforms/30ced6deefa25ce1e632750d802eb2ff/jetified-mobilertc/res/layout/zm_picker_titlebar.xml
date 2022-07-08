@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/panelTitleBar"
+    style="@style/ZmTitleBar.Dark"
+    zoom:zm_leftButton="@+id/btnBack"
+    zoom:zm_rightButton="@+id/btnSend"
+    zoom:zm_title="@+id/txtTitle" >
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        style="@style/ZmBackButton.Dark"
+        android:contentDescription="@string/zm_btn_back" />
+
+    <TextView
+        android:id="@+id/btnSend"
+        style="@style/ZmTitleBarAction.Dark"
+        android:background="@drawable/zm_picker_round_btn_green_bg"
+        android:text="@string/zm_picker_done_with_count"
+        android:textColor="@color/zm_picker_btn_text_color"
+        android:enabled="true"/>
+
+    <us.zoom.uicommon.widget.view.ZMDynTextSizeTextView
+        android:id="@+id/txtTitle"
+        style="@style/ZmTitleBarTitle.Dark"
+        tools:text="Select Images"/>
+</us.zoom.uicommon.widget.view.ZMIOSStyleTitlebarLayout>

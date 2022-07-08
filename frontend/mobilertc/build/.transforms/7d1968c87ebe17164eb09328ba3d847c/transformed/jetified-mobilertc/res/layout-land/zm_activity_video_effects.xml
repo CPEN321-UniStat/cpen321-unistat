@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:zoom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/zm_v1_black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zipow.videobox.confapp.meeting.scene.preview.ZmPreviewVideoView
+        android:id="@+id/previewVideoView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_medium_minus_size"
+        android:layout_marginRight="@dimen/zm_action_sheet_max_width"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/zm_margin_small_minus_size"
+        android:layout_marginTop="@dimen/zm_margin_small_minus_size"
+        android:contentDescription="@string/zm_close_btn_acc_361813"
+        android:src="@drawable/ic_ve_minimize"
+        app:layout_constraintBottom_toBottomOf="@id/previewVideoView"
+        app:layout_constraintEnd_toEndOf="@id/previewVideoView"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/previewVideoView"
+        app:layout_constraintTop_toTopOf="@id/previewVideoView"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:id="@+id/btnSwitchCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="@dimen/zm_btn_width_48dp"
+        android:layout_marginEnd="@dimen/zm_margin_small_minus_size"
+        android:layout_marginBottom="@dimen/zm_margin_small_minus_size"
+        android:contentDescription="@string/zm_close_btn_acc_361813"
+        android:src="@drawable/ic_ve_flip_camera"
+        app:layout_constraintBottom_toBottomOf="@id/previewVideoView"
+        app:layout_constraintEnd_toEndOf="@id/previewVideoView"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="@id/previewVideoView"
+        app:layout_constraintTop_toTopOf="@id/previewVideoView"
+        app:layout_constraintVertical_bias="1" />
+
+    <com.zipow.videobox.confapp.meeting.videoeffects.ZmVideoEffectBottomView
+        android:id="@+id/videoEffectBottomView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:minWidth="@dimen/zm_action_sheet_max_width"
+        android:layout_marginStart="@dimen/zm_margin_medium_minus_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/previewVideoView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        zoom:zm_lockFullScreen="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

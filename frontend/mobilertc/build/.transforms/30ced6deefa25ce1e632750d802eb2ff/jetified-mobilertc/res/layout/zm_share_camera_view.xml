@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.zipow.videobox.confapp.meeting.scene.sharecamera.ZmShareCameraView
+        android:id="@+id/shareCameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.zipow.videobox.conference.viewgroup.ZmShareCameraControlView
+        android:id="@+id/panelShareControl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginRight="@dimen/zm_margin_small"
+        android:layout_marginBottom="@dimen/zm_control_view_margin_bottom"
+        android:visibility="gone"/>
+
+</FrameLayout>
