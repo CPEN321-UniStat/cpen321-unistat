@@ -38,6 +38,9 @@ import java.util.Calendar;
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.StartMeetingOptions;
+import us.zoom.sdk.StartMeetingParams;
+import us.zoom.sdk.StartMeetingParamsWithoutLogin;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
@@ -69,8 +72,8 @@ public class EventActivity extends AppCompatActivity {
     private void initZoom(Context context) {
         ZoomSDK sdk = ZoomSDK.getInstance();
         ZoomSDKInitParams params = new ZoomSDKInitParams();
-        params.appKey = "ABj2ki7HAdTM9dFc44KdbMnjjlo5v26P46MY";
-        params.appSecret = "1ImANl0EeqLEorNO98DptPpNBn0t6DySJtXH";
+        params.appKey = "fixUR7859EnwYCEw1NrAHGGwHF5CMbhmxMOO";
+        params.appSecret = "x8xZ2PGMJ55Fqkk1bucvlyJ9WMdxJN5d5fxZ";
         params.domain = "zoom.us";
         params.enableLog = true;
 
@@ -93,8 +96,8 @@ public class EventActivity extends AppCompatActivity {
         JoinMeetingOptions options = new JoinMeetingOptions();
         JoinMeetingParams params = new JoinMeetingParams();
         params.displayName = "Kush Arora";
-        params.meetingNo = "9419977292";
-        params.password = "5bCwMU";
+        params.meetingNo = "78360405191";
+        params.password = "U2cj7r";
         meetingService.joinMeetingWithParams(context, params, options);
     }
 

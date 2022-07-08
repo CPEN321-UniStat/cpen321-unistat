@@ -18,7 +18,61 @@ admin.initializeApp({
 });
 
 
+// creating zoom backend
+
+const dotEnv = require("dotenv");
+const requestPromise = require("request-promise");
+const jwt = require("jsonwebtoken");
+dotEnv.config()
+
+const zoomPayload = {
+    iss: process.env.API_KEY, 
+    exp: new Date().getTime() + 5000,
+  }
+
+const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET)
+
 app.use(express.json());
+
+app.get("/createZoomMeeting", async (req, res) => {
+    email = "manekgujral11@gmail.com"; // your zoom developer email account
+    var options = {
+        method: "POST",
+        uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
+        body: {
+        topic: "Zoom Meeting Using Node JS", //db
+        type: 1,
+        timezone: "America/Vancouver",
+        start_time: "2022-07-08T11:30:00", //db
+        duration: "5", //db
+        type: 2,
+        "settings": {
+            join_before_host:1,
+            // approval_type:2,
+            waiting_room:false,
+            alternative_host_update_polls:true,
+        },
+        },
+        auth: {
+        bearer: jwtToken,
+        },
+        headers: {
+        "User-Agent": "Zoom-api-Jwt-Request",
+        "content-type": "application/json",
+        },
+        json: true, //Parse the JSON string in the response
+    }
+
+    requestPromise(options)
+    .then(function (response) {
+    console.log("response is: ", response)
+    res.send("create meeting result: " + JSON.stringify(response))
+    })
+    .catch(function (err) {
+    // API call failed...
+    console.log("API call failed, reason ", err)
+    })
+})
 
 
 app.put("/firebaseToken", async (req, res) => {

@@ -224,8 +224,8 @@ public class UserProfileActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
                         try {
-                            int coins = (int) response.get("coins");
-                            coinsText.setText(String.valueOf(coins));
+                            String coins = response.getString("coins");
+                            coinsText.setText(coins);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

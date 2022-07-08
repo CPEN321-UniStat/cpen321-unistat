@@ -36,6 +36,7 @@
                     android:id="@+id/coins"
                     android:layout_width="117dp"
                     android:layout_height="36dp"
+                    android:textColor="@color/blue"
                     android:gravity="right|center_vertical" />
 
                 <com.airbnb.lottie.LottieAnimationView
