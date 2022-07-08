@@ -122,6 +122,12 @@ public class EventActivity extends AppCompatActivity {
             joinMeetingButton.setVisibility(View.GONE);
             makePaymentButton.setVisibility(View.GONE);
         }
+        if (!isMentor) {
+            acceptMeetingButton.setVisibility(View.VISIBLE);
+            declineMeetingButton.setVisibility(View.VISIBLE);
+        } else {
+            makePaymentButton.setVisibility(View.GONE);
+        }
     }
 
     private void addButtonListeners() {
@@ -158,9 +164,6 @@ public class EventActivity extends AppCompatActivity {
         makePaymentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent checkoutActivity = new Intent(EventActivity.this, CheckoutActivity.class);
-                checkoutActivity.putExtra("price", meeting.getPaymentAmount());
-                startActivity(checkoutActivity);
             }
         });
     }
