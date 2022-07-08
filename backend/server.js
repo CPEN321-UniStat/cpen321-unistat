@@ -13,6 +13,8 @@ var admin = require("firebase-admin");
 
 var serviceAccount = require("./serviceAccountKey.json");
 
+const schedule = require('node-schedule');
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -261,7 +263,6 @@ app.put("/meetings", async (req, res) => {
     // Update stat data
     try {
         console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
-        console.log(req.body)
         find_query = {"mId" : req.body.mId}
         update_query = {"$set": {"status": req.body.status, "mColor": req.body.mColor}}
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
@@ -274,6 +275,34 @@ app.put("/meetings", async (req, res) => {
         res.status(400).send(JSON.stringify(error))
     }
 })
+
+app.put("/schedulePayment", async (req, res) => {
+    // Update stat data
+    try {
+        var endTime = req.body.mEndTime
+        var mentee = req.body.menteeEmail
+        var mentor = req.body.mentorEmail
+        var payment = req.body.paymentAmount
+        //           new Date(Year, M, d, h,  m, s)
+        const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
+        console.log(mentee)
+        schedule.scheduleJob(date, function(){
+            console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
+        });
+
+        var jsonResp = {
+            "status": `Scheduled payment`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+function makePayment(mentorEmail, menteeEmail, payment) {
+    
+}
 
 
 
