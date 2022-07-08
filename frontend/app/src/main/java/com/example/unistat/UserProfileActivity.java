@@ -41,6 +41,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private FloatingActionButton editProfileButton;
     private TextView userNameText;
     private TextView userEmailText;
+    private TextView coinsText;
     private CircleImageView userProfileImage;
     private RequestQueue requestQueue;
 
@@ -64,6 +65,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
         userNameText = findViewById(R.id.userNameText);
         userEmailText = findViewById(R.id.userEmailText);
+        coinsText = findViewById(R.id.coins);
         userProfileImage = findViewById(R.id.userProfileImage);
 
         requestQueue = Volley.newRequestQueue(UserProfileActivity.this);
@@ -78,6 +80,8 @@ public class UserProfileActivity extends AppCompatActivity {
         String emailText = "Account for " + account.getEmail();
         userEmailText.setText(emailText);
         Picasso.get().load(account.getPhotoUrl()).resize(125, 125).into(userProfileImage);
+
+        getCoinsByEmail(userEmail);
 
         confirmChangesButton = findViewById(R.id.confirmChangesButton);
         confirmChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -198,5 +202,43 @@ public class UserProfileActivity extends AppCompatActivity {
         );
 
         requestQueue.add(getUserStatRequest);
+    }
+
+    private void getCoinsByEmail(String userEmail) {
+        String URL = "http://10.0.2.2:8081/coinsByUser";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", userEmail);
+            Log.d(TAG, body.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getCoinsRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            int coins = (int) response.get("coins");
+                            coinsText.setText(String.valueOf(coins));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getCoinsRequest);
     }
 }

@@ -155,7 +155,6 @@
 
     <Button
         android:id="@+id/makePayment"
-        android:drawableLeft="@drawable/googleg_standard_color_18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
