@@ -20,7 +20,62 @@ admin.initializeApp({
 });
 
 
+// creating zoom backend
+
+const dotEnv = require("dotenv");
+const requestPromise = require("request-promise");
+const jwt = require("jsonwebtoken");
+dotEnv.config()
+
+const zoomPayload = {
+    iss: process.env.API_KEY,
+    exp: new Date().getTime() + 5000,
+  }
+
+const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET)
+
 app.use(express.json());
+
+app.post("/createZoomMeeting", async (req, res) => {
+    email = "manekgujral11@gmail.com"; // your zoom developer email account
+    var options = {
+        method: "POST",
+        uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
+        body: {
+        topic: req.body.meetingTopic, //db
+        type: 1,
+        timezone: "America/Vancouver",
+        start_time: req.body.meetingStartTime, //db
+        end_time: req.body.meetingEndTime,
+        type: 2,
+        "settings": {
+            join_before_host:1,
+            // approval_type:2,
+            waiting_room:false,
+            alternative_host_update_polls:true,
+        },
+        },
+        auth: {
+        bearer: jwtToken,
+        },
+        headers: {
+        "User-Agent": "Zoom-api-Jwt-Request",
+        "content-type": "application/json",
+        },
+        json: true, //Parse the JSON string in the response
+    }
+
+    requestPromise(options)
+    .then(function (response) {
+    console.log("response is: ", response)
+    var jsonResp = {"status" : response}
+    res.status(200).send(JSON.stringify(jsonResp))
+    })
+    .catch(function (err) {
+    // API call failed...
+    console.log("API call failed, reason ", err)
+    })
+})
 
 
 app.put("/firebaseToken", async (req, res) => {
@@ -259,12 +314,28 @@ app.get("/meetings/:email", async (req, res) => {
     })
 })
 
+app.post("/meetingsById/", async (req, res) => {
+
+    var query = {"mId": req.body.mId}
+
+    client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
+        var jsonResp = {"meeting" : result}
+        res.status(200).send(JSON.stringify(jsonResp))
+    })
+})
+
 app.put("/meetings", async (req, res) => {
     // Update stat data
     try {
         console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
+        console.log(req.body)
         find_query = {"mId" : req.body.mId}
-        update_query = {"$set": {"status": req.body.status, "mColor": req.body.mColor}}
+        update_query = {"$set": {
+            "status": req.body.status,
+            "mColor": req.body.mColor,
+            "zoomId": req.body.zoomId,
+            "zoomPassword": req.body.zoomPassword
+        }}
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         var jsonResp = {
             "status": `Meeting status updated`
@@ -311,7 +382,7 @@ async function handlePayment(id) {
         if (shouldMentorBePaid(meeting.mentorEmail, meeting.menteeEmail, meetingLogs))
             makePayment(meeting.menteeEmail, meeting.mentorEmail, meetingLogs)
     })
-    
+
 }
 
 function shouldMentorBePaid(mentor, mentee, meetingLogs) {
@@ -324,7 +395,7 @@ function shouldMentorBePaid(mentor, mentee, meetingLogs) {
     console.log(menteeEndTime)
     console.log(mentorEndTime)
 
-    
+
     if (menteeStartTime == null) {
 
         /* If mentee never joined and mentor never joined, then mentor should not be paid*/
@@ -347,7 +418,7 @@ function shouldMentorBePaid(mentor, mentee, meetingLogs) {
             /* If mentor never leaves, then mentor should be paid */
             if (mentorEndTime == null)
                 return true
-            
+
             /* If mentor leaves but mentee never leaves, then mentor should not be paid */
             else if (menteeEndTime == null)
                 return false
@@ -358,7 +429,7 @@ function shouldMentorBePaid(mentor, mentee, meetingLogs) {
         }
 
     }
-    
+
 
 
 }
@@ -394,6 +465,24 @@ async function makePayment(menteeEmail, mentorEmail, payment) {
         {"$inc": {"currency": payment}}
     )
 }
+app.put("/updateMeetingLog", async (req, res) => {
+
+    var find_query = {"mId": req.body.mId}
+    var update_query = {"$push" : {
+        "meetingLogs": req.body.meetingLog
+    }}
+
+    try {
+        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        var jsonResp = {
+            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
 
 
 var server = app.listen(8081, (req, res) => {

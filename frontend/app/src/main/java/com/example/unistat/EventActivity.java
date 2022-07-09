@@ -27,6 +27,7 @@ import com.google.android.gms.wallet.PaymentsClient;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -34,10 +35,14 @@ import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.StartMeetingOptions;
+import us.zoom.sdk.StartMeetingParams;
+import us.zoom.sdk.StartMeetingParamsWithoutLogin;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
@@ -69,8 +74,8 @@ public class EventActivity extends AppCompatActivity {
     private void initZoom(Context context) {
         ZoomSDK sdk = ZoomSDK.getInstance();
         ZoomSDKInitParams params = new ZoomSDKInitParams();
-        params.appKey = "ABj2ki7HAdTM9dFc44KdbMnjjlo5v26P46MY";
-        params.appSecret = "1ImANl0EeqLEorNO98DptPpNBn0t6DySJtXH";
+        params.appKey = "fixUR7859EnwYCEw1NrAHGGwHF5CMbhmxMOO";
+        params.appSecret = "x8xZ2PGMJ55Fqkk1bucvlyJ9WMdxJN5d5fxZ";
         params.domain = "zoom.us";
         params.enableLog = true;
 
@@ -88,14 +93,15 @@ public class EventActivity extends AppCompatActivity {
         sdk.initialize(context, listener, params);
     }
 
-    private void joinZoomMeeting(Context context) {
+    private void joinZoomMeeting(Context context, String id, String password) {
         MeetingService meetingService = ZoomSDK.getInstance().getMeetingService();
         JoinMeetingOptions options = new JoinMeetingOptions();
         JoinMeetingParams params = new JoinMeetingParams();
         params.displayName = "Kush Arora";
-        params.meetingNo = "9419977292";
-        params.password = "5bCwMU";
+        params.meetingNo = id;
+        params.password = password;
         meetingService.joinMeetingWithParams(context, params, options);
+
     }
 
     private void getAndSetMeetingInfo() {
@@ -146,27 +152,38 @@ public class EventActivity extends AppCompatActivity {
         joinMeetingButton = findViewById(R.id.joinMeeting);
         makePaymentButton = findViewById(R.id.makePayment);
 
+        Boolean showJoinMeeting = false;
+
         if (status.equals(Meeting.Status.ACCEPTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
-            joinMeetingButton.setVisibility(View.VISIBLE);
+            showJoinMeeting = true;
             makePaymentButton.setVisibility(View.VISIBLE);
         } else if (status.equals(Meeting.Status.REJECTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
-            joinMeetingButton.setVisibility(View.GONE);
+            showJoinMeeting = false;
             makePaymentButton.setVisibility(View.GONE);
         } else if (status.equals(Meeting.Status.PENDING)) {
             acceptMeetingButton.setVisibility(View.VISIBLE);
             declineMeetingButton.setVisibility(View.VISIBLE);
-            joinMeetingButton.setVisibility(View.GONE);
+            showJoinMeeting = false;
             makePaymentButton.setVisibility(View.GONE);
         }
         if (!isMentor) {
-            acceptMeetingButton.setVisibility(View.VISIBLE);
-            declineMeetingButton.setVisibility(View.VISIBLE);
+            acceptMeetingButton.setVisibility(View.GONE);
+            declineMeetingButton.setVisibility(View.GONE);
         } else {
             makePaymentButton.setVisibility(View.GONE);
+        }
+
+        Date meetingStart = meeting.getStartTime().getTime();
+        Date meetingEnd = meeting.getEndTime().getTime();
+        Date now = Calendar.getInstance().getTime();
+        if (showJoinMeeting && now.before(meetingEnd) && now.after(meetingStart)) {
+            joinMeetingButton.setVisibility(View.VISIBLE);
+        } else {
+            joinMeetingButton.setVisibility(View.GONE);
         }
     }
 
@@ -177,7 +194,7 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateMeetingStatus(Meeting.Status.ACCEPTED);
+                createZoomMeeting();
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.VISIBLE);
@@ -188,7 +205,7 @@ public class EventActivity extends AppCompatActivity {
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateMeetingStatus(Meeting.Status.REJECTED);
+                updateMeetingStatus(Meeting.Status.REJECTED, "", "");
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
                 joinMeetingButton.setVisibility(View.GONE);
@@ -197,7 +214,7 @@ public class EventActivity extends AppCompatActivity {
         joinMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                joinZoomMeeting(EventActivity.this);
+                getZoomMeetingInfo();
             }
         });
         makePaymentButton.setOnClickListener(new View.OnClickListener() {
@@ -207,7 +224,102 @@ public class EventActivity extends AppCompatActivity {
         });
     }
 
-    private void updateMeetingStatus(Meeting.Status status) {
+    private void getZoomMeetingInfo() {
+
+        String URL = "http://10.0.2.2:8081/meetingsById/";
+
+        JSONObject body = new JSONObject();
+
+        try {
+            body.put("mId", meeting.getId());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getMeetingByIdRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray meetingInfo = response.getJSONArray("meeting");
+                            JSONObject meeting = meetingInfo.getJSONObject(0);
+                            String zoomId = meeting.getString("zoomId");
+                            String zoomPassword = meeting.getString("zoomPassword");
+                            Log.d(TAG, "zoom info: " + zoomId + " and " + zoomPassword);
+                            joinZoomMeeting(EventActivity.this, zoomId, zoomPassword);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getMeetingByIdRequest);
+    }
+
+    private void createZoomMeeting() {
+        String URL = "http://10.0.2.2:8081/createZoomMeeting";
+
+        JSONObject body = new JSONObject();
+
+        Date startMeetingDate = meeting.getStartTime().getTime();
+        Date endMeetingDate = meeting.getStartTime().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+        String meetingStartTime = formatter.format(startMeetingDate);
+        String meetingEndTime = formatter.format(endMeetingDate);
+
+        Log.d(TAG, "Start meeting time: " + meetingStartTime);
+        Log.d(TAG, "End meeting time: " + meetingEndTime);
+
+        try {
+            body.put("meetingTopic", meeting.getName());
+            body.put("meetingStartTime", meetingStartTime);
+            body.put("meetingEndTime", meetingEndTime);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest createZoomMeetingRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            JSONObject zoomMeetingData = response.getJSONObject("status");
+                            String zoomMeetingId = zoomMeetingData.getString("id");
+                            String zoomMeetingPassword = zoomMeetingData.getString("password");
+                            updateMeetingStatus(Meeting.Status.ACCEPTED, zoomMeetingId, zoomMeetingPassword);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(createZoomMeetingRequest);
+    }
+
+    private void updateMeetingStatus(Meeting.Status status, String zoomId, String zoomPassword) {
         meeting.setStatus(status);
         System.out.println(status.name() + " " + meeting.getColor());
 
@@ -218,6 +330,8 @@ public class EventActivity extends AppCompatActivity {
             body.put("mId", meeting.getId());
             body.put("status", meeting.getStatus().name());
             body.put("mColor", meeting.getColor());
+            body.put("zoomId", zoomId);
+            body.put("zoomPassword", zoomPassword);
         } catch (JSONException e) {
             e.printStackTrace();
         }
