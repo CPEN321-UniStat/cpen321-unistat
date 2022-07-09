@@ -25,6 +25,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.wallet.PaymentsClient;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -71,7 +72,17 @@ public class EventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_event);
         getAndSetMeetingInfo();
         addButtonListeners();
-        initZoom(this);
+        initZoom(EventActivity.this);
+
+//        // Show dialog if mentor
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
+        if (account.getEmail().equals(meeting.getMentorEmail())) {
+            new MaterialAlertDialogBuilder(this)
+                    .setTitle("Meeting Information")
+                    .setMessage("Please leave the meeting once the other user has left to get paid.")
+                    .setPositiveButton("Ok", null)
+                    .show();
+        }
     }
 
     private void initZoom(Context context) {
