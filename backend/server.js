@@ -13,6 +13,8 @@ var admin = require("firebase-admin");
 
 var serviceAccount = require("./serviceAccountKey.json");
 
+const schedule = require('node-schedule');
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -26,7 +28,7 @@ const jwt = require("jsonwebtoken");
 dotEnv.config()
 
 const zoomPayload = {
-    iss: process.env.API_KEY, 
+    iss: process.env.API_KEY,
     exp: new Date().getTime() + 5000,
   }
 
@@ -313,7 +315,7 @@ app.get("/meetings/:email", async (req, res) => {
 })
 
 app.post("/meetingsById/", async (req, res) => {
-    
+
     var query = {"mId": req.body.mId}
 
     client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
@@ -329,9 +331,9 @@ app.put("/meetings", async (req, res) => {
         console.log(req.body)
         find_query = {"mId" : req.body.mId}
         update_query = {"$set": {
-            "status": req.body.status, 
-            "mColor": req.body.mColor, 
-            "zoomId": req.body.zoomId, 
+            "status": req.body.status,
+            "mColor": req.body.mColor,
+            "zoomId": req.body.zoomId,
             "zoomPassword": req.body.zoomPassword
         }}
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
@@ -345,6 +347,142 @@ app.put("/meetings", async (req, res) => {
     }
 })
 
+app.post("/schedulePayment", async (req, res) => {
+    // Update stat data
+    try {
+        var endTime = req.body.mEndTime
+        var id = req.body.mId
+        //           new Date(Year, M, d, h,  m, s)
+        const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
+        schedule.scheduleJob(date, function(){
+            // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
+            handlePayment(id)
+        });
+
+        var jsonResp = {
+            "status": `Scheduled payment`,
+            "mid": req.body.mId
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+async function handlePayment(id) {
+    await client.db("UniStatDB").collection("Meetings").findOne({"mId": id}, function (err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        var meeting = result
+        var meetingLogs = meeting.meetingLogs
+        // console.log(meetingLogs)
+        if (shouldMentorBePaid(meeting.mentorEmail, meeting.menteeEmail, meetingLogs))
+            makePayment(meeting.menteeEmail, meeting.mentorEmail, meetingLogs)
+    })
+
+}
+
+function shouldMentorBePaid(mentor, mentee, meetingLogs) {
+    var menteeStartTime = findStartTime(mentee, meetingLogs)
+    var mentorStartTime = findStartTime(mentor, meetingLogs)
+    var menteeEndTime = findEndTime(mentee, meetingLogs)
+    var mentorEndTime = findEndTime(mentor, meetingLogs)
+    console.log(menteeStartTime)
+    console.log(mentorStartTime)
+    console.log(menteeEndTime)
+    console.log(mentorEndTime)
+
+
+    if (menteeStartTime == null) {
+
+        /* If mentee never joined and mentor never joined, then mentor should not be paid*/
+        if (mentorStartTime == null)
+            return false
+
+        /* If mentee never joined and mentor joined, then mentor should be paid*/
+        else
+            return true
+    }
+    if (menteeStartTime != null) {
+
+        /* If mentee joined and mentor never joined, then mentor should not be paid*/
+        if (mentorStartTime == null)
+            return false
+
+        /* If mentee joined and mentor joined, check futher*/
+        else {
+
+            /* If mentor never leaves, then mentor should be paid */
+            if (mentorEndTime == null)
+                return true
+
+            /* If mentor leaves but mentee never leaves, then mentor should not be paid */
+            else if (menteeEndTime == null)
+                return false
+
+            /* If both mentor and mentee join, and both leave, then check: */
+            return mentorEndTime > menteeEndTime && mentorStartTime < menteeEndTime
+
+        }
+
+    }
+
+
+
+}
+
+function findStartTime(user, meetingLogs) {
+    for (i = 0; i <meetingLogs.length; i++) {
+        var meetingLog = meetingLogs[i]
+        if (meetingLog.userEmail === user && meetingLog.action === 'JOINED') {
+            return Date.parse(meetingLog.timestamp)
+        }
+    }
+    return null
+}
+
+function findEndTime(user, meetingLogs) {
+    for (i = 0; i <meetingLogs.length; i++) {
+        var meetingLog = meetingLogs[i]
+        if (meetingLog.userEmail === user && meetingLog.action === 'LEFT') {
+            return Date.parse(meetingLog.timestamp)
+        }
+    }
+    return null
+}
+
+async function makePayment(menteeEmail, mentorEmail, payment) {
+    await client.db("UniStatDB").collection("Users").updateOne(
+        {"email": menteeEmail},
+        {"$inc": {"currency": - payment}}
+    )
+
+    await client.db("UniStatDB").collection("Users").updateOne(
+        {"email": mentorEmail},
+        {"$inc": {"currency": payment}}
+    )
+}
+app.put("/updateMeetingLog", async (req, res) => {
+
+    var find_query = {"mId": req.body.mId}
+    var update_query = {"$push" : {
+        "meetingLogs": req.body.meetingLog
+    }}
+
+    try {
+        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        var jsonResp = {
+            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
 
 
 var server = app.listen(8081, (req, res) => {

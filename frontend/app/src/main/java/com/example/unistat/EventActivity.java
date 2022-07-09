@@ -474,7 +474,7 @@ public class EventActivity extends AppCompatActivity {
         JSONObject body = new JSONObject();
         try {
             body.put("mId", meeting.getId());
-            body.put("meetingLogs", message);
+            body.put("meetingLog", message);
         } catch (JSONException e) {
             e.printStackTrace();
         }
