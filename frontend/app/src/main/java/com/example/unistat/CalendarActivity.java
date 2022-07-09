@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,8 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.Meeting.MeetingLog;
-import com.example.unistat.StatsCardView.StatsCards;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.example.unistat.Meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -36,21 +33,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -65,6 +52,11 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private WeekView mWeekView;
     private ArrayList<Meeting> meetings;
     private RequestQueue requestQueue;
+    private List<Meeting> events;
+    private int currYear;
+    private int currMonth;
+
+    private static final String TAG = "CalendarActivity";
 
     private Boolean shouldAllowBack = false;
     private static HttpURLConnection connection;
@@ -77,8 +69,10 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        events = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(CalendarActivity.this);
+        currYear = -1;
+        currMonth = -1;
 
         mWeekView = findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
@@ -189,76 +183,72 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
         System.out.println("Loading MEETINGS in calendar");
+        Log.d("currMonth", String.valueOf(currMonth));
+        Log.d("currYear", String.valueOf(currYear));
+        Log.d("newMonth", String.valueOf(newMonth));
+        Log.d("newYear", String.valueOf(newYear));
+        if ((currMonth == -1 || currYear == -1) || (currMonth != newMonth || currYear != newYear)) {
+            Log.d("POO", "inside");
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            assert account != null;
+            String userEmail = account.getEmail();
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-        assert account != null;
-        String userEmail = account.getEmail();
-
-        return getAllMeetingsByEmail(userEmail, newMonth-1, newYear);
+            currMonth = newMonth;
+            currYear = newYear;
+            getAllMeetingsByEmail(userEmail, newMonth-1, newYear);
+        }
+        return events;
     }
 
-    private List<Meeting> getAllMeetingsByEmail(String userEmail, int month, int year) {
+
+
+    private void getAllMeetingsByEmail(String userEmail, int month, int year) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
         String URL = "http://10.0.2.2:8081/meetings/"+userEmail;
 
-        List<Meeting> events = new ArrayList<>();
-
-        BufferedReader reader;
-        String line;
-        StringBuffer responseContent = new StringBuffer();
+        JSONObject body = new JSONObject();
         try {
-            URL url = new URL(URL);
-            connection = (HttpURLConnection) url.openConnection();
-            
-            //Request setup
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("month", String.valueOf(month));
-            connection.setRequestProperty("year", String.valueOf(year));
-
-            int status = connection.getResponseCode();
-
-            if (status > 299) {
-                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            }
-            else {
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            }
-
-            System.out.println(responseContent.toString());
-            JSONObject response = new JSONObject(responseContent.toString());
-            JSONArray meetingArray = (JSONArray) response.get("meetings");
-            for (int i = 0; i < meetingArray.length(); i++){
-                JSONObject meeting =  meetingArray.getJSONObject(i);
-                String jsonString = meeting.toString();
-                Meeting meetingObj = gson.fromJson(jsonString, Meeting.class);
-                events.add(meetingObj);
-            }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            body.put("month", String.valueOf(month));
+            body.put("year", String.valueOf(year));
         } catch (JSONException e) {
             e.printStackTrace();
-        } finally {
-            connection.disconnect();
         }
+        JsonObjectRequest getMeetingsRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            JSONArray meetingArray = (JSONArray) response.get("meetings");
+                            for (int i = 0; i < meetingArray.length(); i++){
+                                JSONObject meeting =  meetingArray.getJSONObject(i);
+                                String jsonString = meeting.toString();
+                                Meeting meetingObj = gson.fromJson(jsonString, Meeting.class);
+                                events.add(meetingObj);
+                            }
+                            onMonthChange(currYear, currMonth);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getMeetingsRequest);
+
         System.out.println("Length of events: " + events.size());
-        return events;
     }
 
     public static Calendar getCalendarFromISO(String datestring) {
