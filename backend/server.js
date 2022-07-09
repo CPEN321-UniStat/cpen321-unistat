@@ -345,6 +345,24 @@ app.put("/meetings", async (req, res) => {
     }
 })
 
+app.put("/updateMeetingLog", async (req, res) => {
+
+    var find_query = {"mId": req.body.mId}
+    var update_query = {"$push" : {
+        "meetingLogs": req.body.meetingLog
+    }}
+
+    try {
+        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        var jsonResp = {
+            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
 
 
 var server = app.listen(8081, (req, res) => {

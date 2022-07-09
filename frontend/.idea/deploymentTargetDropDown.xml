@@ -13,7 +13,17 @@
       </Target>
     </targetSelectedWithDropDown>
     <timeTargetWasSelectedWithDropDown value="2022-07-08T22:12:31.231089400Z" />
+    <multipleDevicesSelectedInDropDown value="true" />
     <targetsSelectedWithDialog>
+      <Target>
+        <type value="QUICK_BOOT_TARGET" />
+        <deviceKey>
+          <Key>
+            <type value="VIRTUAL_DEVICE_PATH" />
+            <value value="C:\Users\kusha\.android\avd\Pixel_3_API_29_5.avd" />
+          </Key>
+        </deviceKey>
+      </Target>
       <Target>
         <type value="QUICK_BOOT_TARGET" />
         <deviceKey>
