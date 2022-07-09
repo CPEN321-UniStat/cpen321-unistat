@@ -370,7 +370,17 @@ app.post("/schedulePayment", async (req, res) => {
         res.status(400).send(JSON.stringify(error))
     }
 })
-
+app.post("/coinsByUser", async (req, res) => {
+    client.db("UniStatDB").collection("Users").findOne({"email": req.body.userEmail}, function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
+        var jsonResp = {"coins" : result.currency}
+        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+    }
+    )
+})
 async function handlePayment(id) {
     await client.db("UniStatDB").collection("Meetings").findOne({"mId": id}, function (err, result) {
         if (err){

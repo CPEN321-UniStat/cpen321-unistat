@@ -60,7 +60,6 @@ public class EventActivity extends AppCompatActivity {
     private Button acceptMeetingButton;
     private Button declineMeetingButton;
     private Button joinMeetingButton;
-    private Button makePaymentButton;
     private RequestQueue requestQueue;
     private Long meetingID;
     private Boolean isMentor = false;
@@ -231,7 +230,6 @@ public class EventActivity extends AppCompatActivity {
         acceptMeetingButton = findViewById(R.id.acceptMeetingRequest);
         declineMeetingButton = findViewById(R.id.declineMeetingRequest);
         joinMeetingButton = findViewById(R.id.joinMeeting);
-        makePaymentButton = findViewById(R.id.makePayment);
 
         Boolean showJoinMeeting = false;
 
@@ -239,23 +237,18 @@ public class EventActivity extends AppCompatActivity {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             showJoinMeeting = true;
-            makePaymentButton.setVisibility(View.VISIBLE);
         } else if (status.equals(Meeting.Status.REJECTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             showJoinMeeting = false;
-            makePaymentButton.setVisibility(View.GONE);
         } else if (status.equals(Meeting.Status.PENDING)) {
             acceptMeetingButton.setVisibility(View.VISIBLE);
             declineMeetingButton.setVisibility(View.VISIBLE);
             showJoinMeeting = false;
-            makePaymentButton.setVisibility(View.GONE);
         }
         if (!isMentor) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
-        } else {
-            makePaymentButton.setVisibility(View.GONE);
         }
 
         Date meetingStart = meeting.getStartTime().getTime();
@@ -278,9 +271,6 @@ public class EventActivity extends AppCompatActivity {
                 createZoomMeeting();
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
-                joinMeetingButton.setVisibility(View.VISIBLE);
-                joinMeetingButton.setClickable(false);
-                makePaymentButton.setVisibility(View.VISIBLE);
             }
         });
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {
@@ -296,11 +286,6 @@ public class EventActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getZoomMeetingInfo();
-            }
-        });
-        makePaymentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
             }
         });
     }
