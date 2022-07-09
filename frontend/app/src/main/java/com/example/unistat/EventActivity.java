@@ -20,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.Meeting.Meeting;
+import com.example.unistat.Meeting.MeetingLog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.internal.Constants;
@@ -36,10 +37,15 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
+import us.zoom.sdk.MeetingParameter;
 import us.zoom.sdk.MeetingService;
+import us.zoom.sdk.MeetingServiceListener;
+import us.zoom.sdk.MeetingStatus;
 import us.zoom.sdk.StartMeetingOptions;
 import us.zoom.sdk.StartMeetingParams;
 import us.zoom.sdk.StartMeetingParamsWithoutLogin;
@@ -64,11 +70,9 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-
-        initZoom(this);
-
         getAndSetMeetingInfo();
         addButtonListeners();
+        initZoom(this);
     }
 
     private void initZoom(Context context) {
@@ -91,6 +95,8 @@ public class EventActivity extends AppCompatActivity {
             }
         };
         sdk.initialize(context, listener, params);
+        List<MeetingLog> meetingLogs = new LinkedList<>();
+        meeting.setMeetingLogs(meetingLogs);
     }
 
     private void joinZoomMeeting(Context context, String id, String password) {
@@ -101,6 +107,81 @@ public class EventActivity extends AppCompatActivity {
         params.meetingNo = id;
         params.password = password;
         meetingService.joinMeetingWithParams(context, params, options);
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+
+        meetingService.addListener(new MeetingServiceListener() {
+            @Override
+            public void onMeetingStatusChanged(MeetingStatus meetingStatus, int i, int i1) {
+//                Log.d(TAG, "Meeting Logs" + meeting.getMeetingLogs().toString());
+//                  System.out.println("Meeting Logs: " + meeting.getMeetingLogs().toString());
+
+                for ( MeetingLog log : meeting.getMeetingLogs() ){
+                    System.out.println(log.getTimestamp());
+                    System.out.println(log.getUserEmail());
+                    System.out.println(log.getAction());
+                }
+
+
+//                Log.d(TAG, String.format("[onMeetingStatusChanged] meetingStatus: %s", meetingStatus.toString()));
+                if (meetingStatus.toString().equals("MEETING_STATUS_INMEETING")){
+                    Log.d(TAG, "Meething JOIN logged");
+
+                    Date now = Calendar.getInstance().getTime();
+                    String date = formatter.format(now);
+                    String userEmail = account.getEmail();
+                    MeetingLog curLog = new MeetingLog(date.toString(), userEmail, isMentor, MeetingLog.Action.JOINED);
+//                    List<MeetingLog> meetingLogs = meeting.getMeetingLogs();
+//                    meetingLogs.add(curLog);
+//                    meeting.setMeetingLogs(meetingLogs);
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("timestamp", curLog.getTimestamp());
+                        jsonObject.put("userEmail", curLog.getUserEmail());
+                        jsonObject.put("action", curLog.getAction().name());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    updateMeetingLog(jsonObject);
+                }
+                else if (meetingStatus.toString().equals("MEETING_STATUS_DISCONNECTING")){
+                    Log.d(TAG, "Meething EXIT logged");
+                    Date now = Calendar.getInstance().getTime();
+                    String date = formatter.format(now);
+                    String userEmail = account.getEmail();
+
+                    MeetingLog curLog = new MeetingLog(date.toString(), userEmail, isMentor, MeetingLog.Action.LEFT);
+                    Log.d(TAG, "CURLOG: " + curLog.toString());
+
+
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("timestamp", curLog.getTimestamp());
+                        jsonObject.put("userEmail", curLog.getUserEmail());
+                        jsonObject.put("action", curLog.getAction().name());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    updateMeetingLog(jsonObject);
+//                    List<MeetingLog> meetingLogs = meeting.getMeetingLogs();
+//                    meetingLogs.add(curLog);
+//                    meeting.setMeetingLogs(meetingLogs);
+
+                }
+            }
+
+            @Override
+            public void onMeetingParameterNotification(MeetingParameter meetingParameter) {
+
+            }
+        });
+    }
+
+    private void addMeetingLog() {
 
     }
 
@@ -385,4 +466,40 @@ public class EventActivity extends AppCompatActivity {
         );
         requestQueue.add(sendMeetingResponseNotification);
     }
+
+
+    private void updateMeetingLog(JSONObject message) {
+        String URL = "http://10.0.2.2:8081/updateMeetingLog";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("mId", meeting.getId());
+            body.put("meetingLogs", message);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        JsonObjectRequest updateMeetingRequest = new JsonObjectRequest(
+                Request.Method.PUT,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(updateMeetingRequest);
+    }
+
 }

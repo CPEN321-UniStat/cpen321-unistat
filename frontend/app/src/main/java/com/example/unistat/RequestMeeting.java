@@ -22,6 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.Meeting.Meeting;
+import com.example.unistat.Meeting.MeetingLog;
+import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -43,6 +45,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -99,6 +102,9 @@ public class RequestMeeting extends AppCompatActivity {
                     meetingTitle = meetingTitle.trim();
                     double payment = Double.parseDouble(paymentOffer.trim());
                     bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                    Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+                    Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
+                    startActivity(viewCalendar);
                 }
             }
         });
@@ -266,7 +272,8 @@ public class RequestMeeting extends AppCompatActivity {
 
     public void bookMeeting(String name, String mentorEmail, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
         long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
-        Meeting meeting = new Meeting(id, name, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, new LinkedList<>());
+        List<MeetingLog> logs = new LinkedList<>();
+        Meeting meeting = new Meeting(id, name, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
