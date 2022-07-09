@@ -16,6 +16,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -88,6 +89,8 @@ public class ViewStatsActivity extends AppCompatActivity {
         isSortEntranceScore = false;
         sortByGpa = findViewById(R.id.sortByGpaChip);
         sortByEntranceScore = findViewById(R.id.sortByEntranceScoreChip);
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         sortByGpa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
