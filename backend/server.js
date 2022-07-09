@@ -349,6 +349,7 @@ app.put("/meetings", async (req, res) => {
 
 app.post("/schedulePayment", async (req, res) => {
     // Update stat data
+    console.log("-------------------schedulePayment-------------------")
     try {
         console.log(req.body.mEndTime)
         var endTime = req.body.mEndTime
@@ -370,6 +371,7 @@ app.post("/schedulePayment", async (req, res) => {
         res.status(400).send(JSON.stringify(error))
     }
 })
+
 app.post("/coinsByUser", async (req, res) => {
     client.db("UniStatDB").collection("Users").findOne({"email": req.body.userEmail}, function(err, result) {
         if (err){
@@ -382,6 +384,7 @@ app.post("/coinsByUser", async (req, res) => {
     )
 })
 async function handlePayment(id) {
+    console.log("-------------------handlePayment-------------------")
     await client.db("UniStatDB").collection("Meetings").findOne({"mId": id}, function (err, result) {
         if (err){
             console.log(error)
@@ -397,6 +400,7 @@ async function handlePayment(id) {
 }
 
 function shouldMentorBePaid(mentor, mentee, meetingLogs) {
+    console.log("-------------------shouldMentorBePaid-------------------")
     var menteeStartTime = findStartTime(mentee, meetingLogs)
     var mentorStartTime = findStartTime(mentor, meetingLogs)
     var menteeEndTime = findEndTime(mentee, meetingLogs)
@@ -466,6 +470,7 @@ function findEndTime(user, meetingLogs) {
 }
 
 async function makePayment(menteeEmail, mentorEmail, payment) {
+    console.log("-------------------makePayment-------------------")
     await client.db("UniStatDB").collection("Users").updateOne(
         {"email": menteeEmail},
         {"$inc": {"currency": (-1 *payment)}}

@@ -73,9 +73,10 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
-//        if (userEmail.equals(mentorEmail)) {
-//            requestMeetingButton.setVisibility(View.GONE);
-//        }
+        assert userEmail != null;
+        if (userEmail.equals(mentorEmail)) {
+            requestMeetingButton.setVisibility(View.GONE);
+        }
 
 
 
