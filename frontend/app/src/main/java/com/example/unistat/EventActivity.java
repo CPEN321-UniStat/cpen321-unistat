@@ -465,6 +465,10 @@ public class EventActivity extends AppCompatActivity {
                 }
         );
         requestQueue.add(sendMeetingResponseNotification);
+
+        if (status == Meeting.Status.ACCEPTED) {
+            schedulePayment();
+        }
     }
 
 
@@ -500,6 +504,38 @@ public class EventActivity extends AppCompatActivity {
         );
 
         requestQueue.add(updateMeetingRequest);
+    }
+
+    private void schedulePayment() {
+        String URL = "http://10.0.2.2:8081/schedulePayment";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("mId", meeting.getId());
+            body.put("mEndTime", meeting.getEndTime());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest schedulePaymentRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(schedulePaymentRequest);
     }
 
 }

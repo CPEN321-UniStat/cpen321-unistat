@@ -350,6 +350,7 @@ app.put("/meetings", async (req, res) => {
 app.post("/schedulePayment", async (req, res) => {
     // Update stat data
     try {
+        console.log(req.body.mEndTime)
         var endTime = req.body.mEndTime
         var id = req.body.mId
         //           new Date(Year, M, d, h,  m, s)
@@ -380,7 +381,7 @@ async function handlePayment(id) {
         var meetingLogs = meeting.meetingLogs
         // console.log(meetingLogs)
         if (shouldMentorBePaid(meeting.mentorEmail, meeting.menteeEmail, meetingLogs))
-            makePayment(meeting.menteeEmail, meeting.mentorEmail, meetingLogs)
+            makePayment(meeting.menteeEmail, meeting.mentorEmail, meeting.paymentAmount)
     })
 
 }
@@ -457,7 +458,7 @@ function findEndTime(user, meetingLogs) {
 async function makePayment(menteeEmail, mentorEmail, payment) {
     await client.db("UniStatDB").collection("Users").updateOne(
         {"email": menteeEmail},
-        {"$inc": {"currency": - payment}}
+        {"$inc": {"currency": (-1 *payment)}}
     )
 
     await client.db("UniStatDB").collection("Users").updateOne(
@@ -514,7 +515,7 @@ async function storeGoogleUserData(idToken, fb_token) {
         await client.db("UniStatDB").collection("Users").updateOne({email : response.data.email}, {$set: {"firebase_token": fb_token}})
     } else { // New user, so insert
         console.log("new user, signing up...")
-        response.data.currency = "100"
+        response.data.currency = 100
         await client.db("UniStatDB").collection("Users").insertOne(response.data)
     }
 
