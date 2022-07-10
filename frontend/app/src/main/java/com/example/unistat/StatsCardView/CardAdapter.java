@@ -51,8 +51,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         holder.mentorNameCard.setText(curStat.getMentorName());
         holder.univNameCard.setText(curStat.getUnivName());
         holder.univMajorCard.setText(curStat.getUnivMajor());
-        holder.univGpaCard.setText(curStat.getUnivGpa());
-        holder.univEntranceScoreCard.setText(curStat.getUnivEntranceScore());
+        holder.univGpaCard.setText(String.valueOf(curStat.getUnivGpa()));
+        holder.univEntranceScoreCard.setText(String.valueOf(curStat.getUnivEntranceScore()));
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,8 +64,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
                     currStat.put("mentorName", curStat.getMentorName());
                     currStat.put("mentorPhoto", curStat.getUserStatProfileImage());
                     currStat.put("univName", curStat.getUnivName());
-                    currStat.put("univMajor", curStat.getUnivMajor());
-                    currStat.put("univGpa", curStat.getUnivGpa());
+                    currStat.put("univMajor", String.valueOf(curStat.getUnivEntranceScore()));
+                    currStat.put("univGpa", String.valueOf(curStat.getUnivGpa()));
                     currStat.put("univEntranceScore", curStat.getUnivEntranceScore());
                     currStat.put("univBio", curStat.getUnivBio());
                 } catch (JSONException e) {
@@ -108,8 +108,8 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
         void setDetails(StatsCards stats){
             mentorNameCard.setText(stats.getMentorName());
             univNameCard.setText(stats.getUnivName());
-            univMajorCard.setText(stats.getUnivMajor());
-            univGpaCard.setText(stats.getUnivGpa());
+            univMajorCard.setText(String.valueOf(stats.getUnivGpa()));
+            univGpaCard.setText(String.valueOf(stats.getUnivGpa()));
             univEntranceScoreCard.setText(stats.getUnivEntranceScore());
             Picasso.get().load(stats.getUserStatProfileImage()).resize(100, 100).into(userStatProfileImage);
         }

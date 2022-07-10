@@ -97,6 +97,7 @@ public class ViewStatsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
+                    sortByEntranceScore.setEnabled(false);
                     isSortGpa = true;
 
                     // If filter and sort or only sort
@@ -108,7 +109,7 @@ public class ViewStatsActivity extends AppCompatActivity {
 
                 } else {
                     isSortGpa = false;
-
+                    sortByEntranceScore.setEnabled(true);
                     // If (no sort and only filter) or (no sort no filter)
                     if (filterAutoComplete.getText().toString().length() > 0) {
                         getCardData("statsByFilter", true);
@@ -124,6 +125,7 @@ public class ViewStatsActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     isSortEntranceScore = true;
+                    sortByGpa.setEnabled(false);
 
                     // If filter and sort or only sort
                     if (filterAutoComplete.getText().toString().length() > 0) {
@@ -134,6 +136,7 @@ public class ViewStatsActivity extends AppCompatActivity {
 
                 } else {
                     isSortEntranceScore = false;
+                    sortByGpa.setEnabled(true);
 
                     // If (no sort and only filter) or (no sort no filter)
                     if (filterAutoComplete.getText().toString().length() > 0) {
@@ -337,7 +340,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                                 }
                                 String userName = userStat.getString("userName");
                                 String userEmail = userStat.getString("userEmail");
-                                statsList.add(new StatsCards(userEmail, userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), (String) userStat.get("univGpa"), (String) userStat.get("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
+                                statsList.add(new StatsCards(userEmail, userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), userStat.getDouble("univGpa"), userStat.getInt("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
                             }
 
                             filterOptions.addAll(univNameStats);

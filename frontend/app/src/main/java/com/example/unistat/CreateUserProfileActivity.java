@@ -85,8 +85,8 @@ public class CreateUserProfileActivity extends AppCompatActivity {
             body.put("userName", account.getDisplayName());
             body.put("univName", userUnivName.getEditText().getText());
             body.put("univMajor", userUnivMajor.getEditText().getText());
-            body.put("univGpa", userUnivGpa.getEditText().getText());
-            body.put("univEntranceScore", userUnivEntranceScore.getEditText().getText());
+            body.put("univGpa", Double.parseDouble(String.valueOf(userUnivGpa.getEditText().getText())));
+            body.put("univEntranceScore", Integer.parseInt(String.valueOf(userUnivEntranceScore.getEditText().getText())));
             body.put("univBio", userUnivBio.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();

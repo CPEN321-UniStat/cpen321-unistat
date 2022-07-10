@@ -123,8 +123,8 @@ public class UserProfileActivity extends AppCompatActivity {
             body.put("userEmail", userEmail);
             body.put("univName", editUserUnivName.getEditText().getText());
             body.put("univMajor", editUserUnivMajor.getEditText().getText());
-            body.put("univGpa", editUserUnivGpa.getEditText().getText());
-            body.put("univEntranceScore", editUserUnivEntranceScore.getEditText().getText());
+            body.put("univGpa", Double.parseDouble(String.valueOf(editUserUnivGpa.getEditText().getText())));
+            body.put("univEntranceScore", Integer.parseInt(String.valueOf(editUserUnivEntranceScore.getEditText().getText())));
             body.put("univBio", editUserBio.getEditText().getText());
         } catch (JSONException e) {
             e.printStackTrace();
@@ -186,8 +186,8 @@ public class UserProfileActivity extends AppCompatActivity {
                                 userStat = statArray.getJSONObject(0);
                                 editUserUnivName.getEditText().setText((String) userStat.get("univName"), TextView.BufferType.EDITABLE);
                                 editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
-                                editUserUnivGpa.getEditText().setText((String) userStat.get("univGpa"), TextView.BufferType.EDITABLE);
-                                editUserUnivEntranceScore.getEditText().setText((String) userStat.get("univEntranceScore"), TextView.BufferType.EDITABLE);
+                                editUserUnivGpa.getEditText().setText(String.valueOf(userStat.get("univGpa")), TextView.BufferType.EDITABLE);
+                                editUserUnivEntranceScore.getEditText().setText(String.valueOf(userStat.get("univEntranceScore")), TextView.BufferType.EDITABLE);
                                 editUserBio.getEditText().setText((String) userStat.get("univBio"), TextView.BufferType.EDITABLE);
                             }
                         } catch (JSONException e) {
