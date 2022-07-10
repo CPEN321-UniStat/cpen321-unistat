@@ -301,7 +301,7 @@ public class RequestMeeting extends AppCompatActivity {
             );
             requestQueue.add(postMeetingsRequest);
 
-            URL = "http://10.0.2.2:8081/sendMeetingRequest";
+            URL = "http://51.142.77.51:8081/sendMeetingRequest";
             JSONObject notificationBody = new JSONObject();
             notificationBody.put("email", mentorEmail);
             JsonObjectRequest postRequestNotification = new JsonObjectRequest(

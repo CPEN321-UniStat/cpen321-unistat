@@ -76,7 +76,7 @@ public class PushNotifications extends FirebaseMessagingService {
         //check if exists then replace/add update
         requestQueue = Volley.newRequestQueue(PushNotifications.this);
 
-        String URL = "http://10.0.2.2:8081/firebaseToken";
+        String URL = "http://51.142.77.51:8081/firebaseToken";
 
         JSONObject body = new JSONObject();
         try {
