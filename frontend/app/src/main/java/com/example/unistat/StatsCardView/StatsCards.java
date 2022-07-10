@@ -1,5 +1,7 @@
 package com.example.unistat.StatsCardView;
 
+import com.google.common.primitives.UnsignedInteger;
+
 public class StatsCards {
 
     //Model Class
@@ -7,13 +9,13 @@ public class StatsCards {
     private String mentorName;
     private String univName;
     private String univMajor;
-    private String univGpa;
-    private String univEntranceScore;
+    private Double univGpa;
+    private int univEntranceScore;
     private String univBio;
     private String userStatProfileImage;
 
     //Constructor
-    public StatsCards(String mentorEmail, String mentorName, String univName, String univMajor, String univGpa, String univEntranceScore, String univBio, String userStatProfileImage) {
+    public StatsCards(String mentorEmail, String mentorName, String univName, String univMajor, Double univGpa, int univEntranceScore, String univBio, String userStatProfileImage) {
         this.mentorEmail = mentorEmail;
         this.mentorName = mentorName;
         this.univName = univName;
@@ -41,11 +43,11 @@ public class StatsCards {
         return univMajor;
     }
 
-    public String getUnivGpa() {
+    public Double getUnivGpa() {
         return univGpa;
     }
 
-    public String getUnivEntranceScore() {
+    public int getUnivEntranceScore() {
         return univEntranceScore;
     }
 
