@@ -368,6 +368,51 @@ app.put("/meetings", async (req, res) => {
     }
 })
 
+app.post("/testScheduler", async (req, res) => {
+    console.log("testing")
+    try {
+        const date = new Date(2022, 06, 10, 1, 43, 0);
+        const job = schedule.scheduleJob(date, function(){
+            console.log('The world is going to end today.');
+        });
+        var jsonResp = {
+            "status": `Scheduled payment`,
+            "mid": req.body.mId
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
+app.post("/schedulePayment", async (req, res) => {
+    // Update stat data
+    console.log("-------------------schedulePayment-------------------")
+    try {
+        console.log(req.body.mEndTime)
+        var endTime = req.body.mEndTime
+        var id = req.body.mId
+        //           new Date(Year, M, d, h,  m, s)
+        console.log(new Date())
+        const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
+        const serverDate = new Date(date.getTime() + 7 * 60 *60000)
+        schedule.scheduleJob(serverDate, function(){
+            // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
+            handlePayment(id)
+        });
+
+        var jsonResp = {
+            "status": `Scheduled payment`,
+            "mid": req.body.mId
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
+})
+
 app.post("/schedulePayment", async (req, res) => {
     // Update stat data
     console.log("-------------------schedulePayment-------------------")

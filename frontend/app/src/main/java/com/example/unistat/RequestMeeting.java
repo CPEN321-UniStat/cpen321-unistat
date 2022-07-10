@@ -118,7 +118,7 @@ public class RequestMeeting extends AppCompatActivity {
         startDateText.setText(date);
 
         endDateText = findViewById(R.id.end_date_text);
-        endDateText.setText(date);
+//        endDateText.setText(date);
 
 
         startTimeText = findViewById(R.id.start_time_text);
@@ -129,6 +129,8 @@ public class RequestMeeting extends AppCompatActivity {
         endTimeText = findViewById(R.id.end_time_text);
         Date curDate = calendar.getTime();
         curDate.setTime(curDate.getTime() + 3600000);
+        String endDate = dateFormat.format(curDate);
+        endDateText.setText(endDate);
         String endTime = timeFormat.format(curDate);
         endTimeText.setText(endTime);
         endTimeCalendar = Calendar.getInstance();
