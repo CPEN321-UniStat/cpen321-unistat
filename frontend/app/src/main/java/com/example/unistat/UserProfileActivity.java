@@ -21,6 +21,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textview.MaterialTextView;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -41,7 +42,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private FloatingActionButton editProfileButton;
     private TextView userNameText;
     private TextView userEmailText;
-    private TextView coinsText;
+    private MaterialTextView coinsText;
     private CircleImageView userProfileImage;
     private RequestQueue requestQueue;
 
@@ -115,7 +116,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserStats(String userEmail) {
-        String URL = "http://10.0.2.2:8081/stats";
+        String URL = Constants.URL + "stats/";
 
         JSONObject body = new JSONObject();
         try {
@@ -152,7 +153,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void getUserStats(String userEmail) {
-        String URL = "http://10.0.2.2:8081/statsByFilter";
+        String URL = Constants.URL + "statsByFilter/";
 
         JSONObject body = new JSONObject();
         try {
@@ -179,6 +180,7 @@ public class UserProfileActivity extends AppCompatActivity {
                                 editUserUnivGpa.setVisibility(View.GONE);
                                 editUserUnivEntranceScore.setVisibility(View.GONE);
                                 editProfileButton.setVisibility(View.GONE);
+                                editUserBio.setVisibility(View.GONE);
                                 confirmChangesButton.setVisibility(View.GONE);
                             } else { // if mentor then show university stats
                                 userStat = statArray.getJSONObject(0);
@@ -205,7 +207,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void getCoinsByEmail(String userEmail) {
-        String URL = "http://10.0.2.2:8081/coinsByUser";
+        String URL = Constants.URL + "coinsByUser/";
 
         JSONObject body = new JSONObject();
         try {

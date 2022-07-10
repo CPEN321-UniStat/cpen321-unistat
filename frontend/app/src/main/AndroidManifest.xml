@@ -24,9 +24,6 @@
         <activity
             android:name=".RequestMeeting"
             android:exported="false" />
-        <activity
-            android:name=".ZoomMeetingActivity"
-            android:exported="false" />
         <activity android:name=".EventActivity" />
         <activity android:name=".CalendarActivity" />
         <activity android:name=".StatsCardView.ViewStatsActivity" />

@@ -21,9 +21,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.Meeting.Meeting;
 import com.example.unistat.Meeting.MeetingLog;
+import com.google.android.exoplayer2.C;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
@@ -70,6 +70,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        requestQueue = Volley.newRequestQueue(EventActivity.this);
         getAndSetMeetingInfo();
         addButtonListeners();
         initZoom(EventActivity.this);
@@ -77,9 +78,11 @@ public class EventActivity extends AppCompatActivity {
 //        // Show dialog if mentor
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
         if (account.getEmail().equals(meeting.getMentorEmail())) {
+            String msg = "Please leave the meeting once the other user has left to get paid.";
             new MaterialAlertDialogBuilder(this)
+                    .setIcon(R.drawable.ic_baseline_info_24)
                     .setTitle("Meeting Information")
-                    .setMessage("Please leave the meeting once the other user has left to get paid.")
+                    .setMessage(msg)
                     .setPositiveButton("Ok", null)
                     .show();
         }
@@ -200,15 +203,14 @@ public class EventActivity extends AppCompatActivity {
         Gson gson = builder.create();
         meeting = gson.fromJson(meetingJsonString, Meeting.class);
 
-        TextView profileText = findViewById(R.id.name);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
         if (userEmail.equals(meeting.getMentorEmail())) {
             isMentor = true;
-            profileText.setText(meeting.getMenteeEmail());
+            getAndSetUserName(meeting.getMenteeEmail());
         } else{
-            profileText.setText(meeting.getMentorEmail());
+            getAndSetUserName(meeting.getMentorEmail());
         }
 
         // 2. Set all parameters
@@ -230,6 +232,45 @@ public class EventActivity extends AppCompatActivity {
         dateText.setText(date);
 
         decideWhatsVisible(meeting.getStatus());
+    }
+
+    private void getAndSetUserName(String email) {
+
+        TextView profileText = findViewById(R.id.name);
+        String URL = Constants.URL + "userByEmail/";
+
+        JSONObject body = new JSONObject();
+
+        try {
+            body.put("userEmail", email);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getNameRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String name = response.getString("userName");
+                            profileText.setText(name);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getNameRequest);
     }
 
     private void decideWhatsVisible(Meeting.Status status) {
@@ -269,7 +310,6 @@ public class EventActivity extends AppCompatActivity {
 
     private void addButtonListeners() {
         // 3. Add onclick listeners for accept, decline, and join meeting
-        requestQueue = Volley.newRequestQueue(EventActivity.this);
 
         acceptMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,7 +338,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void getZoomMeetingInfo() {
 
-        String URL = "http://10.0.2.2:8081/meetingsById/";
+        String URL = Constants.URL + "meetingsById/";
 
         JSONObject body = new JSONObject();
 
@@ -340,7 +380,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void createZoomMeeting() {
-        String URL = "http://10.0.2.2:8081/createZoomMeeting";
+        String URL = Constants.URL + "createZoomMeeting/";
 
         JSONObject body = new JSONObject();
 
@@ -395,7 +435,7 @@ public class EventActivity extends AppCompatActivity {
         meeting.setStatus(status);
         System.out.println(status.name() + " " + meeting.getColor());
 
-        String URL = "http://10.0.2.2:8081/meetings";
+        String URL = Constants.URL + "meetings/";
 
         JSONObject body = new JSONObject();
         try {
@@ -467,7 +507,7 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void updateMeetingLog(JSONObject message) {
-        String URL = "http://10.0.2.2:8081/updateMeetingLog";
+        String URL = Constants.URL + "updateMeetingLog/";
 
         JSONObject body = new JSONObject();
         try {
@@ -501,7 +541,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void schedulePayment() {
-        String URL = "http://10.0.2.2:8081/schedulePayment";
+        String URL = Constants.URL + "schedulePayment/";
 
         Calendar endTime = meeting.getEndTime();
 

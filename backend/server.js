@@ -118,10 +118,11 @@ app.post("/sendMeetingRequest", async (req, res) => {
     .then(function(response) {
         console.log("Successfully sent message:", response);
         var jsonResp = {"res" : "Successfully sent notification"}
-        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify(jsonResp));
     })
     .catch(function(error) {
         console.log("Error sending message:", error);
+        res.status(400).send(JSON.stringify(error));
     })
 
 })
@@ -152,10 +153,11 @@ app.post("/sendMeetingResponse", async (req, res) => {
     .then(function(response) {
         console.log("Successfully sent message:", response);
         var jsonResp = {"res" : "Successfully sent notification"}
-        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     })
     .catch(function(error) {
         console.log("Error sending message:", error);
+        res.status(400).send(JSON.stringify(error));
     })
 
 })
@@ -172,11 +174,26 @@ app.post("/users", async (req, res) => {
         var jsonResp = {
             "status": alreadyExists ? "loggedIn" : "signedUp"
         }
-        res.send(JSON.stringify(jsonResp));
+        res.status(200).send(JSON.stringify(jsonResp));
     } catch (error) {
         console.log(error)
         res.status(400).send(error)
     }
+})
+
+app.post("/userByEmail", async (req, res) => {
+
+    var query = {"email": req.body.userEmail}
+    
+    client.db("UniStatDB").collection("Users").findOne(query, function(err, result) {
+        if (err){
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        } else {
+            var jsonResp = {"userName" : result.name}
+            res.status(200).send(JSON.stringify(jsonResp));
+        }
+    })
 })
 
 //CRUD function for Stats collection
@@ -201,7 +218,7 @@ app.get("/stats", async (req, res) => {
             res.status(400).send(JSON.stringify(error))
         }
         var jsonResp = {"statData" : result.reverse()}
-        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     }
     )
 })
@@ -213,7 +230,7 @@ app.post("/statsByFilter", async (req, res) => {
             res.status(400).send(JSON.stringify(error))
         }
         var jsonResp = {"statData" : result}
-        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     }
     )
 })
@@ -225,7 +242,7 @@ app.post("/statsBySorting", async (req, res) => {
             res.status(400).send(JSON.stringify(error))
         }
         var jsonResp = {"statData" : result.reverse()}
-        res.send(JSON.stringify(jsonResp)); // send back all stats sorted applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
     }
     )
 })  
@@ -237,7 +254,7 @@ app.post("/statsByConfiguration", async (req, res) => {
             res.status(400).send(JSON.stringify(error))
         }
         var jsonResp = {"statData" : result.reverse()}
-        res.send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
     }
     )
 })  
@@ -256,19 +273,19 @@ app.put("/stats", async (req, res) => {
     }
 })
 
-app.delete("/stats", async (req, res) => {
-    // Delete stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-        var jsonResp = {
-            "status": `Stat deleted for ${req.body.userEmail}`
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
-    }
-})
+// app.delete("/stats", async (req, res) => {
+//     // Delete stat data
+//     try {
+//         await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+//         var jsonResp = {
+//             "status": `Stat deleted for ${req.body.userEmail}`
+//         }
+//         res.status(200).send(JSON.stringify(jsonResp))
+//     } catch (error) {
+//         console.log(error)
+//         res.status(400).send(JSON.stringify(error))
+//     }
+// })
 
 // CRUD Functions for Meetings collection
 app.post("/meetings", async (req, res) => {
@@ -285,17 +302,17 @@ app.post("/meetings", async (req, res) => {
     }
 })
 
-app.get("/meetings", async (req, res) => {
-    client.db("UniStatDB").collection("Meetings").find({}).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"meetings" : result}
-        res.send(JSON.stringify(jsonResp)); 
-    }
-    )
-})
+// app.get("/meetings", async (req, res) => {
+//     client.db("UniStatDB").collection("Meetings").find({}).toArray(function(err, result) {
+//         if (err){
+//             console.log(error)
+//             res.status(400).send(JSON.stringify(error))
+//         }
+//         var jsonResp = {"meetings" : result}
+//         res.send(JSON.stringify(jsonResp)); 
+//     }
+//     )
+// })
 
 app.get("/meetings/:email", async (req, res) => {
     var email = req.params.email;
@@ -306,11 +323,11 @@ app.get("/meetings/:email", async (req, res) => {
     console.log(month)
     client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
         if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+            console.log(err)
+            res.status(400).send(JSON.stringify(err))
         }
         var jsonResp = {"meetings" : result}
-        res.send(JSON.stringify(jsonResp)); 
+        res.status(200).send(JSON.stringify(jsonResp)); 
     })
 })
 
@@ -319,6 +336,10 @@ app.post("/meetingsById/", async (req, res) => {
     var query = {"mId": req.body.mId}
 
     client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
+        if (err){
+            console.log(err)
+            res.status(400).send(JSON.stringify(err))
+        }
         var jsonResp = {"meeting" : result}
         res.status(200).send(JSON.stringify(jsonResp))
     })
@@ -379,7 +400,7 @@ app.post("/coinsByUser", async (req, res) => {
             res.status(400).send(JSON.stringify(error))
         }
         var jsonResp = {"coins" : result.currency}
-        res.send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
     }
     )
 })

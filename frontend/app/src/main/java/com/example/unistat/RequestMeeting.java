@@ -279,7 +279,7 @@ public class RequestMeeting extends AppCompatActivity {
         Gson gson = builder.create();
         String jsonBody = gson.toJson(meeting);
 
-        String URL = "http://10.0.2.2:8081/meetings";
+        String URL = Constants.URL + "meetings/";
         try {
             JSONObject jsonObject = new JSONObject(jsonBody);
             JsonObjectRequest postMeetingsRequest = new JsonObjectRequest(

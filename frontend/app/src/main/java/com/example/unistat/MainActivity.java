@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void serverAuth(GoogleSignInAccount account) {
         RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
-        String URL = "http://10.0.2.2:8081/users";
+        String URL = Constants.URL + "users/";
 
         JSONObject body = new JSONObject();
         try {
