@@ -237,7 +237,7 @@ public class EventActivity extends AppCompatActivity {
     private void getAndSetUserName(String email) {
 
         TextView profileText = findViewById(R.id.name);
-        String URL = Constants.URL + "userByEmail/";
+        String URL = Constants.URL + "userByEmail";
 
         JSONObject body = new JSONObject();
 
@@ -338,7 +338,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void getZoomMeetingInfo() {
 
-        String URL = Constants.URL + "meetingsById/";
+        String URL = Constants.URL + "meetingsById";
 
         JSONObject body = new JSONObject();
 
@@ -380,7 +380,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void createZoomMeeting() {
-        String URL = Constants.URL + "createZoomMeeting/";
+        String URL = Constants.URL + "createZoomMeeting";
 
         JSONObject body = new JSONObject();
 
@@ -435,7 +435,7 @@ public class EventActivity extends AppCompatActivity {
         meeting.setStatus(status);
         System.out.println(status.name() + " " + meeting.getColor());
 
-        String URL = Constants.URL + "meetings/";
+        String URL = Constants.URL + "meetings";
 
         JSONObject body = new JSONObject();
         try {
@@ -507,7 +507,7 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void updateMeetingLog(JSONObject message) {
-        String URL = Constants.URL + "updateMeetingLog/";
+        String URL = Constants.URL + "updateMeetingLog";
 
         JSONObject body = new JSONObject();
         try {
@@ -541,7 +541,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void schedulePayment() {
-        String URL = Constants.URL + "schedulePayment/";
+        String URL = Constants.URL + "schedulePayment";
 
         Calendar endTime = meeting.getEndTime();
 

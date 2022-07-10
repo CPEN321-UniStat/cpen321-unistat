@@ -116,7 +116,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void updateUserStats(String userEmail) {
-        String URL = Constants.URL + "stats/";
+        String URL = Constants.URL + "stats";
 
         JSONObject body = new JSONObject();
         try {
@@ -153,7 +153,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void getUserStats(String userEmail) {
-        String URL = Constants.URL + "statsByFilter/";
+        String URL = Constants.URL + "statsByFilter";
 
         JSONObject body = new JSONObject();
         try {
@@ -207,7 +207,7 @@ public class UserProfileActivity extends AppCompatActivity {
     }
 
     private void getCoinsByEmail(String userEmail) {
-        String URL = Constants.URL + "coinsByUser/";
+        String URL = Constants.URL + "coinsByUser";
 
         JSONObject body = new JSONObject();
         try {
