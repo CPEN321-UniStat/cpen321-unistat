@@ -5,12 +5,13 @@
       <map>
         <entry key="..\:/Users/kusha/Documents/CPEN 321/Project/frontend/app/src/main/res/layout/activity_user_profile.xml" value="0.3268229166666667" />
         <entry key="..\:/Users/kusha/Documents/CPEN 321/Project/frontend/app/src/main/res/layout/activity_view_stats.xml" value="0.25" />
+        <entry key="..\:/Users/manek/Desktop/cpen_321/project/frontend/app/src/main/res/layout/activity_sign_out.xml" value="0.19882246376811594" />
         <entry key="..\:/Users/manek/Desktop/cpen_321/project/frontend/app/src/main/res/layout/activity_user_profile.xml" value="0.14673913043478262" />
         <entry key="..\:/Users/manek/Desktop/cpen_321/project/frontend/app/src/main/res/layout/activity_view_stats.xml" value="0.14673913043478262" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
