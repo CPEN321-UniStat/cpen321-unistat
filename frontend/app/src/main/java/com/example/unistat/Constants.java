@@ -6,6 +6,6 @@ public final class Constants {
         // No instantiation
     }
 
-    public static final String URL = "http://51.142.77.51:8081/";
+    public static final String URL = "http://10.0.2.2:8081/";
 
 }

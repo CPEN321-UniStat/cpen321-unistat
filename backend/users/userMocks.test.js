@@ -26,12 +26,21 @@ const sampleStat = {
 // storeGoogleUserData() returns true/false incdicating if a user already exists
 users.storeGoogleUserData.mockImplementationOnce((idToken, fb_token) => true) // For first call
 users.storeGoogleUserData.mockImplementationOnce((idToken, fb_token) => false) // For second call
-users.storeGoogleUserData.mockImplementation((idToken, fb_token) => false) // For all calls
+users.storeGoogleUserData.mockImplementation((idToken, fb_token) => false) // For future all calls
 
 // handleUserEntry() returns "signedUp" or "loggedIn" on the basis of a boolean result from storeGoogleUserData()
-users.handleUserEntry.mockImplementationOnce((req, res) => "loggedIn") 
-users.handleUserEntry.mockImplementationOnce((req, res) => "signedUp")
-users.handleUserEntry.mockImplementation((req, res) => "loggedIn") 
+users.handleUserEntry.mockImplementationOnce((req, res) => {
+    const jsonResp = {"status": "loggedIn"}
+    return JSON.stringify(jsonResp)
+}) 
+users.handleUserEntry.mockImplementationOnce((req, res) => {
+    const jsonResp = {"status": "signedUp"}
+    return JSON.stringify(jsonResp)
+})
+users.handleUserEntry.mockImplementation((req, res) => {
+    const jsonResp = {"status": "loggedIn"}
+    return JSON.stringify(jsonResp)
+}) 
 
 // getUserByEmail()
 users.getUserByEmail.mockImplementation((req, res) => {
@@ -98,8 +107,12 @@ test('storeGoogleUserData test', () => {
 test('handleUserEntry test', () => { 
     const req = {}
     const res = {}
-    expect(users.handleUserEntry(req, res)).toBe("loggedIn");
-    expect(users.handleUserEntry(req, res)).toBe("signedUp");
+    var expected = {"status": "loggedIn"}
+    const jsonExpected1 = JSON.stringify(expected)
+    expected = {"status": "signedUp"}
+    const jsonExpected2 = JSON.stringify(expected)
+    expect(users.handleUserEntry(req, res)).toBe(jsonExpected1);
+    expect(users.handleUserEntry(req, res)).toBe(jsonExpected2);
 })
 
 test('getUserByEmail test', () => { 
