@@ -20,7 +20,7 @@ jobs:
       - name: Install
         working-directory: ./backend
         run: npm install
-      - name: Run Tests
+      - name: Run All User Module Tests
         working-directory: ./backend
-        run: npm run test
+        run: npm test
       
