@@ -17,6 +17,6 @@
     "nodemon": "^2.0.19"
   },
   "scripts": {
-    "test": "jest"
+    "test": "sh node_modules/.bin/jest"
   }
 }
