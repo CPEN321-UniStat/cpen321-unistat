@@ -64,9 +64,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
                     currStat.put("mentorName", curStat.getMentorName());
                     currStat.put("mentorPhoto", curStat.getUserStatProfileImage());
                     currStat.put("univName", curStat.getUnivName());
-                    currStat.put("univMajor", String.valueOf(curStat.getUnivEntranceScore()));
+                    currStat.put("univMajor", curStat.getUnivMajor());
                     currStat.put("univGpa", String.valueOf(curStat.getUnivGpa()));
-                    currStat.put("univEntranceScore", curStat.getUnivEntranceScore());
+                    currStat.put("univEntranceScore", String.valueOf(curStat.getUnivEntranceScore()));
                     currStat.put("univBio", curStat.getUnivBio());
                 } catch (JSONException e) {
                     e.printStackTrace();

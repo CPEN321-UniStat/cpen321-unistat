@@ -14,9 +14,6 @@
         android:theme="@style/Theme.Light"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
-        <activity
-            android:name=".Payment.CheckoutActivity"
-            android:exported="false" />
         <activity android:name=".ViewMentorProfileActivity" />
         <activity
             android:name=".UserProfileActivity"

@@ -472,7 +472,7 @@ public class EventActivity extends AppCompatActivity {
         requestQueue.add(updateMeetingRequest);
 
 
-        URL = "http://51.142.77.51:8081/sendMeetingResponse";
+        URL = Constants.URL + "sendMeetingResponse";
         JSONObject responseNotificationBody = new JSONObject();
         try {
             responseNotificationBody.put("email", meeting.getMenteeEmail());

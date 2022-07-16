@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.unistat.Constants;
 import com.example.unistat.R;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.example.unistat.UserProfileActivity;
@@ -76,7 +77,7 @@ public class PushNotifications extends FirebaseMessagingService {
         //check if exists then replace/add update
         requestQueue = Volley.newRequestQueue(PushNotifications.this);
 
-        String URL = "http://51.142.77.51:8081/firebaseToken";
+        String URL = Constants.URL + "firebaseToken";
 
         JSONObject body = new JSONObject();
         try {

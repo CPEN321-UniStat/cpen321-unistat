@@ -12,6 +12,7 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="364dp"
         android:layout_height="65dp"
+        android:focusableInTouchMode="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -23,6 +24,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         app:placeholderText="@string/search_text"
+        android:hint=""
         android:textColorHint="@drawable/text_box_stroke_color"
         app:hintTextColor="@drawable/text_box_stroke_color"
         app:startIconDrawable="@drawable/ic_baseline_search_24">
@@ -54,7 +56,7 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/sortByGpaChip"
-            style="@style/Widget.Material3.Chip.Filter"
+            style="@style/Widget.Material3.Chip.Filter.Elevated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -63,7 +65,7 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/sortByEntranceScoreChip"
-            style="@style/Widget.Material3.Chip.Filter"
+            style="@style/Widget.Material3.Chip.Filter.Elevated"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="false"
@@ -90,7 +92,6 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        style="@style/Widget.Material3.BottomNavigationView"
         app:menu="@menu/menu_navigation"
         app:itemIconSize="25dp"
         app:itemPaddingTop="10dp"

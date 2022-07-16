@@ -2,17 +2,26 @@
     <!-- Base application theme. -->
     <style name="Theme.Light" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/purple_200</item>
+        <item name="colorPrimaryVariant">@color/purple_500</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondary">@color/teal</item>
+        <item name="colorSecondaryVariant">@color/teal_blue</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Customize your theme here. -->
-        <item name="backgroundColor">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <!-- for bottom nav bar activity indicator -->
+        <item name="colorSecondaryContainer">@color/purple_100</item>
+        <!-- for fab bg color -->
+        <item name="colorPrimaryContainer">@color/purple_200</item>
+        <!-- for card bg color -->
+        <item name="colorSurface">@color/purple_50</item>
+        <!-- for button outline -->
+        <item name="colorOutline">@color/purple_100</item>
 
     </style>
 </resources>
