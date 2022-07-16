@@ -18,22 +18,22 @@ import org.json.JSONObject;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
-
-    private static final String TAG = "MentorProfileActivity";
-    private JSONObject currStat;
+    
     private String mentorEmail;
-    private String mentorName;
-    private String mentorPhotoUrl;
-    private String univName;
-    private String univMajor;
-    private String univGpa;
-    private String univEntranceScore;
-    private String univBio;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_mentor_profile);
+
+        JSONObject currStat = null;
+        String mentorName = null;
+        String mentorPhotoUrl = null;
+        String univName = null;
+        String univMajor = null;
+        String univGpa = null;
+        String univEntranceScore = null;
+        String univBio = null;
 
         // Get data from card intent
         Intent cardIntent = getIntent();

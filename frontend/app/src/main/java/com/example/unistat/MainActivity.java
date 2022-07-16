@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     final static String TAG = "MainActivity";
     private GoogleSignInClient mGoogleSignInClient;
     private int RC_SIGN_IN = 1;
-    private Boolean shouldAllowBack = false;
     private String firebase_token;
 
     @Override
