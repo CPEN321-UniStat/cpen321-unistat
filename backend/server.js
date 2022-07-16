@@ -44,13 +44,12 @@ app.post("/createZoomMeeting", async (req, res) => {
         body: {
         topic: req.body.meetingTopic, //db
         type: 1,
-        timezone: "America/Vancouver",
+        timezone: "UTC",
         start_time: req.body.meetingStartTime, //db
         end_time: req.body.meetingEndTime,
         type: 2,
         "settings": {
             join_before_host:1,
-            // approval_type:2,
             waiting_room:false,
             alternative_host_update_polls:true,
         },

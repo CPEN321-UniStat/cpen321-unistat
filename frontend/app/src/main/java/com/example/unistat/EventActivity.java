@@ -1,9 +1,7 @@
 package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.alamkanak.weekview.WeekViewEvent;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,35 +18,26 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.Meeting.Meeting;
 import com.example.unistat.Meeting.MeetingLog;
-import com.google.android.exoplayer2.C;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.wallet.PaymentsClient;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingParameter;
 import us.zoom.sdk.MeetingService;
 import us.zoom.sdk.MeetingServiceListener;
 import us.zoom.sdk.MeetingStatus;
-import us.zoom.sdk.StartMeetingOptions;
-import us.zoom.sdk.StartMeetingParams;
-import us.zoom.sdk.StartMeetingParamsWithoutLogin;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomSDKInitParams;
 import us.zoom.sdk.ZoomSDKInitializeListener;
@@ -57,12 +45,10 @@ import us.zoom.sdk.ZoomSDKInitializeListener;
 public class EventActivity extends AppCompatActivity {
 
     private static final String TAG = "EventActivity";
-    private WeekViewEvent event;
     private Button acceptMeetingButton;
     private Button declineMeetingButton;
     private Button joinMeetingButton;
     private RequestQueue requestQueue;
-    private Long meetingID;
     private Boolean isMentor = false;
     Meeting meeting;
 

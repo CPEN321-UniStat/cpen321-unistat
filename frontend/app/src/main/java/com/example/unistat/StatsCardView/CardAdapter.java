@@ -2,28 +2,19 @@ package com.example.unistat.StatsCardView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.unistat.R;
 import com.example.unistat.ViewMentorProfileActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
