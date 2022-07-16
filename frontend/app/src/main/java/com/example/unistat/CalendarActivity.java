@@ -1,5 +1,6 @@
 package com.example.unistat;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
@@ -88,6 +89,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
