@@ -1,26 +1,19 @@
-package com.example.unistat.Meeting;
+package com.example.unistat.meeting;
 
 import android.graphics.Color;
-import android.os.Build;
-
-import androidx.annotation.RequiresApi;
 
 import com.alamkanak.weekview.WeekViewEvent;
 
-import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
-import java.util.UUID;
 
 public class Meeting extends WeekViewEvent {
     public enum Status {
         ACCEPTED, REJECTED, PENDING
     }
 
-    private String mentorEmail, menteeEmail;
+    private String mentorEmail;
+    private String menteeEmail;
     private double paymentAmount;
     private Status status;
     private List<MeetingLog> meetingLogs;

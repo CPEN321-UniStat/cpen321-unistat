@@ -1,4 +1,4 @@
-package com.example.unistat.Meeting;
+package com.example.unistat.meeting;
 
 public class MeetingLog {
     public enum Action {

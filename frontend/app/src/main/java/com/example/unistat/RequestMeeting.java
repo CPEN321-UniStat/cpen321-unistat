@@ -1,29 +1,24 @@
 package com.example.unistat;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alamkanak.weekview.WeekViewEvent;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.Meeting.Meeting;
-import com.example.unistat.Meeting.MeetingLog;
-import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.example.unistat.meeting.Meeting;
+import com.example.unistat.meeting.MeetingLog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.MaterialDatePicker;
@@ -33,35 +28,28 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.UUID;
 
 public class RequestMeeting extends AppCompatActivity {
 
     private TextView startDateText;
-    private TextView startTimeText;
     private TextView endDateText;
-    private TextView endTimeText;
 
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat, timeFormat;
+    private SimpleDateFormat dateFormat;
 
-    private Calendar startTimeCalendar, endTimeCalendar;
-    private Button bookMeetingButton;
-    private TextInputLayout meetingTitleInput, paymentInput;
+    private Calendar startTimeCalendar;
+    private Calendar endTimeCalendar;
+    private TextInputLayout meetingTitleInput;
+    private TextInputLayout paymentInput;
 
     private RequestQueue requestQueue;
     private String mentorEmail;
@@ -86,7 +74,7 @@ public class RequestMeeting extends AppCompatActivity {
 
         paymentInput = findViewById(R.id.payment_offer_input);
 
-        bookMeetingButton = findViewById(R.id.book_meeting_button);
+        Button bookMeetingButton = findViewById(R.id.book_meeting_button);
         bookMeetingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,10 +97,10 @@ public class RequestMeeting extends AppCompatActivity {
             }
         });
 
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MMM d, yyyy");
         String date = dateFormat.format(calendar.getTime());
-        timeFormat = new SimpleDateFormat("h:mm a");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a");
 
         startDateText = findViewById(R.id.start_date_text);
         startDateText.setText(date);
@@ -121,12 +109,12 @@ public class RequestMeeting extends AppCompatActivity {
 //        endDateText.setText(date);
 
 
-        startTimeText = findViewById(R.id.start_time_text);
+        TextView startTimeText = findViewById(R.id.start_time_text);
         String startTime = timeFormat.format(calendar.getTime());
         startTimeText.setText(startTime);
         startTimeCalendar = Calendar.getInstance();
 
-        endTimeText = findViewById(R.id.end_time_text);
+        TextView endTimeText = findViewById(R.id.end_time_text);
         Date curDate = calendar.getTime();
         curDate.setTime(curDate.getTime() + 3600000);
         String endDate = dateFormat.format(curDate);

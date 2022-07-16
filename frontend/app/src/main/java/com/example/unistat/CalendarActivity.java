@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,16 +14,10 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.Meeting.MeetingLog;
-import com.example.unistat.StatsCardView.StatsCards;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
-import com.example.unistat.Meeting.Meeting;
+import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,32 +31,22 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
-    private static final int TYPE_DAY_VIEW = 1;
-    private static final int TYPE_THREE_DAY_VIEW = 6;
-    private static final int TYPE_WEEK_VIEW = 3;
     final static String ISO8601DATEFORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSZ";
-    private int mWeekViewType = TYPE_THREE_DAY_VIEW;
     private WeekView mWeekView;
-    private ArrayList<Meeting> meetings;
-    private RequestQueue requestQueue;
 
     private Boolean shouldAllowBack = false;
     private static HttpURLConnection connection;
@@ -78,7 +60,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        requestQueue = Volley.newRequestQueue(CalendarActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
         mWeekView = findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
@@ -125,8 +107,9 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    default:
+                        return false;
                 }
-                return false;
             }
         });
     }
@@ -278,22 +261,23 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
     @Override
     public void onEmptyViewLongPress(Calendar time) {
+        // TODO: when empty space is long pressed
     }
 
     @Override
     public void onEventClick(WeekViewEvent event, RectF eventRect) {
+        // TODO: when event is clicked
     }
 
     @Override
     public void onEventLongPress(WeekViewEvent event, RectF eventRect) {
+        // TODO: when event is long pressed
     }
 
     @Override
     public void onBackPressed() {
         if (shouldAllowBack) {
             super.onBackPressed();
-        } else {
-            //
         }
     }
 
