@@ -13,7 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.ConstValues;
+import com.example.unistat.IpConstants;
 import com.example.unistat.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -67,7 +67,7 @@ public class PushNotifications extends FirebaseMessagingService {
         //check if exists then replace/add update
         RequestQueue requestQueue = Volley.newRequestQueue(PushNotifications.this);
 
-        String URL = ConstValues.URL + "firebaseToken";
+        String URL = IpConstants.URL + "firebaseToken";
 
         JSONObject body = new JSONObject();
         try {

@@ -222,7 +222,7 @@ public class EventActivity extends AppCompatActivity {
     private void getAndSetUserName(String email) {
 
         TextView profileText = findViewById(R.id.name);
-        String URL = ConstValues.URL + "userByEmail";
+        String URL = IpConstants.URL + "userByEmail";
 
         JSONObject body = new JSONObject();
 
@@ -323,7 +323,7 @@ public class EventActivity extends AppCompatActivity {
 
     private void getZoomMeetingInfo() {
 
-        String URL = ConstValues.URL + "meetingsById";
+        String URL = IpConstants.URL + "meetingsById";
 
         JSONObject body = new JSONObject();
 
@@ -365,7 +365,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void createZoomMeeting() {
-        String URL = ConstValues.URL + "createZoomMeeting";
+        String URL = IpConstants.URL + "createZoomMeeting";
 
         JSONObject body = new JSONObject();
 
@@ -420,7 +420,7 @@ public class EventActivity extends AppCompatActivity {
         meeting.setStatus(status);
         System.out.println(status.name() + " " + meeting.getColor());
 
-        String URL = ConstValues.URL + "meetings";
+        String URL = IpConstants.URL + "meetings";
 
         JSONObject body = new JSONObject();
         try {
@@ -457,7 +457,7 @@ public class EventActivity extends AppCompatActivity {
         requestQueue.add(updateMeetingRequest);
 
 
-        URL = ConstValues.URL + "sendMeetingResponse";
+        URL = IpConstants.URL + "sendMeetingResponse";
         JSONObject responseNotificationBody = new JSONObject();
         try {
             responseNotificationBody.put("email", meeting.getMenteeEmail());
@@ -492,7 +492,7 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void updateMeetingLog(JSONObject message) {
-        String URL = ConstValues.URL + "updateMeetingLog";
+        String URL = IpConstants.URL + "updateMeetingLog";
 
         JSONObject body = new JSONObject();
         try {
@@ -526,7 +526,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void schedulePayment() {
-        String URL = ConstValues.URL + "schedulePayment";
+        String URL = IpConstants.URL + "schedulePayment";
 
         Calendar endTime = meeting.getEndTime();
 

@@ -26,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.unistat.CalendarActivity;
-import com.example.unistat.ConstValues;
+import com.example.unistat.IpConstants;
 import com.example.unistat.R;
 import com.example.unistat.SignOutActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -231,7 +231,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private void getCardData(String endPoint, Boolean isConfig) {
 
         //Pull from DB and store in statsList
-        String URL = ConstValues.URL + endPoint;
+        String URL = IpConstants.URL + endPoint;
 
         int requestMethod = isConfig ? Request.Method.POST : Request.Method.GET;
 

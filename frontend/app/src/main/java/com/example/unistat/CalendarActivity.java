@@ -183,7 +183,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        String URL = ConstValues.URL + "meetings/" + userEmail;
+        String URL = IpConstants.URL + "meetings/" + userEmail;
 
         List<Meeting> events = new ArrayList<>();
 

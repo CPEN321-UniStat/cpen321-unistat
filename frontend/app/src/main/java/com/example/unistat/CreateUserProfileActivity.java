@@ -79,7 +79,7 @@ public class CreateUserProfileActivity extends AppCompatActivity {
 
     private void createStatInDB() {
         RequestQueue requestQueue = Volley.newRequestQueue(CreateUserProfileActivity.this);
-        String URL = ConstValues.URL + "stats";
+        String URL = IpConstants.URL + "stats";
 
         JSONObject body = new JSONObject();
 
