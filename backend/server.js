@@ -315,8 +315,8 @@ app.post("/meetings", async (req, res) => {
 
 app.get("/meetings/:email", async (req, res) => {
     var email = req.params.email;
-    var month = parseInt(req.headers['month'])
-    var year = parseInt(req.headers['year'])
+    var month = parseInt(req.headers['month'], 10)
+    var year = parseInt(req.headers['year'], 10)
     var query = {"mStartTime.month": month, "mStartTime.year": year,  "$or": [{"menteeEmail": email}, {"mentorEmail": email}] }
     
     console.log(month)
