@@ -1,4 +1,4 @@
-package com.example.unistat.statsCardView;
+package com.example.unistat.statscardview;
 
 import android.content.Context;
 import android.content.Intent;

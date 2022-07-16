@@ -14,7 +14,7 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 
-import com.example.unistat.statsCardView.ViewStatsActivity;
+import com.example.unistat.statscardview.ViewStatsActivity;
 import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

@@ -84,12 +84,12 @@ public class EventActivity extends AppCompatActivity {
         ZoomSDKInitializeListener listener = new ZoomSDKInitializeListener() {
             @Override
             public void onZoomSDKInitializeResult(int i, int i1) {
-
+                Log.d(TAG, String.valueOf(i));
             }
 
             @Override
             public void onZoomAuthIdentityExpired() {
-
+                Log.d(TAG, "Zoom Auth Expired");
             }
         };
         sdk.initialize(context, listener, params);
@@ -173,7 +173,7 @@ public class EventActivity extends AppCompatActivity {
 
             @Override
             public void onMeetingParameterNotification(MeetingParameter meetingParameter) {
-
+                Log.d(TAG, meetingParameter.toString());
             }
         });
     }

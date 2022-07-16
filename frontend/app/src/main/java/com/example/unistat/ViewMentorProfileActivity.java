@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
-    
     private String mentorEmail;
     
     @Override
