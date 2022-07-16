@@ -36,8 +36,6 @@ import java.util.ArrayList;
 
 public class ViewStatsActivity extends AppCompatActivity {
     private static final String TAG = "ViewStatsActivity";
-    private Boolean shouldAllowBack = false;
-    private RecyclerView recyclerView;
     private CardAdapter cardAdapter;
     private ArrayList<StatsCards> statsList;
     private RequestQueue requestQueue;
@@ -212,7 +210,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         }
 
     private void initCardView() {
-        recyclerView = findViewById(R.id.recycler_view_card_id);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view_card_id);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         statsList = new ArrayList<>();
 
@@ -341,10 +339,9 @@ public class ViewStatsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Boolean shouldAllowBack = false;
         if (shouldAllowBack) {
             super.onBackPressed();
-        } else {
-            //
         }
     }
 
