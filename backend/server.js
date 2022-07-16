@@ -522,21 +522,27 @@ app.put("/updateMeetingLog", async (req, res) => {
 })
 
 
-var server = app.listen(8081, (req, res) => {
-    var host = server.address().address;
-    var port = server.address().port;
-    console.log(`server successfully running at http://${host}:${port}`);
-})
+// var server = app.listen(8081, (req, res) => {
+//     var host = server.address().address;
+//     var port = server.address().port;
+//     console.log(`server successfully running at http://${host}:${port}`);
+// })
 
 async function run() {
     try {
+        var server = app.listen(8081, (req, res) => {
+            var host = server.address().address;
+            var port = server.address().port;
+            console.log(`server successfully running at http://${host}:${port}`);
+        }
+        )
         await client.connect()
+        console.log("successfully connected to database!")
     } 
     catch (error) {
         console.log(error)
         await client.close()
     }
-    console.log("successfully connected to database!")
 }
 
 async function storeGoogleUserData(idToken, fb_token) {
