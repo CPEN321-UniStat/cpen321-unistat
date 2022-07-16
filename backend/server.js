@@ -531,12 +531,13 @@ var server = app.listen(8081, (req, res) => {
 
 async function run() {
     try {
-        await client.connect();
-        console.log("successfully connected to database!");
-    } catch (error) {
-        console.log(error);
-        await client.close();
+        await client.connect()
+    } 
+    catch (error) {
+        console.log(error)
+        await client.close()
     }
+    console.log("successfully connected to database!")
 }
 
 async function storeGoogleUserData(idToken, fb_token) {
