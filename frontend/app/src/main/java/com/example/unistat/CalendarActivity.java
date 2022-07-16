@@ -14,8 +14,6 @@ import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 import com.example.unistat.StatsCardView.ViewStatsActivity;
 import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -59,8 +57,6 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        RequestQueue requestQueue = Volley.newRequestQueue(CalendarActivity.this);
 
         mWeekView = findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
