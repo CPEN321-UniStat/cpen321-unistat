@@ -557,7 +557,7 @@ async function storeGoogleUserData(idToken, fb_token) {
     }
 
     console.log("num existing users: ", lenUsers)
-    return lenUsers > 0 ? true : false
+    return lenUsers
 }
 
 

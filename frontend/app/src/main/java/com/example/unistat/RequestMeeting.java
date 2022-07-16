@@ -269,7 +269,7 @@ public class RequestMeeting extends AppCompatActivity {
         Gson gson = builder.create();
         String jsonBody = gson.toJson(meeting);
 
-        String URL = ConstantsClass.URL + "meetings";
+        String URL = ConstValues.URL + "meetings";
         try {
             JSONObject jsonObject = new JSONObject(jsonBody);
             JsonObjectRequest postMeetingsRequest = new JsonObjectRequest(
@@ -291,7 +291,7 @@ public class RequestMeeting extends AppCompatActivity {
             );
             requestQueue.add(postMeetingsRequest);
 
-            URL = ConstantsClass.URL + "sendMeetingRequest";
+            URL = ConstValues.URL + "sendMeetingRequest";
             JSONObject notificationBody = new JSONObject();
             notificationBody.put("email", mentorEmail);
             JsonObjectRequest postRequestNotification = new JsonObjectRequest(

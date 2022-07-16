@@ -68,6 +68,8 @@ public class UserStatusActivity extends AppCompatActivity {
                     lottieAnimationView.playAnimation();
                     isHighSchoolStudent = false;
                 break;
+            default:
+                //
         }
     }
 
