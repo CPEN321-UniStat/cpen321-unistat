@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.alamkanak.weekview.WeekViewEvent;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -131,7 +130,7 @@ public class EventActivity extends AppCompatActivity {
                     Date now = Calendar.getInstance().getTime();
                     String date = formatter.format(now);
                     String userEmail = account.getEmail();
-                    MeetingLog curLog = new MeetingLog(date.toString(), userEmail, isMentor, MeetingLog.Action.JOINED);
+                    MeetingLog curLog = new MeetingLog(date, userEmail, isMentor, MeetingLog.Action.JOINED);
 //                    List<MeetingLog> meetingLogs = meeting.getMeetingLogs();
 //                    meetingLogs.add(curLog);
 //                    meeting.setMeetingLogs(meetingLogs);
@@ -151,8 +150,8 @@ public class EventActivity extends AppCompatActivity {
                     String date = formatter.format(now);
                     String userEmail = account.getEmail();
 
-                    MeetingLog curLog = new MeetingLog(date.toString(), userEmail, isMentor, MeetingLog.Action.LEFT);
-                    Log.d(TAG, "CURLOG: " + curLog.toString());
+                    MeetingLog curLog = new MeetingLog(date, userEmail, isMentor, MeetingLog.Action.LEFT);
+                    Log.d(TAG, "CURLOG: " + curLog);
 
 
 
