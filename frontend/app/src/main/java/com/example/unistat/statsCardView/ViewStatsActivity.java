@@ -1,4 +1,4 @@
-package com.example.unistat.StatsCardView;
+package com.example.unistat.statsCardView;
 
 
 import androidx.annotation.NonNull;

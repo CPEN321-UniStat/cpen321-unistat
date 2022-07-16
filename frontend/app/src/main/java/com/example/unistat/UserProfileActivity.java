@@ -40,10 +40,7 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextInputLayout editUserBio;
     private FloatingActionButton confirmChangesButton;
     private FloatingActionButton editProfileButton;
-    private TextView userNameText;
-    private TextView userEmailText;
     private MaterialTextView coinsText;
-    private CircleImageView userProfileImage;
     private RequestQueue requestQueue;
 
     @Override
@@ -64,10 +61,10 @@ public class UserProfileActivity extends AppCompatActivity {
         editUserUnivEntranceScore.setEnabled(false);
         editUserBio.setEnabled(false);
 
-        userNameText = findViewById(R.id.userNameText);
-        userEmailText = findViewById(R.id.userEmailText);
+        TextView userNameText = findViewById(R.id.userNameText);
+        TextView userEmailText = findViewById(R.id.userEmailText);
         coinsText = findViewById(R.id.coins);
-        userProfileImage = findViewById(R.id.userProfileImage);
+        CircleImageView userProfileImage = findViewById(R.id.userProfileImage);
 
         requestQueue = Volley.newRequestQueue(UserProfileActivity.this);
 

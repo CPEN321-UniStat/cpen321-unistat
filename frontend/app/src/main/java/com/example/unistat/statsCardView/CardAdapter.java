@@ -1,4 +1,4 @@
-package com.example.unistat.StatsCardView;
+package com.example.unistat.statsCardView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +22,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StatsHolder>{
     // CardAdapter Class
     private Context mContext;
     private ArrayList<StatsCards> stats;
-    private static final String TAG = "CardAdapter";
 
     public CardAdapter(Context mContext, ArrayList<StatsCards> stats) {
         this.mContext = mContext;

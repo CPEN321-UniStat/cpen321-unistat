@@ -16,7 +16,7 @@ import com.alamkanak.weekview.WeekViewEvent;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.example.unistat.statsCardView.ViewStatsActivity;
 import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;

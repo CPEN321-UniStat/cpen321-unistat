@@ -1,6 +1,4 @@
-package com.example.unistat.StatsCardView;
-
-import com.google.common.primitives.UnsignedInteger;
+package com.example.unistat.statsCardView;
 
 public class StatsCards {
 
