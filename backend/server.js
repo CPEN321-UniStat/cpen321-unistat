@@ -1,12 +1,11 @@
 var express = require("express");
 var app = express()
 
-const { MongoClient, MongoNetworkError } = require("mongodb")
+const { MongoClient } = require("mongodb")
 const uri = "mongodb://localhost:27017"
 const client = new MongoClient(uri)
 
 const axios = require("axios");
-const { query } = require("express");
 
 // set up firebase authentication for notifications
 var admin = require("firebase-admin");
