@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -109,6 +110,7 @@ public class SignOutActivity extends AppCompatActivity {
 
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -124,8 +126,9 @@ public class SignOutActivity extends AppCompatActivity {
                         return true;
                     case R.id.sign_out_activity:
                         return true;
+                    default:
+                        return false;
                 }
-                return false;
             }
         });
     }

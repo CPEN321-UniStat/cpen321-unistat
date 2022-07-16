@@ -5,6 +5,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -186,6 +188,7 @@ public class ViewStatsActivity extends AppCompatActivity {
 
         // Perform item selected listener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @SuppressLint("NonConstantResourceId")
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -201,9 +204,10 @@ public class ViewStatsActivity extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), SignOutActivity.class));
                         overridePendingTransition(0,0);
                         return true;
+                    default:
+                        return false;
                 }
-                return false;
-                }
+            }
             });
 
 
