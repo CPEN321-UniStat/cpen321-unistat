@@ -36,6 +36,11 @@ public class CreateUserProfileActivity extends AppCompatActivity {
     private TextInputLayout userUnivGpa;
     private TextInputLayout userUnivEntranceScore;
     private TextInputLayout userUnivBio;
+    private String univName;
+    private String univMajor;
+    private String univGpa;
+    private String univEntranceScore;
+    private String univBio;
     private FloatingActionButton nextButton;
     private GoogleSignInAccount account;
 
@@ -57,15 +62,22 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(userUnivName.getEditText().getText())
-                        || TextUtils.isEmpty(userUnivMajor.getEditText().getText())
-                        || TextUtils.isEmpty(userUnivGpa.getEditText().getText())
-                        || TextUtils.isEmpty(userUnivEntranceScore.getEditText().getText())
-                        || TextUtils.isEmpty(userUnivBio.getEditText().getText())) {
+                univName = userUnivName.getEditText().getText().toString().trim();
+                univMajor = userUnivMajor.getEditText().getText().toString().trim();
+                univGpa = userUnivGpa.getEditText().getText().toString().trim();
+                univEntranceScore = userUnivEntranceScore.getEditText().getText().toString().trim();
+                univBio = userUnivBio.getEditText().getText().toString().trim();
+                if (TextUtils.isEmpty(univName)
+                        || TextUtils.isEmpty(univMajor)
+                        || TextUtils.isEmpty(univGpa)
+                        || TextUtils.isEmpty(univEntranceScore)
+                        || TextUtils.isEmpty(univBio)) {
                     Toast.makeText(CreateUserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
+                } else if (!univName.matches("[a-zA-Z]+")
+                        || !univMajor.matches("[a-zA-Z]+")) {
+                    Toast.makeText(CreateUserProfileActivity.this, "Please make sure your university name & major are valid.", Toast.LENGTH_LONG).show();
                 } else {
                     createStatInDB();
-//                    Intent openSignOut = new Intent(UserProfileActivity.this, SignOutActivity.class);
                     Intent openViewStats = new Intent(CreateUserProfileActivity.this, ViewStatsActivity.class);
                     startActivity(openViewStats);
                 }
@@ -83,11 +95,11 @@ public class CreateUserProfileActivity extends AppCompatActivity {
             body.put("userEmail", account.getEmail());
             body.put("userPhoto", account.getPhotoUrl());
             body.put("userName", account.getDisplayName());
-            body.put("univName", userUnivName.getEditText().getText());
-            body.put("univMajor", userUnivMajor.getEditText().getText());
-            body.put("univGpa", Double.parseDouble(String.valueOf(userUnivGpa.getEditText().getText())));
-            body.put("univEntranceScore", Integer.parseInt(String.valueOf(userUnivEntranceScore.getEditText().getText())));
-            body.put("univBio", userUnivBio.getEditText().getText());
+            body.put("univName", univName);
+            body.put("univMajor", univMajor);
+            body.put("univGpa", Double.parseDouble(String.valueOf(univGpa)));
+            body.put("univEntranceScore", Integer.parseInt(String.valueOf(univEntranceScore)));
+            body.put("univBio", univBio);
         } catch (JSONException e) {
             e.printStackTrace();
         }

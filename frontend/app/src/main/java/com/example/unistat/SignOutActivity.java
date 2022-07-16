@@ -19,6 +19,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.elevation.SurfaceColors;
 
 public class SignOutActivity extends AppCompatActivity {
 
@@ -32,7 +33,7 @@ public class SignOutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-            setTheme(R.style.Theme_Dark);
+            setTheme(R.style.Theme_Light);
         }
         else{
             setTheme(R.style.Theme_Light);
@@ -56,7 +57,6 @@ public class SignOutActivity extends AppCompatActivity {
                 startActivity(new Intent(SignOutActivity.this, UserProfileActivity.class));
             }
         });
-
 
 //        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 //            @Override

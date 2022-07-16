@@ -226,8 +226,7 @@
                 android:padding="20dp"
                 android:contentDescription="@string/edit_profile_button_text"
                 android:src="@drawable/ic_baseline_done_24"
-                android:visibility="gone"
-                app:backgroundTint="@color/purple_200" />
+                android:visibility="gone" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/editProfileButton"
@@ -238,8 +237,7 @@
                 android:padding="20dp"
                 android:contentDescription="@string/edit_profile_button_text"
                 android:src="@drawable/ic_baseline_edit_24"
-                android:visibility="visible"
-                app:backgroundTint="@color/purple_200" />
+                android:visibility="visible" />
 
 
         </LinearLayout>
