@@ -26,8 +26,6 @@ import java.util.Objects;
 public class PushNotifications extends FirebaseMessagingService {
 
     private static final String TAG = "PushNotifications";
-    private RequestQueue requestQueue;
-    private GoogleSignInAccount account;
 
     @SuppressLint("NewApi")
     @Override
@@ -67,7 +65,7 @@ public class PushNotifications extends FirebaseMessagingService {
     private void updateRegistrationToken(String token, String email) {
         //send firebase_token to users collection in DB
         //check if exists then replace/add update
-        requestQueue = Volley.newRequestQueue(PushNotifications.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(PushNotifications.this);
 
         String URL = Constants.URL + "firebaseToken";
 

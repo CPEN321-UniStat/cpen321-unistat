@@ -12,23 +12,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.example.unistat.statsCardView.ViewStatsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.elevation.SurfaceColors;
 
 public class SignOutActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
-    private Button signOutButton;
-    private Button viewProfileButton;
-    private Button toggleButton; //switchmaterial
-    private GoogleSignInClient mGoogleSignInClient;
-    private Boolean shouldAllowBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +36,7 @@ public class SignOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_out);
 
-        signOutButton = findViewById(R.id.sign_out_button);
+        Button signOutButton = findViewById(R.id.sign_out_button);
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,7 +44,7 @@ public class SignOutActivity extends AppCompatActivity {
             }
         });
 
-        viewProfileButton = findViewById(R.id.view_profile_button);
+        Button viewProfileButton = findViewById(R.id.view_profile_button);
         viewProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +72,8 @@ public class SignOutActivity extends AppCompatActivity {
 //        toggleButton = findViewById(R.id.dark_light_mode_switch);
 
 
-        toggleButton = findViewById(R.id.dark_mode_button);
+        //switchmaterial
+        Button toggleButton = findViewById(R.id.dark_mode_button);
 
 //        toggleButton.setChecked(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
 
@@ -136,7 +131,7 @@ public class SignOutActivity extends AppCompatActivity {
     }
 
     private void signOut() {
-        mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN);
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN);
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -151,11 +146,11 @@ public class SignOutActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Boolean shouldAllowBack = false;
         if (shouldAllowBack) {
             super.onBackPressed();
-        } else {
-            //
-        }
+        }  //
+
     }
 
 }

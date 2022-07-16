@@ -9,15 +9,13 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.unistat.StatsCardView.ViewStatsActivity;
+import com.example.unistat.statsCardView.ViewStatsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class UserStatusActivity extends AppCompatActivity {
 
     private Boolean isHighSchoolStudent = false;
     private Boolean checked = false;
-    private FloatingActionButton nextButton;
-    private Boolean shouldAllowBack = false;
     private LottieAnimationView lottieAnimationView;
 
     @Override
@@ -27,7 +25,7 @@ public class UserStatusActivity extends AppCompatActivity {
 
         lottieAnimationView = findViewById(R.id.questionAnimation);
 
-        nextButton = findViewById(R.id.nextUserStatusButton);
+        FloatingActionButton nextButton = findViewById(R.id.nextUserStatusButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,10 +73,9 @@ public class UserStatusActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Boolean shouldAllowBack = false;
         if (shouldAllowBack) {
             super.onBackPressed();
-        } else {
-            //
         }
     }
 }

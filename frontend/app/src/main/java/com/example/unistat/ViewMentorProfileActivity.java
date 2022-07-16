@@ -4,12 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.unistat.StatsCardView.StatsCards;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.squareup.picasso.Picasso;
@@ -17,15 +15,12 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.xml.transform.sax.SAXResult;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "MentorProfileActivity";
     private JSONObject currStat;
-    private Button requestMeetingButton;
     private String mentorEmail;
     private String mentorName;
     private String mentorPhotoUrl;
@@ -34,14 +29,6 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
     private String univGpa;
     private String univEntranceScore;
     private String univBio;
-    private CircleImageView mentorPhoto;
-    private TextView mentorNameText;
-    private TextView univNameText;
-    private TextView univMajorText;
-    private TextView univGpaText;
-    private TextView univEntranceScoreText;
-    private TextView univBioText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +56,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        requestMeetingButton = findViewById(R.id.requestMeetingButton);
+        Button requestMeetingButton = findViewById(R.id.requestMeetingButton);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
@@ -79,14 +66,13 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
         }
 
 
-
-        mentorPhoto = findViewById(R.id.mentorProfileImage);
-        mentorNameText = findViewById(R.id.mentorNameText);
-        univNameText = findViewById(R.id.univNameText);
-        univMajorText = findViewById(R.id.univMajorText);
-        univGpaText = findViewById(R.id.univGpaText);
-        univEntranceScoreText = findViewById(R.id.univEntranceScoreText);
-        univBioText = findViewById(R.id.uniBioText);
+        CircleImageView mentorPhoto = findViewById(R.id.mentorProfileImage);
+        TextView mentorNameText = findViewById(R.id.mentorNameText);
+        TextView univNameText = findViewById(R.id.univNameText);
+        TextView univMajorText = findViewById(R.id.univMajorText);
+        TextView univGpaText = findViewById(R.id.univGpaText);
+        TextView univEntranceScoreText = findViewById(R.id.univEntranceScoreText);
+        TextView univBioText = findViewById(R.id.uniBioText);
 
         mentorNameText.setText(mentorName);
         univNameText.setText(univName);
