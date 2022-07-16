@@ -1,4 +1,4 @@
-package com.example.unistat.statsCardView;
+package com.example.unistat.statscardview;
 
 
 import androidx.annotation.NonNull;
@@ -149,12 +149,12 @@ public class ViewStatsActivity extends AppCompatActivity {
         filterAutoComplete.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                Log.d(TAG, String.valueOf(i));
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                Log.d(TAG, String.valueOf(i));
             }
 
             @Override

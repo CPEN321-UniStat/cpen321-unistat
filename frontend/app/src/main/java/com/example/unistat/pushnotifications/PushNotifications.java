@@ -1,4 +1,4 @@
-package com.example.unistat.PushNotifications;
+package com.example.unistat.pushnotifications;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -25,7 +25,7 @@ import java.util.Objects;
 
 public class PushNotifications extends FirebaseMessagingService {
 
-    private static final String TAG = "PushNotifications";
+    private static final String TAG = "pushNotifications";
 
     @SuppressLint("NewApi")
     @Override

@@ -19,7 +19,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "MentorProfileActivity";
     private JSONObject currStat;
     private String mentorEmail;
     private String mentorName;
