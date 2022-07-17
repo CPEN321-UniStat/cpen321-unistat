@@ -68,27 +68,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         sortByGpa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    sortByEntranceScore.setEnabled(false);
-                    isSortGpa = true;
-
-                    // If filter and sort or only sort
-                    if (filterAutoComplete.getText().toString().length() > 0) {
-                        getCardData("statsByConfiguration", true);
-                    } else {
-                        getCardData("statsBySorting", true);
-                    }
-
-                } else {
-                    isSortGpa = false;
-                    sortByEntranceScore.setEnabled(true);
-                    // If (no sort and only filter) or (no sort no filter)
-                    if (filterAutoComplete.getText().toString().length() > 0) {
-                        getCardData("statsByFilter", true);
-                    } else if (!isSortEntranceScore) {
-                        getCardData("stats", false);
-                    }
-                }
+                sortStatsByGpa(b);
             }
         });
 
@@ -212,6 +192,30 @@ public class ViewStatsActivity extends AppCompatActivity {
 
 
         }
+
+    private void sortStatsByGpa(boolean b) {
+        if (b) {
+            sortByEntranceScore.setEnabled(false);
+            isSortGpa = true;
+
+            // If filter and sort or only sort
+            if (filterAutoComplete.getText().toString().length() > 0) {
+                getCardData("statsByConfiguration", true);
+            } else {
+                getCardData("statsBySorting", true);
+            }
+
+        } else {
+            isSortGpa = false;
+            sortByEntranceScore.setEnabled(true);
+            // If (no sort and only filter) or (no sort no filter)
+            if (filterAutoComplete.getText().toString().length() > 0) {
+                getCardData("statsByFilter", true);
+            } else if (!isSortEntranceScore) {
+                getCardData("stats", false);
+            }
+        }
+    }
 
     private void initCardView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_card_id);
