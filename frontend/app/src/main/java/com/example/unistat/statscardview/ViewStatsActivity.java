@@ -194,26 +194,23 @@ public class ViewStatsActivity extends AppCompatActivity {
         }
 
     private void sortStatsByGpa(boolean b) {
-        if (b) {
+        int filterTextLength = filterAutoComplete.getText().toString().length();
+        if (b && filterTextLength > 0) {
             sortByEntranceScore.setEnabled(false);
             isSortGpa = true;
-
-            // If filter and sort or only sort
-            if (filterAutoComplete.getText().toString().length() > 0) {
-                getCardData("statsByConfiguration", true);
-            } else {
-                getCardData("statsBySorting", true);
-            }
-
-        } else {
+            getCardData("statsByConfiguration", true);
+        } else if (b) {
+            sortByEntranceScore.setEnabled(false);
+            isSortGpa = true;
+            getCardData("statsBySorting", true);
+        } else if (filterTextLength > 0) {
             isSortGpa = false;
             sortByEntranceScore.setEnabled(true);
-            // If (no sort and only filter) or (no sort no filter)
-            if (filterAutoComplete.getText().toString().length() > 0) {
-                getCardData("statsByFilter", true);
-            } else if (!isSortEntranceScore) {
-                getCardData("stats", false);
-            }
+            getCardData("statsByFilter", true);
+        } else if (!isSortEntranceScore) {
+            isSortGpa = false;
+            sortByEntranceScore.setEnabled(true);
+            getCardData("stats", false);
         }
     }
 
