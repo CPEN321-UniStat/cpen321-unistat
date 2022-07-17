@@ -376,7 +376,7 @@ app.post("/schedulePayment", async (req, res) => {
         //           new Date(Year, M, d, h,  m, s)
         console.log(new Date())
         const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
-        const serverDate = new Date(date.getTime() + 7 * 60 *60000)
+        // const serverDate = new Date(date.getTime() + 7 * 60 *60000)
         schedule.scheduleJob(serverDate, function(){
             // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
             handlePayment(id)
