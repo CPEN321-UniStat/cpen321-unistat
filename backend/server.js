@@ -530,14 +530,13 @@ app.put("/updateMeetingLog", async (req, res) => {
 
 async function run() {
     try {
+        await client.connect()
+        console.log("successfully connected to database!")
         var server = app.listen(8081, (req, res) => {
             var host = server.address().address;
             var port = server.address().port;
             console.log(`server successfully running at http://${host}:${port}`);
-        }
-        )
-        await client.connect()
-        console.log("successfully connected to database!")
+        })
     } 
     catch (error) {
         console.log(error)
