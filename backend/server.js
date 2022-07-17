@@ -42,11 +42,11 @@ app.post("/createZoomMeeting", async (req, res) => {
         uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
         body: {
         topic: req.body.meetingTopic, //db
-        type: 1,
-        timezone: "UTC",
+        timezone: "America/Vancouver",
         start_time: req.body.meetingStartTime, //db
         end_time: req.body.meetingEndTime,
-        "settings": {
+        type: 2,
+        settings: {
             join_before_host:1,
             waiting_room:false,
             alternative_host_update_polls:true,
