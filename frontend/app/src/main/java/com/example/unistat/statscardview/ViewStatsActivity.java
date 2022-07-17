@@ -241,11 +241,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         // Only Filter
         if (isConfig && (filterAutoComplete.getText().length() > 0) && !isSortGpa && !isSortEntranceScore) {
             try {
-                if (univNameStats.contains(searchText)) {
-                    body.put("univName", searchText);
-                } else {
-                    body.put("univMajor", searchText);
-                }
+                body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -254,16 +250,8 @@ public class ViewStatsActivity extends AppCompatActivity {
         // Filter and Sort
         if (isConfig && (filterAutoComplete.getText().length() > 0) && (isSortGpa || isSortEntranceScore)) {
             try {
-                if (univNameStats.contains(searchText)) {
-                    body.put("univName", searchText);
-                } else {
-                    body.put("univMajor", searchText);
-                }
-                if (isSortGpa) {
-                    body.put("univGpa", "");
-                } else {
-                    body.put("univEntranceScore", "");
-                }
+                body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
+                body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -272,11 +260,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         // Only Sort
         if (isConfig && (filterAutoComplete.getText().length() == 0) && (isSortGpa || isSortEntranceScore)) {
             try {
-                if (isSortGpa) {
-                    body.put("univGpa", "");
-                } else {
-                    body.put("univEntranceScore", "");
-                }
+                body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
