@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -97,11 +98,11 @@ public class ViewStatsActivity extends AppCompatActivity {
 
                 // Only filter no sort
                 if (!isSortGpa && !isSortEntranceScore) {
-                    getCardData("statsByFilter", true);
+                    getCardData("statsByFilter", Request.Method.POST);
                 }
                 // Filter and sort
                 else {
-                    getCardData("statsByConfiguration", true);
+                    getCardData("statsByConfiguration", Request.Method.POST);
                 }
             }
         });
@@ -124,14 +125,14 @@ public class ViewStatsActivity extends AppCompatActivity {
                 if (editable.length() == 0 && !isSortGpa && !isSortEntranceScore) {
                     adapter = new ArrayAdapter<>(ViewStatsActivity.this, R.layout.support_simple_spinner_dropdown_item, filterOptions);
                     filterAutoComplete.setAdapter(adapter);
-                    getCardData("stats", false);
+                    getCardData("stats", Request.Method.GET);
                 }
 
                 // If filter deleted and only sort remaining
                 else if (editable.length() == 0) {
                     adapter = new ArrayAdapter<>(ViewStatsActivity.this, R.layout.support_simple_spinner_dropdown_item, filterOptions);
                     filterAutoComplete.setAdapter(adapter);
-                    getCardData("statsBySorting", true);
+                    getCardData("statsBySorting", Request.Method.POST);
                 }
             }
         });
@@ -177,19 +178,19 @@ public class ViewStatsActivity extends AppCompatActivity {
         if (b && filterTextLength > 0) { // Filter & sort
             isSortEntranceScore = true;
             sortByGpa.setEnabled(false);
-            getCardData("statsByConfiguration", true);
+            getCardData("statsByConfiguration", Request.Method.POST);
         } else if (b) { // Only sort
             isSortEntranceScore = true;
             sortByGpa.setEnabled(false);
-            getCardData("statsBySorting", true);
+            getCardData("statsBySorting", Request.Method.POST);
         } else if (filterTextLength > 0) { // Only filter no sort
             isSortEntranceScore = false;
             sortByGpa.setEnabled(true);
-            getCardData("statsByFilter", true);
+            getCardData("statsByFilter", Request.Method.POST);
         } else if (!isSortGpa) { // No filter no sort
             isSortEntranceScore = false;
             sortByGpa.setEnabled(true);
-            getCardData("stats", false);
+            getCardData("stats", Request.Method.GET);
         }
     }
 
@@ -198,19 +199,19 @@ public class ViewStatsActivity extends AppCompatActivity {
         if (b && filterTextLength > 0) { // Filter & sort
             sortByEntranceScore.setEnabled(false);
             isSortGpa = true;
-            getCardData("statsByConfiguration", true);
+            getCardData("statsByConfiguration", Request.Method.POST);
         } else if (b) { // Only sort
             sortByEntranceScore.setEnabled(false);
             isSortGpa = true;
-            getCardData("statsBySorting", true);
+            getCardData("statsBySorting", Request.Method.POST);
         } else if (filterTextLength > 0) { // Only filter no sort
             isSortGpa = false;
             sortByEntranceScore.setEnabled(true);
-            getCardData("statsByFilter", true);
+            getCardData("statsByFilter", Request.Method.POST);
         } else if (!isSortEntranceScore) { // No filter no sort
             isSortGpa = false;
             sortByEntranceScore.setEnabled(true);
-            getCardData("stats", false);
+            getCardData("stats", Request.Method.GET);
         }
     }
 
@@ -226,40 +227,38 @@ public class ViewStatsActivity extends AppCompatActivity {
         univNameStats.clear();
         univMajorStats.clear();
         filterOptions.clear();
-        getCardData("stats", false);
+        getCardData("stats", Request.Method.GET);
     }
 
-    private void getCardData(String endPoint, Boolean isConfig) {
+    private void getCardData(String endPoint, int requestMethod) {
 
         //Pull from DB and store in statsList
         String URL = IpConstants.URL + endPoint;
 
-        int requestMethod = isConfig ? Request.Method.POST : Request.Method.GET;
-
         JSONObject body = new JSONObject();
 
         int filterTextLength = filterAutoComplete.getText().length();
-        // Only Filter
-        if (isConfig && (filterTextLength > 0) && !isSortGpa && !isSortEntranceScore) {
-            try {
-                body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
 
         // Filter and Sort
-        else if (isConfig && filterTextLength > 0) {
-            try {
-                body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
-                body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
         // Only Sort
-        else if (isConfig && (filterTextLength == 0) && (isSortGpa || isSortEntranceScore)) {
+
+        // Only Filter
+        if (filterTextLength > 0) {
+            if (!isSortGpa && !isSortEntranceScore) {
+                try {
+                    body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
+                    body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else if ((filterTextLength == 0) && (isSortGpa || isSortEntranceScore)) {
             try {
                 body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
             } catch (JSONException e) {
