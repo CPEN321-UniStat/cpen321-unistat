@@ -100,7 +100,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                     getCardData("statsByFilter", true);
                 }
                 // Filter and sort
-                if (isSortGpa || isSortEntranceScore) {
+                else {
                     getCardData("statsByConfiguration", true);
                 }
             }
@@ -128,7 +128,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                 }
 
                 // If filter deleted and only sort remaining
-                if (editable.length() == 0 && (isSortGpa || isSortEntranceScore)) {
+                else if (editable.length() == 0) {
                     adapter = new ArrayAdapter<>(ViewStatsActivity.this, R.layout.support_simple_spinner_dropdown_item, filterOptions);
                     filterAutoComplete.setAdapter(adapter);
                     getCardData("statsBySorting", true);
@@ -238,8 +238,9 @@ public class ViewStatsActivity extends AppCompatActivity {
 
         JSONObject body = new JSONObject();
 
+        int filterTextLength = filterAutoComplete.getText().length();
         // Only Filter
-        if (isConfig && (filterAutoComplete.getText().length() > 0) && !isSortGpa && !isSortEntranceScore) {
+        if (isConfig && (filterTextLength > 0) && !isSortGpa && !isSortEntranceScore) {
             try {
                 body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
             } catch (JSONException e) {
@@ -248,7 +249,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         }
 
         // Filter and Sort
-        if (isConfig && (filterAutoComplete.getText().length() > 0) && (isSortGpa || isSortEntranceScore)) {
+        else if (isConfig && filterTextLength > 0) {
             try {
                 body.put(univNameStats.contains(searchText) ? "univName" : "univMajor", searchText);
                 body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
@@ -258,7 +259,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         }
 
         // Only Sort
-        if (isConfig && (filterAutoComplete.getText().length() == 0) && (isSortGpa || isSortEntranceScore)) {
+        else if (isConfig && (filterTextLength == 0) && (isSortGpa || isSortEntranceScore)) {
             try {
                 body.put(isSortGpa ? "univGpa" : "univEntranceScore", "");
             } catch (JSONException e) {
