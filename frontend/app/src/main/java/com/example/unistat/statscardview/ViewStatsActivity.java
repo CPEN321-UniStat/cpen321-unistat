@@ -75,28 +75,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         sortByEntranceScore.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if (b) {
-                    isSortEntranceScore = true;
-                    sortByGpa.setEnabled(false);
-
-                    // If filter and sort or only sort
-                    if (filterAutoComplete.getText().toString().length() > 0) {
-                        getCardData("statsByConfiguration", true);
-                    } else {
-                        getCardData("statsBySorting", true);
-                    }
-
-                } else {
-                    isSortEntranceScore = false;
-                    sortByGpa.setEnabled(true);
-
-                    // If (no sort and only filter) or (no sort no filter)
-                    if (filterAutoComplete.getText().toString().length() > 0) {
-                        getCardData("statsByFilter", true);
-                    } else if (!isSortGpa) {
-                        getCardData("stats", false);
-                    }
-                }
+                sortStatsByEntranceScore(b);
             }
         });
 
@@ -193,21 +172,42 @@ public class ViewStatsActivity extends AppCompatActivity {
 
         }
 
+    private void sortStatsByEntranceScore(boolean b) {
+        int filterTextLength = filterAutoComplete.getText().toString().length();
+        if (b && filterTextLength > 0) { // Filter & sort
+            isSortEntranceScore = true;
+            sortByGpa.setEnabled(false);
+            getCardData("statsByConfiguration", true);
+        } else if (b) { // Only sort
+            isSortEntranceScore = true;
+            sortByGpa.setEnabled(false);
+            getCardData("statsBySorting", true);
+        } else if (filterTextLength > 0) { // Only filter no sort
+            isSortEntranceScore = false;
+            sortByGpa.setEnabled(true);
+            getCardData("statsByFilter", true);
+        } else if (!isSortGpa) { // No filter no sort
+            isSortEntranceScore = false;
+            sortByGpa.setEnabled(true);
+            getCardData("stats", false);
+        }
+    }
+
     private void sortStatsByGpa(boolean b) {
         int filterTextLength = filterAutoComplete.getText().toString().length();
-        if (b && filterTextLength > 0) {
+        if (b && filterTextLength > 0) { // Filter & sort
             sortByEntranceScore.setEnabled(false);
             isSortGpa = true;
             getCardData("statsByConfiguration", true);
-        } else if (b) {
+        } else if (b) { // Only sort
             sortByEntranceScore.setEnabled(false);
             isSortGpa = true;
             getCardData("statsBySorting", true);
-        } else if (filterTextLength > 0) {
+        } else if (filterTextLength > 0) { // Only filter no sort
             isSortGpa = false;
             sortByEntranceScore.setEnabled(true);
             getCardData("statsByFilter", true);
-        } else if (!isSortEntranceScore) {
+        } else if (!isSortEntranceScore) { // No filter no sort
             isSortGpa = false;
             sortByEntranceScore.setEnabled(true);
             getCardData("stats", false);
