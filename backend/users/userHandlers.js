@@ -11,18 +11,30 @@ const client = db.client;
  * @param {*} res 
  */
 const handleUserEntry = async (req, res) => {
-    var alreadyExists;
+    // var alreadyExists;
+    // try {
+    //     alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+    // } catch (error) {
+    //     console.log(error)
+    //     res.status(400).send(error)
+    // }
+    // console.log("exists: " + alreadyExists);
+    // var jsonResp = {
+    //     "status": alreadyExists ? "loggedIn" : "signedUp"
+    // }
+    // res.status(200).send(JSON.stringify(jsonResp));
+    console.log(req.body)
     try {
-        alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        console.log("exists: " + alreadyExists);
+        var jsonResp = {
+            "status": alreadyExists ? "loggedIn" : "signedUp"
+        }
+        res.status(200).send(JSON.stringify(jsonResp));
     } catch (error) {
         console.log(error)
-        res.status(400).send(error)
+        res.status(400).send(JSON.stringify(error));
     }
-    console.log("exists: " + alreadyExists);
-    var jsonResp = {
-        "status": alreadyExists ? "loggedIn" : "signedUp"
-    }
-    res.status(200).send(JSON.stringify(jsonResp));
 }
 
 /**

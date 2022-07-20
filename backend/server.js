@@ -9,12 +9,16 @@ const payment = require("./payments/paymentHandlers")
 
 const meeting = require("./meetings/meetingHandlers")
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
     res.status(200).send("Server running...");
 })
 
 
 // User Enpoints
+
+app.post("/users", users.handleUserEntry);
 
 app.post("/userByEmail", users.getUserByEmail);
 
