@@ -432,27 +432,5 @@ var server = app.listen(8081, (req, res) => {
     console.log(`server successfully running at http://${host}:${port}`);
 })
 
-db.connect()
-
-
-async function storeGoogleUserData(idToken, fb_token) {
-    var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
-    response.data.firebase_token = fb_token
-    console.log(fb_token)
-
-    var existingUsers = client.db("UniStatDB").collection("Users").find({email: response.data.email}, {$exists: true})
-    var lenUsers = (await existingUsers.toArray()).length
-
-    if (lenUsers > 0) { // User already exists
-        console.log("already exists")
-        await client.db("UniStatDB").collection("Users").updateOne({email : response.data.email}, {$set: {"firebase_token": fb_token}})
-    } else { // New user, so insert
-        console.log("new user, signing up...")
-        response.data.currency = 100
-        await client.db("UniStatDB").collection("Users").insertOne(response.data)
-    }
-
-    console.log("num existing users: ", lenUsers)
-    return lenUsers
-}
+db.connect().catch(err => console.error(err))
 

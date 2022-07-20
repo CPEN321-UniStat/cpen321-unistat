@@ -8,7 +8,6 @@ async function connect() {
         console.log("successfully connected to database!");
     } catch (error) {
         console.log(error);
-        await client.close();
     }
 }
 

@@ -11,17 +11,18 @@ const client = db.client;
  * @param {*} res 
  */
 const handleUserEntry = async (req, res) => {
+    var alreadyExists;
     try {
-        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-        console.log("exists: " + alreadyExists);
-        var jsonResp = {
-            "status": alreadyExists ? "loggedIn" : "signedUp"
-        }
-        res.status(200).send(JSON.stringify(jsonResp));
+        alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
     } catch (error) {
         console.log(error)
-        res.status(400).send(JSON.stringify(error));
+        res.status(400).send(error)
     }
+    console.log("exists: " + alreadyExists);
+    var jsonResp = {
+        "status": alreadyExists ? "loggedIn" : "signedUp"
+    }
+    res.status(200).send(JSON.stringify(jsonResp));
 }
 
 /**
@@ -194,7 +195,7 @@ async function storeGoogleUserData(idToken, fb_token) {
     }
 
     console.log("num existing users: ", lenUsers)
-    return lenUsers > 0 ? true : false
+    return lenUsers
 }
 
 module.exports = {
