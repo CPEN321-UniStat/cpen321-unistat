@@ -6,8 +6,6 @@ const client = db.client
 
 const users = require("./users/userHandlers")
 
-const axios = require("axios");
-
 // set up firebase authentication for notifications
 var admin = require("firebase-admin");
 
@@ -432,5 +430,8 @@ var server = app.listen(8081, (req, res) => {
     console.log(`server successfully running at http://${host}:${port}`);
 })
 
-db.connect().catch(err => console.error(err))
+db.connect().catch(err => {
+    console.error(err)
+    db.client.close()
+})
 
