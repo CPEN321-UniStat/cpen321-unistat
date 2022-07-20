@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb")
 const uri = "mongodb://localhost:27017"
 const client = new MongoClient(uri)
 
-const connect = async() => {
+async function connect() {
     await client.connect()
     console.log("successfully connected to database!")
 }
