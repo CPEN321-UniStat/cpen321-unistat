@@ -2,7 +2,6 @@ var express = require("express");
 var app = express()
 
 const db = require("./database/connect")
-const client = db.client
 
 const users = require("./users/userHandlers")
 

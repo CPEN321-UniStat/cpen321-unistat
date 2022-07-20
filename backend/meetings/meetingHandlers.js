@@ -240,7 +240,6 @@ module.exports = {
     getMeetingByEmail,
     getMeetingById,
     respondToMeeting,
-    createMeetingRequest,
     updateMeetingLog,
     createMeetingRequest,
     sendMeetingRequest,
