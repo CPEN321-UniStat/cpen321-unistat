@@ -1,9 +1,10 @@
 var express = require("express");
 var app = express()
 
-const { MongoClient } = require("mongodb")
-const uri = "mongodb://localhost:27017"
-const client = new MongoClient(uri)
+const db = require("./database/connect")
+const client = db.client
+
+const users = require("./users/userHandlers")
 
 const axios = require("axios");
 
@@ -164,126 +165,22 @@ app.get("/", (req, res) => {
     res.status(200).send("Server running...");
 })
 
-app.post("/users", async (req, res) => {
-    var alreadyExists;
-    try {
-        alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(error)
-    }
-    console.log("exists: " + alreadyExists);
-    var jsonResp = {
-        "status": alreadyExists ? "loggedIn" : "signedUp"
-    }
-    res.status(200).send(JSON.stringify(jsonResp));
-})
 
-app.post("/userByEmail", async (req, res) => {
+app.post("/userByEmail", users.getUserByEmail);
 
-    var query = {"email": req.body.userEmail}
-    
-    client.db("UniStatDB").collection("Users").findOne(query, function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        } else {
-            var jsonResp = {"userName" : result.name}
-            res.status(200).send(JSON.stringify(jsonResp));
-        }
-    })
-})
+app.post("/stats", users.createUserStat);
 
-//CRUD function for Stats collection
-app.post("/stats", async (req, res) => {
-    // Store stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-        var jsonResp = {
-            "status": `Stat stored for ${req.body.userEmail}`
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
-    }
-})
+app.get("/stats", users.getAllUserStats);
 
-app.get("/stats", async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({}).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    }
-    )
-})
+app.post("/statsByFilter", users.getStatsByFilter);
 
-app.post("/statsByFilter", async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"statData" : result}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    }
-    )
-})
+app.post("/statsBySorting", users.getStatsBySorting);  
 
-app.post("/statsBySorting", async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
-    }
-    )
-})  
+app.post("/statsByConfiguration", users.getStatsByConfiguration);  
 
-app.post("/statsByConfiguration", async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
-    }
-    )
-})  
+app.put("/stats", users.updateStat);
 
-app.put("/stats", async (req, res) => {
-    // Update stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
-        var jsonResp = {
-            "status": `Stat updated for ${req.body.userEmail}`
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
-    }
-})
-
-// app.delete("/stats", async (req, res) => {
-//     // Delete stat data
-//     try {
-//         await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-//         var jsonResp = {
-//             "status": `Stat deleted for ${req.body.userEmail}`
-//         }
-//         res.status(200).send(JSON.stringify(jsonResp))
-//     } catch (error) {
-//         console.log(error)
-//         res.status(400).send(JSON.stringify(error))
-//     }
-// })
+app.delete("/stats", users.deleteStat);
 
 // CRUD Functions for Meetings collection
 app.post("/meetings", async (req, res) => {
@@ -528,21 +425,15 @@ app.put("/updateMeetingLog", async (req, res) => {
 //     console.log(`server successfully running at http://${host}:${port}`);
 // })
 
-async function run() {
-    try {
-        await client.connect()
-        console.log("successfully connected to database!")
-        var server = app.listen(8081, (req, res) => {
-            var host = server.address().address;
-            var port = server.address().port;
-            console.log(`server successfully running at http://${host}:${port}`);
-        })
-    } 
-    catch (error) {
-        console.log(error)
-        await client.close()
-    }
-}
+
+var server = app.listen(8081, (req, res) => {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log(`server successfully running at http://${host}:${port}`);
+})
+
+db.connect()
+
 
 async function storeGoogleUserData(idToken, fb_token) {
     var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
@@ -565,5 +456,3 @@ async function storeGoogleUserData(idToken, fb_token) {
     return lenUsers
 }
 
-
-run()
