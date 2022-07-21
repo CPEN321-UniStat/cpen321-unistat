@@ -45,6 +45,7 @@ import java.util.UUID;
 
 public class RequestMeeting extends AppCompatActivity {
 
+    private static final String TAG = "RequestMeeting";
     private TextView startDateText;
     private TextView endDateText;
 
@@ -93,18 +94,7 @@ public class RequestMeeting extends AppCompatActivity {
                 meetingTitleInput.setError(meetingTitleValid ? null : "Meeting name must not be empty");
                 paymentInput.setError(paymentValid ? null : "Enter a valid number");
 
-                if (meetingTitleValid && paymentValid) {
-                    meetingTitle = meetingTitle.trim();
-                    double payment = Double.parseDouble(paymentOffer.trim());
-                    if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
-                        Toast.makeText(RequestMeeting.this, "start time cannot be after end time.", Toast.LENGTH_LONG).show();
-                    } else {
-                        bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
-                        Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
-                        Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
-                        startActivity(viewCalendar);
-                    }
-                }
+                bookMeetingIfValid(userEmail, meetingTitleValid, paymentValid, meetingTitle.trim(), paymentOffer);
             }
         });
 
@@ -232,6 +222,56 @@ public class RequestMeeting extends AppCompatActivity {
 
     }
 
+    private void bookMeetingIfValid(String userEmail, boolean meetingTitleValid, boolean paymentValid, String meetingTitle, String paymentOffer) {
+        String URL = IpConstants.URL + "coinsByUser";
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userEmail", userEmail);
+            Log.d(TAG, body.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest getCoinsRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                        try {
+                            String coins = response.getString("coins");
+                            double balance = Double.parseDouble(coins);
+                            if (meetingTitleValid && paymentValid) {
+                                double payment = Double.parseDouble(paymentOffer.trim());
+                                if (payment > balance) {
+                                    Toast.makeText(RequestMeeting.this, "Not enough balance for payment " + payment, Toast.LENGTH_LONG).show();
+                                } else if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
+                                    Toast.makeText(RequestMeeting.this, "Start time cannot be after end time.", Toast.LENGTH_LONG).show();
+                                } else {
+                                    bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                                    Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+                                    Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
+                                    startActivity(viewCalendar);
+                                }
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(getCoinsRequest);
+    }
+
     private boolean isMeetingTitleValid(String meetingTitle) {
         return !meetingTitle.trim().isEmpty();
     }
@@ -239,7 +279,7 @@ public class RequestMeeting extends AppCompatActivity {
     private boolean isPaymentValid(String payment) {
         if (payment.trim().isEmpty())
             return false;
-        return payment.trim().matches("-?\\d+(\\.\\d+)?");
+        return payment.trim().matches("\\d+(\\.\\d+)?");
     }
 
     private void addDatePickerOnClickListener(MaterialDatePicker materialDatePicker, TextView dateText) {
