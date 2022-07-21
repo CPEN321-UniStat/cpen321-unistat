@@ -125,12 +125,13 @@ public class RequestMeeting extends AppCompatActivity {
         String startTime = timeFormat.format(calendar.getTime());
         startTimeText.setText(startTime);
         startTimeCalendar = Calendar.getInstance();
-        startTimeCalendar.set(Calendar.HOUR_OF_DAY, 0);
-        startTimeCalendar.set(Calendar.MINUTE, 0);
-        startTimeCalendar.set(Calendar.SECOND, 0);
-        startTimeCalendar.set(Calendar.MILLISECOND, 0);
-        startTimeCalendar.setTimeZone(TimeZone.getTimeZone("UTC"));
 
+        Calendar startTimeCalendarClone = (Calendar) startTimeCalendar.clone();
+        startTimeCalendarClone.set(Calendar.HOUR_OF_DAY, 0);
+        startTimeCalendarClone.set(Calendar.MINUTE, 0);
+        startTimeCalendarClone.set(Calendar.SECOND, 0);
+        startTimeCalendarClone.set(Calendar.MILLISECOND, 0);
+        startTimeCalendarClone.setTimeZone(TimeZone.getTimeZone("UTC"));
         TextView endTimeText = findViewById(R.id.end_time_text);
         Date curDate = calendar.getTime();
         curDate.setTime(curDate.getTime() + 3600000);
@@ -151,7 +152,7 @@ public class RequestMeeting extends AppCompatActivity {
         startMaterialDateBuilder.setTitleText("SELECT START DATE");
         final MaterialDatePicker startMaterialDatePicker = startMaterialDateBuilder.build();
 
-        endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendar.getTimeInMillis()));
+        endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendarClone.getTimeInMillis()));
 
         endMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(endTimeConstraintsBuilder.build());
 
