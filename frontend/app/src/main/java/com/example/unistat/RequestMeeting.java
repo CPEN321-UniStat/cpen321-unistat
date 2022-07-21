@@ -1,5 +1,7 @@
 package com.example.unistat;
 
+import static java.time.ZoneOffset.UTC;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -39,6 +41,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.UUID;
 
 public class RequestMeeting extends AppCompatActivity {
@@ -56,6 +59,9 @@ public class RequestMeeting extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String mentorEmail;
 
+    CalendarConstraints.Builder endTimeConstraintsBuilder;
+    MaterialDatePicker.Builder endMaterialDateBuilder;
+    MaterialDatePicker endMaterialDatePicker;
 
 
     @Override
@@ -119,6 +125,11 @@ public class RequestMeeting extends AppCompatActivity {
         String startTime = timeFormat.format(calendar.getTime());
         startTimeText.setText(startTime);
         startTimeCalendar = Calendar.getInstance();
+        startTimeCalendar.set(Calendar.HOUR_OF_DAY, 0);
+        startTimeCalendar.set(Calendar.MINUTE, 0);
+        startTimeCalendar.set(Calendar.SECOND, 0);
+        startTimeCalendar.set(Calendar.MILLISECOND, 0);
+        startTimeCalendar.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         TextView endTimeText = findViewById(R.id.end_time_text);
         Date curDate = calendar.getTime();
@@ -130,6 +141,9 @@ public class RequestMeeting extends AppCompatActivity {
         endTimeCalendar = Calendar.getInstance();
         endTimeCalendar.setTime(curDate);
 
+        System.out.println("Time cal " + startTimeCalendar.getTimeInMillis());
+        System.out.println("time " + System.currentTimeMillis());
+
         CalendarConstraints.Builder startTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now());
 
         MaterialDatePicker.Builder startMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(startTimeConstraintsBuilder.build());
@@ -137,12 +151,12 @@ public class RequestMeeting extends AppCompatActivity {
         startMaterialDateBuilder.setTitleText("SELECT START DATE");
         final MaterialDatePicker startMaterialDatePicker = startMaterialDateBuilder.build();
 
-        CalendarConstraints.Builder endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendar.getTimeInMillis() + startTimeCalendar.getTimeZone().getOffset(startTimeCalendar.getTimeInMillis())));
+        endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendar.getTimeInMillis()));
 
-        MaterialDatePicker.Builder endMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(endTimeConstraintsBuilder.build());
+        endMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(endTimeConstraintsBuilder.build());
 
         endMaterialDateBuilder.setTitleText("SELECT END DATE");
-        final MaterialDatePicker endMaterialDatePicker = endMaterialDateBuilder.build();
+        endMaterialDatePicker = endMaterialDateBuilder.build();
 
         addDatePickerOnClickListener(startMaterialDatePicker, startDateText);
         addDatePickerOnClickListener(endMaterialDatePicker, endDateText);
@@ -166,35 +180,29 @@ public class RequestMeeting extends AppCompatActivity {
                     startTimeCalendar.set(Calendar.MONTH, month);
                     startTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
                     startTimeCalendar.set(Calendar.YEAR, year);
+
+                    Calendar startTimeCalendarClone = (Calendar) startTimeCalendar.clone();
+                    startTimeCalendarClone.set(Calendar.HOUR_OF_DAY, 0);
+                    startTimeCalendarClone.set(Calendar.MINUTE, 0);
+                    startTimeCalendarClone.set(Calendar.SECOND, 0);
+                    startTimeCalendarClone.set(Calendar.MILLISECOND, 0);
+                    startTimeCalendarClone.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                    endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendarClone.getTimeInMillis()));
+
+                    endMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(endTimeConstraintsBuilder.build());
+
+                    endMaterialDateBuilder.setTitleText("SELECT END DATE");
+                    endMaterialDatePicker = endMaterialDateBuilder.build();
+                    addDatePickerOnClickListener(endMaterialDatePicker, endDateText);
+                    addEndDatePickerOnClickListener();
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        endMaterialDatePicker.addOnPositiveButtonClickListener( new MaterialPickerOnPositiveButtonClickListener() {
-            @SuppressLint("SetTextI18n")
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-
-                endDateText.setText(endMaterialDatePicker.getHeaderText());
-
-                Date date1;
-                try {
-                    date1 = dateFormat.parse(endMaterialDatePicker.getHeaderText());
-                    Calendar cal = Calendar.getInstance();
-                    cal.setTime(date1);
-                    int month = cal.get(Calendar.MONTH);
-                    int day = cal.get(Calendar.DAY_OF_MONTH);
-                    int year = cal.get(Calendar.YEAR);
-                    endTimeCalendar.set(Calendar.MONTH, month);
-                    endTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
-                    endTimeCalendar.set(Calendar.YEAR, year);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        addEndDatePickerOnClickListener();
 
         MaterialTimePicker startTimeMaterialTimePicker = new MaterialTimePicker.Builder()
                 .setTitleText("SELECT START TIME")
@@ -239,6 +247,32 @@ public class RequestMeeting extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 materialDatePicker.show(getSupportFragmentManager(), "MATERIAL_DATE_PICKER");
+            }
+        });
+    }
+
+    private void addEndDatePickerOnClickListener() {
+        endMaterialDatePicker.addOnPositiveButtonClickListener( new MaterialPickerOnPositiveButtonClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+
+                endDateText.setText(endMaterialDatePicker.getHeaderText());
+
+                Date date1;
+                try {
+                    date1 = dateFormat.parse(endMaterialDatePicker.getHeaderText());
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date1);
+                    int month = cal.get(Calendar.MONTH);
+                    int day = cal.get(Calendar.DAY_OF_MONTH);
+                    int year = cal.get(Calendar.YEAR);
+                    endTimeCalendar.set(Calendar.MONTH, month);
+                    endTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
+                    endTimeCalendar.set(Calendar.YEAR, year);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
