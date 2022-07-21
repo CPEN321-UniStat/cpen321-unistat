@@ -21,6 +21,8 @@ import com.example.unistat.meeting.Meeting;
 import com.example.unistat.meeting.MeetingLog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.material.datepicker.CalendarConstraints;
+import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputLayout;
@@ -89,10 +91,14 @@ public class RequestMeeting extends AppCompatActivity {
                 if (meetingTitleValid && paymentValid) {
                     meetingTitle = meetingTitle.trim();
                     double payment = Double.parseDouble(paymentOffer.trim());
-                    bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
-                    Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
-                    Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
-                    startActivity(viewCalendar);
+                    if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
+                        Toast.makeText(RequestMeeting.this, "start time cannot be after end time.", Toast.LENGTH_LONG).show();
+                    } else {
+                        bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                        Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+                        Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
+                        startActivity(viewCalendar);
+                    }
                 }
             }
         });
@@ -124,29 +130,34 @@ public class RequestMeeting extends AppCompatActivity {
         endTimeCalendar = Calendar.getInstance();
         endTimeCalendar.setTime(curDate);
 
+        CalendarConstraints.Builder startTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.now());
+
+        MaterialDatePicker.Builder startMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(startTimeConstraintsBuilder.build());
+
+        startMaterialDateBuilder.setTitleText("SELECT START DATE");
+        final MaterialDatePicker startMaterialDatePicker = startMaterialDateBuilder.build();
+
+        CalendarConstraints.Builder endTimeConstraintsBuilder = new CalendarConstraints.Builder().setValidator(DateValidatorPointForward.from(startTimeCalendar.getTimeInMillis() + startTimeCalendar.getTimeZone().getOffset(startTimeCalendar.getTimeInMillis())));
+
+        MaterialDatePicker.Builder endMaterialDateBuilder = MaterialDatePicker.Builder.datePicker().setCalendarConstraints(endTimeConstraintsBuilder.build());
+
+        endMaterialDateBuilder.setTitleText("SELECT END DATE");
+        final MaterialDatePicker endMaterialDatePicker = endMaterialDateBuilder.build();
+
+        addDatePickerOnClickListener(startMaterialDatePicker, startDateText);
+        addDatePickerOnClickListener(endMaterialDatePicker, endDateText);
 
 
-
-        MaterialDatePicker.Builder materialDateBuilder = MaterialDatePicker.Builder.datePicker();
-
-        materialDateBuilder.setTitleText("SELECT A DATE");
-        final MaterialDatePicker materialDatePicker = materialDateBuilder.build();
-
-        addDatePickerOnClickListener(materialDatePicker, startDateText);
-        addDatePickerOnClickListener(materialDatePicker, endDateText);
-
-
-        materialDatePicker.addOnPositiveButtonClickListener( new MaterialPickerOnPositiveButtonClickListener() {
+        startMaterialDatePicker.addOnPositiveButtonClickListener( new MaterialPickerOnPositiveButtonClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
             public void onPositiveButtonClick(Object selection) {
 
-                startDateText.setText(materialDatePicker.getHeaderText());
-                endDateText.setText(materialDatePicker.getHeaderText());
+                startDateText.setText(startMaterialDatePicker.getHeaderText());
 
                 Date date1;
                 try {
-                    date1 = dateFormat.parse(materialDatePicker.getHeaderText());
+                    date1 = dateFormat.parse(startMaterialDatePicker.getHeaderText());
                     Calendar cal = Calendar.getInstance();
                     cal.setTime(date1);
                     int month = cal.get(Calendar.MONTH);
@@ -155,6 +166,27 @@ public class RequestMeeting extends AppCompatActivity {
                     startTimeCalendar.set(Calendar.MONTH, month);
                     startTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
                     startTimeCalendar.set(Calendar.YEAR, year);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        endMaterialDatePicker.addOnPositiveButtonClickListener( new MaterialPickerOnPositiveButtonClickListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+
+                endDateText.setText(endMaterialDatePicker.getHeaderText());
+
+                Date date1;
+                try {
+                    date1 = dateFormat.parse(endMaterialDatePicker.getHeaderText());
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(date1);
+                    int month = cal.get(Calendar.MONTH);
+                    int day = cal.get(Calendar.DAY_OF_MONTH);
+                    int year = cal.get(Calendar.YEAR);
                     endTimeCalendar.set(Calendar.MONTH, month);
                     endTimeCalendar.set(Calendar.DAY_OF_MONTH, day);
                     endTimeCalendar.set(Calendar.YEAR, year);

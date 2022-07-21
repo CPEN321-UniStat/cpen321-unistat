@@ -3,6 +3,7 @@ package com.example.unistat;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -33,6 +34,11 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextInputLayout editUserUnivGpa;
     private TextInputLayout editUserUnivEntranceScore;
     private TextInputLayout editUserBio;
+    private String univName;
+    private String univMajor;
+    private String univGpa;
+    private String univEntranceScore;
+    private String univBio;
     private FloatingActionButton confirmChangesButton;
     private FloatingActionButton editProfileButton;
     private MaterialTextView coinsText;
@@ -109,15 +115,26 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private void updateUserStats(String userEmail) {
         String URL = IpConstants.URL + "stats";
+        univName = editUserUnivName.getEditText().getText().toString().trim();
+        univMajor = editUserUnivMajor.getEditText().getText().toString().trim();
+        univGpa = editUserUnivGpa.getEditText().getText().toString().trim();
+        univEntranceScore = editUserUnivEntranceScore.getEditText().getText().toString().trim();
+        univBio = editUserBio.getEditText().getText().toString().trim();
 
+        Boolean allPassed = runChecks();
+
+        if (!allPassed) {
+            return;
+        }
+        
         JSONObject body = new JSONObject();
         try {
             body.put("userEmail", userEmail);
-            body.put("univName", editUserUnivName.getEditText().getText());
-            body.put("univMajor", editUserUnivMajor.getEditText().getText());
-            body.put("univGpa", Double.parseDouble(String.valueOf(editUserUnivGpa.getEditText().getText())));
-            body.put("univEntranceScore", Integer.parseInt(String.valueOf(editUserUnivEntranceScore.getEditText().getText())));
-            body.put("univBio", editUserBio.getEditText().getText());
+            body.put("univName", univName);
+            body.put("univMajor", univMajor);
+            body.put("univGpa", Double.parseDouble(univGpa));
+            body.put("univEntranceScore", Integer.parseInt(univEntranceScore));
+            body.put("univBio", univBio);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -142,6 +159,28 @@ public class UserProfileActivity extends AppCompatActivity {
         );
 
         requestQueue.add(updateUserStatRequest);
+    }
+
+    private Boolean runChecks() {
+
+        if (TextUtils.isEmpty(univName)
+                || TextUtils.isEmpty(univMajor)
+                || TextUtils.isEmpty(editUserUnivGpa.getEditText().getText().toString())
+                || TextUtils.isEmpty(editUserUnivEntranceScore.getEditText().getText().toString())
+                || TextUtils.isEmpty(univBio)) {
+            Toast.makeText(UserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (!univName.matches("^[a-zA-Z ]*$")
+                || !univMajor.matches("^[a-zA-Z ]*$")) {
+            Toast.makeText(UserProfileActivity.this, "Please make sure your university name & major are valid.", Toast.LENGTH_LONG).show();
+            return false;
+        } else if (Double.parseDouble(univGpa) > 4.33) {
+            Toast.makeText(UserProfileActivity.this, "Please make sure your GPA is valid.", Toast.LENGTH_LONG).show();
+            return false;
+        } else {
+            return true;
+        }
+
     }
 
     private void getUserStats(String userEmail) {

@@ -31,7 +31,6 @@ import com.example.unistat.R;
 import com.example.unistat.SignOutActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.elevation.SurfaceColors;
 
 import org.json.JSONArray;
 import org.json.JSONException;

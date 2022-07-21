@@ -65,8 +65,8 @@ public class CreateUserProfileActivity extends AppCompatActivity {
                         || TextUtils.isEmpty(univEntranceScore)
                         || TextUtils.isEmpty(univBio)) {
                     Toast.makeText(CreateUserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
-                } else if (!univName.matches("[a-zA-Z]+")
-                        || !univMajor.matches("[a-zA-Z]+")) {
+                } else if (!univName.matches("^[a-zA-Z ]*$+")
+                        || !univMajor.matches("^[a-zA-Z ]*$")) {
                     Toast.makeText(CreateUserProfileActivity.this, "Please make sure your university name & major are valid.", Toast.LENGTH_LONG).show();
                 } else if (Double.parseDouble(univGpa) > 4.33) {
                     Toast.makeText(CreateUserProfileActivity.this, "Please make sure your GPA is valid.", Toast.LENGTH_LONG).show();
