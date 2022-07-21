@@ -37,7 +37,6 @@ public class UserProfileActivity extends AppCompatActivity {
     private String univName;
     private String univMajor;
     private String univGpa;
-    private String univEntranceScore;
     private String univBio;
     private FloatingActionButton confirmChangesButton;
     private FloatingActionButton editProfileButton;
@@ -118,7 +117,7 @@ public class UserProfileActivity extends AppCompatActivity {
         univName = editUserUnivName.getEditText().getText().toString().trim();
         univMajor = editUserUnivMajor.getEditText().getText().toString().trim();
         univGpa = editUserUnivGpa.getEditText().getText().toString().trim();
-        univEntranceScore = editUserUnivEntranceScore.getEditText().getText().toString().trim();
+        String univEntranceScore = editUserUnivEntranceScore.getEditText().getText().toString().trim();
         univBio = editUserBio.getEditText().getText().toString().trim();
 
         Boolean allPassed = runChecks();
