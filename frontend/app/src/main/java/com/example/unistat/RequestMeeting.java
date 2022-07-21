@@ -1,6 +1,5 @@
 package com.example.unistat;
 
-import static java.time.ZoneOffset.UTC;
 
 import androidx.appcompat.app.AppCompatActivity;
 
