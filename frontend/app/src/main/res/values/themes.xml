@@ -9,17 +9,24 @@
         <item name="colorSecondary">@color/teal</item>
         <item name="colorSecondaryVariant">@color/teal_blue</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
+
         <item name="android:colorBackground">@color/white</item>
+
         <!-- for bottom nav bar activity indicator -->
         <item name="colorSecondaryContainer">@color/purple_100</item>
+
         <!-- for fab bg color -->
         <item name="colorPrimaryContainer">@color/purple_200</item>
+
         <!-- for card bg color -->
         <item name="colorSurface">@color/purple_50</item>
+
         <!-- for button outline -->
         <item name="colorOutline">@color/purple_100</item>
 
