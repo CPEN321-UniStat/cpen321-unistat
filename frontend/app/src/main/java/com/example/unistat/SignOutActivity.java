@@ -13,13 +13,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.unistat.pushnotifications.PushNotifications;
 import com.example.unistat.statscardview.ViewStatsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class SignOutActivity extends AppCompatActivity {
 
@@ -134,6 +145,9 @@ public class SignOutActivity extends AppCompatActivity {
     }
 
     private void signOut() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+        String userEmail = account.getEmail();
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), GoogleSignInOptions.DEFAULT_SIGN_IN);
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
@@ -142,10 +156,51 @@ public class SignOutActivity extends AppCompatActivity {
                         Log.d(TAG, "logged out");
                         Intent openMainActivity = new Intent(SignOutActivity.this, MainActivity.class);
                         openMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        // clear firebase_token for correct notification behavior
+                        updateRegistrationToken("", userEmail);
+
                         startActivity(openMainActivity);
                     }
                 });
     }
+
+    private void updateRegistrationToken(String token, String email) {
+        //send firebase_token to users collection in DB
+        //check if exists then replace/add update
+        RequestQueue requestQueue = Volley.newRequestQueue(SignOutActivity.this);
+
+        String URL = IpConstants.URL + "firebaseToken";
+
+        JSONObject body = new JSONObject();
+        try {
+            body.put("email", email);
+            body.put("firebase_token", token);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest updateTokenRequest = new JsonObjectRequest(
+                Request.Method.PUT,
+                URL,
+                body,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, "Server resp: " + response.toString());
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.d(TAG, "Server error: " + error);
+                    }
+                }
+        );
+
+        requestQueue.add(updateTokenRequest);
+    }
+
 
     @Override
     public void onBackPressed() {
