@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Light" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_50</item>
+        <item name="colorPrimary">@color/purple_10</item>
         <item name="colorPrimaryVariant">@color/light_purple_200</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -14,13 +14,15 @@
         <!-- Customize your theme here. -->
 
         <!-- for bottom nav bar activity indicator -->
-        <item name="colorSecondaryContainer">@color/purple_100</item>
+        <item name="colorSecondaryContainer">@color/purple_10</item>
         <!-- for fab bg color -->
-        <item name="colorPrimaryContainer">@color/light_purple_100</item>
+        <item name="colorPrimaryContainer">@color/purple_10</item>
         <!-- for icon on fab outline -->
         <item name="colorOnPrimaryContainer">@color/black</item>
         <!-- for button outline -->
-        <item name="colorOutline">@color/purple_50</item>
+        <item name="colorOutline">@color/purple_10</item>
+        <!-- for nav bar icon color (active) -->
+        <item name="colorOnSecondaryContainer">@color/black</item>
 
 
     </style>
