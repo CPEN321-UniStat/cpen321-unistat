@@ -102,6 +102,88 @@ describe("POST /userByEmail", () => {
             })
         })
     })
+})
 
+describe("POST /stats", () => {
+
+    describe("creating user stat when all fields of body defined and user is not in db", () => {
+
+        test("should return a json response with status code 400", async () => {
+            const res = await request(app).post("/stats").send({
+                "userEmail": "manekgujral11@gmail.com",
+                "userPhoto": "link",
+                "userName": "Manek Gujral",
+                "univName": "UBC",
+                "univMajor": "Computer Science",
+                "univGpa": "4.33",
+                "univEntranceScore": "1600",
+                "univBio": "Test bio",
+            })
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).status).toBe("Stat stored for manekgujral11@gmail.com")
+        })
+    })
+
+    describe("creating user stat when all fields of body defined and user is in db", () => {
+
+        test("should return a json response with status code 400", async () => {
+            const res = await request(app).post("/stats").send({
+                "userEmail": "manekgujral11@gmail.com",
+                "userPhoto": "link",
+                "userName": "Manek Gujral",
+                "univName": "UBC",
+                "univMajor": "Science",
+                "univGpa": "4.0",
+                "univEntranceScore": "1100",
+                "univBio": "Test bio",
+            })
+            expect(res.statusCode).toBe(400)
+            expect(JSON.parse(res.text).status).toBe("Stat already exists")
+        })
+    })
+
+
+    describe("when body is missing or undefined", () => {
+        
+        const body = [
+            {  "userEmail": "testmail" },
+            {  "userPhoto": "link" },
+            {  "userName": "unistat" },
+            {  "univName": "Harvard" },
+            {  "univMajor": "CPEN" },
+            {  "univGpa": "3.5" },
+            {  "univEntranceScore": "1100" },
+            {  "univBio": "test bio" },
+            {  "userEmail": "email", "userPhoto": "link", "userName": undefined },
+            {
+                "userEmail": "manekgujral11@gmail.com",
+                "userPhoto": "link",
+                "userName": "Manek Gujral",
+                "univName": "UBC",
+                "univMajor": "Computer Science",
+                "univGpa": "4.33",
+                "univEntranceScore": "1600",
+            },
+            {}
+        ]
+
+        body.forEach(async (body) => {
+            test("should return a json response with status code 400", async () => {
+                const res = await request(app).post("/stats").send(body)
+                expect(res.statusCode).toBe(400)
+                expect(JSON.parse(res.text).status).toBe("Cannot create user stat with undefined body")
+            })
+        })
+    })
+})
+
+describe("GET /stats", () => {
+
+    describe("get all Stats in db", () => {
+        test("should return a json response with status code 400", async () => {
+            const res = await request(app).get("/stats")
+            expect(res.statusCode).toBe(200)
+        })
+    })
 
 })
