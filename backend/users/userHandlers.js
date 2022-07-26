@@ -1,6 +1,7 @@
 // This file contains all functions that handle and process user information
 
 const axios = require("axios");
+const e = require("express");
 
 const db = require("../database/connect")
 const client = db.client;
@@ -11,29 +12,25 @@ const client = db.client;
  * @param {*} res 
  */
 const handleUserEntry = async (req, res) => {
-    // var alreadyExists;
-    // try {
-    //     alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-    // } catch (error) {
-    //     console.log(error)
-    //     res.status(400).send(error)
-    // }
-    // console.log("exists: " + alreadyExists);
-    // var jsonResp = {
-    //     "status": alreadyExists ? "loggedIn" : "signedUp"
-    // }
-    // res.status(200).send(JSON.stringify(jsonResp));
-    // console.log(req.body)
-    try {
-        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-        console.log("exists: " + alreadyExists);
+
+    if (req.body.Token == undefined || req.body.firebase_token == undefined) {
         var jsonResp = {
-            "status": alreadyExists ? "loggedIn" : "signedUp"
+            "status": "Cannot create user with undefined body"
         }
-        res.status(200).send(JSON.stringify(jsonResp));
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error));
+        res.status(400).send(JSON.stringify(jsonResp))
+    }
+    else{  
+        try {
+            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+            console.log("exists: " + alreadyExists);
+            var jsonResp = {
+                "status": alreadyExists ? "loggedIn" : "signedUp"
+            }
+            res.status(200).send(JSON.stringify(jsonResp));
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error));
+        }
     }
 }
 
@@ -44,17 +41,32 @@ const handleUserEntry = async (req, res) => {
  */
 const getUserByEmail = async (req, res) => {
 
-    var query = {"email": req.body.userEmail}
-    
-    client.db("UniStatDB").collection("Users").findOne(query, function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        } else {
-            var jsonResp = {"userName" : result.name}
-            res.status(200).send(JSON.stringify(jsonResp));
+    if (req.body.userEmail == undefined) {
+        var jsonResp = {
+            "status": "Cannot get user without valid email"
         }
-    })
+        res.status(400).send(JSON.stringify(jsonResp))
+    }
+    else{
+        var query = {"email": req.body.userEmail}
+        client.db("UniStatDB").collection("Users").findOne(query, function(err, result) {
+            if (err){
+                console.log(error)
+                res.status(400).send(JSON.stringify(error))
+            } else {
+                if (result == undefined || result.name == undefined) {
+                    var jsonResp = {
+                        "status": "Cannot get user without valid email"
+                    }
+                    res.status(400).send(JSON.stringify(jsonResp))
+                }
+                else{
+                    var jsonResp = {"userName" : result.name}
+                    res.status(200).send(JSON.stringify(jsonResp));
+                }
+            }
+        })
+    }
 }
 
 // Functions for managing user stats

@@ -60,3 +60,48 @@ describe("POST /users", () => {
     })
 
 })
+
+describe("POST /userByEmail", () => {
+
+    describe("when the user is in the database", () => {
+
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).post("/userByEmail").send({
+                "userEmail": "manekgujral11@gmail.com"
+            })
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).userName).toBe("Manek Gujral")
+            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
+        })
+
+    })
+
+    describe("when the user is not in the database", () => {
+
+        test("should return a json response with status code 400", async () => {
+            const res = await request(app).post("/userByEmail").send({
+                "userEmail": "dummmyEmail"
+            })
+            expect(res.statusCode).toBe(400)
+            expect(JSON.parse(res.text).status).toBe("Cannot get user without valid email")
+        })
+
+    })
+
+    describe("when body is missing or undefined", () => {
+        const body = [
+            {  "userEmail": undefined },
+            {}
+        ]
+
+        body.forEach(async (body) => {
+            test("should return a json response with status code 400", async () => {
+                const res = await request(app).post("/userByEmail").send(body)
+                expect(res.statusCode).toBe(400)
+                expect(JSON.parse(res.text).status).toBe("Cannot get user without valid email")
+            })
+        })
+    })
+
+
+})
