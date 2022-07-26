@@ -23,7 +23,7 @@ const handleUserEntry = async (req, res) => {
     //     "status": alreadyExists ? "loggedIn" : "signedUp"
     // }
     // res.status(200).send(JSON.stringify(jsonResp));
-    console.log(req.body)
+    // console.log(req.body)
     try {
         var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
         console.log("exists: " + alreadyExists);

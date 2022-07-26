@@ -75,3 +75,4 @@ db.connect().catch(err => {
     db.client.close()
 })
 
+module.exports = app;
