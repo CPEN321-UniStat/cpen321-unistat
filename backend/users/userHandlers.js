@@ -77,16 +77,34 @@ const getUserByEmail = async (req, res) => {
  * @param {*} res 
  */
 const createUserStat = async (req, res) => {
-    // Store stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+    
+    if (req.body.userEmail == undefined || req.body.userPhoto == undefined || req.body.userName == undefined || req.body.univName == undefined || req.body.univMajor == undefined || req.body.univGpa == undefined || req.body.univEntranceScore == undefined || req.body.univBio == undefined) {
         var jsonResp = {
-            "status": `Stat stored for ${req.body.userEmail}`
+            "status": "Cannot create user stat with undefined body"
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
+        res.status(400).send(JSON.stringify(jsonResp))
+    }
+    else{
+        try {
+            var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+            var lenUsers = (await existingUsers.toArray()).length
+            if (lenUsers > 0) {
+                var jsonResp = {
+                    "status": "Stat already exists"
+                }
+                res.status(400).send(JSON.stringify(jsonResp))
+            }
+            else{
+                await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+                var jsonResp = {
+                    "status": `Stat stored for ${req.body.userEmail}`
+                }
+                res.status(200).send(JSON.stringify(jsonResp))
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
+        }
     }
 }
 
