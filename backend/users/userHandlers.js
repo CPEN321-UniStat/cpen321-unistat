@@ -179,25 +179,6 @@ const updateStat = async (req, res) => {
 
 /**
  * 
- * @param {*} req 
- * @param {*} res 
- */
-const deleteStat = async (req, res) => {
-    // Delete stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-        var jsonResp = {
-            "status": `Stat deleted for ${req.body.userEmail}`
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
-    }
-}
-
-/**
- * 
  * @param {*} idToken 
  * @param {*} fb_token 
  * @returns 
@@ -232,5 +213,4 @@ module.exports = {
     getStatsBySorting,
     getStatsByConfiguration,
     updateStat,
-    deleteStat,
 }

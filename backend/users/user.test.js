@@ -105,3 +105,19 @@ describe("POST /userByEmail", () => {
 
 
 })
+
+describe("POST /statsByFilter", () => {
+
+    describe("when the user is in the database", () => {
+
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).post("/userByEmail").send({
+                "userEmail": "manekgujral11@gmail.com"
+            })
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).userName).toBe("Manek Gujral")
+            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
+        })
+
+    })
+})

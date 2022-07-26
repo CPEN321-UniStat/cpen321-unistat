@@ -34,8 +34,6 @@ app.post("/statsByConfiguration", users.getStatsByConfiguration);
 
 app.put("/stats", users.updateStat);
 
-app.delete("/stats", users.deleteStat);
-
 
 // Payment Enpoints
 
