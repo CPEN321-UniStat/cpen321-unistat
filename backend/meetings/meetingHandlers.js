@@ -1,14 +1,7 @@
 const db = require("../database/connect")
 const client = db.client;
 
-// set up firebase authentication for notifications
-var admin = require("firebase-admin");
-
-var serviceAccount = require("../serviceAccountKey.json");
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+const users = require("../users/userHandlers.js");
 
 // creating zoom backend
 
@@ -32,6 +25,7 @@ const createMeetingRequest = async (req, res) => {
         var jsonResp = {
             "status": `Meeting request inputted by ${req.body.menteeEmail}`
         }
+        await users.sendMeetingRequest(req.body.mentorEmail)
         res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
         console.log(error)
@@ -83,13 +77,16 @@ const respondToMeeting = async (req, res) => {
             "zoomPassword": req.body.zoomPassword
         }}
         
-         client.db("UniStatDB").collection("Meetings").find(find_query).toArray(function(err, result) {
-             if (result[0].mentorEmail != req.body.email) {
-                 throw new Error('Invalid user error');
-             }
-         })
+        var menteeEmail = null;
+        client.db("UniStatDB").collection("Meetings").find(find_query).toArray(function(err, result) {
+            menteeEmail = result[0].menteeEmail;
+            if (result[0].mentorEmail != req.body.email) {
+                throw new Error('Invalid user error');
+            }
+        })
 
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        await users.sendMeetingResponse(menteeEmail)
         var jsonResp = {
             "status": `Meeting status updated`
         }
@@ -173,85 +170,12 @@ const updateFirbaseToken = async (req, res) => {
     }
 }
 
-const sendMeetingRequest = async (req, res) => {
-
-    //email of person you are sending request to
-    try {
-        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email }) //mentor email
-        var curToken = (await curUser.toArray())[0].firebase_token
-    } catch (error) {
-        console.log(error)
-    }
-
-    var payload = {
-        notification: {
-            title: "UniStat",
-            body: "Someone requested a meeting with you!",
-        },
-    }
-    
-    var options = {
-        priority: "high",
-        timeToLive: 60 * 60 * 24
-    }
-    if (curToken != "" && curToken != undefined) {
-        admin.messaging().sendToDevice(curToken, payload, options)
-        .then(function(response) {
-            console.log("Successfully sent message:", response);
-            var jsonResp = {"res" : "Successfully sent notification"}
-            res.status(200).send(JSON.stringify(jsonResp));
-        })
-        .catch(function(error) {
-            console.log("Error sending message:", error);
-            res.status(400).send(JSON.stringify(error));
-        })
-    }
-}
-
-const sendMeetingResponse = async (req, res) => {
-
-    //email of person you are responding to
-    try {
-        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email })
-        var curToken = (await curUser.toArray())[0].firebase_token
-    } catch (error) {
-        console.log(error)
-    }
-
-    var payload = {
-        notification: {
-            title: "UniStat",
-            body: "Someone responded to your meeting request!",
-        },
-    }
-    
-    var options = {
-        priority: "high",
-        timeToLive: 60 * 60 * 24
-    }
-
-    if (curToken != "" && curToken != undefined) {
-        admin.messaging().sendToDevice(curToken, payload, options)
-        .then(function(response) {
-            console.log("Successfully sent message:", response);
-            var jsonResp = {"res" : "Successfully sent notification"}
-            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-        })
-        .catch(function(error) {
-            console.log("Error sending message:", error);
-            res.status(400).send(JSON.stringify(error));
-        })
-    }
-}
-
 module.exports = {
     getMeetingByEmail,
     getMeetingById,
     respondToMeeting,
     updateMeetingLog,
     createMeetingRequest,
-    sendMeetingRequest,
-    sendMeetingResponse,
     updateFirbaseToken,
     createZoomMeeting
 }

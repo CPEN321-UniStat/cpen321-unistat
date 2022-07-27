@@ -3,6 +3,15 @@
 const axios = require("axios");
 const e = require("express");
 
+// set up firebase authentication for notifications
+var admin = require("firebase-admin");
+
+var serviceAccount = require("../serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 const db = require("../database/connect")
 const client = db.client;
 
@@ -240,6 +249,71 @@ async function storeGoogleUserData(idToken, fb_token) {
     return lenUsers
 }
 
+const sendMeetingRequest = async (userEmail) => {
+
+    //email of person you are sending request to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail }) //mentor email
+        var curToken = (await curUser.toArray())[0].firebase_token
+    } catch (error) {
+        console.log(error)
+    }
+
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone requested a meeting with you!",
+        },
+    }
+    
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
+    if (curToken != "" && curToken != undefined) {
+        admin.messaging().sendToDevice(curToken, payload, options)
+        .then(function(response) {
+            console.log("Successfully sent message:", response);
+        })
+        .catch(function(error) {
+            console.log("Error sending message:", error);
+        })
+    }
+}
+
+const sendMeetingResponse = async (userEmail) => {
+
+    //email of person you are responding to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail })
+        var curToken = (await curUser.toArray())[0].firebase_token
+    } catch (error) {
+        console.log(error)
+    }
+
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone responded to your meeting request!",
+        },
+    }
+    
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
+
+    if (curToken != "" && curToken != undefined) {
+        admin.messaging().sendToDevice(curToken, payload, options)
+        .then(function(response) {
+            console.log("Successfully sent message:", response);
+        })
+        .catch(function(error) {
+            console.log("Error sending message:", error);
+        })
+    }
+}
+
 module.exports = {
     handleUserEntry,
     storeGoogleUserData,
@@ -251,4 +325,6 @@ module.exports = {
     getStatsByConfiguration,
     updateStat,
     deleteStat,
+    sendMeetingRequest,
+    sendMeetingResponse
 }

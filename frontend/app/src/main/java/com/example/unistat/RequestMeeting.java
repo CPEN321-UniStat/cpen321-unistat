@@ -396,28 +396,6 @@ public class RequestMeeting extends AppCompatActivity {
                     }
             );
             requestQueue.add(postMeetingsRequest);
-
-            URL = IpConstants.URL + "sendMeetingRequest";
-            JSONObject notificationBody = new JSONObject();
-            notificationBody.put("email", mentorEmail);
-            JsonObjectRequest postRequestNotification = new JsonObjectRequest(
-                    Request.Method.POST,
-                    URL,
-                    notificationBody,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            Log.d("RequestMeetingNotif", "Server resp: " + response.toString());
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.d("RequestMeetingNotif", "Server error: " + error);
-                        }
-                    }
-            );
-            requestQueue.add(postRequestNotification);
         } catch (JSONException e) {
             e.printStackTrace();
         }
