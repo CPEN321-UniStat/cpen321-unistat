@@ -58,10 +58,6 @@ app.post("/createZoomMeeting", meeting.createZoomMeeting)
 
 app.put("/firebaseToken", meeting.updateFirbaseToken)
 
-app.post("/sendMeetingRequest", meeting.sendMeetingRequest)
-
-app.post("/sendMeetingResponse", meeting.sendMeetingResponse)
-
 var server = app.listen(8081, (req, res) => {
     var host = server.address().address;
     var port = server.address().port;
