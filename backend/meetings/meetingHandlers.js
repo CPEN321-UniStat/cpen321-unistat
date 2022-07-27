@@ -82,6 +82,13 @@ const respondToMeeting = async (req, res) => {
             "zoomId": req.body.zoomId,
             "zoomPassword": req.body.zoomPassword
         }}
+        
+         client.db("UniStatDB").collection("Meetings").find(find_query).toArray(function(err, result) {
+             if (result[0].mentorEmail != req.body.email) {
+                 throw new Error('Invalid user error');
+             }
+         })
+
         await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         var jsonResp = {
             "status": `Meeting status updated`
@@ -187,18 +194,18 @@ const sendMeetingRequest = async (req, res) => {
         priority: "high",
         timeToLive: 60 * 60 * 24
     }
-
-    admin.messaging().sendToDevice(curToken, payload, options)
-    .then(function(response) {
-        console.log("Successfully sent message:", response);
-        var jsonResp = {"res" : "Successfully sent notification"}
-        res.status(200).send(JSON.stringify(jsonResp));
-    })
-    .catch(function(error) {
-        console.log("Error sending message:", error);
-        res.status(400).send(JSON.stringify(error));
-    })
-
+    if (curToken != "" && curToken != undefined) {
+        admin.messaging().sendToDevice(curToken, payload, options)
+        .then(function(response) {
+            console.log("Successfully sent message:", response);
+            var jsonResp = {"res" : "Successfully sent notification"}
+            res.status(200).send(JSON.stringify(jsonResp));
+        })
+        .catch(function(error) {
+            console.log("Error sending message:", error);
+            res.status(400).send(JSON.stringify(error));
+        })
+    }
 }
 
 const sendMeetingResponse = async (req, res) => {
@@ -223,17 +230,18 @@ const sendMeetingResponse = async (req, res) => {
         timeToLive: 60 * 60 * 24
     }
 
-    admin.messaging().sendToDevice(curToken, payload, options)
-    .then(function(response) {
-        console.log("Successfully sent message:", response);
-        var jsonResp = {"res" : "Successfully sent notification"}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    })
-    .catch(function(error) {
-        console.log("Error sending message:", error);
-        res.status(400).send(JSON.stringify(error));
-    })
-
+    if (curToken != "" && curToken != undefined) {
+        admin.messaging().sendToDevice(curToken, payload, options)
+        .then(function(response) {
+            console.log("Successfully sent message:", response);
+            var jsonResp = {"res" : "Successfully sent notification"}
+            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        })
+        .catch(function(error) {
+            console.log("Error sending message:", error);
+            res.status(400).send(JSON.stringify(error));
+        })
+    }
 }
 
 module.exports = {

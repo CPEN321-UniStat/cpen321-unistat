@@ -420,6 +420,9 @@ public class EventActivity extends AppCompatActivity {
         meeting.setStatus(status);
         System.out.println(status.name() + " " + meeting.getColor());
 
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+
         String URL = IpConstants.URL + "meetings";
 
         JSONObject body = new JSONObject();
@@ -429,6 +432,7 @@ public class EventActivity extends AppCompatActivity {
             body.put("mColor", meeting.getColor());
             body.put("zoomId", zoomId);
             body.put("zoomPassword", zoomPassword);
+            body.put("email", account.getEmail());
         } catch (JSONException e) {
             e.printStackTrace();
         }
