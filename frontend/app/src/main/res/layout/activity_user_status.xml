@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/user_status_activity"
     tools:context=".UserStatusActivity">
 
     <TextView
@@ -30,6 +31,34 @@
         app:layout_constraintVertical_bias="0.062"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/question_animation" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/schoolAnimation"
+        android:layout_width="315dp"
+        android:layout_height="297dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/school" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/graduationAnimation"
+        android:layout_width="315dp"
+        android:layout_height="297dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/graduation" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -66,7 +95,6 @@
         android:contentDescription="@string/next_button_text"
         android:src="@drawable/ic_baseline_arrow_forward_ios_24"
         android:visibility="visible"
-        app:backgroundTint="@color/purple_200"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.954"

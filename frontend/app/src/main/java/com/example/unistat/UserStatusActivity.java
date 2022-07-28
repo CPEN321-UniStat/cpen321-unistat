@@ -16,14 +16,18 @@ public class UserStatusActivity extends AppCompatActivity {
 
     private Boolean isHighSchoolStudent = false;
     private Boolean checked = false;
-    private LottieAnimationView lottieAnimationView;
+    private LottieAnimationView questionAnimation;
+    private LottieAnimationView schoolAnimation;
+    private LottieAnimationView gradAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_status);
 
-        lottieAnimationView = findViewById(R.id.questionAnimation);
+        questionAnimation = findViewById(R.id.questionAnimation);
+        schoolAnimation = findViewById(R.id.schoolAnimation);
+        gradAnimation = findViewById(R.id.graduationAnimation);
 
         FloatingActionButton nextButton = findViewById(R.id.nextUserStatusButton);
         nextButton.setOnClickListener(new View.OnClickListener() {
@@ -57,16 +61,20 @@ public class UserStatusActivity extends AppCompatActivity {
 
         switch (view.getId()) {
             case R.id.hsStudentButton:
-                if (checked)
-                    lottieAnimationView.setAnimation(R.raw.school);
-                    lottieAnimationView.playAnimation();
-                    isHighSchoolStudent = true;
+                if (checked) {
+                    questionAnimation.setVisibility(View.GONE);
+                    schoolAnimation.setVisibility(View.VISIBLE);
+                    gradAnimation.setVisibility(View.GONE);
+                }
+                isHighSchoolStudent = true;
                 break;
             case R.id.univStudentButton:
-                if (checked)
-                    lottieAnimationView.setAnimation(R.raw.graduation);
-                    lottieAnimationView.playAnimation();
-                    isHighSchoolStudent = false;
+                if (checked) {
+                    questionAnimation.setVisibility(View.GONE);
+                    schoolAnimation.setVisibility(View.GONE);
+                    gradAnimation.setVisibility(View.VISIBLE);
+                }
+                isHighSchoolStudent = false;
                 break;
             default:
                 //

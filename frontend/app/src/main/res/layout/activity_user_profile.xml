@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:orientation="vertical"
+    android:id="@+id/userProfileActivity"
     tools:context=".UserProfileActivity">
 
     <ScrollView
