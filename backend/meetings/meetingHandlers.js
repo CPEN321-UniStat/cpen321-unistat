@@ -21,12 +21,26 @@ const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET)
 const createMeetingRequest = async (req, res) => {
     // Post a new meeting
     try {
-        await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
-        var jsonResp = {
-            "status": `Meeting request inputted by ${req.body.menteeEmail}`
+        const isMenteeValid = await isValidUser(req.body.menteeEmail);
+        const isMentorValid = await isValidUser(req.body.mentorEmail);
+        const isMenteeMentor = await isMentor(req.body.menteeEmail)
+        const isMentorMentor = await isMentor(req.body.mentorEmail)
+        const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
+        //const validTimes = isTimeValid(req.body.mStartTime, req.body.mEndTime)
+        if ( isMenteeValid && isMentorValid && isMentorMentor && !isMenteeMentor && validPayment) {
+            await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
+            var jsonResp = {
+                "status": `Meeting request inputted by ${req.body.menteeEmail}`
+            }
+            // Implement check to see if req.body.mentorEmail is actually a mentor
+            await users.sendMeetingRequest(req.body.mentorEmail)
+            res.status(200).send(JSON.stringify(jsonResp))
+        } else {
+            var jsonResp = {
+                "status": "Invalid user error"
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
         }
-        await users.sendMeetingRequest(req.body.mentorEmail)
-        res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
@@ -34,20 +48,27 @@ const createMeetingRequest = async (req, res) => {
 }
 
 const getMeetingByEmail = async (req, res) => {
-    var email = req.params.email;
-    var month = parseInt(req.headers['month'], 10)
-    var year = parseInt(req.headers['year'], 10)
-    var query = {"mStartTime.month": month, "mStartTime.year": year,  "$or": [{"menteeEmail": email}, {"mentorEmail": email}] }
-    
-    console.log(month)
-    client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
-        if (err){
-            console.log(err)
-            res.status(400).send(JSON.stringify(err))
+    const isEmailValid = isValidUser(req.body.email)
+    if (isEmailValid) {
+        var email = req.params.email;
+        var month = parseInt(req.headers['month'], 10)
+        var year = parseInt(req.headers['year'], 10)
+        var query = {"mStartTime.month": month, "mStartTime.year": year,  "$or": [{"menteeEmail": email}, {"mentorEmail": email}] }
+        console.log(month)
+        client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
+            if (err){
+                console.log(err)
+                res.status(400).send(JSON.stringify(err))
+            }
+            var jsonResp = {"meetings" : result}
+            res.status(200).send(JSON.stringify(jsonResp)); 
+        })
+    } else {
+        var jsonResp = {
+            "status": "Invalid user error"
         }
-        var jsonResp = {"meetings" : result}
-        res.status(200).send(JSON.stringify(jsonResp)); 
-    })
+        res.status(400).send(JSON.stringify(jsonResp))
+    }
 }
 
 const getMeetingById = async (req, res) => {
@@ -77,20 +98,25 @@ const respondToMeeting = async (req, res) => {
             "zoomPassword": req.body.zoomPassword
         }}
         
-        var menteeEmail = null;
-        client.db("UniStatDB").collection("Meetings").find(find_query).toArray(function(err, result) {
-            menteeEmail = result[0].menteeEmail;
-            if (result[0].mentorEmail != req.body.email) {
-                throw new Error('Invalid user error');
-            }
-        })
+        var meeting = client.db("UniStatDB").collection("Meetings").find(find_query, {$exists: true})
+        var meetingArray = await meeting.toArray()
+        var menteeEmail = meetingArray[0].menteeEmail;
+        var menteeEmail = meetingArray[0].menteeEmail;
+        var mentorEmail = meetingArray[0].mentorEmail;
 
-        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
-        await users.sendMeetingResponse(menteeEmail)
-        var jsonResp = {
-            "status": `Meeting status updated`
+        if(req.body.email != mentorEmail) {
+            var jsonResp = {
+                "status": `Invalid user error`
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
+        } else {
+            await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+            await users.sendMeetingResponse(menteeEmail)
+            var jsonResp = {
+                "status": `Meeting status updated`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
@@ -168,6 +194,27 @@ const updateFirbaseToken = async (req, res) => {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
     }
+}
+
+const isValidUser = async (email) => {
+    var query = {"email": email}
+    var existingUsers = client.db("UniStatDB").collection("Users").find(query, {$exists: true})
+    var lenUsers = (await existingUsers.toArray()).length
+    return (lenUsers > 0) ? 1 : 0;
+}
+
+const isMentor = async (email) => {
+    var query = {"userEmail": email}
+    var existingUsers = client.db("UniStatDB").collection("Stats").find(query, {$exists: true})
+    var lenUsers = (await existingUsers.toArray()).length
+    return (lenUsers > 0) ? 1 : 0;
+}
+
+const isTimeValid = (startTime, endTime) => {
+    const startTimeInSecs = startTime.second + startTime.minute * 60 + startTime.hourOfDay * 60 * 60 + startTime.dayOfMonth * 60 * 60 * 24 + startTime.month * 60 * 60 * 24 * 30 + startTime.year * 60 * 60 * 24 * 30 * 365;
+    const endTimeInSecs = endTime.second + endTime.minute * 60 + endTime.hourOfDay * 60 * 60 + endTime.dayOfMonth * 60 * 60 * 24 + endTime.month * 60 * 60 * 24 * 30 + endTime.year * 60 * 60 * 24 * 30 * 365;
+    return startTime < endTime;
+
 }
 
 module.exports = {

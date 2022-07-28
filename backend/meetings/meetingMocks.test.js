@@ -7,9 +7,6 @@ const meetings = require("./meetingHandlers")
 
 const sampleMeetings = [
         {
-            "_id": {
-              "$oid": "62c99e8be28aeb2cc40acf2b"
-            },
             "meetingLogs": [],
             "menteeEmail": "vijeethvp@gmail.com",
             "mentorEmail": "mentor@gmail.com",
@@ -24,8 +21,8 @@ const sampleMeetings = [
               "minute": 27,
               "second": 56
             },
-            "mId": 4716300830757600000,
-            "mName": "hiih",
+            "mId": 12345,
+            "mName": "Integration Meeting Test",
             "mStartTime": {
               "year": 2022,
               "month": 6,
@@ -93,22 +90,6 @@ meetings.updateFirbaseToken.mockImplementation((req, res) => {
     return JSON.stringify(jsonResp)
 })
 
-// sendMeetingRequest()
-meetings.sendMeetingRequest.mockImplementation((req, res) => {
-    const jsonResp = {
-        "res" : "Successfully sent notification"
-    }
-    return JSON.stringify(jsonResp)
-})
-
-// sendMeetingResponse()
-meetings.sendMeetingResponse.mockImplementation((req, res) => {
-    const jsonResp = {
-        "res" : "Successfully sent notification"
-    }
-    return JSON.stringify(jsonResp)
-})
-
 
 /********* Test Suite ************************/
 test('createMeetingRequest test', () => {
@@ -167,26 +148,6 @@ test('updateMeetingLog test', () => {
     }
     const jsonExpected = JSON.stringify(expected)
     expect(meetings.updateMeetingLog(req, res)).toBe(jsonExpected);
-})
-
-test('sendMeetingRequest test', () => {
-    const req = {}
-    const res = {}
-    const expected = {
-        "res" : "Successfully sent notification"
-    }
-    const jsonExpected = JSON.stringify(expected)
-    expect(meetings.sendMeetingRequest(req, res)).toBe(jsonExpected);
-})
-
-test('sendMeetingResponse test', () => {
-    const req = {}
-    const res = {}
-    const expected = {
-        "res" : "Successfully sent notification"
-    }
-    const jsonExpected = JSON.stringify(expected)
-    expect(meetings.sendMeetingResponse(req, res)).toBe(jsonExpected);
 })
 
 test('updateFirbaseToken test', () => {
