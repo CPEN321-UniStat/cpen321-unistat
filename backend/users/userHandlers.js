@@ -87,7 +87,14 @@ const getUserByEmail = async (req, res) => {
  */
 const createUserStat = async (req, res) => {
     
-    if (req.body.userEmail == undefined || req.body.userPhoto == undefined || req.body.userName == undefined || req.body.univName == undefined || req.body.univMajor == undefined || req.body.univGpa == undefined || req.body.univEntranceScore == undefined || req.body.univBio == undefined) {
+    if (req.body.userEmail == undefined 
+        || req.body.userPhoto == undefined 
+        || req.body.userName == undefined 
+        || req.body.univName == undefined 
+        || req.body.univMajor == undefined 
+        || req.body.univGpa == undefined 
+        || req.body.univEntranceScore == undefined 
+        || req.body.univBio == undefined) {
         var jsonResp = {
             "status": "Cannot create user stat with undefined body"
         }
@@ -140,15 +147,31 @@ const getAllUserStats = async (req, res) => {
  * @param {*} res 
  */
 const getStatsByFilter = async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+    if ( req.body == undefined || Object.values(req.body)[0] == undefined) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot filter user stat with undefined body"
         }
-        var jsonResp = {"statData" : result}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (Object.keys(req.body).length > 1) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot filter more than one string"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
+        var jsonResp = {
+            "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else {
+        client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
+            if (err){
+                console.log(error)
+                res.status(400).send(JSON.stringify(error))
+            }
+            var jsonResp = {"statData" : result}
+            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        })
     }
-    )
 }
 
 /**
@@ -157,15 +180,31 @@ const getStatsByFilter = async (req, res) => {
  * @param {*} res 
  */
 const getStatsBySorting = async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+    if ( req.body == undefined || Object.keys(req.body)[0] == undefined) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot sort user stat with undefined body"
         }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (Object.keys(req.body).length > 1) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot sort by more than one criteria"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (!(Object.keys(req.body)[0] == "univGpa" || Object.keys(req.body)[0] == "univEntranceScore")) {
+        var jsonResp = {
+            "status": "Invalid request: Please make sure the sort criteria is either univGpa or univEntranceScore"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else {
+        client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
+            if (err){
+                console.log(error)
+                res.status(400).send(JSON.stringify(error))
+            }
+            var jsonResp = {"statData" : result.reverse()}
+            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
+        })
     }
-    )
 }
 
 /**
@@ -174,15 +213,32 @@ const getStatsBySorting = async (req, res) => {
  * @param {*} res 
  */
 const getStatsByConfiguration = async (req, res) => {
-    client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+    if (req.body == undefined || Object.values(req.body)[0] == undefined ||  Object.values(req.body)[1] == undefined) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot sort/filter user stats with undefined body"
         }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (Object.keys(req.body).length != 2) {
+        var jsonResp = {
+            "status": "Invalid request: Cannot sort/filter by more or less than one criteria for each"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else if (!(Object.keys(req.body)[1] == "univGpa" || Object.keys(req.body)[1] == "univEntranceScore") 
+                    && !(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) {
+        var jsonResp = {
+            "status": "Invalid request: Please make sure that the sort and filter configurations are correct with sort placed before the filter configuration"
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else {
+        client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
+            if (err){
+                console.log(error)
+                res.status(400).send(JSON.stringify(error))
+            }
+            var jsonResp = {"statData" : result.reverse()}
+            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
+        })
     }
-    )
 }
 
 /**
@@ -192,34 +248,27 @@ const getStatsByConfiguration = async (req, res) => {
  */
 const updateStat = async (req, res) => {
     // Update stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
+    if (req.body.userEmail == undefined  
+    || req.body.univName == undefined 
+    || req.body.univMajor == undefined 
+    || req.body.univGpa == undefined 
+    || req.body.univEntranceScore == undefined 
+    || req.body.univBio == undefined) {
         var jsonResp = {
-            "status": `Stat updated for ${req.body.userEmail}`
+            "status": "Cannot update user stat with undefined body"
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
-    }
-}
-
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- */
-const deleteStat = async (req, res) => {
-    // Delete stat data
-    try {
-        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-        var jsonResp = {
-            "status": `Stat deleted for ${req.body.userEmail}`
+        res.status(400).send(JSON.stringify(jsonResp))
+    } else {
+        try {
+            await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
+            var jsonResp = {
+                "status": `Stat updated for ${req.body.userEmail}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
     }
 }
 
@@ -324,7 +373,6 @@ module.exports = {
     getStatsBySorting,
     getStatsByConfiguration,
     updateStat,
-    deleteStat,
     sendMeetingRequest,
     sendMeetingResponse
 }

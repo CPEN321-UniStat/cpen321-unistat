@@ -38,8 +38,7 @@ const getCoinsByUser = async (req, res) => {
         }
         var jsonResp = {"coins" : result.currency}
         res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    }
-    )
+    })
 }
 
 async function handlePayment(id) {

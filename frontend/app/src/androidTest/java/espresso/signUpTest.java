@@ -1,0 +1,96 @@
+package espresso;
+
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.action.ViewActions.typeText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.filters.LargeTest;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.example.unistat.R;
+import com.example.unistat.UserStatusActivity;
+
+@RunWith(AndroidJUnit4.class)
+@LargeTest
+public class signUpTest {
+    @Rule
+    public ActivityScenarioRule<UserStatusActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(UserStatusActivity.class);
+
+    @Test
+    public void signUpUnivStudent() {
+
+        // Figure out how to perform automated sign-in with Google
+//        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
+//        onView(withId(R.id.sign_in_button)).perform(click());
+
+        // Check that initial animation and questions are displayed
+        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
+
+        // Click on buttons and check animations
+        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.hsStudentButton)).perform(click());
+        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.univStudentButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.univStudentButton)).perform(click());
+        onView(withId(R.id.graduationAnimation)).check(matches(isDisplayed()));
+
+        // Click confirm and check if activity is correct
+        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.nextUserStatusButton)).perform(click());
+        onView(withId(R.id.create_user_profile_activity)).check(matches(isDisplayed()));
+
+        onView(withId(R.id.nextUserProfileButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.nextUserProfileButton)).perform(click());
+        onView(withText("All fields need to be filled before continuing...")).inRoot(new ToastMatcher())
+                .check(matches(isDisplayed()));
+
+        onView(withId(R.id.univNameInputEditText)).perform(typeText("UBC"));
+        onView(withId(R.id.univMajorInputEditText)).perform(typeText("cpen"));
+        onView(withId(R.id.univGpaInputEditText)).perform(typeText(String.valueOf(4.0)));
+        onView(withId(R.id.univEntranceScoreInputEditText)).perform(typeText(String.valueOf(400)));
+        onView(isRoot()).perform(pressBack());
+        onView(withId(R.id.univUserBioEditText)).perform(typeText("story"));
+
+        onView(isRoot()).perform(pressBack());
+        onView(withId(R.id.nextUserProfileButton)).perform(click());
+        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
+
+    }
+
+    @Test
+    public void signUpHighSchoolStudent() {
+
+        // Figure out how to perform automated sign-in with Google
+//        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
+//        onView(withId(R.id.sign_in_button)).perform(click());
+
+        // Check that initial animation and questions are displayed
+        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
+
+        // Click on buttons and check animations
+        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.hsStudentButton)).perform(click());
+        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
+
+        // Click confirm and check if activity is correct
+        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.nextUserStatusButton)).perform(click());
+        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
+
+    }
+}
+

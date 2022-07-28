@@ -1,6 +1,8 @@
 package com.example.unistat;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -64,7 +66,7 @@ public class CreateUserProfileActivity extends AppCompatActivity {
                         || TextUtils.isEmpty(univGpa)
                         || TextUtils.isEmpty(univEntranceScore)
                         || TextUtils.isEmpty(univBio)) {
-                    Toast.makeText(CreateUserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateUserProfileActivity.this, "All fields need to be filled before continuing...", Toast.LENGTH_LONG).show();
                 } else if (!univName.matches("^[a-zA-Z ]*$+")
                         || !univMajor.matches("^[a-zA-Z ]*$")) {
                     Toast.makeText(CreateUserProfileActivity.this, "Please make sure your university name & major are valid.", Toast.LENGTH_LONG).show();
