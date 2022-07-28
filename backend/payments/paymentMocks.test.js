@@ -2,7 +2,6 @@ jest.mock("./paymentHandlers");
 
 const payment = require("./paymentHandlers")
 
-
 /* Mock implementaions */
 payment.schedulePayment.mockImplementation((req, res) => {
   const jsonResp = {
