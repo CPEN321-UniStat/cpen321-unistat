@@ -167,7 +167,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 || TextUtils.isEmpty(editUserUnivGpa.getEditText().getText().toString())
                 || TextUtils.isEmpty(editUserUnivEntranceScore.getEditText().getText().toString())
                 || TextUtils.isEmpty(univBio)) {
-            Toast.makeText(UserProfileActivity.this, "All fields need to filled before continuing...", Toast.LENGTH_LONG).show();
+            Toast.makeText(UserProfileActivity.this, "All fields need to be filled before continuing...", Toast.LENGTH_LONG).show();
             return false;
         } else if (!univName.matches("^[a-zA-Z ]*$")
                 || !univMajor.matches("^[a-zA-Z ]*$")) {

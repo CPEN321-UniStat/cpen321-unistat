@@ -3,42 +3,22 @@ package espresso;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressBack;
-import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withResourceName;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
-
-import android.app.Activity;
-import android.content.res.Resources;
-import android.os.IBinder;
-import android.view.WindowManager;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.test.espresso.Root;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.platform.app.InstrumentationRegistry;
 
-import org.hamcrest.Description;
-import org.hamcrest.TypeSafeMatcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.example.unistat.CreateUserProfileActivity;
-import com.example.unistat.MainActivity;
 import com.example.unistat.R;
-import com.example.unistat.SignOutActivity;
-import com.example.unistat.UserProfileActivity;
 import com.example.unistat.UserStatusActivity;
 
 @RunWith(AndroidJUnit4.class)
@@ -106,7 +86,6 @@ public class signUpTest {
         onView(withId(R.id.hsStudentButton)).perform(click());
         onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
 
-
         // Click confirm and check if activity is correct
         onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
         onView(withId(R.id.nextUserStatusButton)).perform(click());
@@ -115,24 +94,3 @@ public class signUpTest {
     }
 }
 
-class ToastMatcher extends TypeSafeMatcher<Root> {
-
-    @Override
-    public void describeTo(Description description) {
-        description.appendText("is toast");
-    }
-
-    @Override
-    public boolean matchesSafely(Root root) {
-        int type = root.getWindowLayoutParams().get().type;
-        if ((type == WindowManager.LayoutParams.TYPE_TOAST)) {
-            IBinder windowToken = root.getDecorView().getWindowToken();
-            IBinder appToken = root.getDecorView().getApplicationWindowToken();
-            if (windowToken == appToken) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-}

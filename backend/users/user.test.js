@@ -565,8 +565,6 @@ describe("PUT /stats", () => {
         
         const body = [
             {  "userEmail": "testmail" },
-            {  "userPhoto": "link" },
-            {  "userName": "unistat" },
             {  "univName": "Harvard" },
             {  "univMajor": "CPEN" },
             {  "univGpa": "3.5" },
@@ -575,8 +573,6 @@ describe("PUT /stats", () => {
             {  "userEmail": "email", "userPhoto": "link", "userName": undefined },
             {
                 "userEmail": "manekgujral11@gmail.com",
-                "userPhoto": "link",
-                "userName": "Manek Gujral",
                 "univName": "UBC",
                 "univMajor": "Computer Science",
                 "univGpa": "4.33",

@@ -157,7 +157,7 @@ const getStatsByFilter = async (req, res) => {
             "status": "Invalid request: Cannot filter more than one string"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) {
+    } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
         var jsonResp = {
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
         }
@@ -248,9 +248,7 @@ const getStatsByConfiguration = async (req, res) => {
  */
 const updateStat = async (req, res) => {
     // Update stat data
-    if (req.body.userEmail == undefined 
-    || req.body.userPhoto == undefined 
-    || req.body.userName == undefined 
+    if (req.body.userEmail == undefined  
     || req.body.univName == undefined 
     || req.body.univMajor == undefined 
     || req.body.univGpa == undefined 

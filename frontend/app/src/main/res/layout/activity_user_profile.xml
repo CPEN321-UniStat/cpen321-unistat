@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,6 +10,7 @@
     tools:context=".UserProfileActivity">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -28,10 +29,10 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="end"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="0dp"
-                android:layout_gravity="end"
                 android:gravity="end"
                 android:orientation="horizontal">
 
@@ -39,13 +40,14 @@
                     android:id="@+id/coins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
                     android:layout_gravity="center"
-                    android:textSize="20sp"
+                    android:fontFamily="@font/open_sans"
                     android:textColor="@color/grey"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/coinAnimation"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
@@ -66,8 +68,8 @@
                 android:layout_height="135dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                app:civ_border_width="2dp"
                 app:civ_border_color="@color/grey"
+                app:civ_border_width="2dp"
                 app:layout_constraintBottom_toTopOf="@+id/editUserUnivInput"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -114,16 +116,17 @@
                 android:layout_marginTop="35dp"
                 android:hint="@string/user_univ_text"
                 android:textColorHint="@drawable/text_box_stroke_color"
-                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:errorEnabled="true"
+                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:errorEnabled="true"
                 app:layout_constraintVertical_bias="0.442">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUserUnivEditText"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="text" />
@@ -138,15 +141,16 @@
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_major_text"
                 android:textColorHint="@drawable/text_box_stroke_color"
-                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:errorEnabled="true"
+                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:errorEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/editUserUnivInput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUserMajorEditText"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="text" />
@@ -161,15 +165,16 @@
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_gpa_text"
                 android:textColorHint="@drawable/text_box_stroke_color"
-                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:errorEnabled="true"
+                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
-                app:errorEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/editUserMajorinput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUserGpaEditText"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberDecimal" />
@@ -184,14 +189,15 @@
                 android:layout_marginTop="25dp"
                 android:hint="@string/user_entrance_score_text"
                 android:textColorHint="@drawable/text_box_stroke_color"
-                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:errorEnabled="true"
+                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:errorEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/editUserGpaInput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUserEntranceScoreEditText"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:inputType="numberDecimal" />
@@ -203,16 +209,18 @@
                 android:layout_width="254dp"
                 android:layout_height="166dp"
                 android:layout_marginTop="25dp"
+                android:layout_marginBottom="50dp"
                 android:hint="@string/univ_user_bio_input"
                 android:textColorHint="@drawable/text_box_stroke_color"
-                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:boxStrokeColor="@drawable/text_box_stroke_color"
+                app:errorEnabled="true"
+                app:hintTextColor="@drawable/text_box_stroke_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:errorEnabled="true"
                 app:layout_constraintTop_toBottomOf="@+id/editUserGpaInput">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUserBioEditText"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:gravity="top"
@@ -222,31 +230,32 @@
                     android:scrollbars="vertical" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/confirmChangesButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="10dp"
-                android:padding="20dp"
-                android:contentDescription="@string/edit_profile_button_text"
-                android:src="@drawable/ic_baseline_done_24"
-                android:visibility="gone" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/editProfileButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_margin="10dp"
-                android:padding="20dp"
-                android:contentDescription="@string/edit_profile_button_text"
-                android:src="@drawable/ic_baseline_edit_24"
-                android:visibility="visible" />
-
-
         </LinearLayout>
 
     </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/confirmChangesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/edit_profile_button_text"
+        android:padding="20dp"
+        android:src="@drawable/ic_baseline_done_24"
+        android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editProfileButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/edit_profile_button_text"
+        android:padding="20dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:visibility="visible" />
+
+</RelativeLayout>
