@@ -72,14 +72,13 @@ public class UserProfileActivity extends AppCompatActivity {
         assert account != null;
         String userEmail = account.getEmail();
         Log.d(TAG, "User email: " + userEmail);
+
         getUserStats(userEmail);
 
         userNameText.setText(account.getDisplayName());
         String emailText = "Account for " + account.getEmail();
         userEmailText.setText(emailText);
         Picasso.get().load(account.getPhotoUrl()).resize(125, 125).into(userProfileImage);
-
-        getCoinsByEmail(userEmail);
 
         confirmChangesButton = findViewById(R.id.confirmChangesButton);
         confirmChangesButton.setOnClickListener(new View.OnClickListener() {
@@ -203,8 +202,10 @@ public class UserProfileActivity extends AppCompatActivity {
                         Log.d(TAG, "Server resp: " + response.toString());
                         try {
                             JSONArray statArray = (JSONArray) response.get("statData");
-                            JSONObject userStat;
-                            if (statArray.length() <= 0) { // if mentee then not much to show
+                            JSONObject userStat = statArray.getJSONObject(0);
+
+                            //add coins to resp on stat req
+                            if (userStat.get("isMentor").equals(false)) { // if mentee then not much to show
                                 editUserUnivName.setVisibility(View.GONE);
                                 editUserUnivMajor.setVisibility(View.GONE);
                                 editUserUnivGpa.setVisibility(View.GONE);
@@ -213,13 +214,14 @@ public class UserProfileActivity extends AppCompatActivity {
                                 editUserBio.setVisibility(View.GONE);
                                 confirmChangesButton.setVisibility(View.GONE);
                             } else { // if mentor then show university stats
-                                userStat = statArray.getJSONObject(0);
                                 editUserUnivName.getEditText().setText((String) userStat.get("univName"), TextView.BufferType.EDITABLE);
                                 editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
                                 editUserUnivGpa.getEditText().setText(String.valueOf(userStat.get("univGpa")), TextView.BufferType.EDITABLE);
                                 editUserUnivEntranceScore.getEditText().setText(String.valueOf(userStat.get("univEntranceScore")), TextView.BufferType.EDITABLE);
                                 editUserBio.getEditText().setText((String) userStat.get("univBio"), TextView.BufferType.EDITABLE);
                             }
+                            coinsText.setText(String.valueOf(userStat.get("coins"))); //add coins to resp on stat req
+                            // getCoinsByEmail(userEmail);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -234,43 +236,5 @@ public class UserProfileActivity extends AppCompatActivity {
         );
 
         requestQueue.add(getUserStatRequest);
-    }
-
-    private void getCoinsByEmail(String userEmail) {
-        String URL = IpConstants.URL + "coinsByUser";
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("userEmail", userEmail);
-            Log.d(TAG, body.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest getCoinsRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                URL,
-                body,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, "Server resp: " + response.toString());
-                        try {
-                            String coins = response.getString("coins");
-                            coinsText.setText(coins);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Server error: " + error);
-                    }
-                }
-        );
-
-        requestQueue.add(getCoinsRequest);
     }
 }

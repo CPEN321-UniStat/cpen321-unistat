@@ -8,6 +8,8 @@ var admin = require("firebase-admin");
 
 var serviceAccount = require("../serviceAccountKey.json");
 
+const payment = require("../payments/paymentHandlers.js")
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
 });
@@ -168,8 +170,36 @@ const getStatsByFilter = async (req, res) => {
                 console.log(error)
                 res.status(400).send(JSON.stringify(error))
             }
-            var jsonResp = {"statData" : result}
-            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+            
+            if(result[0] != undefined && Object.keys(req.body)[0] == "userEmail"){
+                // result[0].isMentor = true
+                var currency = payment.getUserCoins(Object.values(req.body)[0])
+                currency.then(function(r){
+                    result[0].coins = r
+                    result[0].isMentor = true
+                    var jsonResp = {
+                        "statData": result,
+                    }
+                    res.status(200).send(JSON.stringify(jsonResp));
+                }
+                ).catch(function(err){
+                    console.log(err)
+                    res.status(400).send(JSON.stringify(err))
+                })
+            }
+            else if(Object.keys(req.body)[0] == "userEmail"){
+                var currency = payment.getUserCoins(Object.values(req.body)[0])
+                currency.then(function(r){
+                    var jsonResp = {
+                        "statData": [{ "coins": r, "isMentor": false }]
+                    }
+                    res.status(200).send(JSON.stringify(jsonResp));
+                }
+                ).catch(function(err){
+                    console.log(err)
+                    res.status(400).send(JSON.stringify(err))
+                })
+            }
         })
     }
 }

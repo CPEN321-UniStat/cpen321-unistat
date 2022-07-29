@@ -39,7 +39,7 @@ app.put("/stats", users.updateStat);
 
 app.post("/schedulePayment", payment.schedulePayment)
 
-app.post("/coinsByUser", payment.getCoinsByUser)
+// app.post("/coinsByUser", payment.getCoinsByUser)
 
 
 // Meeting Endpoints

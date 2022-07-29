@@ -30,15 +30,26 @@ const schedulePayment = async (req, res) => {
     }
 }
 
-const getCoinsByUser = async (req, res) => {
-    client.db("UniStatDB").collection("Users").findOne({"email": req.body.userEmail}, function(err, result) {
-        if (err){
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-        var jsonResp = {"coins" : result.currency}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    })
+// const getCoinsByUser = async (req, res) => {
+//     client.db("UniStatDB").collection("Users").findOne({"email": req.body.userEmail}, function(err, result) {
+//         if (err){
+//             console.log(error)
+//             res.status(400).send(JSON.stringify(error))
+//         }
+//         var jsonResp = {"coins" : result.currency}
+//         res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+//     })
+// }
+
+async function getUserCoins (userEmail) {
+    //email of person you are sending request to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail }) //mentor email
+        let currency = (await curUser.toArray())[0].currency
+        return currency
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 async function handlePayment(id) {
@@ -139,5 +150,6 @@ async function makePayment(menteeEmail, mentorEmail, payment) {
 
 module.exports = {
     schedulePayment,
-    getCoinsByUser
+    // getCoinsByUser,
+    getUserCoins
 }
