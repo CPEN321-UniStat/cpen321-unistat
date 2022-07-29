@@ -1,8 +1,10 @@
 const request = require('supertest')
 const app = require('../server')
+jest.mock("../users/userHandlers.js");
 
-// INTEGRATION TESTS (Point 7 of M6)
+// UNIT TESTS (Point 6 of M6)
 // Requirement is having users qcrl1112@gmail.com (mentee), C.Q.U.1.NN.801@gmail.com (mentee) and quinncarroll810@gmail.com (mentor)
+const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
     "menteeEmail": "qcrl1112@gmail.com",
@@ -18,7 +20,7 @@ const sampleIntegrationTestMeeting = {
       "minute": 27,
       "second": 56
     },
-    "mId": 12345,
+    "mId": meetingID,
     "mName": "Integration Meeting Test",
     "mStartTime": {
       "year": 2022,
@@ -28,9 +30,7 @@ const sampleIntegrationTestMeeting = {
       "minute": 27,
       "second": 56
     }
-  }
-
-  const meetingID = Math.random().toString(16).substr(2, 16);
+}
 
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
@@ -105,6 +105,13 @@ describe("POST /meetings", () => {
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
     })
+
+    test("For a meeting that already exists", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mId = meetingID;
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
     
 })
 
@@ -112,7 +119,9 @@ describe("POST /meetings", () => {
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
         const res = await request(app).get("/meetings/quinncarroll810@gmail.com").send({
-            "email": "quinncarroll810@gmail.com"
+            "email": "quinncarroll810@gmail.com",
+            "month": 6,
+            "year": 2022
         })
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
@@ -126,7 +135,18 @@ describe("GET /meetings/email", () => {
 
     test("Get meetings for an invalid user", async () => {
         const res = await request(app).get("/meetings/johnwick@gmail.com").send({
-            "email": "johnwick@gmail.com"
+            "email": "johnwick@gmail.com",
+            "month": 6,
+            "year": 2022
+        })
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("Invalid month/year value", async () => {
+        const res = await request(app).get("/meetings/johnwick@gmail.com").send({
+            "email": "johnwick@gmail.com",
+            "month": 6,
+            "year": -2022
         })
         expect(res.statusCode).toBe(400)
     })
@@ -187,11 +207,13 @@ describe("PUT /meetings", () => {
         expect(res.statusCode).toBe(200)
     })
 
-    test("Update meeting status with a valid status and meeting ID", async () => {
+    test("Update meeting status with a valid status, meeting ID, and zoom credentials", async () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "declined",
-            "email": "quinncarroll810@gmail.com"
+            "email": "quinncarroll810@gmail.com",
+            "zoomId": "12345",
+            "zoomPassword": "password"
         })
         expect(res.statusCode).toBe(200)
     })
@@ -200,6 +222,15 @@ describe("PUT /meetings", () => {
 
 // Tests for createZoomMeeting
 describe("POST /createZoomMeeting", () => {
+    test("Meeting Name is null", async () => {
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": null,
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00"
+        })
+        expect(res.statusCode).toBe(400)
+    })
+
     test("Creates a Zoom meeting", async () => {
         const res = await request(app).post("/createZoomMeeting").send({
             "meetingTopic": "Test Meeting",
@@ -207,6 +238,15 @@ describe("POST /createZoomMeeting", () => {
             "meetingEndTime": "2022-08-11'T'12:05:00"
         })
         expect(res.statusCode).toBe(200)
+    })
+
+    test("Start date is after end date", async () => {
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'14:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00"
+        })
+        expect(res.statusCode).toBe(400)
     })
 })
 
