@@ -3,6 +3,9 @@
 const axios = require("axios");
 const e = require("express");
 
+const {OAuth2Client} = require('google-auth-library');
+const authClient = new OAuth2Client("572477064370-885bs334uv17fhubimtof6su24mf0pp8.apps.googleusercontent.com");
+
 // set up firebase authentication for notifications
 var admin = require("firebase-admin");
 
@@ -302,6 +305,7 @@ const updateStat = async (req, res) => {
     }
 }
 
+
 /**
  * 
  * @param {*} idToken 
@@ -309,21 +313,31 @@ const updateStat = async (req, res) => {
  * @returns 
  */
 async function storeGoogleUserData(idToken, fb_token) {
-    var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
-    response.data.firebase_token = fb_token
 
-    var existingUsers = client.db("UniStatDB").collection("Users").find({email: response.data.email}, {$exists: true})
+    const ticket = await authClient.verifyIdToken({
+        idToken: idToken,
+        audience: ["572477064370-885bs334uv17fhubimtof6su24mf0pp8.apps.googleusercontent.com"]  // Specify the CLIENT_ID of the app that accesses the backend
+        // Or, if multiple clients access the backend:
+        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
+    });
+    const response = ticket.getPayload();
+    console.log(response)
+
+    // var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
+    response.firebase_token = fb_token
+
+    var existingUsers = client.db("UniStatDB").collection("Users").find({email: response.email}, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
 
     if (lenUsers > 0) { // User already exists
         console.log("already exists")
-        await client.db("UniStatDB").collection("Users").updateOne({email : response.data.email}, {$set: {"firebase_token": fb_token}})
+        await client.db("UniStatDB").collection("Users").updateOne({email : response.email}, {$set: {"firebase_token": fb_token}})
     } else { // New user, so insert
         console.log("new user, signing up...")
-        response.data.currency = 100
-        await client.db("UniStatDB").collection("Users").insertOne(response.data)
+        response.currency = 100
+        await client.db("UniStatDB").collection("Users").insertOne(response)
     }
-
+    
     console.log("num existing users: ", lenUsers)
     return lenUsers
 }
