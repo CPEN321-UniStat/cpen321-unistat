@@ -3,15 +3,14 @@
 const axios = require("axios");
 const e = require("express");
 
-const {OAuth2Client} = require('google-auth-library');
-const authClient = new OAuth2Client("572477064370-885bs334uv17fhubimtof6su24mf0pp8.apps.googleusercontent.com");
-
 // set up firebase authentication for notifications
 var admin = require("firebase-admin");
 
 var serviceAccount = require("../serviceAccountKey.json");
 
-const payment = require("../payments/paymentHandlers.js")
+const payment = require("../payments/paymentHandlers.js");
+
+const verify = require("./userVerification");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -32,8 +31,7 @@ const handleUserEntry = async (req, res) => {
             "status": "Cannot create user with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    }
-    else{  
+    } else {  
         try {
             var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
             console.log("exists: " + alreadyExists);
@@ -314,15 +312,15 @@ const updateStat = async (req, res) => {
  */
 async function storeGoogleUserData(idToken, fb_token) {
 
-    const ticket = await authClient.verifyIdToken({
-        idToken: idToken,
-        audience: ["572477064370-885bs334uv17fhubimtof6su24mf0pp8.apps.googleusercontent.com"]  // Specify the CLIENT_ID of the app that accesses the backend
-        // Or, if multiple clients access the backend:
-        //[CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]
-    });
-    const response = ticket.getPayload();
-    console.log(response)
+    var response = null;
+    try {
+        response = await verify.userVerifier(idToken);
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
 
+    console.log(response)
     // var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
     response.firebase_token = fb_token
 
@@ -335,7 +333,7 @@ async function storeGoogleUserData(idToken, fb_token) {
     } else { // New user, so insert
         console.log("new user, signing up...")
         response.currency = 100
-        await client.db("UniStatDB").collection("Users").insertOne(response)
+        client.db("UniStatDB").collection("Users").insertOne(response)
     }
     
     console.log("num existing users: ", lenUsers)
