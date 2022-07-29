@@ -26,7 +26,6 @@ const createMeetingRequest = async (req, res) => {
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        //const validTimes = isTimeValid(req.body.mStartTime, req.body.mEndTime)
         if ( isMenteeValid && isMentorValid && isMentorMentor && !isMenteeMentor && validPayment) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
@@ -72,7 +71,6 @@ const getMeetingByEmail = async (req, res) => {
 }
 
 const getMeetingById = async (req, res) => {
-
     var query = {"mId": req.body.mId}
 
     client.db("UniStatDB").collection("Meetings").find(query).toArray(function(err, result) {
@@ -208,13 +206,6 @@ const isMentor = async (email) => {
     var existingUsers = client.db("UniStatDB").collection("Stats").find(query, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
     return (lenUsers > 0) ? 1 : 0;
-}
-
-const isTimeValid = (startTime, endTime) => {
-    const startTimeInSecs = startTime.second + startTime.minute * 60 + startTime.hourOfDay * 60 * 60 + startTime.dayOfMonth * 60 * 60 * 24 + startTime.month * 60 * 60 * 24 * 30 + startTime.year * 60 * 60 * 24 * 30 * 365;
-    const endTimeInSecs = endTime.second + endTime.minute * 60 + endTime.hourOfDay * 60 * 60 + endTime.dayOfMonth * 60 * 60 * 24 + endTime.month * 60 * 60 * 24 * 30 + endTime.year * 60 * 60 * 24 * 30 * 365;
-    return startTime < endTime;
-
 }
 
 module.exports = {
