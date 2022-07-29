@@ -108,22 +108,12 @@ describe("POST /meetings", () => {
     
 })
 
-// Tests for createZoomMeeting
-describe("POST /createZoomMeeting", () => {
-    test("Creates a Zoom meeting", async () => {
-        const res = await request(app).post("/createZoomMeeting").send({
-            "meetingTopic": "Test Meeting",
-            "meetingStartTime": "2022-08-11'T'11:05:00",
-            "meetingEndTime": "2022-08-11'T'12:05:00"
-        })
-        expect(res.statusCode).toBe(200)
-    })
-})
-
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
-        const res = await request(app).post("/meetings/quinncarroll810@gmail.com").send({})
+        const res = await request(app).get("/meetings/quinncarroll810@gmail.com").send({
+            "email": "quinncarroll810@gmail.com"
+        })
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
         expect(res.meetings.some(meeting => {
@@ -135,7 +125,9 @@ describe("GET /meetings/email", () => {
     })
 
     test("Get meetings for an invalid user", async () => {
-        const res = await request(app).post("/meetings/johnwick@gmail.com").send({})
+        const res = await request(app).get("/meetings/johnwick@gmail.com").send({
+            "email": "johnwick@gmail.com"
+        })
         expect(res.statusCode).toBe(400)
     })
 })
@@ -205,6 +197,19 @@ describe("PUT /meetings", () => {
     })
 })
 
+
+// Tests for createZoomMeeting
+describe("POST /createZoomMeeting", () => {
+    test("Creates a Zoom meeting", async () => {
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00"
+        })
+        expect(res.statusCode).toBe(200)
+    })
+})
+
 // Tests for updating meeting logs
 describe("PUT /updateMeetingLog", () => {
     test("Update meeting logs with valid mId", async () => {
@@ -229,6 +234,25 @@ describe("PUT /updateMeetingLog", () => {
                 "isMentor": true,
                 "action": "JOINED"
             }
+        })
+        expect(res.statusCode).toBe(400)
+    })
+})
+
+// Tests for updating a firebase token
+describe("PUT /firebaseToken", () => {
+    test("Update firebase token for a valid user", async () => {
+        const res = await request(app).put("/firebaseToken").send({
+            "email": "quinncarroll810@gmail.com",
+            "firebase_token": ""
+        })
+        expect(res.statusCode).toBe(200)
+    })
+
+    test("Update firebase token for an invalid user", async () => {
+        const res = await request(app).put("/firebaseToken").send({
+            "email": "johnwick@gmail.com",
+            "firebase_token": ""
         })
         expect(res.statusCode).toBe(400)
     })

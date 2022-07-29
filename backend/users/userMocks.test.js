@@ -96,6 +96,21 @@ users.deleteStat.mockImplementation((req, res) => {
     return JSON.stringify(jsonResp)
 })
 
+// sendMeetingRequest()
+users.sendMeetingRequest.mockImplementation((email) => {
+    const jsonResp = {
+        "res" : "Successfully sent notification"
+    }
+    return JSON.stringify(jsonResp)
+})
+
+// sendMeetingResponse()
+users.sendMeetingResponse.mockImplementation((email) => {
+    const jsonResp = {
+        "res" : "Successfully sent notification"
+    }
+    return JSON.stringify(jsonResp)
+})
 
 
 /********* Test Suite ************************/
@@ -208,4 +223,25 @@ test("deleteStat test", () => {
     }
     const jsonExpected = JSON.stringify(expected)
     expect(users.deleteStat(req, res)).toBe(jsonExpected);
+})
+
+
+test('sendMeetingRequest test', (email) => {
+    const req = {}
+    const res = {}
+    const expected = {
+        "res" : "Successfully sent notification"
+    }
+    const jsonExpected = JSON.stringify(expected)
+    expect(users.sendMeetingRequest(email)).toBe(jsonExpected);
+})
+
+test('sendMeetingResponse test', (email) => {
+    const req = {}
+    const res = {}
+    const expected = {
+        "res" : "Successfully sent notification"
+    }
+    const jsonExpected = JSON.stringify(expected)
+    expect(users.sendMeetingResponse(email)).toBe(jsonExpected);
 })
