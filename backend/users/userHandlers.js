@@ -203,6 +203,12 @@ const getStatsByFilter = async (req, res) => {
                     res.status(400).send(JSON.stringify(err))
                 })
             }
+            else{
+                var jsonResp = {
+                    "statData": result,
+                }
+                res.status(200).send(JSON.stringify(jsonResp));
+            }
         })
     }
 }
