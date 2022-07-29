@@ -108,18 +108,6 @@ describe("POST /meetings", () => {
     
 })
 
-// Tests for createZoomMeeting
-describe("POST /createZoomMeeting", () => {
-    test("Creates a Zoom meeting", async () => {
-        const res = await request(app).post("/createZoomMeeting").send({
-            "meetingTopic": "Test Meeting",
-            "meetingStartTime": "2022-08-11'T'11:05:00",
-            "meetingEndTime": "2022-08-11'T'12:05:00"
-        })
-        expect(res.statusCode).toBe(200)
-    })
-})
-
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
@@ -204,6 +192,19 @@ describe("PUT /meetings", () => {
             "mId": meetingID,
             "status": "declined",
             "email": "quinncarroll810@gmail.com"
+        })
+        expect(res.statusCode).toBe(200)
+    })
+})
+
+
+// Tests for createZoomMeeting
+describe("POST /createZoomMeeting", () => {
+    test("Creates a Zoom meeting", async () => {
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00"
         })
         expect(res.statusCode).toBe(200)
     })
