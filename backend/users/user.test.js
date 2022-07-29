@@ -3,48 +3,10 @@ const app = require('../server')
 const db = require("../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
+const init = require("../integration_testing/initUsers")
 
-jest.mock("./userVerification.js")
-
-const idMenteeToken = "validMenteeToken"
-const idMentorToken = "validMentorToken"
-const invalidIdToken = "invalid"
-const verify = require("./userVerification")
-
-const menteeSampleUser = {
-    iss: 'iss',
-    azp: 'azp',
-    aud: 'aud',
-    sub: 'sub',
-    email: 'menteeuser@sample.com',
-    email_verified: true,
-    name: 'Mentee User',
-    picture: 'Test pic',
-    given_name: 'Mentee',
-    family_name: 'User',
-    locale: 'en',
-    iat: 0,
-    exp: 0
-  }
-
-  const mentorSampleUser = {
-    iss: 'iss',
-    azp: 'azp',
-    aud: 'aud',
-    sub: 'sub',
-    email: 'mentoruser@sample.com',
-    email_verified: true,
-    name: 'Mentee User',
-    picture: 'Test pic',
-    given_name: 'Mentor',
-    family_name: 'User',
-    locale: 'en',
-    iat: 0,
-    exp: 0
-  }
-
-  const mentorSampleStat = {
-    "userEmail": "mentoruser@sample.com",
+const mentorSampleStat = {
+    "userEmail": "kusharora339@gmail.com",
     "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
     "userName": "Mentor User",
     "univName": "Mentor Univ",
@@ -52,16 +14,11 @@ const menteeSampleUser = {
     "univGpa": 1.0,
     "univEntranceScore": 1255,
     "univBio": "😀🥰😄😋😚😄"
-  }
+}
 
-verify.userVerifier.mockImplementation( async (idToken) => {
-    if (idToken === idMenteeToken) {
-        return menteeSampleUser
-    } else if (idToken === idMentorToken) {
-        return mentorSampleUser
-    } else {
-        throw "invalid token"
-    }
+beforeAll(() => {
+    console.log("DROPPING")
+    client.db("UniStatDB").collection("Users").drop();
 })
 
 describe("POST /users", () => {
@@ -69,22 +26,24 @@ describe("POST /users", () => {
     describe("when the user is not already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
+            const [,idMenteeToken] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": "testFirebaseToken"
             })
             expect(res.statusCode).toBe(200)
-            // expect(JSON.parse(res.text).status).toBe("signedUp")
+            expect(JSON.parse(res.text).status).toBe("signedUp")
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
 
         test("(for mentor) should return a json response with status code 200", async () => {
+            const [idMentorToken,] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
                 "firebase_token": "testFirebaseToken"
             })
             expect(res.statusCode).toBe(200)
-            // expect(JSON.parse(res.text).status).toBe("signedUp")
+            expect(JSON.parse(res.text).status).toBe("signedUp")
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
 
@@ -93,6 +52,7 @@ describe("POST /users", () => {
     describe("when the user is already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
+            const [,idMenteeToken] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": "testFirebaseToken"
@@ -103,6 +63,7 @@ describe("POST /users", () => {
         })
 
         test("(for mentor) should return a json response with status code 200", async () => {
+            [idMentorToken,] = await init.initializeUsers();
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
                 "firebase_token": "testFirebaseToken"
@@ -118,7 +79,7 @@ describe("POST /users", () => {
         // send a json response with status code 400
         test("should return a json response with status code 400", async () => {
             const res = await request(app).post("/users").send({
-                "Token": invalidIdToken, 
+                "Token": "invalid token", 
                 "firebase_token": "testFirebaseToken"
             })
             expect(res.statusCode).toBe(400)
