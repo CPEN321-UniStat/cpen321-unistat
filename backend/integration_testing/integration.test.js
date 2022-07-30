@@ -20,6 +20,13 @@ beforeAll(() => {
             }
         }
     )
+    client.db("UniStatDB").listCollections({name: "Meetings"}).next(
+        function (err, collectionInfo) {
+            if (collectionInfo) { // Only if collection exists
+                client.db("UniStatDB").collection("Stats").drop();
+            }
+        }
+    )
 })
 
 var mentorSampleStat = {
@@ -620,8 +627,8 @@ describe("View Statistics use case", () => {
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
-    "menteeEmail": "menteeuser@sample.com",
-    "mentorEmail": "mentoruser@sample.com",
+    "menteeEmail": "manekgujral11@gmail.com",
+    "mentorEmail": "kusharora339@gmail.com",
     "paymentAmount": 5,
     "status": "PENDING",
     "mColor": 0,
@@ -707,7 +714,7 @@ describe("POST /meetings", () => {
 
     test("From an existing mentee to themselves", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "menteeuser@sample.com";
+        body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })

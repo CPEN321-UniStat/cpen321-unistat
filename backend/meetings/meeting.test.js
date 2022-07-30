@@ -3,12 +3,12 @@ const app = require('../server')
 // jest.mock("../users/userHandlers.js");
 
 // UNIT TESTS (Point 6 of M6)
-// Requirement is having users qcrl1112@gmail.com (mentee), C.Q.U.1.NN.801@gmail.com (mentee) and quinncarroll810@gmail.com (mentor)
+// REQUIRES A SECOND MENTEE UNDER secondmenteeuser@sample.com email
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
-    "menteeEmail": "qcrl1112@gmail.com",
-    "mentorEmail": "quinncarroll810@gmail.com",
+    "menteeEmail": "manekgujral11@gmail.com",
+    "mentorEmail": "kusharora339@gmail.com",
     "paymentAmount": 5,
     "status": "PENDING",
     "mColor": 0,
@@ -59,7 +59,7 @@ describe("POST /meetings", () => {
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "C.Q.U.1.NN.801@gmail.com";
+        body.mentorEmail = "secondmenteeuser@sample.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -94,7 +94,7 @@ describe("POST /meetings", () => {
 
     test("From an existing mentee to themselves", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "qcrl1112@gmail.com";
+        body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -193,7 +193,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "declined",
-            "email": "C.Q.U.1.NN.801@gmail.com"
+            "email": "secondmenteeuser@sample.com"
         })
         expect(res.statusCode).toBe(200)
     })
