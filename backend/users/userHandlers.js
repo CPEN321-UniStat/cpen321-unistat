@@ -350,7 +350,8 @@ const sendMeetingRequest = async (userEmail) => {
 
     //email of person you are sending request to
     try {
-        const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail }) //mentor email
+        const curUser = client.db("UniStatDB").collection("Users").find({ email: userEmail }) //mentor email
+ //mentor email
         var curToken = (await curUser.toArray())[0].firebase_token
     } catch (error) {
         console.log(error)

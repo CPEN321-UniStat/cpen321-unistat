@@ -31,6 +31,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -223,7 +224,7 @@ public class RequestMeeting extends AppCompatActivity {
     }
 
     private void bookMeetingIfValid(String userEmail, boolean meetingTitleValid, boolean paymentValid, String meetingTitle, String paymentOffer) {
-        String URL = IpConstants.URL + "coinsByUser";
+        String URL = IpConstants.URL + "statsByFilter";
         JSONObject body = new JSONObject();
         try {
             body.put("userEmail", userEmail);
@@ -241,8 +242,9 @@ public class RequestMeeting extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
                         try {
-                            String coins = response.getString("coins");
-                            double balance = Double.parseDouble(coins);
+                            JSONArray statArray = (JSONArray) response.get("statData");
+                            JSONObject userStat = statArray.getJSONObject(0);
+                            double balance = userStat.getDouble("coins");
                             if (meetingTitleValid && paymentValid) {
                                 double payment = Double.parseDouble(paymentOffer.trim());
                                 if (payment > balance) {

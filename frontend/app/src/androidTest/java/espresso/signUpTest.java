@@ -13,20 +13,38 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.UiDevice;
+import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+import androidx.test.uiautomator.UiSelector;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import com.example.unistat.MainActivity;
 import com.example.unistat.R;
 import com.example.unistat.UserStatusActivity;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class signUpTest {
+    private UiDevice mUiDevice;
+
     @Rule
-    public ActivityScenarioRule<UserStatusActivity> activityScenarioRule =
-            new ActivityScenarioRule<>(UserStatusActivity.class);
+    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(MainActivity.class);
+
+    @Test
+    public void signUp() throws UiObjectNotFoundException {
+        onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_in_button)).perform(click());
+        mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        UiObject mText = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
+        mText.click();
+    }
 
     @Test
     public void signUpUnivStudent() {

@@ -19,6 +19,7 @@ const mentorSampleStat = {
 beforeAll(() => {
     console.log("DROPPING")
     client.db("UniStatDB").collection("Users").drop();
+    client.db("UniStatDB").collection("Stats").drop();
 })
 
 describe("POST /users", () => {
@@ -111,7 +112,7 @@ describe("POST /userByEmail", () => {
 
         test("should return a json response with status code 200", async () => {
             const res = await request(app).post("/userByEmail").send({
-                "userEmail": "manekgujral11@gmail.com"
+                "userEmail": "kusharora339@gmail.com"
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).userName).toBe("Manek Gujral")
@@ -282,6 +283,38 @@ describe("POST /statsByFilter", () => {
             var dataLen = JSON.parse(res.text).statData.length
             for (let i = 0; i < dataLen; i++) {
                 expect(JSON.parse(res.text).statData[i].univMajor).toBe("MBA")
+            }
+            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
+        })
+
+    })
+
+    describe("(for mentor) Filter by user email", () => {
+
+        test("should return a json response with a json array of length 1 with status code 200", async () => {
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "kusharora339@gmail.com",
+            })
+            expect(res.statusCode).toBe(200)
+            var dataLen = JSON.parse(res.text).statData.length
+            for (let i = 0; i < dataLen; i++) {
+                expect(JSON.parse(res.text).statData[i].userEmail).toBe("kusharora339@gmail.com")
+            }
+            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
+        })
+
+    })
+
+    describe("(for mentee) Filter by user email", () => {
+
+        test("should return a json response with a json array of length 1 with status code 200", async () => {
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "manekgujral11@gmail.com",
+            })
+            expect(res.statusCode).toBe(200)
+            var dataLen = JSON.parse(res.text).statData.length
+            for (let i = 0; i < dataLen; i++) {
+                expect(JSON.parse(res.text).statData[0].isMentor).toBe(false)
             }
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
