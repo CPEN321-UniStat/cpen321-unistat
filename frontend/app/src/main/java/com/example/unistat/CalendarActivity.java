@@ -99,11 +99,13 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         return true;
                     case R.id.view_stats_activity:
                         startActivity(new Intent(getApplicationContext(),ViewStatsActivity.class));
-                        overridePendingTransition(0,0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.sign_out_activity:
                         startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
-                        overridePendingTransition(0,0);
+                        overridePendingTransition(0, 0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     default:
                         return false;
@@ -137,6 +139,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
         viewEvent.putExtra("Meeting", meetingJsonString);
         startActivity(viewEvent);
+        overridePendingTransition(0, 0);
+//        overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
     }
 
     /**
