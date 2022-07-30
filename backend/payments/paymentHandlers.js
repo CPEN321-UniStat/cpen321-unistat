@@ -3,13 +3,13 @@ const client = db.client;
 
 const schedule = require('node-schedule');
 
-const schedulePayment = async (req, res) => {
+async function schedulePayment (mEndTime, mId) {
     // Update stat data
     console.log("-------------------schedulePayment-------------------")
     try {
-        console.log(req.body.mEndTime)
-        var endTime = req.body.mEndTime
-        var id = req.body.mId
+        console.log(mEndTime)
+        var endTime = mEndTime
+        var id = mId
         //           new Date(Year, M, d, h,  m, s)
         console.log(new Date())
         const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
@@ -18,15 +18,8 @@ const schedulePayment = async (req, res) => {
             // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
             handlePayment(id)
         });
-
-        var jsonResp = {
-            "status": `Scheduled payment`,
-            "mid": req.body.mId
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
+        throw error
     }
 }
 

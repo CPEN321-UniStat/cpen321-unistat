@@ -16,6 +16,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
+import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 
@@ -41,9 +42,9 @@ public class signUpTest {
     public void signUp() throws UiObjectNotFoundException {
         onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_button)).perform(click());
-        mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        UiObject mText = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
-        mText.click();
+//        mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+//        UiObject2 mText = mUiDevice.findObject(new BySelector().text("Kush Arora"));
+//        mText.click();
     }
 
     @Test

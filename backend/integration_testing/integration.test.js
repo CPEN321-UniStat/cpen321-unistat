@@ -23,7 +23,7 @@ beforeAll(() => {
     client.db("UniStatDB").listCollections({name: "Meetings"}).next(
         function (err, collectionInfo) {
             if (collectionInfo) { // Only if collection exists
-                client.db("UniStatDB").collection("Stats").drop();
+                client.db("UniStatDB").collection("Meetings").drop();
             }
         }
     )
@@ -45,7 +45,7 @@ describe("Sign up and login use case", () => {
     describe("when the user is not already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
-            const [,idMenteeToken] = await init.initializeUsers()
+            const [,idMenteeToken,] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": "testFirebaseToken"

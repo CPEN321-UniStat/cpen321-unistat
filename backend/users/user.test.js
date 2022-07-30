@@ -4,12 +4,8 @@ const db = require("../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
 const init = require("../integration_testing/initUsers")
-const payment = require("../payments/paymentHandlers")
-jest.mock("../payments/paymentHandlers.js")
+const payMocks = require("../payments/paymentMocks.test")
 
-payment.getUserCoins.mockImplementation(async (userEmail) => {
-    return 100
-})
 
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
