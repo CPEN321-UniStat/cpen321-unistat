@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../server')
-jest.mock("../users/userHandlers.js");
+// jest.mock("../users/userHandlers.js");
 
 // UNIT TESTS (Point 6 of M6)
 // Requirement is having users qcrl1112@gmail.com (mentee), C.Q.U.1.NN.801@gmail.com (mentee) and quinncarroll810@gmail.com (mentor)

@@ -4,6 +4,12 @@ const db = require("../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
 const init = require("../integration_testing/initUsers")
+const payment = require("../payments/paymentHandlers")
+jest.mock("../payments/paymentHandlers.js")
+
+payment.getUserCoins.mockImplementation(async (userEmail) => {
+    return 100
+})
 
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
@@ -18,8 +24,20 @@ const mentorSampleStat = {
 
 beforeAll(() => {
     console.log("DROPPING")
-    client.db("UniStatDB").collection("Users").drop();
-    client.db("UniStatDB").collection("Stats").drop();
+    client.db("UniStatDB").listCollections({name: "Users"}).next(
+        function (err, collectionInfo) {
+            if (collectionInfo) {
+                client.db("UniStatDB").collection("Users").drop();
+            }
+        }
+    )
+    client.db("UniStatDB").listCollections({name: "Stats"}).next(
+        function (err, collectionInfo) {
+            if (collectionInfo) {
+                client.db("UniStatDB").collection("Stats").drop();
+            }
+        }
+    )
 })
 
 describe("POST /users", () => {
@@ -106,49 +124,6 @@ describe("POST /users", () => {
 
 })
 
-describe("POST /userByEmail", () => {
-
-    describe("when the user is in the database", () => {
-
-        test("should return a json response with status code 200", async () => {
-            const res = await request(app).post("/userByEmail").send({
-                "userEmail": "kusharora339@gmail.com"
-            })
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).userName).toBe("Manek Gujral")
-            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
-        })
-
-    })
-
-    describe("when the user is not in the database", () => {
-
-        test("should return a json response with status code 400", async () => {
-            const res = await request(app).post("/userByEmail").send({
-                "userEmail": "dummmyEmail"
-            })
-            expect(res.statusCode).toBe(400)
-            expect(JSON.parse(res.text).status).toBe("Cannot get user without valid email")
-        })
-
-    })
-
-    describe("when body is missing or undefined", () => {
-        const body = [
-            {  "userEmail": undefined },
-            {}
-        ]
-
-        body.forEach(async (body) => {
-            test("should return a json response with status code 400", async () => {
-                const res = await request(app).post("/userByEmail").send(body)
-                expect(res.statusCode).toBe(400)
-                expect(JSON.parse(res.text).status).toBe("Cannot get user without valid email")
-            })
-        })
-    })
-})
-
 describe("POST /stats", () => {
 
     describe("creating user stat when all fields of body defined and user is not in db", () => {
@@ -207,7 +182,7 @@ describe("POST /stats", () => {
 describe("GET /stats", () => {
 
     describe("get all Stats in db", () => {
-        test("should return a json response with status code 400", async () => {
+        test("should return a json response with status code 200", async () => {
             const res = await request(app).get("/stats")
             expect(res.statusCode).toBe(200)
         })
