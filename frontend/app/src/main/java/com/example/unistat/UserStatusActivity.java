@@ -37,10 +37,15 @@ public class UserStatusActivity extends AppCompatActivity {
 //                    Intent openSignOut = new Intent(UserStatusActivity.this, SignOutActivity.class);
                     Intent openUserProfile = new Intent(UserStatusActivity.this, CreateUserProfileActivity.class);
                     Intent openViewStats = new Intent(UserStatusActivity.this, ViewStatsActivity.class);
-                    if (isHighSchoolStudent) // Mentee
+                    if (isHighSchoolStudent) {
                         startActivity(openViewStats);
+//                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
+                        overridePendingTransition(0, 0);
+                    }
                     else { // Mentor
                         startActivity(openUserProfile);
+//                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
+                        overridePendingTransition(0, 0);
                     }
 
                 } else {

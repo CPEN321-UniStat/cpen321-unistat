@@ -19,6 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
     private String mentorEmail;
+    private String mentorName;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,6 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_mentor_profile);
 
         JSONObject currStat = null;
-        String mentorName = null;
         String mentorPhotoUrl = null;
         String univName = null;
         String univMajor = null;
@@ -87,6 +87,17 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
     public void requestMeeting(View view) {
         Intent viewEvent = new Intent(ViewMentorProfileActivity.this, RequestMeeting.class);
         viewEvent.putExtra("mentorEmail", mentorEmail);
+        viewEvent.putExtra("mentorName", mentorName);
         startActivity(viewEvent);
+//        overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
+        overridePendingTransition(0, 0);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
+    }
+
 }

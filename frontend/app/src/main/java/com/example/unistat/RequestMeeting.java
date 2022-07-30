@@ -59,6 +59,7 @@ public class RequestMeeting extends AppCompatActivity {
 
     private RequestQueue requestQueue;
     private String mentorEmail;
+    private String mentorName;
 
     CalendarConstraints.Builder endTimeConstraintsBuilder;
     MaterialDatePicker.Builder endMaterialDateBuilder;
@@ -72,6 +73,7 @@ public class RequestMeeting extends AppCompatActivity {
 
         Intent intent = getIntent();
         mentorEmail = intent.getStringExtra("mentorEmail");
+        mentorName = intent.getStringExtra("mentorName");
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeeting.this);
         assert account != null;
@@ -252,10 +254,12 @@ public class RequestMeeting extends AppCompatActivity {
                                 } else if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
                                     Toast.makeText(RequestMeeting.this, "Start time cannot be after end time.", Toast.LENGTH_LONG).show();
                                 } else {
-                                    bookMeeting(meetingTitle, mentorEmail, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                                    bookMeeting(meetingTitle, mentorEmail, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
                                     Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
                                     Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
                                     startActivity(viewCalendar);
+                                    overridePendingTransition(0, 0);
+//                                    overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
                                 }
                             }
                         } catch (JSONException e) {
@@ -368,10 +372,10 @@ public class RequestMeeting extends AppCompatActivity {
         });
     }
 
-    public void bookMeeting(String name, String mentorEmail, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
+    public void bookMeeting(String name, String mentorEmail, String mentorName, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
         long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         List<MeetingLog> logs = new LinkedList<>();
-        Meeting meeting = new Meeting(id, name, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
+        Meeting meeting = new Meeting(id, name, mentorName, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
@@ -407,4 +411,10 @@ public class RequestMeeting extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, 0);
+//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
+    }
 }

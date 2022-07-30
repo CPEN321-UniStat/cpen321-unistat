@@ -60,6 +60,8 @@ public class SignOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignOutActivity.this, UserProfileActivity.class));
+                overridePendingTransition(0, 0);
+//                overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
             }
         });
 
@@ -103,9 +105,10 @@ public class SignOutActivity extends AppCompatActivity {
                     public void run()
                     {
                         overridePendingTransition(0, 0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         finish();
-
                         overridePendingTransition(0, 0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         startActivity(getIntent());
                     }
                 });
@@ -128,11 +131,13 @@ public class SignOutActivity extends AppCompatActivity {
                 {
                     case R.id.calendar_activity:
                         startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
-                        overridePendingTransition(0,0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.view_stats_activity:
                         startActivity(new Intent(getApplicationContext(), ViewStatsActivity.class));
-                        overridePendingTransition(0,0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.sign_out_activity:
                         return true;
@@ -160,6 +165,8 @@ public class SignOutActivity extends AppCompatActivity {
                         updateRegistrationToken("", userEmail);
 
                         startActivity(openMainActivity);
+                        overridePendingTransition(0, 0);
+//                        overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
                     }
                 });
     }
