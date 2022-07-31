@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../../server')
+const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
@@ -7,6 +7,7 @@ const init = require("../../integration_testing/initUsers")
 const users = require("../userHandlers")
 const verify = require("../userVerification")
 const { getUserCoins } = require('../../payments/paymentHandlers')
+const bodyParser = require('body-parser')
 
 require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers")
@@ -22,7 +23,7 @@ const mentorSampleStat = {
     "univBio": "😀🥰😄😋😚😄"
 }
 
-beforeAll(() => {
+beforeAll(async () => {
     console.log("DROPPING")
     // client.db("UniStatDB").listCollections({name: "Users"}).next(
     //     function (err, collectionInfo) {
@@ -46,12 +47,20 @@ beforeAll(() => {
     client.db("UniStatDB").collection("Stats").deleteOne(query3);
 })
 
+
+afterAll( () => {
+    // Close the server instance after each test
+    server.close()
+    client.close()
+  })
+
+
 describe("POST /users", () => {
 
     describe("when the user is not already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
-            const [,idMenteeToken] = await init.initializeUsers()
+            const [,idMenteeToken, ] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": "testFirebaseToken"
@@ -62,7 +71,7 @@ describe("POST /users", () => {
         })
 
         test("(for mentor) should return a json response with status code 200", async () => {
-            const [idMentorToken,] = await init.initializeUsers()
+            const [idMentorToken, , ] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
                 "firebase_token": "testFirebaseToken"
