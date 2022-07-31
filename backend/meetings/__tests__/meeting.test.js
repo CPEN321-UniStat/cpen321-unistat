@@ -1,9 +1,9 @@
 const request = require('supertest')
-const app = require('../server')
-const db = require("../database/connect")
+const app = require('../../server')
+const db = require("../../database/connect")
 const client = db.client
 
-jest.mock("../users/userHandlers.js");
+jest.mock("../../users/userHandlers.js");
 
 // UNIT TESTS (Point 6 of M6)
 // REQUIRES A SECOND MENTEE UNDER secondmenteeuser@sample.com email

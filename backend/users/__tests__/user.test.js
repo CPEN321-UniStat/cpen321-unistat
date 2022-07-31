@@ -1,10 +1,12 @@
 const request = require('supertest')
-const app = require('../server')
-const db = require("../database/connect")
+const app = require('../../server')
+const db = require("../../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
-const init = require("../integration_testing/initUsers")
-const payMocks = require("../payments/paymentMocks.test")
+const init = require("../../integration_testing/initUsers")
+const payMocks = require("../../payments/__mocks__/paymentMocks")
+const users = require("../userHandlers")
+const verify = require("../userVerification")
 
 
 const mentorSampleStat = {
@@ -20,20 +22,26 @@ const mentorSampleStat = {
 
 beforeAll(() => {
     console.log("DROPPING")
-    client.db("UniStatDB").listCollections({name: "Users"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) {
-                client.db("UniStatDB").collection("Users").drop();
-            }
-        }
-    )
-    client.db("UniStatDB").listCollections({name: "Stats"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) {
-                client.db("UniStatDB").collection("Stats").drop();
-            }
-        }
-    )
+    // client.db("UniStatDB").listCollections({name: "Users"}).next(
+    //     function (err, collectionInfo) {
+    //         if (collectionInfo) {
+    //             client.db("UniStatDB").collection("Users").drop();
+    //         }
+    //     }
+    // )
+    // client.db("UniStatDB").listCollections({name: "Stats"}).next(
+    //     function (err, collectionInfo) {
+    //         if (collectionInfo) {
+    //             client.db("UniStatDB").collection("Stats").drop();
+    //         }
+    //     }
+    // )
+    var query1 = {email : "manekgujral11@gmail.com"}
+    var query2 = {email : "kusharora339@gmail.com"}
+    var query3 = {userEmail : "kusharora339@gmail.com"}
+    client.db("UniStatDB").collection("Users").deleteOne(query1);
+    client.db("UniStatDB").collection("Users").deleteOne(query2);
+    client.db("UniStatDB").collection("Stats").deleteOne(query3);
 })
 
 describe("POST /users", () => {
@@ -117,6 +125,23 @@ describe("POST /users", () => {
             })
         })
     })
+
+    describe('StoreGoogleUserData function test', () => { 
+        test('should return true', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await users.storeGoogleUserData(idMentorToken, "fb_token")
+            expect(res).toBe(1)
+         })
+     })
+
+     describe('user verifier test', () => { 
+        test('should return correct email', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await verify.userVerifier(idMentorToken)
+            expect(res.email).toBe("kusharora339@gmail.com")
+         })
+     })
+
 
 })
 
