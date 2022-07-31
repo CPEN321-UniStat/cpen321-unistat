@@ -5,6 +5,8 @@ const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
 const init = require("../../integration_testing/initUsers")
 const payMocks = require("../../payments/__mocks__/paymentMocks")
+const users = require("../userHandlers")
+const verify = require("../userVerification")
 
 
 const mentorSampleStat = {
@@ -123,6 +125,23 @@ describe("POST /users", () => {
             })
         })
     })
+
+    describe('StoreGoogleUserData function test', () => { 
+        test('should return true', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await users.storeGoogleUserData(idMentorToken, "fb_token")
+            expect(res).toBe(1)
+         })
+     })
+
+     describe('user verifier test', () => { 
+        test('should return correct email', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await verify.userVerifier(idMentorToken)
+            expect(res.email).toBe("kusharora339@gmail.com")
+         })
+     })
+
 
 })
 
