@@ -35,6 +35,7 @@ import com.example.unistat.SignOutActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.perf.metrics.AddTrace;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -252,6 +253,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         getCardData("stats", Request.Method.GET);
     }
 
+    @AddTrace(name = "getStatsTrace", enabled = true)
     private void getCardData(String endPoint, int requestMethod) {
 
         //Pull from DB and store in statsList
