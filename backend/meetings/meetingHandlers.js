@@ -26,10 +26,10 @@ const createMeetingRequest = async (req, res) => {
         const isMentorValid = await isValidUser(req.body.mentorEmail);
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
-        const isValidMeetingID = await isValidMid(req.body.mId)
-        console.log("isMidValid", isValidMeetingID)
+        //const isValidMeetingID = await isValidMid(req.body.mId)
+        //console.log("isMidValid", isValidMeetingID)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        if ( isMenteeValid && isMentorValid && isMentorMentor && isValidMeetingID && validPayment) {
+        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
@@ -50,8 +50,8 @@ const createMeetingRequest = async (req, res) => {
 }
 
 const getMeetingByEmail = async (req, res) => {
-    const isEmailValid = await isValidUser(req.body.email)
-
+    const isEmailValid = await isValidUser(req.params.email)
+    console.log("isEmailValid", isEmailValid)
     if (isEmailValid) {
         var email = req.params.email;
         var month = parseInt(req.headers['month'], 10)
@@ -92,6 +92,7 @@ const respondToMeeting = async (req, res) => {
     try {
         console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
         console.log(req.body)
+        console.log("status", req.body.status)
         find_query = {"mId" : req.body.mId}
         update_query = {"$set": {
             "status": req.body.status,
