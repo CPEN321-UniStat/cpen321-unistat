@@ -118,8 +118,8 @@ describe("POST /meetings", () => {
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
-        const res = await request(app).get("/meetings/quinncarroll810@gmail.com").send({
-            "email": "quinncarroll810@gmail.com",
+        const res = await request(app).get("/meetings/kusharora339@gmail.com").send({
+            "email": "kusharora339@gmail.com",
             "month": 6,
             "year": 2022
         })
@@ -175,7 +175,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "invalid",
-            "email": "quinncarroll810@gmail.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -184,7 +184,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
             "status": "declined",
-            "email": "quinncarroll810@gmail.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -211,7 +211,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "declined",
-            "email": "quinncarroll810@gmail.com",
+            "email": "kusharora339@gmail.com",
             "zoomId": "12345",
             "zoomPassword": "password"
         })
@@ -257,7 +257,7 @@ describe("PUT /updateMeetingLog", () => {
             "mId": meetingID,
             "meetingLog": {
                 "timestamp": "2022-07-09T11:00:00",
-                "userEmail": "quinncarroll810@gmail.com",
+                "userEmail": "kusharora339@gmail.com",
                 "isMentor": true,
                 "action": "JOINED"
             }
@@ -270,7 +270,7 @@ describe("PUT /updateMeetingLog", () => {
             "mId": "invalid",
             "meetingLog": {
                 "timestamp": "2022-07-09T11:00:00",
-                "userEmail": "quinncarroll810@gmail.com",
+                "userEmail": "kusharora339@gmail.com",
                 "isMentor": true,
                 "action": "JOINED"
             }
@@ -283,7 +283,7 @@ describe("PUT /updateMeetingLog", () => {
 describe("PUT /firebaseToken", () => {
     test("Update firebase token for a valid user", async () => {
         const res = await request(app).put("/firebaseToken").send({
-            "email": "quinncarroll810@gmail.com",
+            "email": "kusharora339@gmail.com",
             "firebase_token": ""
         })
         expect(res.statusCode).toBe(200)

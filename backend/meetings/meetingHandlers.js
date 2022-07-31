@@ -48,7 +48,8 @@ const createMeetingRequest = async (req, res) => {
 }
 
 const getMeetingByEmail = async (req, res) => {
-    const isEmailValid = isValidUser(req.body.email)
+    const isEmailValid = await isValidUser(req.body.email)
+
     if (isEmailValid) {
         var email = req.params.email;
         var month = parseInt(req.headers['month'], 10)
