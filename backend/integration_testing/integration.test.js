@@ -629,6 +629,7 @@ const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
+    "mentorName": "Mentor User",
     "paymentAmount": 5,
     "status": "PENDING",
     "mColor": 0,
@@ -828,7 +829,8 @@ describe("POST /createZoomMeeting", () => {
         const res = await request(app).post("/createZoomMeeting").send({
             "meetingTopic": "Test Meeting",
             "meetingStartTime": "2022-08-11'T'11:05:00",
-            "meetingEndTime": "2022-08-11'T'12:05:00"
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
         })
         expect(res.statusCode).toBe(200)
     })

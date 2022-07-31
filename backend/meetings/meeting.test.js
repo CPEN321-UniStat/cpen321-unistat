@@ -32,6 +32,17 @@ const sampleIntegrationTestMeeting = {
     }
 }
 
+beforeAll(() => {
+    console.log("DROPPING")
+    client.db("UniStatDB").listCollections({name: "Meetings"}).next(
+        function (err, collectionInfo) {
+            if (collectionInfo) { // Only if collection exists
+                client.db("UniStatDB").collection("Meetings").drop();
+            }
+        }
+    )
+})
+
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
