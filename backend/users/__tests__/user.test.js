@@ -310,6 +310,7 @@ describe("POST /statsByFilter", () => {
     describe("(for mentor) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
+            await process.nextTick(() => { });
             const res = await request(app).post("/statsByFilter").send({
                 "userEmail": "kusharora339@gmail.com",
             })
@@ -326,6 +327,7 @@ describe("POST /statsByFilter", () => {
     describe("Get coins mock should throw error", () => {
 
         test("should return status code 400", async () => {
+            await process.nextTick(() => { });
             const res = await request(app).post("/statsByFilter").send({
                 "userEmail": "manekgujral11@gmail.com",
             })
@@ -337,8 +339,9 @@ describe("POST /statsByFilter", () => {
     describe("(for mentee) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
+            await process.nextTick(() => { });
             const res = await request(app).post("/statsByFilter").send({
-                "userEmail": "manekgujral11@gmail.com",
+                "userEmail": "manekgujral11@gmail.com"
             })
             expect(res.statusCode).toBe(200)
             var dataLen = JSON.parse(res.text).statData.length
