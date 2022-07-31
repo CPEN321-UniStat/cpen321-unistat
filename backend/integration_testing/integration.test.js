@@ -779,7 +779,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "invalid",
-            "email": "manekgujral11@gmail.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -788,7 +788,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
             "status": "declined",
-            "email": "manekgujral11@gmail.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -815,7 +815,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "declined",
-            "email": "manekgujral11@gmail.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(200)
     })

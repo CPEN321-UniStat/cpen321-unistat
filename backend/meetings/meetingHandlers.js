@@ -100,6 +100,7 @@ const respondToMeeting = async (req, res) => {
         
         var meeting = client.db("UniStatDB").collection("Meetings").find(find_query, {$exists: true})
         var meetingArray = await meeting.toArray()
+
         var menteeEmail = meetingArray[0].menteeEmail;
         var menteeEmail = meetingArray[0].menteeEmail;
         var mentorEmail = meetingArray[0].mentorEmail;
