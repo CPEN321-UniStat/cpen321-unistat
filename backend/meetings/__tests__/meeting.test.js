@@ -267,13 +267,46 @@ describe("POST /createZoomMeeting", () => {
 // Tests for updating meeting logs
 describe("PUT /updateMeetingLog", () => {
     test("Update meeting logs with valid mId", async () => {
-        const res = await request(app).put("/updateMeetingLog").send({
+        var res = await request(app).put("/updateMeetingLog").send({
             "mId": meetingID,
             "meetingLog": {
                 "timestamp": "2022-07-09T11:00:00",
                 "userEmail": "kusharora339@gmail.com",
                 "isMentor": true,
                 "action": "JOINED"
+            }
+        })
+        expect(res.statusCode).toBe(200)
+
+        res = await request(app).put("/updateMeetingLog").send({
+            "mId": meetingID,
+            "meetingLog": {
+                "timestamp": "2022-07-09T11:01:00",
+                "userEmail": "manekgujral11@gmail.com",
+                "isMentor": false,
+                "action": "JOINED"
+            }
+        })
+        expect(res.statusCode).toBe(200)
+
+        res = await request(app).put("/updateMeetingLog").send({
+            "mId": meetingID,
+            "meetingLog": {
+                "timestamp": "2022-07-09T11:55:00",
+                "userEmail": "manekgujral11@gmail.com",
+                "isMentor": false,
+                "action": "LEFT"
+            }
+        })
+        expect(res.statusCode).toBe(200)
+
+        res = await request(app).put("/updateMeetingLog").send({
+            "mId": meetingID,
+            "meetingLog": {
+                "timestamp": "2022-07-09T11:58:00",
+                "userEmail": "kusharora339@gmail.com",
+                "isMentor": true,
+                "action": "LEFT"
             }
         })
         expect(res.statusCode).toBe(200)
