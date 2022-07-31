@@ -623,6 +623,7 @@ const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
+    "mentorName": "Mentor User",
     "paymentAmount": 5,
     "status": "PENDING",
     "mColor": 0,
@@ -708,7 +709,7 @@ describe("POST /meetings", () => {
 
     test("From an existing mentee to themselves", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "manekgujral11@gmail.com";
+        body.mentorEmail = "kusharora339@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -725,8 +726,8 @@ describe("POST /meetings", () => {
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
-        const res = await request(app).get("/meetings/mentoruser@sample.com").send({
-            "email": "mentoruser@sample.com",
+        const res = await request(app).get("/meetings/manekgujral11@gmail.com").send({
+            "email": "manekgujral11@gmail.com",
             "month": 6,
             "year": 2022
         })
@@ -773,7 +774,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "invalid",
-            "email": "mentoruser@sample.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -782,7 +783,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
             "status": "declined",
-            "email": "mentoruser@sample.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
@@ -809,7 +810,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "declined",
-            "email": "mentoruser@sample.com"
+            "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(200)
     })
@@ -822,7 +823,8 @@ describe("POST /createZoomMeeting", () => {
         const res = await request(app).post("/createZoomMeeting").send({
             "meetingTopic": "Test Meeting",
             "meetingStartTime": "2022-08-11'T'11:05:00",
-            "meetingEndTime": "2022-08-11'T'12:05:00"
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
         })
         expect(res.statusCode).toBe(200)
     })
@@ -835,7 +837,7 @@ describe("PUT /updateMeetingLog", () => {
             "mId": meetingID,
             "meetingLog": {
                 "timestamp": "2022-07-09T11:00:00",
-                "userEmail": "mentoruser@sample.com",
+                "userEmail": "manekgujral11@gmail.com",
                 "isMentor": true,
                 "action": "JOINED"
             }
@@ -848,7 +850,7 @@ describe("PUT /updateMeetingLog", () => {
             "mId": "invalid",
             "meetingLog": {
                 "timestamp": "2022-07-09T11:00:00",
-                "userEmail": "mentoruser@sample.com",
+                "userEmail": "manekgujral11@gmail.com",
                 "isMentor": true,
                 "action": "JOINED"
             }
@@ -861,7 +863,7 @@ describe("PUT /updateMeetingLog", () => {
 describe("PUT /firebaseToken", () => {
     test("Update firebase token for a valid user", async () => {
         const res = await request(app).put("/firebaseToken").send({
-            "email": "mentoruser@sample.com",
+            "email": "manekgujral11@gmail.com",
             "firebase_token": ""
         })
         expect(res.statusCode).toBe(200)
