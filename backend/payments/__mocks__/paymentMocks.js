@@ -10,6 +10,19 @@ payment.schedulePayment.mockImplementation((req, res) => {
   return JSON.stringify(jsonResp)
 })
 
+payment.getUserCoins.mockImplementationOnce(async (userEmail) => {
+  console.log("MOCKING")
+  throw "not found in db error"
+})
+payment.getUserCoins.mockImplementationOnce(async (userEmail) => {
+  console.log("MOCKING")
+  return 101
+})
+payment.getUserCoins.mockImplementationOnce(async (userEmail) => {
+  console.log("MOCKING")
+  throw "not found in db error"
+})
 payment.getUserCoins.mockImplementation(async (userEmail) => {
-  return 100
+  console.log("MOCKING")
+  return 101
 })

@@ -4,10 +4,12 @@ const db = require("../../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
 const init = require("../../integration_testing/initUsers")
-const payMocks = require("../../payments/__mocks__/paymentMocks")
 const users = require("../userHandlers")
 const verify = require("../userVerification")
+const { getUserCoins } = require('../../payments/paymentHandlers')
 
+require("../../payments/__mocks__/paymentMocks")
+jest.mock("../../payments/paymentHandlers")
 
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
@@ -285,6 +287,17 @@ describe("POST /statsByFilter", () => {
 
     })
 
+    describe("(for mentor) Get coins mock should throw error", () => {
+
+        test("should return status code 400", async () => {
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "kusharora339@gmail.com",
+            })
+            expect(res.statusCode).toBe(400)
+        })
+
+    })
+
     describe("(for mentor) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
@@ -301,6 +314,17 @@ describe("POST /statsByFilter", () => {
 
     })
 
+    describe("Get coins mock should throw error", () => {
+
+        test("should return status code 400", async () => {
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "manekgujral11@gmail.com",
+            })
+            expect(res.statusCode).toBe(400)
+        })
+
+    })
+
     describe("(for mentee) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
@@ -311,6 +335,7 @@ describe("POST /statsByFilter", () => {
             var dataLen = JSON.parse(res.text).statData.length
             for (let i = 0; i < dataLen; i++) {
                 expect(JSON.parse(res.text).statData[0].isMentor).toBe(false)
+                expect(JSON.parse(res.text).statData[0].coins).toBe(101)
             }
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
