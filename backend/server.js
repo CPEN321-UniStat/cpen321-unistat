@@ -20,8 +20,6 @@ app.get("/", (req, res) => {
 
 app.post("/users", users.handleUserEntry);
 
-app.post("/userByEmail", users.getUserByEmail);
-
 app.post("/stats", users.createUserStat);
 
 app.get("/stats", users.getAllUserStats);
@@ -37,7 +35,7 @@ app.put("/stats", users.updateStat);
 
 // Payment Enpoints
 
-app.post("/schedulePayment", payment.schedulePayment)
+// app.post("/schedulePayment", payment.schedulePayment)
 
 // app.post("/coinsByUser", payment.getCoinsByUser)
 

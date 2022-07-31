@@ -10,9 +10,6 @@ payment.schedulePayment.mockImplementation((req, res) => {
   return JSON.stringify(jsonResp)
 })
 
-payment.getCoinsByUser.mockImplementation((req, res) => {
-  const jsonResp = {
-      "status": `Retrieved coins of user ${req.body.userEmail}`
-  }
-  return JSON.stringify(jsonResp)
+payment.getUserCoins.mockImplementation(async (userEmail) => {
+  return 100
 })

@@ -46,41 +46,6 @@ const handleUserEntry = async (req, res) => {
     }
 }
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- */
-const getUserByEmail = async (req, res) => {
-
-    if (req.body.userEmail == undefined) {
-        var jsonResp = {
-            "status": "Cannot get user without valid email"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
-    }
-    else{
-        var query = {"email": req.body.userEmail}
-        client.db("UniStatDB").collection("Users").findOne(query, function(err, result) {
-            if (err){
-                console.log(error)
-                res.status(400).send(JSON.stringify(error))
-            } else {
-                if (result == undefined || result.name == undefined) {
-                    var jsonResp = {
-                        "status": "Cannot get user without valid email"
-                    }
-                    res.status(400).send(JSON.stringify(jsonResp))
-                }
-                else{
-                    var jsonResp = {"userName" : result.name}
-                    res.status(200).send(JSON.stringify(jsonResp));
-                }
-            }
-        })
-    }
-}
-
 // Functions for managing user stats
 
 /**
@@ -415,7 +380,6 @@ const sendMeetingResponse = async (userEmail) => {
 module.exports = {
     handleUserEntry,
     storeGoogleUserData,
-    getUserByEmail,
     createUserStat,
     getAllUserStats,
     getStatsByFilter,

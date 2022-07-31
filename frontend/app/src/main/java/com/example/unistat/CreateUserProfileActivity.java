@@ -76,6 +76,8 @@ public class CreateUserProfileActivity extends AppCompatActivity {
                     createStatInDB();
                     Intent openViewStats = new Intent(CreateUserProfileActivity.this, ViewStatsActivity.class);
                     startActivity(openViewStats);
+//                    overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
+                    overridePendingTransition(0, 0);
                 }
             }
         });

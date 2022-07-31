@@ -2,6 +2,7 @@ const db = require("../database/connect")
 const client = db.client;
 
 const users = require("../users/userHandlers.js");
+const payment = require("../payments/paymentHandlers");
 
 // creating zoom backend
 
@@ -167,15 +168,25 @@ const createZoomMeeting = async (req, res) => {
         json: true, //Parse the JSON string in the response
     }
 
+    // Schedule Payment 
+    try {
+        await payment.schedulePayment(req.body.mEndTime, req.body.mId);
+    } catch (error) {
+        var jsonResp = {"status" : "Schedule payment failed"}
+        res.status(400).send(JSON.stringify(jsonResp))
+    }
+
     requestPromise(options)
     .then(function (response) {
-    console.log("response is: ", response)
-    var jsonResp = {"status" : response}
-    res.status(200).send(JSON.stringify(jsonResp))
+        console.log("response is: ", response)
+        var jsonResp = {"status" : response}
+        res.status(200).send(JSON.stringify(jsonResp))
     })
     .catch(function (err) {
-    // API call failed...
-    console.log("API call failed, reason ", err)
+        // API call failed...
+        console.log("API call failed, reason ", err)
+        var jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
+        res.status(400).send(JSON.stringify(jsonResp))
     })
 }
 

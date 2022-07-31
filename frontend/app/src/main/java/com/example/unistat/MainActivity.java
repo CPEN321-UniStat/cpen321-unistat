@@ -176,8 +176,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (!isLoggedIn) {
                 startActivity(openUserStatus);
+                overridePendingTransition(0, 0);
+//                overridePendingTransition(R.anim.zm_enlarge_out, R.anim.zm_enlarge_in);
             } else {
                 startActivity(openViewStats);
+                overridePendingTransition(0, 0);
+//                overridePendingTransition(R.anim.zm_enlarge_out, R.anim.zm_enlarge_in);
             }
         }
     }

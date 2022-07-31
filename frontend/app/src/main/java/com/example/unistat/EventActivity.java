@@ -31,6 +31,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingParameter;
@@ -61,16 +63,16 @@ public class EventActivity extends AppCompatActivity {
         initZoom(EventActivity.this);
 
 //        // Show dialog if mentor
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
-        if (account.getEmail().equals(meeting.getMentorEmail())) {
-            String msg = "Please leave the meeting once the other user has left to get paid.";
-            new MaterialAlertDialogBuilder(this)
-                    .setIcon(R.drawable.ic_baseline_info_24)
-                    .setTitle("Meeting Information")
-                    .setMessage(msg)
-                    .setPositiveButton("Ok", null)
-                    .show();
-        }
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
+//        if (account.getEmail().equals(meeting.getMentorEmail())) {
+//            String msg = "Please leave the meeting once the other user has left to get paid.";
+//            new MaterialAlertDialogBuilder(this)
+//                    .setIcon(R.drawable.ic_baseline_info_24)
+//                    .setTitle("Meeting Information")
+//                    .setMessage(msg)
+//                    .setPositiveButton("Ok", null)
+//                    .show();
+//        }
     }
 
     private void initZoom(Context context) {
@@ -188,15 +190,18 @@ public class EventActivity extends AppCompatActivity {
         Gson gson = builder.create();
         meeting = gson.fromJson(meetingJsonString, Meeting.class);
 
+
+        TextView profileText = findViewById(R.id.name);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
         if (userEmail.equals(meeting.getMentorEmail())) {
             isMentor = true;
-            getAndSetUserName(meeting.getMenteeEmail());
+            //            getAndSetUserName(meeting.getMenteeEmail());
         } else{
-            getAndSetUserName(meeting.getMentorEmail());
+            //            getAndSetUserName(meeting.getMentorEmail());
         }
+        profileText.setText(meeting.getMentorName());
 
         // 2. Set all parameters
         TextView eventNameText = findViewById(R.id.eventName);
@@ -219,64 +224,74 @@ public class EventActivity extends AppCompatActivity {
         decideWhatsVisible(meeting.getStatus());
     }
 
-    private void getAndSetUserName(String email) {
-
-        TextView profileText = findViewById(R.id.name);
-        String URL = IpConstants.URL + "userByEmail";
-
-        JSONObject body = new JSONObject();
-
-        try {
-            body.put("userEmail", email);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest getNameRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                URL,
-                body,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String name = response.getString("userName");
-                            profileText.setText(name);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Server error: " + error);
-                    }
-                }
-        );
-
-        requestQueue.add(getNameRequest);
-    }
+//    private void getAndSetUserName(String email) {
+//
+//        TextView profileText = findViewById(R.id.name);
+//        String URL = IpConstants.URL + "userByEmail";
+//
+//        JSONObject body = new JSONObject();
+//
+//        try {
+//            body.put("userEmail", email);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        JsonObjectRequest getNameRequest = new JsonObjectRequest(
+//                Request.Method.POST,
+//                URL,
+//                body,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        try {
+//                            String name = response.getString("userName");
+//                            profileText.setText(name);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d(TAG, "Server error: " + error);
+//                    }
+//                }
+//        );
+//
+//        requestQueue.add(getNameRequest);
+//    }
 
     private void decideWhatsVisible(Meeting.Status status) {
         acceptMeetingButton = findViewById(R.id.acceptMeetingRequest);
         declineMeetingButton = findViewById(R.id.declineMeetingRequest);
         joinMeetingButton = findViewById(R.id.joinMeeting);
 
-        Boolean showJoinMeeting = false;
+        boolean showJoinMeeting = false;
 
         if (status.equals(Meeting.Status.ACCEPTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
             showJoinMeeting = true;
+            //sda
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
+            assert account != null;
+            if (Objects.equals(account.getEmail(), meeting.getMentorEmail())) {
+                String msg = "Please leave the meeting once the other user has left to get paid.";
+                new MaterialAlertDialogBuilder(this)
+                        .setIcon(R.drawable.ic_baseline_info_24)
+                        .setTitle("Meeting Information")
+                        .setMessage(msg)
+                        .setPositiveButton("Ok", null)
+                        .show();
+            }
         } else if (status.equals(Meeting.Status.REJECTED)) {
             acceptMeetingButton.setVisibility(View.GONE);
             declineMeetingButton.setVisibility(View.GONE);
-            showJoinMeeting = false;
         } else if (status.equals(Meeting.Status.PENDING)) {
             acceptMeetingButton.setVisibility(View.VISIBLE);
             declineMeetingButton.setVisibility(View.VISIBLE);
-            showJoinMeeting = false;
         }
         if (!isMentor) {
             acceptMeetingButton.setVisibility(View.GONE);
@@ -367,6 +382,20 @@ public class EventActivity extends AppCompatActivity {
     private void createZoomMeeting() {
         String URL = IpConstants.URL + "createZoomMeeting";
 
+        Calendar endTime = meeting.getEndTime();
+        JSONObject endTimeObject = new JSONObject();
+        try {
+            endTimeObject.put("year", endTime.get(Calendar.YEAR));
+            endTimeObject.put("month", endTime.get(Calendar.MONTH));
+            endTimeObject.put("dayOfMonth", endTime.get(Calendar.DAY_OF_MONTH));
+            endTimeObject.put("hourOfDay", endTime.get(Calendar.HOUR_OF_DAY));
+            endTimeObject.put("minute", endTime.get(Calendar.MINUTE));
+            endTimeObject.put("second", endTime.get(Calendar.SECOND));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         JSONObject body = new JSONObject();
 
         Date startMeetingDate = meeting.getStartTime().getTime();
@@ -383,6 +412,8 @@ public class EventActivity extends AppCompatActivity {
             body.put("meetingTopic", meeting.getName());
             body.put("meetingStartTime", meetingStartTime);
             body.put("meetingEndTime", meetingEndTime);
+            body.put("mId", meeting.getId());
+            body.put("mEndTime", endTimeObject);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -445,9 +476,6 @@ public class EventActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, "Server resp: " + response.toString());
-                        if (status == Meeting.Status.ACCEPTED) {
-                            schedulePayment();
-                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -500,52 +528,58 @@ public class EventActivity extends AppCompatActivity {
         requestQueue.add(updateMeetingRequest);
     }
 
-    private void schedulePayment() {
-        String URL = IpConstants.URL + "schedulePayment";
+//    private void schedulePayment() {
+//        String URL = IpConstants.URL + "schedulePayment";
+//
+//        Calendar endTime = meeting.getEndTime();
+//
+//
+//        JSONObject endTimeObject = new JSONObject();
+//        try {
+//            endTimeObject.put("year", endTime.get(Calendar.YEAR));
+//            endTimeObject.put("month", endTime.get(Calendar.MONTH));
+//            endTimeObject.put("dayOfMonth", endTime.get(Calendar.DAY_OF_MONTH));
+//            endTimeObject.put("hourOfDay", endTime.get(Calendar.HOUR_OF_DAY));
+//            endTimeObject.put("minute", endTime.get(Calendar.MINUTE));
+//            endTimeObject.put("second", endTime.get(Calendar.SECOND));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        JSONObject body = new JSONObject();
+//        try {
+//            body.put("mId", meeting.getId());
+//            body.put("mEndTime", endTimeObject);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        JsonObjectRequest schedulePaymentRequest = new JsonObjectRequest(
+//                Request.Method.POST,
+//                URL,
+//                body,
+//                new Response.Listener<JSONObject>() {
+//                    @Override
+//                    public void onResponse(JSONObject response) {
+//                        Log.d(TAG, "Server resp: " + response.toString());
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Log.d(TAG, "Server error: " + error);
+//                    }
+//                }
+//        );
+//
+//        requestQueue.add(schedulePaymentRequest);
+//    }
 
-        Calendar endTime = meeting.getEndTime();
-
-
-        JSONObject endTimeObject = new JSONObject();
-        try {
-            endTimeObject.put("year", endTime.get(Calendar.YEAR));
-            endTimeObject.put("month", endTime.get(Calendar.MONTH));
-            endTimeObject.put("dayOfMonth", endTime.get(Calendar.DAY_OF_MONTH));
-            endTimeObject.put("hourOfDay", endTime.get(Calendar.HOUR_OF_DAY));
-            endTimeObject.put("minute", endTime.get(Calendar.MINUTE));
-            endTimeObject.put("second", endTime.get(Calendar.SECOND));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JSONObject body = new JSONObject();
-        try {
-            body.put("mId", meeting.getId());
-            body.put("mEndTime", endTimeObject);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        JsonObjectRequest schedulePaymentRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                URL,
-                body,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG, "Server resp: " + response.toString());
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.d(TAG, "Server error: " + error);
-                    }
-                }
-        );
-
-        requestQueue.add(schedulePaymentRequest);
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
     }
 
 }

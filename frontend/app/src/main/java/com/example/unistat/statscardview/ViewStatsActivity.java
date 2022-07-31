@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CompoundButton;
+import android.widget.EditText;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +34,7 @@ import com.example.unistat.R;
 import com.example.unistat.SignOutActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +46,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private CardAdapter cardAdapter;
     private ArrayList<StatsCards> statsList;
     private RequestQueue requestQueue;
+    private TextInputLayout filterSearchBar;
     private AutoCompleteTextView filterAutoComplete;
     private Chip sortByGpa;
     private Chip sortByEntranceScore;
@@ -90,10 +95,25 @@ public class ViewStatsActivity extends AppCompatActivity {
         filterAutoComplete.setDropDownVerticalOffset(10);
         filterAutoComplete.setAdapter(adapter);
 
+        filterAutoComplete.setEnabled(true);
+        filterAutoComplete.setFocusable(false);
+        filterAutoComplete.setFocusableInTouchMode(false);
+        filterAutoComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "Edit Text is clicked");
+                filterAutoComplete.setFocusable(true);
+                filterAutoComplete.setFocusableInTouchMode(true);
+                filterAutoComplete.setEnabled(true);
+                filterAutoComplete.requestFocus();
+            }
+        });
+
         // Get data on the basis of item clicked
         filterAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.d(TAG, "onClick: filterAutoComplete");
                 searchText = adapter.getItem(i);
 
                 // Only filter no sort
@@ -156,13 +176,15 @@ public class ViewStatsActivity extends AppCompatActivity {
                 {
                     case R.id.calendar_activity:
                         startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
-                        overridePendingTransition(0,0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.view_stats_activity:
                         return true;
                     case R.id.sign_out_activity:
                         startActivity(new Intent(getApplicationContext(), SignOutActivity.class));
-                        overridePendingTransition(0,0);
+//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(0, 0);
                         return true;
                     default:
                         return false;
