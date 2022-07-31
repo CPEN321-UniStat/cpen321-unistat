@@ -6,20 +6,14 @@ const client = db.client
 
 beforeAll(() => {
     console.log("DROPPING")
-    client.db("UniStatDB").listCollections({name: "Users"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) { // Only if collection exists
-                client.db("UniStatDB").collection("Users").drop();
-            }
-        }
-    )
-    client.db("UniStatDB").listCollections({name: "Stats"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) { // Only if collection exists
-                client.db("UniStatDB").collection("Stats").drop();
-            }
-        }
-    )
+    
+    var query1 = {email : "manekgujral11@gmail.com"}
+    var query2 = {email : "kusharora339@gmail.com"}
+    var query3 = {userEmail : "kusharora339@gmail.com"}
+    client.db("UniStatDB").collection("Users").deleteOne(query1);
+    client.db("UniStatDB").collection("Users").deleteOne(query2);
+    client.db("UniStatDB").collection("Stats").deleteOne(query3);
+
     client.db("UniStatDB").listCollections({name: "Meetings"}).next(
         function (err, collectionInfo) {
             if (collectionInfo) { // Only if collection exists

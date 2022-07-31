@@ -42,12 +42,6 @@ users.handleUserEntry.mockImplementation((req, res) => {
     return JSON.stringify(jsonResp)
 }) 
 
-// getUserByEmail()
-users.getUserByEmail.mockImplementation((req, res) => {
-    const jsonResp = {"userName": "First Last"}
-    return JSON.stringify(jsonResp)
-})
-
 // createUserStat()
 users.createUserStat.mockImplementation((req, res) => {
     const jsonResp = {
@@ -88,14 +82,6 @@ users.updateStat.mockImplementation((req, res) => {
     return JSON.stringify(jsonResp)
 })
 
-// deleteStat
-users.deleteStat.mockImplementation((req, res) => {
-    const jsonResp = {
-        "status": `Stat deleted for ${req.body.userEmail}`
-    }
-    return JSON.stringify(jsonResp)
-})
-
 // sendMeetingRequest()
 users.sendMeetingRequest.mockImplementation((email) => {
     const jsonResp = {
@@ -128,14 +114,6 @@ test('handleUserEntry test', () => {
     const jsonExpected2 = JSON.stringify(expected)
     expect(users.handleUserEntry(req, res)).toBe(jsonExpected1);
     expect(users.handleUserEntry(req, res)).toBe(jsonExpected2);
-})
-
-test('getUserByEmail test', () => { 
-    const req = {}
-    const res = {}
-    const expected = {"userName": "First Last"}
-    const jsonExpected = JSON.stringify(expected)
-    expect(users.getUserByEmail(req, res)).toBe(jsonExpected);
 })
 
 test('createUserStat test', () => { 
@@ -210,21 +188,6 @@ test("updateStat test", () => {
     const jsonExpected = JSON.stringify(expected)
     expect(users.updateStat(req, res)).toBe(jsonExpected);
 })
-
-test("deleteStat test", () => { 
-    const req = {
-        "body": {
-            "userEmail": "email"
-        }
-    }
-    const res = {}
-    const expected = {
-        "status": `Stat deleted for ${req.body.userEmail}`
-    }
-    const jsonExpected = JSON.stringify(expected)
-    expect(users.deleteStat(req, res)).toBe(jsonExpected);
-})
-
 
 test('sendMeetingRequest test', (email) => {
     const req = {}
