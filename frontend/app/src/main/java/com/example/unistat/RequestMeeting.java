@@ -226,6 +226,7 @@ public class RequestMeeting extends AppCompatActivity {
     }
 
     private void bookMeetingIfValid(String userEmail, boolean meetingTitleValid, boolean paymentValid, String meetingTitle, String paymentOffer) {
+        long timeNow = System.currentTimeMillis();
         String URL = IpConstants.URL + "statsByFilter";
         JSONObject body = new JSONObject();
         try {
@@ -252,7 +253,9 @@ public class RequestMeeting extends AppCompatActivity {
                                 if (payment > balance) {
                                     Toast.makeText(RequestMeeting.this, "Not enough balance for payment " + payment, Toast.LENGTH_LONG).show();
                                 } else if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
-                                    Toast.makeText(RequestMeeting.this, "Start time cannot be after end time.", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestMeeting.this, "Start time cannot be after end time", Toast.LENGTH_LONG).show();
+                                } else if (startTimeCalendar.getTimeInMillis() < timeNow || endTimeCalendar.getTimeInMillis() < timeNow) {
+                                    Toast.makeText(RequestMeeting.this, "Start time or end time cannot be in the past", Toast.LENGTH_LONG).show();
                                 } else {
                                     bookMeeting(meetingTitle, mentorEmail, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
                                     Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();

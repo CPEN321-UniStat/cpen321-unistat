@@ -61,6 +61,7 @@
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/meeting_title_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:inputType="text" />
@@ -80,9 +81,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427">
+        app:layout_constraintVertical_bias="0.427"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/payment_offer_input_edit_text"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:inputType="numberDecimal" />
