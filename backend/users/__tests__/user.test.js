@@ -1,10 +1,10 @@
 const request = require('supertest')
-const app = require('../server')
-const db = require("../database/connect")
+const app = require('../../server')
+const db = require("../../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
-const init = require("../integration_testing/initUsers")
-const payMocks = require("../payments/paymentMocks.test")
+const init = require("../../integration_testing/initUsers")
+const payMocks = require("../../payments/__mocks__/paymentMocks")
 
 
 const mentorSampleStat = {

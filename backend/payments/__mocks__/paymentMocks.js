@@ -1,6 +1,6 @@
-jest.mock("./paymentHandlers"); 
+jest.mock("../paymentHandlers"); 
 
-const payment = require("./paymentHandlers")
+const payment = require("../paymentHandlers")
 
 /* Mock implementaions */
 payment.schedulePayment.mockImplementation((req, res) => {

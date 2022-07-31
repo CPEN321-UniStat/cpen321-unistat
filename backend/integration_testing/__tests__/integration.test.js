@@ -1,7 +1,7 @@
 const request = require('supertest')
-const app = require('../server')
-const init = require("./initUsers")
-const db = require("../database/connect")
+const app = require('../../server')
+const init = require("../initUsers")
+const db = require("../../database/connect")
 const client = db.client
 
 beforeAll(() => {

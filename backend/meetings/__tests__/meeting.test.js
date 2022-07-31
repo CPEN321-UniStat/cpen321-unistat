@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../server')
+const app = require('../../server')
 // jest.mock("../users/userHandlers.js");
 
 // UNIT TESTS (Point 6 of M6)
