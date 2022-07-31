@@ -33,7 +33,7 @@ import com.example.unistat.UserStatusActivity;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class signUpTest {
+public class signUpGoogleTest {
     private UiDevice mUiDevice;
 
     @Rule
@@ -48,74 +48,74 @@ public class signUpTest {
         UiObject mText = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
         mText.click();
         Thread.sleep(1500);
-        onView((withId(R.id.user_status_activity))).check(matches(isDisplayed()));
+        onView((withId(R.id.view_user_stats_activity))).check(matches(isDisplayed()));
 //        UiObject2 mText = mUiDevice.findObject(new BySelector().text("Kush Arora"));
 //        mText.click();
     }
 
-    @Test
-    public void signUpUnivStudent() {
-
-        // Figure out how to perform automated sign-in with Google
-//        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
-//        onView(withId(R.id.sign_in_button)).perform(click());
-
-        // Check that initial animation and questions are displayed
-        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
-        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
-
-        // Click on buttons and check animations
-        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.hsStudentButton)).perform(click());
-        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
-        onView(withId(R.id.univStudentButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.univStudentButton)).perform(click());
-        onView(withId(R.id.graduationAnimation)).check(matches(isDisplayed()));
-
-        // Click confirm and check if activity is correct
-        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.nextUserStatusButton)).perform(click());
-        onView(withId(R.id.create_user_profile_activity)).check(matches(isDisplayed()));
-
-        onView(withId(R.id.nextUserProfileButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.nextUserProfileButton)).perform(click());
-        onView(withText("All fields need to be filled before continuing...")).inRoot(new ToastMatcher())
-                .check(matches(isDisplayed()));
-
-        onView(withId(R.id.univNameInputEditText)).perform(typeText("UBC"));
-        onView(withId(R.id.univMajorInputEditText)).perform(typeText("cpen"));
-        onView(withId(R.id.univGpaInputEditText)).perform(typeText(String.valueOf(4.0)));
-        onView(withId(R.id.univEntranceScoreInputEditText)).perform(typeText(String.valueOf(400)));
-        onView(isRoot()).perform(pressBack());
-        onView(withId(R.id.univUserBioEditText)).perform(typeText("story"));
-
-        onView(isRoot()).perform(pressBack());
-        onView(withId(R.id.nextUserProfileButton)).perform(click());
-        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
-
-    }
-
-    @Test
-    public void signUpHighSchoolStudent() {
-
-        // Figure out how to perform automated sign-in with Google
-//        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
-//        onView(withId(R.id.sign_in_button)).perform(click());
-
-        // Check that initial animation and questions are displayed
-        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
-        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
-
-        // Click on buttons and check animations
-        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.hsStudentButton)).perform(click());
-        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
-
-        // Click confirm and check if activity is correct
-        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.nextUserStatusButton)).perform(click());
-        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
-
-    }
+//    @Test
+//    public void signUpUnivStudent() {
+//
+//        // Figure out how to perform automated sign-in with Google
+////        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
+////        onView(withId(R.id.sign_in_button)).perform(click());
+//
+//        // Check that initial animation and questions are displayed
+//        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
+//        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
+//
+//        // Click on buttons and check animations
+//        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.hsStudentButton)).perform(click());
+//        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
+//        onView(withId(R.id.univStudentButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.univStudentButton)).perform(click());
+//        onView(withId(R.id.graduationAnimation)).check(matches(isDisplayed()));
+//
+//        // Click confirm and check if activity is correct
+//        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.nextUserStatusButton)).perform(click());
+//        onView(withId(R.id.create_user_profile_activity)).check(matches(isDisplayed()));
+//
+//        onView(withId(R.id.nextUserProfileButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.nextUserProfileButton)).perform(click());
+//        onView(withText("All fields need to be filled before continuing...")).inRoot(new ToastMatcher())
+//                .check(matches(isDisplayed()));
+//
+//        onView(withId(R.id.univNameInputEditText)).perform(typeText("UBC"));
+//        onView(withId(R.id.univMajorInputEditText)).perform(typeText("cpen"));
+//        onView(withId(R.id.univGpaInputEditText)).perform(typeText(String.valueOf(4.0)));
+//        onView(withId(R.id.univEntranceScoreInputEditText)).perform(typeText(String.valueOf(400)));
+//        onView(isRoot()).perform(pressBack());
+//        onView(withId(R.id.univUserBioEditText)).perform(typeText("story"));
+//
+//        onView(isRoot()).perform(pressBack());
+//        onView(withId(R.id.nextUserProfileButton)).perform(click());
+//        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
+//
+//    }
+//
+//    @Test
+//    public void signUpHighSchoolStudent() {
+//
+//        // Figure out how to perform automated sign-in with Google
+////        onView(withId(R.id.sign_in_button)).check(matches(isDisplayed()));
+////        onView(withId(R.id.sign_in_button)).perform(click());
+//
+//        // Check that initial animation and questions are displayed
+//        onView(withId(R.id.questionAnimation)).check(matches(isDisplayed()));
+//        onView(withId(R.id.userStatusQuestion)).check(matches(isDisplayed()));
+//
+//        // Click on buttons and check animations
+//        onView(withId(R.id.hsStudentButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.hsStudentButton)).perform(click());
+//        onView(withId(R.id.schoolAnimation)).check(matches(isDisplayed()));
+//
+//        // Click confirm and check if activity is correct
+//        onView(withId(R.id.nextUserStatusButton)).check(matches(isDisplayed()));
+//        onView(withId(R.id.nextUserStatusButton)).perform(click());
+//        onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
+//
+//    }
 }
 
