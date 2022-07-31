@@ -14,6 +14,8 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
+import androidx.test.uiautomator.By;
+import androidx.test.uiautomator.BySelector;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObject2;
@@ -35,14 +37,18 @@ public class signUpTest {
     private UiDevice mUiDevice;
 
     @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+    public ActivityScenarioRule<MainActivity> activityScenarioRule1 =
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void signUp() throws UiObjectNotFoundException {
+    public void signUp() throws UiObjectNotFoundException, InterruptedException {
         onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_button)).perform(click());
-//        mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
+        UiObject mText = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
+        mText.click();
+        Thread.sleep(1500);
+        onView((withId(R.id.user_status_activity))).check(matches(isDisplayed()));
 //        UiObject2 mText = mUiDevice.findObject(new BySelector().text("Kush Arora"));
 //        mText.click();
     }

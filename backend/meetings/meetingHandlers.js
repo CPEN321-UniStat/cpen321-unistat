@@ -27,7 +27,7 @@ const createMeetingRequest = async (req, res) => {
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        if ( isMenteeValid && isMentorValid && isMentorMentor && !isMenteeMentor && validPayment) {
+        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
