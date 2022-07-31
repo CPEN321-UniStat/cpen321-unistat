@@ -26,6 +26,8 @@ const createMeetingRequest = async (req, res) => {
         const isMentorValid = await isValidUser(req.body.mentorEmail);
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
+        //const isValidMeetingID = await isValidMid(req.body.mId)
+        //console.log("isMidValid", isValidMeetingID)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
         if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
@@ -48,7 +50,8 @@ const createMeetingRequest = async (req, res) => {
 }
 
 const getMeetingByEmail = async (req, res) => {
-    const isEmailValid = isValidUser(req.body.email)
+    const isEmailValid = await isValidUser(req.params.email)
+    console.log("isEmailValid", isEmailValid)
     if (isEmailValid) {
         var email = req.params.email;
         var month = parseInt(req.headers['month'], 10)
@@ -89,6 +92,7 @@ const respondToMeeting = async (req, res) => {
     try {
         console.log(req.body.mId + " " + req.body.status + " " + req.body.mColor)
         console.log(req.body)
+        console.log("status", req.body.status)
         find_query = {"mId" : req.body.mId}
         update_query = {"$set": {
             "status": req.body.status,
@@ -99,6 +103,7 @@ const respondToMeeting = async (req, res) => {
         
         var meeting = client.db("UniStatDB").collection("Meetings").find(find_query, {$exists: true})
         var meetingArray = await meeting.toArray()
+
         var menteeEmail = meetingArray[0].menteeEmail;
         var menteeEmail = meetingArray[0].menteeEmail;
         var mentorEmail = meetingArray[0].mentorEmail;
@@ -170,7 +175,7 @@ const createZoomMeeting = async (req, res) => {
 
     // Schedule Payment 
     try {
-        await payment.schedulePayment(req.body.mEndTime, req.body.mId);
+        await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
         var jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
@@ -217,6 +222,17 @@ const isMentor = async (email) => {
     var existingUsers = client.db("UniStatDB").collection("Stats").find(query, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
     return (lenUsers > 0) ? 1 : 0;
+}
+
+const isValidMid = async (mId) => {
+    var query = {"mid": mId}
+    try {
+        var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
+        var lenMeeting = (await existingMeeting.toArray()).length
+        return (lenMeeting > 0) ? 0 : 1;
+    } catch (err) {
+        return 0
+    }
 }
 
 module.exports = {

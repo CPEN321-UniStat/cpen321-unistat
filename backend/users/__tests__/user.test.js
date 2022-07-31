@@ -1,11 +1,16 @@
 const request = require('supertest')
-const app = require('../server')
-const db = require("../database/connect")
+const {app, server} = require('../../server')
+const db = require("../../database/connect")
 const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
-const init = require("../integration_testing/initUsers")
-const payMocks = require("../payments/paymentMocks.test")
+const init = require("../../integration_testing/initUsers")
+const users = require("../userHandlers")
+const verify = require("../userVerification")
+const { getUserCoins } = require('../../payments/paymentHandlers')
+const bodyParser = require('body-parser')
 
+require("../../payments/__mocks__/paymentMocks")
+jest.mock("../../payments/paymentHandlers")
 
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
@@ -18,30 +23,44 @@ const mentorSampleStat = {
     "univBio": "😀🥰😄😋😚😄"
 }
 
-beforeAll(() => {
+beforeAll(async () => {
     console.log("DROPPING")
-    client.db("UniStatDB").listCollections({name: "Users"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) {
-                client.db("UniStatDB").collection("Users").drop();
-            }
-        }
-    )
-    client.db("UniStatDB").listCollections({name: "Stats"}).next(
-        function (err, collectionInfo) {
-            if (collectionInfo) {
-                client.db("UniStatDB").collection("Stats").drop();
-            }
-        }
-    )
+    // client.db("UniStatDB").listCollections({name: "Users"}).next(
+    //     function (err, collectionInfo) {
+    //         if (collectionInfo) {
+    //             client.db("UniStatDB").collection("Users").drop();
+    //         }
+    //     }
+    // )
+    // client.db("UniStatDB").listCollections({name: "Stats"}).next(
+    //     function (err, collectionInfo) {
+    //         if (collectionInfo) {
+    //             client.db("UniStatDB").collection("Stats").drop();
+    //         }
+    //     }
+    // )
+    var query1 = {email : "manekgujral11@gmail.com"}
+    var query2 = {email : "kusharora339@gmail.com"}
+    var query3 = {userEmail : "kusharora339@gmail.com"}
+    client.db("UniStatDB").collection("Users").deleteOne(query1);
+    client.db("UniStatDB").collection("Users").deleteOne(query2);
+    client.db("UniStatDB").collection("Stats").deleteOne(query3);
 })
+
+
+afterAll( () => {
+    // Close the server instance after each test
+    server.close()
+    client.close()
+  })
+
 
 describe("POST /users", () => {
 
     describe("when the user is not already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
-            const [,idMenteeToken] = await init.initializeUsers()
+            const [,idMenteeToken, ] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": "testFirebaseToken"
@@ -52,7 +71,7 @@ describe("POST /users", () => {
         })
 
         test("(for mentor) should return a json response with status code 200", async () => {
-            const [idMentorToken,] = await init.initializeUsers()
+            const [idMentorToken, , ] = await init.initializeUsers()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
                 "firebase_token": "testFirebaseToken"
@@ -117,6 +136,23 @@ describe("POST /users", () => {
             })
         })
     })
+
+    describe('StoreGoogleUserData function test', () => { 
+        test('should return true', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await users.storeGoogleUserData(idMentorToken, "fb_token")
+            expect(res).toBe(1)
+         })
+     })
+
+     describe('user verifier test', () => { 
+        test('should return correct email', async () => { 
+            [idMentorToken,] = await init.initializeUsers()
+            const res = await verify.userVerifier(idMentorToken)
+            expect(res.email).toBe("kusharora339@gmail.com")
+         })
+     })
+
 
 })
 
@@ -260,9 +296,21 @@ describe("POST /statsByFilter", () => {
 
     })
 
+    describe("(for mentor) Get coins mock should throw error", () => {
+
+        test("should return status code 400", async () => {
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "kusharora339@gmail.com",
+            })
+            expect(res.statusCode).toBe(400)
+        })
+
+    })
+
     describe("(for mentor) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
+            await process.nextTick(() => { });
             const res = await request(app).post("/statsByFilter").send({
                 "userEmail": "kusharora339@gmail.com",
             })
@@ -276,16 +324,30 @@ describe("POST /statsByFilter", () => {
 
     })
 
+    describe("Get coins mock should throw error", () => {
+
+        test("should return status code 400", async () => {
+            await process.nextTick(() => { });
+            const res = await request(app).post("/statsByFilter").send({
+                "userEmail": "manekgujral11@gmail.com",
+            })
+            expect(res.statusCode).toBe(400)
+        })
+
+    })
+
     describe("(for mentee) Filter by user email", () => {
 
         test("should return a json response with a json array of length 1 with status code 200", async () => {
+            await process.nextTick(() => { });
             const res = await request(app).post("/statsByFilter").send({
-                "userEmail": "manekgujral11@gmail.com",
+                "userEmail": "manekgujral11@gmail.com"
             })
             expect(res.statusCode).toBe(200)
             var dataLen = JSON.parse(res.text).statData.length
             for (let i = 0; i < dataLen; i++) {
                 expect(JSON.parse(res.text).statData[0].isMentor).toBe(false)
+                expect(JSON.parse(res.text).statData[0].coins).toBe(101)
             }
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
