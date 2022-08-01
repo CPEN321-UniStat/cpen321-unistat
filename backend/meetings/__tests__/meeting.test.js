@@ -48,6 +48,14 @@ beforeAll(() => {
     )
 })
 
+
+
+afterAll( async() => {
+    // Close the server instance after each test
+    server.close()
+    await client.close()
+  })
+
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
@@ -111,6 +119,7 @@ describe("POST /meetings", () => {
     test("From an existing mentee to themselves", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mentorEmail = "manekgujral11@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -118,6 +127,7 @@ describe("POST /meetings", () => {
     test("From an existing user to a mentor who is an existing user", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mId = meetingID;
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
     })
@@ -125,6 +135,7 @@ describe("POST /meetings", () => {
     test("For a meeting that already exists", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mId = meetingID;
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -257,6 +268,7 @@ describe("POST /createZoomMeeting", () => {
     })
 
     test("Start date is after end date", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).post("/createZoomMeeting").send({
             "meetingTopic": "Test Meeting",
             "meetingStartTime": "2022-08-11'T'14:05:00",
