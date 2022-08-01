@@ -65,8 +65,8 @@ import java.util.Calendar;
 @LargeTest
 public class RequestMeetingTest {
 
-    String myDisplayName = "My Name";
-    String otherMentorDisplayName = "Mentor Name";
+    String myDisplayName = "Manek Gujral";
+    String otherMentorDisplayName = "Mentor User";
 
     UiDevice mDevice;
     private View decorView;

@@ -107,6 +107,8 @@ public class manageProfileTest {
         onView(withText("Please make sure your GPA is valid.")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
 
+        Thread.sleep(1500);
+
         // Sign out for the next test
         onView(isRoot()).perform(pressBack());
         onView(withId(R.id.sign_out_button)).perform(click());

@@ -45,7 +45,7 @@ public class signUpGoogleTest {
         onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_button)).perform(click());
         mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        UiObject mText = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
+        UiObject mText = mUiDevice.findObject(new UiSelector().text("Manek Gujral"));
         mText.click();
         Thread.sleep(1500);
         onView((withId(R.id.view_user_stats_activity))).check(matches(isDisplayed()));
