@@ -21,6 +21,6 @@
   },
   "scripts": {
     "test": "sh node_modules/.bin/jest",
-    "testing": "jest --watchAll --detectOpenHandles"
+    "testing": "jest"
   }
 }
