@@ -27,4 +27,5 @@ jobs:
       - name: Start user module tests
         working-directory: ./backend
         run: | 
-          npm test
+          npm test -- user.test.js
+          npm test -- integration.test.js
