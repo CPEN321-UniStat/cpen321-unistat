@@ -26,4 +26,4 @@ jobs:
         run: npm install
       - name: Start user module tests
         working-directory: ./backend
-        run: npm test -- user.test.js
+        run: npm run testing -- user.test.js
