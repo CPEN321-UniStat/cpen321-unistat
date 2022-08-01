@@ -23,6 +23,14 @@ beforeAll(() => {
     )
 })
 
+
+afterAll( () => {
+    // Close the server instance after each test
+    server.close()
+    client.close()
+  })
+
+
 var mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
     "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
@@ -624,7 +632,32 @@ describe("View Statistics use case", () => {
 
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
-    "meetingLogs": [],
+    "meetingLogs": [
+        {
+          "timestamp": "2022-07-09T11:00:00",
+          "userEmail": "manekgujral11@gmail.com",
+          "isMentor": false,
+          "action": "JOINED"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "kusharora339@gmail.com",
+            "isMentor": true,
+            "action": "JOINED"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "manekgujral11@gmail.com",
+            "isMentor": false,
+            "action": "LEFT"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "kusharora339@gmail.com",
+            "isMentor": true,
+            "action": "LEFT"
+        }
+    ],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
     "mentorName": "Mentor User",
@@ -824,6 +857,7 @@ describe("PUT /meetings", () => {
 // Tests for createZoomMeeting
 describe("POST /createZoomMeeting", () => {
     test("Creates a Zoom meeting", async () => {
+        this.timeout(5000)
         const res = await request(app).post("/createZoomMeeting").send({
             "meetingTopic": "Test Meeting",
             "meetingStartTime": "2022-08-11'T'11:05:00",

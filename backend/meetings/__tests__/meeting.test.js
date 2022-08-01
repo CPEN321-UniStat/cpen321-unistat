@@ -15,7 +15,32 @@ jest.mock("../../payments/paymentHandlers.js")
 // REQUIRES A SECOND MENTEE UNDER secondmenteeuser@sample.com email
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
-    "meetingLogs": [],
+    "meetingLogs": [
+        {
+          "timestamp": "2022-07-09T11:00:00",
+          "userEmail": "manekgujral11@gmail.com",
+          "isMentor": false,
+          "action": "JOINED"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "kusharora339@gmail.com",
+            "isMentor": true,
+            "action": "JOINED"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "manekgujral11@gmail.com",
+            "isMentor": false,
+            "action": "LEFT"
+        },
+        {
+            "timestamp": "2022-07-09T11:00:00",
+            "userEmail": "kusharora339@gmail.com",
+            "isMentor": true,
+            "action": "LEFT"
+        }
+    ],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
     "paymentAmount": 5,
