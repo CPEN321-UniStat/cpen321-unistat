@@ -4,6 +4,7 @@ const payment = require("../paymentHandlers")
 
 /* Mock implementaions */
 payment.schedulePayment.mockImplementation((req, res) => {
+  console.log("MOCKING")
   const jsonResp = {
       "status": `Payment scheduled at ${req.body.mEndTime}`
   }

@@ -2,10 +2,14 @@ const request = require('supertest')
 const {app,server} = require('../../server')
 const db = require("../../database/connect")
 const { sendMeetingRequest } = require('../../users/userHandlers')
+const { schedulePayment } = require('../../payments/paymentHandlers')
 const client = db.client
 
 require("../../users/__mocks__/userMocks")
 jest.mock("../../users/userHandlers.js")
+
+require("../../payments/__mocks__/paymentMocks")
+jest.mock("../../payments/paymentHandlers.js")
 
 // UNIT TESTS (Point 6 of M6)
 // REQUIRES A SECOND MENTEE UNDER secondmenteeuser@sample.com email
@@ -54,7 +58,7 @@ afterAll( async() => {
     // Close the server instance after each test
     server.close()
     await client.close()
-  })
+})
 
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
