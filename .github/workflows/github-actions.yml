@@ -27,4 +27,4 @@ jobs:
       - name: Start user module tests
         working-directory: ./backend
         run: | 
-          npx jest 
+          npm test
