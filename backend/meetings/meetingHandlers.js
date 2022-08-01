@@ -12,10 +12,10 @@ dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
 const zoomPayload = {
-    iss: process.env.API_KEY,
+    iss: process.env.ZOOM_APP_API_KEY,
     exp: new Date().getTime() + 5000,
 }
-const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET)
+const jwtToken = jwt.sign(zoomPayload, process.env.ZOOM_APP_SECRET)
 
 
 // CRUD Functions for Meetings collection
@@ -147,7 +147,7 @@ const updateMeetingLog = async (req, res) => {
 }
 
 const createZoomMeeting = async (req, res) => {
-    email = "manekgujral11@gmail.com"; // your zoom developer email account
+    email = "cpen321.unistat@gmail.com"; // your zoom developer email account
     var options = {
         method: "POST",
         uri: "https://api.zoom.us/v2/users/" + email + "/meetings",

@@ -98,6 +98,7 @@ public class ViewStatsActivity extends AppCompatActivity {
         filterAutoComplete.setEnabled(true);
         filterAutoComplete.setFocusable(false);
         filterAutoComplete.setFocusableInTouchMode(false);
+
         filterAutoComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,7 +109,20 @@ public class ViewStatsActivity extends AppCompatActivity {
                 filterAutoComplete.requestFocus();
             }
         });
-        
+
+
+
+        filterAutoComplete.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (!b){
+                    filterAutoComplete.setEnabled(true);
+                    filterAutoComplete.setFocusable(false);
+                    filterAutoComplete.setFocusableInTouchMode(false);
+                }
+            }
+        });
+
         // Get data on the basis of item clicked
         filterAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
