@@ -27,6 +27,6 @@ jobs:
       - name: Start user module tests
         working-directory: ./backend
         run: | 
-          npm run test -- user.test.js
-          npm run test -- meeting.test.js --forceExit
-          npm run test -- integration.test.js --forceExit
+          npx jest -- user.test.js
+          npx jest -- meeting.test.js --forceExit
+          npx jest -- integration.test.js --forceExit
