@@ -71,4 +71,4 @@ db.connect().catch(err => {
     db.client.close()
 })
 
-module.exports = app;
+module.exports = {app, server}
