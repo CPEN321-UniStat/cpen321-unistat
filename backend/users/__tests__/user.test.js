@@ -683,23 +683,18 @@ describe("PUT /stats", () => {
         })
     })
 
-    describe('Test sendMeetingRequest function', () => { 
-        test('should return successfully sent message', async () => { 
-            const res = await request(app).post("/sendMeetingRequest").send({
-                "email": "manekgujral11@gmail.com",
-            })
-            expect(JSON.parse(res.text).res).toBe("Successfully sent notification")
-         })
-     })
-
-     describe('Test sendMeetingResponse function', () => { 
-        test('should return successfully sent message', async () => { 
-            const res = await request(app).post("/sendMeetingResponse").send({
-                "email": "kusharora339@gmail.com",
-            })
-            expect(JSON.parse(res.text).res).toBe("Successfully sent notification")
-         })
-     })
-
-
 })
+
+describe('Test sendMeetingRequest function', () => { 
+    test('should return successfully sent message', async () => { 
+        const res = await users.sendMeetingRequest("manekgujral11@gmail.com")
+        expect(res).toBe("Successfully sent notification")
+     })
+ })
+
+ describe('Test sendMeetingResponse function', () => { 
+    test('should return successfully sent message', async () => { 
+        const res = await users.sendMeetingResponse("kusharora339@gmail.com")
+        expect(res).toBe("Successfully sent notification")
+     })
+ })

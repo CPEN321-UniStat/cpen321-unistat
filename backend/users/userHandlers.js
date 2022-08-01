@@ -311,17 +311,16 @@ async function storeGoogleUserData(idToken, fb_token) {
     return lenUsers
 }
 
-const sendMeetingRequest = async (req, res) => {
-
+const sendMeetingRequest = async (userEmail) => {
     //email of person you are sending request to
     try {
-        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email }) //mentor email
+        const curUser = client.db("UniStatDB").collection("Users").find({ email: userEmail }) //mentor email
+ //mentor email
         var curToken = (await curUser.toArray())[0].firebase_token
-        console.log("TOKEN-------------------", curToken)
+        console.log("CURRTOKEN--------------------")
     } catch (error) {
         console.log(error)
     }
-
     var payload = {
         notification: {
             title: "UniStat",
@@ -333,31 +332,24 @@ const sendMeetingRequest = async (req, res) => {
         priority: "high",
         timeToLive: 60 * 60 * 24
     }
-
-    admin.messaging().sendToDevice(curToken, payload, options)
-    .then(function(response) {
-        console.log("Successfully sent message:", response);
-        var jsonResp = {"res" : "Successfully sent notification"}
-        res.status(200).send(JSON.stringify(jsonResp));
-    })
-    .catch(function(error) {
-        console.log("Error sending message:", error);
-        res.status(400).send(JSON.stringify(error));
-    })
-
+    if (curToken != "" && curToken != undefined) {
+        try {
+            const resp = admin.messaging().sendToDevice(curToken, payload, options)
+            return "Successfully sent notification"
+        } catch (error) {
+            return error
+        }
+    
+    }
 }
-
-const sendMeetingResponse = async (req, res) => {
-
+const sendMeetingResponse = async (userEmail) => {
     //email of person you are responding to
     try {
-        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email })
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail })
         var curToken = (await curUser.toArray())[0].firebase_token
-        console.log("TOKEN-------------------", curToken)
     } catch (error) {
         console.log(error)
     }
-
     var payload = {
         notification: {
             title: "UniStat",
@@ -369,18 +361,15 @@ const sendMeetingResponse = async (req, res) => {
         priority: "high",
         timeToLive: 60 * 60 * 24
     }
-
-    admin.messaging().sendToDevice(curToken, payload, options)
-    .then(function(response) {
-        console.log("Successfully sent message:", response);
-        var jsonResp = {"res" : "Successfully sent notification"}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
-    })
-    .catch(function(error) {
-        console.log("Error sending message:", error);
-        res.status(400).send(JSON.stringify(error));
-    })
-
+    if (curToken != "" && curToken != undefined) {
+        try {
+            const resp = admin.messaging().sendToDevice(curToken, payload, options)
+            return "Successfully sent notification"
+        } catch (error) {
+            return error
+        }
+    
+    }
 }
 
 module.exports = {
