@@ -26,4 +26,7 @@ jobs:
         run: npm install
       - name: Start user module tests
         working-directory: ./backend
-        run: npm run test -- user.test.js
+        run: | 
+          npm run test -- user.test.js
+          npm run test -- meeting.test.js --forceExit
+          npm run test -- integration.test.js --forceExit
