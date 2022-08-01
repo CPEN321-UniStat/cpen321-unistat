@@ -70,7 +70,7 @@ public class EventActivity extends AppCompatActivity {
 //        params.appKey = "fixUR7859EnwYCEw1NrAHGGwHF5CMbhmxMOO";
 //        params.appSecret = "x8xZ2PGMJ55Fqkk1bucvlyJ9WMdxJN5d5fxZ";
         params.appKey = "9xKqnLahcR8BAQ8h7MLGJfvi7IfBAh7PteUz";
-        params.appSecret = "Jbztc6GReww98BZ023mL7I5dMvoyk5XF";
+        params.appSecret = "P8zE6MdRd107QxmfNg8RyrkrYIFJnCp2gsXC";
         params.domain = "zoom.us";
         params.enableLog = true;
 
