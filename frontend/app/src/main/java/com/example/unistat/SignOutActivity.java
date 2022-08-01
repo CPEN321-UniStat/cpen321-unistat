@@ -60,29 +60,9 @@ public class SignOutActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SignOutActivity.this, UserProfileActivity.class));
-                overridePendingTransition(0, 0);
-//                overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
+                overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
             }
         });
-
-//        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton button, boolean isChecked) {
-//                if(isChecked){
-//                    Log.d(TAG, "onChecked");
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-//                }
-//                else{
-//                    Log.d(TAG, "onUnchecked");
-//                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-//                }
-//                finish();
-//                startActivity(new Intent(SignOutActivity.this, SignOutActivity.this.getClass()));
-//                overridePendingTransition(0,0);
-//            }
-//        });
-        //toggle switch for dark and light mode
-//        toggleButton = findViewById(R.id.dark_light_mode_switch);
 
 
         //switchmaterial
@@ -104,11 +84,9 @@ public class SignOutActivity extends AppCompatActivity {
                     @Override
                     public void run()
                     {
-                        overridePendingTransition(0, 0);
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         finish();
-                        overridePendingTransition(0, 0);
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         startActivity(getIntent());
                     }
                 });
@@ -131,13 +109,11 @@ public class SignOutActivity extends AppCompatActivity {
                 {
                     case R.id.calendar_activity:
                         startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.view_stats_activity:
                         startActivity(new Intent(getApplicationContext(), ViewStatsActivity.class));
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.sign_out_activity:
                         return true;
@@ -165,8 +141,7 @@ public class SignOutActivity extends AppCompatActivity {
                         updateRegistrationToken("", userEmail);
 
                         startActivity(openMainActivity);
-                        overridePendingTransition(0, 0);
-//                        overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
+                        overridePendingTransition(R.anim.zm_enlarge_out, R.anim.zm_enlarge_in);
                     }
                 });
     }

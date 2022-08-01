@@ -39,13 +39,11 @@ public class UserStatusActivity extends AppCompatActivity {
                     Intent openViewStats = new Intent(UserStatusActivity.this, ViewStatsActivity.class);
                     if (isHighSchoolStudent) {
                         startActivity(openViewStats);
-//                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
                     }
                     else { // Mentor
                         startActivity(openUserProfile);
-//                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_slide_in_right, R.anim.zm_slide_out_left);
                     }
 
                 } else {

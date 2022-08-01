@@ -241,7 +241,6 @@ public class UserProfileActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
-        overridePendingTransition(0, 0);
+        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
     }
 }

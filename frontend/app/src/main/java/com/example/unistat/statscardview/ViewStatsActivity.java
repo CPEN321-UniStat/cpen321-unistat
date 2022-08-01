@@ -86,7 +86,6 @@ public class ViewStatsActivity extends AppCompatActivity {
             }
         });
 
-
         // Initialize and Set up filter auto-complete
         univNameStats = new ArrayList<>();
         univMajorStats = new ArrayList<>();
@@ -109,7 +108,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                 filterAutoComplete.requestFocus();
             }
         });
-
+        
         // Get data on the basis of item clicked
         filterAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -177,15 +176,13 @@ public class ViewStatsActivity extends AppCompatActivity {
                 {
                     case R.id.calendar_activity:
                         startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.view_stats_activity:
                         return true;
                     case R.id.sign_out_activity:
                         startActivity(new Intent(getApplicationContext(), SignOutActivity.class));
-//                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
-                        overridePendingTransition(0, 0);
+                        overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     default:
                         return false;

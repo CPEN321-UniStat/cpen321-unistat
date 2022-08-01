@@ -62,17 +62,6 @@ public class EventActivity extends AppCompatActivity {
         addButtonListeners();
         initZoom(EventActivity.this);
 
-//        // Show dialog if mentor
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
-//        if (account.getEmail().equals(meeting.getMentorEmail())) {
-//            String msg = "Please leave the meeting once the other user has left to get paid.";
-//            new MaterialAlertDialogBuilder(this)
-//                    .setIcon(R.drawable.ic_baseline_info_24)
-//                    .setTitle("Meeting Information")
-//                    .setMessage(msg)
-//                    .setPositiveButton("Ok", null)
-//                    .show();
-//        }
     }
 
     private void initZoom(Context context) {
@@ -579,7 +568,7 @@ public class EventActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
+        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
     }
 
 }
