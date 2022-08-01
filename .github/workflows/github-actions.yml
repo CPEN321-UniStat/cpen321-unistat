@@ -27,5 +27,4 @@ jobs:
       - name: Start user module tests
         working-directory: ./backend
         run: | 
-          npx jest user.test.js
-          npx jest integration.test.js
+          npx jest --runInBand
