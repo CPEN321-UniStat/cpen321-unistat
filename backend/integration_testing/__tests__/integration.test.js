@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../../server')
+const {app, server} = require('../../server')
 const init = require("../initUsers")
 const db = require("../../database/connect")
 const client = db.client
@@ -39,10 +39,11 @@ describe("Sign up and login use case", () => {
     describe("when the user is not already in the database", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
-            const [,idMenteeToken,] = await init.initializeUsers()
+            const [,idMenteeToken] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken()
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("signedUp")
@@ -51,9 +52,10 @@ describe("Sign up and login use case", () => {
 
         test("(for mentor) should return a json response with status code 200", async () => {
             const [idMentorToken,] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("signedUp")
@@ -66,9 +68,10 @@ describe("Sign up and login use case", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
             const [,idMenteeToken] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken();
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("loggedIn")
@@ -77,9 +80,10 @@ describe("Sign up and login use case", () => {
 
         test("(for mentor) should return a json response with status code 200", async () => {
             [idMentorToken,] = await init.initializeUsers();
+            const fb_token = await init.initUserFbToken()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("loggedIn")

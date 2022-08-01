@@ -62,7 +62,6 @@ describe("POST /users", () => {
         test("(for mentee) should return a json response with status code 200", async () => {
             const [,idMenteeToken] = await init.initializeUsers()
             const fb_token = await init.initUserFbToken()
-            console.log("F656589615615---------------------------", fb_token)
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
                 "firebase_token": fb_token
@@ -142,25 +141,24 @@ describe("POST /users", () => {
         })
     })
 
-    describe('StoreGoogleUserData function test', () => { 
-        test('should return true', async () => { 
-            [idMentorToken,] = await init.initializeUsers()
-            const fb_token = await init.initUserFbToken()
-            const res = await users.storeGoogleUserData(idMentorToken, fb_token)
-            expect(res).toBe(1)
-         })
-     })
-
-     describe('user verifier test', () => { 
-        test('should return correct email', async () => { 
-            [idMentorToken,] = await init.initializeUsers()
-            const res = await verify.userVerifier(idMentorToken)
-            expect(res.email).toBe("kusharora339@gmail.com")
-         })
-     })
-
-
 })
+
+describe('StoreGoogleUserData function test', () => { 
+    test('should return true', async () => { 
+        [idMentorToken,] = await init.initializeUsers()
+        const fb_token = await init.initUserFbToken()
+        const res = await users.storeGoogleUserData(idMentorToken, fb_token)
+        expect(res).toBe(1)
+     })
+ })
+
+ describe('user verifier test', () => { 
+    test('should return correct email', async () => { 
+        [idMentorToken,] = await init.initializeUsers()
+        const res = await verify.userVerifier(idMentorToken)
+        expect(res.email).toBe("kusharora339@gmail.com")
+     })
+ })
 
 describe("POST /stats", () => {
 
