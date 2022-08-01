@@ -311,71 +311,77 @@ async function storeGoogleUserData(idToken, fb_token) {
     return lenUsers
 }
 
-// const sendMeetingRequest = async (userEmail) => {
+const sendMeetingRequest = async (req, res) => {
 
-//     //email of person you are sending request to
-//     try {
-//         const curUser = client.db("UniStatDB").collection("Users").find({ email: userEmail }) //mentor email
-//  //mentor email
-//         var curToken = (await curUser.toArray())[0].firebase_token
-//     } catch (error) {
-//         console.log(error)
-//     }
+    //email of person you are sending request to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email }) //mentor email
+        var curToken = (await curUser.toArray())[0].firebase_token
+        console.log("TOKEN-------------------", curToken)
+    } catch (error) {
+        console.log(error)
+    }
 
-//     var payload = {
-//         notification: {
-//             title: "UniStat",
-//             body: "Someone requested a meeting with you!",
-//         },
-//     }
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone requested a meeting with you!",
+        },
+    }
     
-//     var options = {
-//         priority: "high",
-//         timeToLive: 60 * 60 * 24
-//     }
-//     if (curToken != "" && curToken != undefined) {
-//         admin.messaging().sendToDevice(curToken, payload, options)
-//         .then(function(response) {
-//             console.log("Successfully sent message:", response);
-//         })
-//         .catch(function(error) {
-//             console.log("Error sending message:", error);
-//         })
-//     }
-// }
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
 
-// const sendMeetingResponse = async (userEmail) => {
+    admin.messaging().sendToDevice(curToken, payload, options)
+    .then(function(response) {
+        console.log("Successfully sent message:", response);
+        var jsonResp = {"res" : "Successfully sent notification"}
+        res.status(200).send(JSON.stringify(jsonResp));
+    })
+    .catch(function(error) {
+        console.log("Error sending message:", error);
+        res.status(400).send(JSON.stringify(error));
+    })
 
-//     //email of person you are responding to
-//     try {
-//         const curUser = await client.db("UniStatDB").collection("Users").find({ email : userEmail })
-//         var curToken = (await curUser.toArray())[0].firebase_token
-//     } catch (error) {
-//         console.log(error)
-//     }
+}
 
-//     var payload = {
-//         notification: {
-//             title: "UniStat",
-//             body: "Someone responded to your meeting request!",
-//         },
-//     }
+const sendMeetingResponse = async (req, res) => {
+
+    //email of person you are responding to
+    try {
+        const curUser = await client.db("UniStatDB").collection("Users").find({ email : req.body.email })
+        var curToken = (await curUser.toArray())[0].firebase_token
+        console.log("TOKEN-------------------", curToken)
+    } catch (error) {
+        console.log(error)
+    }
+
+    var payload = {
+        notification: {
+            title: "UniStat",
+            body: "Someone responded to your meeting request!",
+        },
+    }
     
-//     var options = {
-//         priority: "high",
-//         timeToLive: 60 * 60 * 24
-//     }
+    var options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
 
-//     if (curToken != "" && curToken != undefined) {
-//         admin.messaging().sendToDevice(curToken, payload, options)
-//         .then(function(response) {
-//             console.log("Successfully sent message:", response);
-//         })
-//         .catch(function(error) {
-//             console.log("Error sending message:", error);
-//         })
-//     }
-// }
+    admin.messaging().sendToDevice(curToken, payload, options)
+    .then(function(response) {
+        console.log("Successfully sent message:", response);
+        var jsonResp = {"res" : "Successfully sent notification"}
+        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+    })
+    .catch(function(error) {
+        console.log("Error sending message:", error);
+        res.status(400).send(JSON.stringify(error));
+    })
+
+}
 
 module.exports = {
     handleUserEntry,
@@ -386,6 +392,6 @@ module.exports = {
     getStatsBySorting,
     getStatsByConfiguration,
     updateStat,
-    // sendMeetingRequest,
-    // sendMeetingResponse
+    sendMeetingRequest,
+    sendMeetingResponse
 }

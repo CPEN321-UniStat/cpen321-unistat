@@ -52,9 +52,11 @@ describe("POST /users", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
             const [,idMenteeToken] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken()
+            console.log("F656589615615---------------------------", fb_token)
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("signedUp")
@@ -63,9 +65,10 @@ describe("POST /users", () => {
 
         test("(for mentor) should return a json response with status code 200", async () => {
             const [idMentorToken,] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("signedUp")
@@ -78,9 +81,10 @@ describe("POST /users", () => {
 
         test("(for mentee) should return a json response with status code 200", async () => {
             const [,idMenteeToken] = await init.initializeUsers()
+            const fb_token = await init.initUserFbToken();
             const res = await request(app).post("/users").send({
                 "Token": idMenteeToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("loggedIn")
@@ -89,15 +93,16 @@ describe("POST /users", () => {
 
         test("(for mentor) should return a json response with status code 200", async () => {
             [idMentorToken,] = await init.initializeUsers();
+            const fb_token = await init.initUserFbToken()
             const res = await request(app).post("/users").send({
                 "Token": idMentorToken, 
-                "firebase_token": "testFirebaseToken"
+                "firebase_token": fb_token
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("loggedIn")
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
-
+    
     })
 
     describe("when body does not contain valid user token", () => {
@@ -131,7 +136,8 @@ describe("POST /users", () => {
     describe('StoreGoogleUserData function test', () => { 
         test('should return true', async () => { 
             [idMentorToken,] = await init.initializeUsers()
-            const res = await users.storeGoogleUserData(idMentorToken, "fb_token")
+            const fb_token = await init.initUserFbToken()
+            const res = await users.storeGoogleUserData(idMentorToken, fb_token)
             expect(res).toBe(1)
          })
      })
@@ -666,4 +672,23 @@ describe("PUT /stats", () => {
             })
         })
     })
+
+    describe('Test sendMeetingRequest function', () => { 
+        test('should return successfully sent message', async () => { 
+            const res = await request(app).post("/sendMeetingRequest").send({
+                "email": "manekgujral11@gmail.com",
+            })
+            expect(JSON.parse(res.text).res).toBe("Successfully sent notification")
+         })
+     })
+
+     describe('Test sendMeetingResponse function', () => { 
+        test('should return successfully sent message', async () => { 
+            const res = await request(app).post("/sendMeetingResponse").send({
+                "email": "kusharora339@gmail.com",
+            })
+            expect(JSON.parse(res.text).res).toBe("Successfully sent notification")
+         })
+     })
+
 })

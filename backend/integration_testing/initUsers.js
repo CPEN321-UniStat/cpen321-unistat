@@ -1,5 +1,8 @@
 const axios = require("axios");
 const dotEnv = require("dotenv");
+var admin = require("firebase-admin");
+var serviceAccount = require("../serviceAccountKey.json");
+
 dotEnv.config()
 
 const initializeUsers = async () => { 
@@ -11,10 +14,28 @@ const initializeUsers = async () => {
     var mentorIdToken = mentorAccount.data.id_token
     var menteeIdToken = menteeAccount.data.id_token
     var testAccIdToken = testAccount.data.id_token
-
+    // var fbToken = initUserFbToken()
     return [mentorIdToken, menteeIdToken, testAccIdToken]
 }
 
+const initUserFbToken = async () => {
+    const uid = '106089786222161579479';
+
+    var token = await admin.auth().createCustomToken(uid)
+
+    return token
+
+    // admin.auth()
+    // .createCustomToken(uid)
+    // .then((customToken) => {
+    //     return customToken
+    // })
+    // .catch((error) => {
+    //     console.log('Error creating custom token:', error);
+    // });
+}
+
 module.exports = {
-    initializeUsers
+    initializeUsers,
+    initUserFbToken
 }
