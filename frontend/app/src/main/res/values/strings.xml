@@ -15,7 +15,7 @@
     <string name="univ_major_input">Your Major</string>
     <string name="univ_entrance_input">Your SAT/Entrance-exam score</string>
     <string name="univ_user_bio_input">Your Story</string>
-    <string name="user_profile_prompt">Kindly enter your university details below.</string>
+    <string name="user_profile_prompt">Let\'s get to know You...</string>
     <string name="calendar">Calendar</string>
     <string name="view_stats">Home</string>
     <string name="profile">Settings</string>
@@ -39,6 +39,7 @@
     <string name="make_payment_button">Make Payment</string>
     <string name="googlepay_status_unavailable">Google Pay is not yet available</string>
     <string name="pay">Pay</string>
+    <string name="greet_user_text"/>
 
 
 </resources>

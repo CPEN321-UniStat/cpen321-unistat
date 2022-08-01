@@ -9,17 +9,21 @@
 
     <TextView
         android:id="@+id/userStatusQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="336dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
         android:fontFamily="@font/open_sans"
+        android:gravity="center"
         android:text="@string/user_status_question_text"
-        android:textSize="22sp"
+        android:textSize="26sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
+        app:layout_constraintVertical_bias="0.55" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/questionAnimation"
@@ -64,18 +68,20 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="310dp"
-        android:layout_height="147dp"
+        android:layout_width="290dp"
+        android:layout_height="157dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userStatusQuestion"
-        app:layout_constraintVertical_bias="0.182">
+        app:layout_constraintVertical_bias="0.246">
 
         <RadioButton
             android:id="@+id/hsStudentButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/open_sans"
             android:onClick="onRadioButtonChecked"
             android:text="@string/hs_student_button_text"
             android:textSize="20sp" />
@@ -85,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:fontFamily="@font/open_sans"
             android:onClick="onRadioButtonChecked"
             android:text="@string/univ_student_button_text"
             android:textSize="20sp" />
@@ -100,9 +107,9 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.985" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
