@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup,android:usesCleartextTraffic">
 
-        <activity android:name=".SplashScreen"
+        <activity android:name=".ui.login.SplashScreen"
             android:exported="true" >
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -24,25 +24,25 @@
         </intent-filter>
         </activity>
 
-        <activity android:name=".ViewMentorProfileActivity" />
+        <activity android:name=".ui.stats.ViewMentorProfileActivity" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".ui.settings.UserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".RequestMeeting"
+            android:name=".ui.meetings.RequestMeetingActivity"
             android:exported="false" />
-        <activity android:name=".EventActivity" />
-        <activity android:name=".CalendarActivity" />
-        <activity android:name=".statscardview.ViewStatsActivity" />
+        <activity android:name=".ui.meetings.EventActivity" />
+        <activity android:name=".ui.calendar.CalendarActivity" />
+        <activity android:name=".ui.stats.ViewStatsActivity" />
         <activity
-            android:name=".CreateUserProfileActivity"
+            android:name=".ui.login.CreateUserProfileActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".UserStatusActivity" />
+        <activity android:name=".ui.login.UserStatusActivity" />
         <activity
-            android:name=".SignOutActivity"
+            android:name=".ui.settings.SettingsActivity"
             android:configChanges="uiMode" />
         <activity
-            android:name=".MainActivity">
+            android:name=".ui.login.MainActivity">
 
         </activity>
 

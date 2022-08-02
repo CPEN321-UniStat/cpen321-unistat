@@ -1,4 +1,4 @@
-package com.example.unistat;
+package com.example.unistat.ui.meetings;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.meeting.Meeting;
-import com.example.unistat.meeting.MeetingLog;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.R;
+import com.example.unistat.classes.Meeting;
+import com.example.unistat.classes.MeetingLog;
+import com.example.unistat.ui.calendar.CalendarActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -44,7 +47,7 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.UUID;
 
-public class RequestMeeting extends AppCompatActivity {
+public class RequestMeetingActivity extends AppCompatActivity {
 
     private static final String TAG = "RequestMeeting";
     private TextView startDateText;
@@ -76,13 +79,13 @@ public class RequestMeeting extends AppCompatActivity {
         mentorEmail = intent.getStringExtra("mentorEmail");
         mentorName = intent.getStringExtra("mentorName");
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeeting.this);
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeetingActivity.this);
         assert account != null;
         String userEmail = account.getEmail();
 
         menteeName = account.getDisplayName();
 
-        requestQueue = Volley.newRequestQueue(RequestMeeting.this);
+        requestQueue = Volley.newRequestQueue(RequestMeetingActivity.this);
 
         meetingTitleInput = findViewById(R.id.meeting_title_input);
 
@@ -254,15 +257,15 @@ public class RequestMeeting extends AppCompatActivity {
                             if (meetingTitleValid && paymentValid) {
                                 double payment = Double.parseDouble(paymentOffer.trim());
                                 if (payment > balance) {
-                                    Toast.makeText(RequestMeeting.this, "Not enough balance for payment " + payment, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestMeetingActivity.this, "Not enough balance for payment " + payment, Toast.LENGTH_LONG).show();
                                 } else if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
-                                    Toast.makeText(RequestMeeting.this, "Start time cannot be after end time", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestMeetingActivity.this, "Start time cannot be after end time", Toast.LENGTH_LONG).show();
                                 } else if (startTimeCalendar.getTimeInMillis() < timeNow || endTimeCalendar.getTimeInMillis() < timeNow) {
-                                    Toast.makeText(RequestMeeting.this, "Start time or end time cannot be in the past", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(RequestMeetingActivity.this, "Start time or end time cannot be in the past", Toast.LENGTH_LONG).show();
                                 } else {
                                     bookMeeting(meetingTitle, mentorEmail, menteeName, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
-                                    Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
-                                    Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
+                                    Toast.makeText(RequestMeetingActivity.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+                                    Intent viewCalendar = new Intent(RequestMeetingActivity.this, CalendarActivity.class);
                                     startActivity(viewCalendar);
                                     overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
                                 }

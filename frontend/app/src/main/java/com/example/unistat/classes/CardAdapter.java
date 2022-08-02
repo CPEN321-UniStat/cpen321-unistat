@@ -1,4 +1,4 @@
-package com.example.unistat.statscardview;
+package com.example.unistat.classes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.unistat.R;
-import com.example.unistat.ViewMentorProfileActivity;
+import com.example.unistat.ui.stats.ViewMentorProfileActivity;
 import com.google.android.material.card.MaterialCardView;
 import com.squareup.picasso.Picasso;
 import org.json.JSONException;

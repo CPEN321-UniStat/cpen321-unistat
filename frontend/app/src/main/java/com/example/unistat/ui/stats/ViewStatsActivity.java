@@ -1,4 +1,4 @@
-package com.example.unistat.statscardview;
+package com.example.unistat.ui.stats;
 
 
 import androidx.annotation.NonNull;
@@ -30,10 +30,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.CalendarActivity;
-import com.example.unistat.IpConstants;
+import com.example.unistat.classes.CardAdapter;
+import com.example.unistat.classes.StatsCards;
+import com.example.unistat.ui.calendar.CalendarActivity;
+import com.example.unistat.classes.IpConstants;
 import com.example.unistat.R;
-import com.example.unistat.SignOutActivity;
+import com.example.unistat.ui.settings.SettingsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -187,7 +189,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                     case R.id.view_stats_activity:
                         return true;
                     case R.id.sign_out_activity:
-                        Intent startSignOut = new Intent(getApplicationContext(), SignOutActivity.class);
+                        Intent startSignOut = new Intent(getApplicationContext(), SettingsActivity.class);
                         Log.d(TAG, "IS_MENTOR: " + isMentor);
                         if (isMentor != null) {
                             startSignOut.putExtra("isMentor", isMentor);

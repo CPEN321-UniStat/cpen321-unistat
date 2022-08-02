@@ -1,4 +1,4 @@
-package com.example.unistat.meeting;
+package com.example.unistat.classes;
 
 import android.graphics.Color;
 

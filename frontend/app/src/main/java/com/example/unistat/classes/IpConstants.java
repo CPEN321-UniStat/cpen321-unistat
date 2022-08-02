@@ -1,4 +1,4 @@
-package com.example.unistat;
+package com.example.unistat.classes;
 
 public class IpConstants {
 

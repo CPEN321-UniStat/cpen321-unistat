@@ -1,4 +1,4 @@
-package com.example.unistat;
+package com.example.unistat.ui.stats;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.unistat.R;
+import com.example.unistat.ui.meetings.RequestMeetingActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.squareup.picasso.Picasso;
@@ -85,7 +87,7 @@ public class ViewMentorProfileActivity extends AppCompatActivity {
     }
 
     public void requestMeeting(View view) {
-        Intent viewEvent = new Intent(ViewMentorProfileActivity.this, RequestMeeting.class);
+        Intent viewEvent = new Intent(ViewMentorProfileActivity.this, RequestMeetingActivity.class);
         viewEvent.putExtra("mentorEmail", mentorEmail);
         viewEvent.putExtra("mentorName", mentorName);
         startActivity(viewEvent);

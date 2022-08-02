@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/user_status_activity"
-    tools:context=".UserStatusActivity">
+    tools:context=".ui.login.UserStatusActivity">
 
     <TextView
         android:id="@+id/userStatusQuestion"
