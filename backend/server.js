@@ -46,6 +46,8 @@ app.post("/meetings", meeting.createMeetingRequest)
 
 app.get("/meetings/:email", meeting.getMeetingByEmail)
 
+app.get("/optimalMeetings/:email", meeting.optimalMeetings)
+
 app.post("/meetingsById/", meeting.getMeetingById)
 
 app.put("/meetings", meeting.respondToMeeting)

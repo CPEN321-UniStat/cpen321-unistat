@@ -11,6 +11,7 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
+const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
 const zoomPayload = {
     iss: process.env.ZOOM_APP_API_KEY,
     exp: new Date().getTime() + 5000,
@@ -26,15 +27,15 @@ const createMeetingRequest = async (req, res) => {
         const isMentorValid = await isValidUser(req.body.mentorEmail);
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
-        //const isValidMeetingID = await isValidMid(req.body.mId)
-        //console.log("isMidValid", isValidMeetingID)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment) {
+        const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
+        const isMeetingIdValid = await isValidMid(req.body.mId)
+        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
             }
-            // Implement check to see if req.body.mentorEmail is actually a mentor
+
             await users.sendMeetingRequest(req.body.mentorEmail)
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
@@ -72,6 +73,106 @@ const getMeetingByEmail = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     }
+}
+
+const optimalMeetings = async (req, res) => {
+    var email = req.params.email;
+
+    var startDay = parseInt(req.headers['startday'], 10)
+    var startMonth = parseInt(req.headers['startmonth'], 10)
+    var endDay = parseInt(req.headers['endday'], 10)
+    var endMonth = parseInt(req.headers['endmonth'], 10)
+    var weekLoaderMonth = parseInt(req.headers['weekloadermonth'], 10)
+    var year = parseInt(req.headers['year'], 10)
+
+    console.log("weekLoaderMonth: ", weekLoaderMonth)
+
+    var findQuery = {
+        "$and": [
+          {"status": "PENDING"},
+          {"$or": [{"menteeEmail": email}, {"mentorEmail": email}]},
+          {"$or": [{ "mStartTime.month": {"$ne": startMonth}}, {"mStartTime.dayOfMonth": {"$gte": startDay}}]},
+          {"$or": [{ "mStartTime.month": startMonth}, {"mStartTime.month": {"$gt": startMonth}}]},
+          {"$or": [{ "mEndTime.month": {"$ne": endMonth}}, {"mEndTime.dayOfMonth": {"$lte": endDay}}]},
+          {"$or": [{ "mEndTime.month": endMonth}, {"mEndTime.month": {"$lt": endMonth}}]},
+          {"mStartTime.year": year}
+        ]
+      }
+    
+    var sortQuery = {
+        "mEndTime.year": 1,
+        "mEndTime.month": 1,
+        "mEndTime.dayOfMonth": 1,
+        "mEndTime.hourOfDay": 1,
+        "mEndTime.minute": 1,
+        "mEndTime.second": 1
+    }
+
+    
+    client.db("UniStatDB").collection("Meetings").find(findQuery).sort(sortQuery).toArray(function(err, result) {
+        if (err){
+            console.log(err)
+            res.status(400).send(JSON.stringify(err))
+        }
+        const P = []
+        for (let i = 0; i < result.length; i++) {
+            P[i+1] = getLargestIndexCompatibleInterval(i, result)
+        }
+        const v = []
+        for (let i = 0; i < result.length; i++) {
+            var payment = result[i].paymentAmount
+            v[i+1] = payment
+        }
+        const M = []
+        M[0] = 0
+        for (let i = 1; i <= result.length; i++) {
+            M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
+        }
+
+        var optimalIndices = findSolution(result.length, M, P, v)
+        var optimalMeetings = optimalIndices.map(x => result[x-1])
+        var optimalMeetingsForMonth = optimalMeetings.filter(meeting => meeting.mStartTime.month === weekLoaderMonth)
+
+        var jsonResp = {"meetings" : optimalMeetingsForMonth}
+        console.log("meeting length:", optimalMeetingsForMonth.length)
+        res.status(200).send(JSON.stringify(jsonResp)); 
+    }) 
+}
+
+
+function getLargestIndexCompatibleInterval (j, meetings) {
+    // console.log("---------------")
+    var p = 0
+    var meetingStartTime = meetings[j].mStartTime
+    const givenStart = new Date(meetingStartTime.year, meetingStartTime.month, meetingStartTime.dayOfMonth, meetingStartTime.hourOfDay, meetingStartTime.minute, meetingStartTime.second)
+    // console.log(givenStart)
+    // console.log("end-times:")
+    for (let i=0; i < meetings.length; i++) {
+        var meetingEndTime = meetings[i].mEndTime
+        const meetingEnd = new Date(meetingEndTime.year, meetingEndTime.month, meetingEndTime.dayOfMonth, meetingEndTime.hourOfDay, meetingEndTime.minute, meetingEndTime.second)
+        // console.log(meetingEnd)
+        if (meetingEnd <= givenStart) {
+            p = i+1
+        }
+    }
+    // console.log(p)
+    return p
+}
+
+function findSolution(j, M, P, v) {
+
+    if ( j == 0)
+        return []
+    if (v[j] + M[P[j]] > M[j-1]) {
+        // console.log(j)
+        const arr = []
+        arr[0] = j
+        return arr.concat(findSolution(P[j], M, P, v))
+    }
+    else {
+        return findSolution(j-1, M, P, v)
+    }
+
 }
 
 const getMeetingById = async (req, res) => {
@@ -224,20 +325,51 @@ const isMentor = async (email) => {
     return (lenUsers > 0) ? 1 : 0;
 }
 
+// returns true if time1 < time2 ad false otherwise
+const compareTimes = (time1, time2) => {
+    // if year is 
+    if (time1.year > time2.year) return false
+    if (time1.year < time2.year) return true
+    
+    // we know year is same
+    if (time1.month > time2.month) return false
+    if (time1.month < time2.month) return true
+
+    // we know year and month is same
+    if (time1.dayOfMonth > time2.dayOfMonth) return false
+    if (time1.dayOfMonth < time2.dayOfMonth) return true
+
+    // we know day is same
+    if (time1.hourOfDay > time2.hourOfDay) return false
+    if (time1.hourOfDay < time2.hourOfDay) return true
+    
+    // we know hour is same
+    if (time1.minute > time2.minute) return false
+    if (time1.minute < time2.minute) return true
+
+    // we know hour is same
+    if (time1.second > time2.second) return false
+    if (time1.second < time2.second) return true
+
+    // exact same
+    return false
+}
+
 const isValidMid = async (mId) => {
-    var query = {"mid": mId}
+    var query = {"mId": mId}
     try {
         var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
         var lenMeeting = (await existingMeeting.toArray()).length
         return (lenMeeting > 0) ? 0 : 1;
     } catch (err) {
-        return 0
+        return 1
     }
 }
 
 module.exports = {
     getMeetingByEmail,
     getMeetingById,
+    optimalMeetings,
     respondToMeeting,
     updateMeetingLog,
     createMeetingRequest,

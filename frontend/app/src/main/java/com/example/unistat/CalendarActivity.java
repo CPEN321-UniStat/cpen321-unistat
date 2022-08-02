@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,21 +46,37 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener, WeekView.ScrollListener {
     final static String ISO8601DATEFORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSZ";
     private WeekView mWeekView;
 
     private Boolean shouldAllowBack = false;
     private static HttpURLConnection connection;
 
+    private Button showOptimalMeetings;
+    private boolean optimal = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        showOptimalMeetings = findViewById(R.id.showOptimalMeetings);
+        showOptimalMeetings.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                optimal = !optimal;
+                mWeekView.notifyDatasetChanged();
+                if (!optimal)
+                    showOptimalMeetings.setText("Show All Meetings");
+                else
+                    showOptimalMeetings.setText("Show Optimal Meetings");
+                Log.d("Response",  "Optimal Meetings");
+            }
+        });
 
         mWeekView = findViewById(R.id.weekView);
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
@@ -76,6 +95,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         mWeekView.setMonthChangeListener(this);
 
         mWeekView.setEventLongPressListener(this);
+
+        mWeekView.setScrollListener(this);
 
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
@@ -169,22 +190,37 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     }
 
     @Override
-    public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
-        System.out.println("Loading MEETINGS in calendar");
+    public void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay) {
+        Log.d("FirstVisibleDayChanged", "Day changed");
+        if (optimal) {
+            mWeekView.notifyDatasetChanged();
+        }
+    }
 
+    @Override
+    public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+//        System.out.println("Loading MEETINGS in calendar");
+        Log.d("Response","Loading MEETINGS in calendar");
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String userEmail = account.getEmail();
 
-        return getAllMeetingsByEmail(userEmail, newMonth-1, newYear);
+        return getMeetingsByEmail(userEmail, newMonth-1, newYear, optimal);
     }
 
-    private List<Meeting> getAllMeetingsByEmail(String userEmail, int month, int year) {
+    private List<Meeting> getMeetingsByEmail(String userEmail, int month, int year, boolean optimal) {
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
 
-        String URL = IpConstants.URL + "meetings/" + userEmail;
+        String URL = "";
+        if (optimal) {
+            URL = IpConstants.URL + "optimalMeetings/" + userEmail;
+        }
+        else{
+            URL = IpConstants.URL + "meetings/" + userEmail;
+        }
+//        String URL = IpConstants.URL + "meetings/" + userEmail;
 
         List<Meeting> events = new ArrayList<>();
 
@@ -196,11 +232,34 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
             connection = (HttpURLConnection) url.openConnection();
             
             //Request setup
-            connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setRequestProperty("month", String.valueOf(month));
-            connection.setRequestProperty("year", String.valueOf(year));
+            if (optimal){
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setRequestProperty("Accept", "application/json");
+                Calendar start = mWeekView.getFirstVisibleDay();
+                Calendar end = (Calendar) start.clone();
+                end.add(Calendar.DAY_OF_MONTH, mWeekView.getNumberOfVisibleDays()-1);
+
+                Log.d("HEADER",  String.valueOf(start.get(Calendar.MONTH)));
+                Log.d("HEADER",  String.valueOf(start.get(Calendar.DATE)));
+                Log.d("HEADER",  String.valueOf(end.get(Calendar.MONTH)));
+                Log.d("HEADER",  String.valueOf(end.get(Calendar.DATE)));
+                Log.d("HEADER",  String.valueOf(year));
+
+                connection.setRequestProperty("startmonth", String.valueOf(start.get(Calendar.MONTH)));
+                connection.setRequestProperty("startday", String.valueOf(start.get(Calendar.DATE)));
+                connection.setRequestProperty("endmonth", String.valueOf(end.get(Calendar.MONTH)));
+                connection.setRequestProperty("endday", String.valueOf(end.get(Calendar.DATE)));
+                connection.setRequestProperty("weekloadermonth", String.valueOf(month));
+                connection.setRequestProperty("year", String.valueOf(year));
+            }
+            else{
+                connection.setRequestMethod("GET");
+                connection.setRequestProperty("Content-Type", "application/json");
+                connection.setRequestProperty("Accept", "application/json");
+                connection.setRequestProperty("month", String.valueOf(month));
+                connection.setRequestProperty("year", String.valueOf(year));
+            }
 
             int status = connection.getResponseCode();
 
@@ -219,7 +278,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                 reader.close();
             }
 
-            System.out.println(responseContent.toString());
+            Log.d("Response",  responseContent.toString());
+//            System.out.println(responseContent.toString());
             JSONObject response = new JSONObject(responseContent.toString());
             JSONArray meetingArray = (JSONArray) response.get("meetings");
             for (int i = 0; i < meetingArray.length(); i++){

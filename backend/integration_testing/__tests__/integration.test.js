@@ -711,7 +711,7 @@ describe("POST /meetings", () => {
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "secondmenteeuser@sample.com";
+        body.mentorEmail = "kusharora339@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -828,25 +828,25 @@ describe("PUT /meetings", () => {
     test("Update meeting status with a user that is not the mentor in associated meeting", async () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
-            "email": "secondmenteeuser@sample.com"
+            "status": "DECLINED",
+            "email": "kusharora339@gmail.com@sample.com"
         })
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(400)
     })
 
     test("Update meeting status with an invalid user", async () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
+            "status": "DECLINED",
             "email": "invalid"
         })
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(400)
     })
 
     test("Update meeting status with a valid status and meeting ID", async () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
+            "status": "DECLINED",
             "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(200)

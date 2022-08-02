@@ -55,6 +55,8 @@ async function handlePayment(id) {
         var meeting = result
         var meetingLogs = meeting.meetingLogs
         // console.log(meetingLogs)
+        if (meetingLogs === null)
+            return
         if (shouldMentorBePaid(meeting.mentorEmail, meeting.menteeEmail, meetingLogs))
             makePayment(meeting.menteeEmail, meeting.mentorEmail, meeting.paymentAmount)
     })
