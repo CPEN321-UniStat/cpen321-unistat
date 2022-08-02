@@ -261,8 +261,7 @@ public class RequestMeeting extends AppCompatActivity {
                                     Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
                                     Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
                                     startActivity(viewCalendar);
-                                    overridePendingTransition(0, 0);
-//                                    overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
+                                    overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
                                 }
                             }
                         } catch (JSONException e) {
@@ -417,7 +416,6 @@ public class RequestMeeting extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(0, 0);
-//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
+        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
     }
 }

@@ -69,10 +69,10 @@ function shouldMentorBePaid(mentor, mentee, meetingLogs) {
     var mentorStartTime = findStartTime(mentor, meetingLogs)
     var menteeEndTime = findEndTime(mentee, meetingLogs)
     var mentorEndTime = findEndTime(mentor, meetingLogs)
-    console.log(menteeStartTime)
-    console.log(mentorStartTime)
-    console.log(menteeEndTime)
-    console.log(mentorEndTime)
+//     console.log(menteeStartTime)
+//     console.log(mentorStartTime)
+//     console.log(menteeEndTime)
+//     console.log(mentorEndTime)
 
 
     if (menteeStartTime == null) {

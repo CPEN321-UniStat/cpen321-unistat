@@ -62,24 +62,15 @@ public class EventActivity extends AppCompatActivity {
         addButtonListeners();
         initZoom(EventActivity.this);
 
-//        // Show dialog if mentor
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(EventActivity.this);
-//        if (account.getEmail().equals(meeting.getMentorEmail())) {
-//            String msg = "Please leave the meeting once the other user has left to get paid.";
-//            new MaterialAlertDialogBuilder(this)
-//                    .setIcon(R.drawable.ic_baseline_info_24)
-//                    .setTitle("Meeting Information")
-//                    .setMessage(msg)
-//                    .setPositiveButton("Ok", null)
-//                    .show();
-//        }
     }
 
     private void initZoom(Context context) {
         ZoomSDK sdk = ZoomSDK.getInstance();
         ZoomSDKInitParams params = new ZoomSDKInitParams();
-        params.appKey = "fixUR7859EnwYCEw1NrAHGGwHF5CMbhmxMOO";
-        params.appSecret = "x8xZ2PGMJ55Fqkk1bucvlyJ9WMdxJN5d5fxZ";
+//        params.appKey = "fixUR7859EnwYCEw1NrAHGGwHF5CMbhmxMOO";
+//        params.appSecret = "x8xZ2PGMJ55Fqkk1bucvlyJ9WMdxJN5d5fxZ";
+        params.appKey = "9xKqnLahcR8BAQ8h7MLGJfvi7IfBAh7PteUz";
+        params.appSecret = "P8zE6MdRd107QxmfNg8RyrkrYIFJnCp2gsXC";
         params.domain = "zoom.us";
         params.enableLog = true;
 
@@ -579,7 +570,7 @@ public class EventActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
+        overridePendingTransition(R.anim.zm_tip_fadein, R.anim.zm_fade_out);
     }
 
 }

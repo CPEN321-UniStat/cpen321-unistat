@@ -20,7 +20,7 @@
     "supertest": "^6.2.4"
   },
   "scripts": {
-    "test": "sh node_modules/.bin/jest",
-    "testing": "jest"
+    "test": "jest",
+    "testing": "jest --watchAll --detectOpenHandles"
   }
 }
