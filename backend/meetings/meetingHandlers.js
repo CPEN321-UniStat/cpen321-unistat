@@ -29,7 +29,8 @@ const createMeetingRequest = async (req, res) => {
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
         const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
-        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes) {
+        const isMeetingIdValid = await isValidMid(req.body.mId)
+        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
@@ -349,6 +350,17 @@ const compareTimes = (time1, time2) => {
 
     // exact same
     return false
+}
+
+const isValidMid = async (mId) => {
+    var query = {"mId": mId}
+    try {
+        var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
+        var lenMeeting = (await existingMeeting.toArray()).length
+        return (lenMeeting > 0) ? 0 : 1;
+    } catch (err) {
+        return 1
+    }
 }
 
 module.exports = {

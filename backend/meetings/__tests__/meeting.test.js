@@ -87,96 +87,93 @@ afterAll( async() => {
 
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
-    describe("When meeting isn't in the DB", () => {
-        test("From an existing user to a non-existing user", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mentorEmail = "invalid@gmail.com";
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("From a non-existing user to an existing mentor", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.menteeEmail = "invalid@gmail.com";
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("From a non-existing user to an non-existing mentor", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mentorEmail = "invalid@gmail.com";
-            body.menteeEmail = "alsoinvalid@gmail.com";
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        // created additional test for when mentorid specified is valid but is not a mentor
-        test("From an existing mentee to another mentee", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mentorEmail = "kusharora339@gmail.com";
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("Meeting with a non-numeric input for paymentAmount", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.paymentAmount = "invalid";
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("Meeting with no input for paymentAmount", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            delete body.paymentAmount;
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("Meeting with startTime after endTime", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mStartTime = {
-                "year": 2022,
-                "month": 6,
-                "dayOfMonth": 27,
-                "hourOfDay": 14,
-                "minute": 27,
-                "second": 56
-            }
-            await process.nextTick(() => { });
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-    
-        test("From an existing mentee to themselves", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mentorEmail = "manekgujral11@gmail.com";
-            await process.nextTick(() => { });
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(400)
-        })
-
-        test("From an existing user to a mentor who is an existing user", async () => {
-            var body = {...sampleIntegrationTestMeeting}
-            body.mId = meetingID;
-            await process.nextTick(() => { });
-            const res = await request(app).post("/meetings").send(body)
-            expect(res.statusCode).toBe(200)
-        })
+    test("From an existing user to a non-existing user", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mentorEmail = "invalid@gmail.com";
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
     })
 
-    test("For a meeting that already exists", async () => {
+    test("From a non-existing user to an existing mentor", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mId = meetingID;
+        body.menteeEmail = "invalid@gmail.com";
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("From a non-existing user to an non-existing mentor", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mentorEmail = "invalid@gmail.com";
+        body.menteeEmail = "alsoinvalid@gmail.com";
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    // created additional test for when mentorid specified is valid but is not a mentor
+    test("From an existing mentee to another mentee", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mentorEmail = "manekgujral11@gmail.com";
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("Meeting with a non-numeric input for paymentAmount", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.paymentAmount = "invalid";
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("Meeting with no input for paymentAmount", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        delete body.paymentAmount;
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("Meeting with startTime after endTime", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mStartTime = {
+            "year": 2022,
+            "month": 6,
+            "dayOfMonth": 27,
+            "hourOfDay": 14,
+            "minute": 27,
+            "second": 56
+        }
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
-    
+
+    test("From an existing mentee to themselves", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        body.mentorEmail = "manekgujral11@gmail.com";
+        await process.nextTick(() => { });
+        const res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(400)
+    })
+
+    test("From an existing user to a mentor who is an existing user", async () => {
+        var body = {...sampleIntegrationTestMeeting}
+        await process.nextTick(() => { });
+        var res = await request(app).post("/meetings").send(body)
+        expect(res.statusCode).toBe(200)
+    })
+
+     test("For a meeting that already exists", async () => {
+         var body = {...sampleIntegrationTestMeeting}
+         body.mId = meetingID;
+         await process.nextTick(() => { });
+         const res = await request(app).post("/meetings").send(body)
+         expect(res.statusCode).toBe(400)
+     })
 })
 
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).get("/meetings/kusharora339@gmail.com").send({
             "email": "kusharora339@gmail.com",
             "month": 6,
@@ -193,6 +190,7 @@ describe("GET /meetings/email", () => {
     })
 
     test("Get meetings for an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).get("/meetings/johnwick@gmail.com").send({
             "email": "johnwick@gmail.com",
             "month": 6,
@@ -214,6 +212,7 @@ describe("GET /meetings/email", () => {
 // Tests for getting all meetingsById
 describe("GET /meetingsById", () => {
     test("Get meetingsById for a valid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetingsById").send({
             "mId": meetingID
         })
@@ -221,6 +220,7 @@ describe("GET /meetingsById", () => {
     })
 
     test("Get meetingsById for an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetingsById").send({
             "mId": "invalid"
         })
@@ -231,6 +231,7 @@ describe("GET /meetingsById", () => {
 // Tests for updating meeting status
 describe("PUT /meetings", () => {
     test("Update meeting status with an invalid status", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "invalid",
@@ -240,6 +241,7 @@ describe("PUT /meetings", () => {
     })
 
     test("Update meeting status with an invalid mId", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
             "status": "DECLINED",
@@ -249,6 +251,7 @@ describe("PUT /meetings", () => {
     })
 
     test("Update meeting status with a user that is not the mentor in associated meeting", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "DECLINED",
@@ -258,6 +261,7 @@ describe("PUT /meetings", () => {
     })
 
     test("Update meeting status with an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "DECLINED",
@@ -267,6 +271,7 @@ describe("PUT /meetings", () => {
     })
 
     test("Update meeting status with a valid status, meeting ID, and zoom credentials", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "DECLINED",
