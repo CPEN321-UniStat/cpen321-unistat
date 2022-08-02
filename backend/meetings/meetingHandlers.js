@@ -27,15 +27,14 @@ const createMeetingRequest = async (req, res) => {
         const isMentorValid = await isValidUser(req.body.mentorEmail);
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
-        //const isValidMeetingID = await isValidMid(req.body.mId)
-        //console.log("isMidValid", isValidMeetingID)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment) {
+        const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
+        if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
             var jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
             }
-            // Implement check to see if req.body.mentorEmail is actually a mentor
+
             await users.sendMeetingRequest(req.body.mentorEmail)
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
@@ -322,15 +321,34 @@ const isMentor = async (email) => {
     return (lenUsers > 0) ? 1 : 0;
 }
 
-const isValidMid = async (mId) => {
-    var query = {"mid": mId}
-    try {
-        var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
-        var lenMeeting = (await existingMeeting.toArray()).length
-        return (lenMeeting > 0) ? 0 : 1;
-    } catch (err) {
-        return 0
-    }
+// returns true if time1 < time2 ad false otherwise
+const compareTimes = (time1, time2) => {
+    // if year is 
+    if (time1.year > time2.year) return false
+    if (time1.year < time2.year) return true
+    
+    // we know year is same
+    if (time1.month > time2.month) return false
+    if (time1.month < time2.month) return true
+
+    // we know year and month is same
+    if (time1.dayOfMonth > time2.dayOfMonth) return false
+    if (time1.dayOfMonth < time2.dayOfMonth) return true
+
+    // we know day is same
+    if (time1.hourOfDay > time2.hourOfDay) return false
+    if (time1.hourOfDay < time2.hourOfDay) return true
+    
+    // we know hour is same
+    if (time1.minute > time2.minute) return false
+    if (time1.minute < time2.minute) return true
+
+    // we know hour is same
+    if (time1.second > time2.second) return false
+    if (time1.second < time2.second) return true
+
+    // exact same
+    return false
 }
 
 module.exports = {
