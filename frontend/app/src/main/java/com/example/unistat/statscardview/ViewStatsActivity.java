@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
@@ -24,8 +23,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.RelativeLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,6 +34,8 @@ import com.example.unistat.CalendarActivity;
 import com.example.unistat.IpConstants;
 import com.example.unistat.R;
 import com.example.unistat.SignOutActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
@@ -59,6 +58,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private Boolean isSortGpa;
     private Boolean isSortEntranceScore;
     private String searchText;
+    private Boolean isMentor = null;
     private ArrayList<String> filterOptions;
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;
@@ -187,7 +187,12 @@ public class ViewStatsActivity extends AppCompatActivity {
                     case R.id.view_stats_activity:
                         return true;
                     case R.id.sign_out_activity:
-                        startActivity(new Intent(getApplicationContext(), SignOutActivity.class));
+                        Intent startSignOut = new Intent(getApplicationContext(), SignOutActivity.class);
+                        Log.d(TAG, "IS_MENTOR: " + isMentor);
+                        if (isMentor != null) {
+                            startSignOut.putExtra("isMentor", isMentor);
+                        }
+                        startActivity(startSignOut);
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     default:
@@ -334,7 +339,9 @@ public class ViewStatsActivity extends AppCompatActivity {
 
                         try {
                             JSONArray statArray = (JSONArray) response.get("statData");
-
+                            if (statArray.isNull(0)) {
+                                isMentor = false;
+                            }
                             for (int i = 0; i < statArray.length(); i++){
                                 JSONObject userStat =  statArray.getJSONObject(i);
                                 String univName = (String) userStat.get("univName");
@@ -347,6 +354,8 @@ public class ViewStatsActivity extends AppCompatActivity {
                                 }
                                 String userName = userStat.getString("userName");
                                 String userEmail = userStat.getString("userEmail");
+                                if (endPoint.equals("stats"))
+                                    isMentor = checkIfMentor(userEmail);
                                 statsList.add(new StatsCards(userEmail, userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), userStat.getDouble("univGpa"), userStat.getInt("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
                             }
 
@@ -372,6 +381,15 @@ public class ViewStatsActivity extends AppCompatActivity {
         );
 
         requestQueue.add(getUserStatRequest);
+    }
+
+    private Boolean checkIfMentor(String userEmail) {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        assert account != null;
+        String currUserEmail = account.getEmail();
+        if (currUserEmail.equals(userEmail))
+            return true;
+        return false;
     }
 
     @Override

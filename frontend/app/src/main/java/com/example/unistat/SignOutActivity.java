@@ -27,6 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.zipow.videobox.conference.viewmodel.livedata.BOLiveDataType;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,13 +38,6 @@ public class SignOutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
-//            setTheme(R.style.Theme_Light);
-//        }
-//        else{
-//            setTheme(R.style.Theme_Light);
-//        }
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_out);
 
@@ -59,7 +53,11 @@ public class SignOutActivity extends AppCompatActivity {
         viewProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SignOutActivity.this, UserProfileActivity.class));
+                Bundle extras = getIntent().getExtras();
+                Boolean isMentor = extras.getBoolean("isMentor");
+                Intent startViewProfile = new Intent(SignOutActivity.this, UserProfileActivity.class);
+                startViewProfile.putExtra("isMentor", isMentor);
+                startActivity(startViewProfile);
                 overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
             }
         });
