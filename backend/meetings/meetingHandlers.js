@@ -82,17 +82,22 @@ const optimalMeetings = async (req, res) => {
     var startMonth = parseInt(req.headers['startmonth'], 10)
     var endDay = parseInt(req.headers['endday'], 10)
     var endMonth = parseInt(req.headers['endmonth'], 10)
+    var weekLoaderMonth = parseInt(req.headers['weekloadermonth'], 10)
     var year = parseInt(req.headers['year'], 10)
 
+    console.log("weekLoaderMonth: ", weekLoaderMonth)
+
     var findQuery = {
-        "status": "PENDING",
-        "mStartTime.dayOfMonth": {"$gte": startDay},
-        "mStartTime.month": {"$gte": startMonth},
-        "mEndTime.dayOfMonth": {"$lte": endDay},
-        "mEndTime.month": {"$lte": endMonth},
-        "mStartTime.year": year,
-        "$or": [{"menteeEmail": email}, {"mentorEmail": email}] 
-    }
+        "$and": [
+          {"status": "PENDING"},
+          {"$or": [{"menteeEmail": email}, {"mentorEmail": email}]},
+          {"$or": [{ "mStartTime.month": {"$ne": startMonth}}, {"mStartTime.dayOfMonth": {"$gte": startDay}}]},
+          {"$or": [{ "mStartTime.month": startMonth}, {"mStartTime.month": {"$gt": startMonth}}]},
+          {"$or": [{ "mEndTime.month": {"$ne": endMonth}}, {"mEndTime.dayOfMonth": {"$lte": endDay}}]},
+          {"$or": [{ "mEndTime.month": endMonth}, {"mEndTime.month": {"$lt": endMonth}}]},
+          {"mStartTime.year": year}
+        ]
+      }
     
     var sortQuery = {
         "mEndTime.year": 1,
@@ -113,46 +118,44 @@ const optimalMeetings = async (req, res) => {
         for (let i = 0; i < result.length; i++) {
             P[i+1] = getLargestIndexCompatibleInterval(i, result)
         }
-        console.log(P)
         const v = []
         for (let i = 0; i < result.length; i++) {
             var payment = result[i].paymentAmount
             v[i+1] = payment
         }
-        console.log(v)
         const M = []
         M[0] = 0
         for (let i = 1; i <= result.length; i++) {
             M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
         }
-        console.log(M)
 
         var optimalIndices = findSolution(result.length, M, P, v)
         var optimalMeetings = optimalIndices.map(x => result[x-1])
-        console.log(optimalMeetings)
+        var optimalMeetingsForMonth = optimalMeetings.filter(meeting => meeting.mStartTime.month === weekLoaderMonth)
 
-        var jsonResp = {"meetings" : optimalMeetings}
+        var jsonResp = {"meetings" : optimalMeetingsForMonth}
+        console.log("meeting length:", optimalMeetingsForMonth.length)
         res.status(200).send(JSON.stringify(jsonResp)); 
     }) 
 }
 
 
 function getLargestIndexCompatibleInterval (j, meetings) {
-    console.log("---------------")
+    // console.log("---------------")
     var p = 0
     var meetingStartTime = meetings[j].mStartTime
     const givenStart = new Date(meetingStartTime.year, meetingStartTime.month, meetingStartTime.dayOfMonth, meetingStartTime.hourOfDay, meetingStartTime.minute, meetingStartTime.second)
-    console.log(givenStart)
-    console.log("end-times:")
+    // console.log(givenStart)
+    // console.log("end-times:")
     for (let i=0; i < meetings.length; i++) {
         var meetingEndTime = meetings[i].mEndTime
         const meetingEnd = new Date(meetingEndTime.year, meetingEndTime.month, meetingEndTime.dayOfMonth, meetingEndTime.hourOfDay, meetingEndTime.minute, meetingEndTime.second)
-        console.log(meetingEnd)
+        // console.log(meetingEnd)
         if (meetingEnd <= givenStart) {
             p = i+1
         }
     }
-    console.log(p)
+    // console.log(p)
     return p
 }
 
@@ -161,7 +164,7 @@ function findSolution(j, M, P, v) {
     if ( j == 0)
         return []
     if (v[j] + M[P[j]] > M[j-1]) {
-        console.log(j)
+        // console.log(j)
         const arr = []
         arr[0] = j
         return arr.concat(findSolution(P[j], M, P, v))
