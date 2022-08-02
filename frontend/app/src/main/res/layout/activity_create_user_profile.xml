@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/create_user_profile_activity"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     tools:context=".CreateUserProfileActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -140,8 +143,8 @@
 
     <TextView
         android:id="@+id/enterProfileInfoPrompt"
-        android:layout_width="253dp"
-        android:layout_height="35dp"
+        android:layout_width="248dp"
+        android:layout_height="34dp"
         android:fontFamily="@font/open_sans"
         android:paddingStart="2dp"
         android:text="@string/user_profile_prompt"

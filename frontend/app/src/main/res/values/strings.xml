@@ -6,7 +6,7 @@
     <string name="decline_meeting_button">Decline</string>
     <string name="join_meeting_button">Join Meeting</string>
     <string name="server_client_id">572477064370-fo6khhqfp4g0bp8k8s9fqsjn2msoqimq.apps.googleusercontent.com</string>
-    <string name="user_status_question_text">Which of the following apply to you?</string>
+    <string name="user_status_question_text">Which of the following applies to you?</string>
     <string name="hs_student_button_text">I am a High School Student</string>
     <string name="univ_student_button_text">I am a University Student/Graduate</string>
     <string name="next_button_text">next</string>
@@ -15,7 +15,7 @@
     <string name="univ_major_input">Your Major</string>
     <string name="univ_entrance_input">Your SAT/Entrance-exam score</string>
     <string name="univ_user_bio_input">Your Story</string>
-    <string name="user_profile_prompt">Let\'s get to know You...</string>
+    <string name="user_profile_prompt">Let\'s get to know You…</string>
     <string name="calendar">Calendar</string>
     <string name="view_stats">Home</string>
     <string name="profile">Settings</string>
@@ -35,11 +35,21 @@
     <string name="filter_by_major_text">Filter by Major</string>
     <string name="search_text">Search</string>
     <string name="request_meeting_button_text">Request a Meeting</string>
+    <string name="book_meeting_text">Book your meeting…</string>
+    <string name="confirm_request_text">Confirm Request</string>
     <string name="text_test">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam at tellus iaculis, feugiat arcu non, interdum sapien. Quisque non ex dolor. Vestibulum vel aliquam eros, dictum pulvinar justo. Aenean et velit dolor. Nullam quis bibendum ante, sed mollis leo. Donec suscipit mauris est, vel dignissim felis venenatis vitae. Nulla sed ultricies ex. In hac habitasse platea dictumst. Vivamus interdum erat ut convallis consectetur. Nulla varius ullamcorper tincidunt. Sed mattis ligula eget sapien ullamcorper, id sollicitudin tortor dapibus.</string>
     <string name="make_payment_button">Make Payment</string>
     <string name="googlepay_status_unavailable">Google Pay is not yet available</string>
     <string name="pay">Pay</string>
     <string name="greet_user_text"/>
+    <string name="loading_text">loading…</string>
+    <string name="date_heading">Date</string>
+    <string name="time_heading">Time</string>
+    <string name="amount_heading">Payment Amount</string>
+    <string name="meeting_with_heading">Meeting With</string>
+
+
+
 
 
 </resources>
