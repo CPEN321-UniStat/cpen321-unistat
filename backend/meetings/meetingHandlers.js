@@ -304,6 +304,7 @@ const createZoomMeeting = async (req, res) => {
     } catch (error) {
         var jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
+        return
     }
 
     await requestPromise(options)
