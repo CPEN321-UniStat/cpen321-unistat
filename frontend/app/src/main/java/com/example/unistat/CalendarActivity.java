@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -53,7 +55,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     private Boolean shouldAllowBack = false;
     private static HttpURLConnection connection;
 
-    private Button showOptimalMeetings;
+    private FloatingActionButton showOptimalMeetings;
     private boolean optimal = false;
 
     @Override
@@ -70,10 +72,13 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
             public void onClick(View view) {
                 optimal = !optimal;
                 mWeekView.notifyDatasetChanged();
-                if (!optimal)
-                    showOptimalMeetings.setText("Show All Meetings");
-                else
-                    showOptimalMeetings.setText("Show Optimal Meetings");
+                if (!optimal) {
+                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_attach_money_24));
+                    Toast.makeText(CalendarActivity.this, "Displaying All meetings...", Toast.LENGTH_LONG).show();
+                } else {
+                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_money_off_24));
+                    Toast.makeText(CalendarActivity.this, "Displaying Optimal meetings...", Toast.LENGTH_LONG).show();
+                }
                 Log.d("Response",  "Optimal Meetings");
             }
         });
