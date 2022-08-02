@@ -13,10 +13,10 @@ const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
 const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
 const zoomPayload = {
-    iss: process.env.ZOOM_APP_API_KEY,
+    iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
 }
-const jwtToken = jwt.sign(zoomPayload, process.env.ZOOM_APP_SECRET)
+const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
 
 
 // CRUD Functions for Meetings collection
@@ -222,7 +222,6 @@ const respondToMeeting = async (req, res) => {
         var meetingArray = await meeting.toArray()
 
         var menteeEmail = meetingArray[0].menteeEmail;
-        var menteeEmail = meetingArray[0].menteeEmail;
         var mentorEmail = meetingArray[0].mentorEmail;
 
         if(req.body.email != mentorEmail) {
@@ -252,11 +251,19 @@ const updateMeetingLog = async (req, res) => {
     }}
 
     try {
-        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
-        var jsonResp = {
-            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+        var ret = await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        if (ret.matchedCount === 0) {
+            var jsonResp = {
+                "status": `Meeting with provided meeting ID "${req.body.mId}" does not exist`
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
+        else {
+            var jsonResp = {
+                "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        }
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
@@ -264,7 +271,8 @@ const updateMeetingLog = async (req, res) => {
 }
 
 const createZoomMeeting = async (req, res) => {
-    email = "cpen321.unistat@gmail.com"; // your zoom developer email account
+    //email = "cpen321.unistat@gmail.com"; // your zoom developer email account
+    const email = "manekgujral11@gmail.com";
     var options = {
         method: "POST",
         uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
@@ -298,7 +306,7 @@ const createZoomMeeting = async (req, res) => {
         res.status(400).send(JSON.stringify(jsonResp))
     }
 
-    requestPromise(options)
+    await requestPromise(options)
     .then(function (response) {
         console.log("response is: ", response)
         var jsonResp = {"status" : response}
@@ -315,16 +323,26 @@ const createZoomMeeting = async (req, res) => {
 
 const updateFirbaseToken = async (req, res) => {
     // Update firebase_token data
-    try {
-        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
-        var jsonResp = {
-            "status": `Firebase Token updated for ${req.body.email}`
+    const validUser = await isValidUser(req.body.email)
+    
+    if (validUser) {
+        try {
+            await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+            var jsonResp = {
+                "status": `Firebase Token updated for ${req.body.email}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
+    } else{ 
+        var jsonResp = {
+            "status": `Invalid user error: ${req.body.email}`
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
     }
+    
 }
 
 const isValidUser = async (email) => {
