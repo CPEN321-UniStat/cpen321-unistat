@@ -183,7 +183,6 @@ describe("GET /meetings/email", () => {
         const res = await request(app).get("/meetings/kusharora339@gmail.com").set("year", 2022).set("month", 6).send()
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
-        console.log("resThingy", res)
         expect(JSON.parse(res.text).meetings.some(meeting => {
             if (meeting.mId = meetingID) {
                 return true;

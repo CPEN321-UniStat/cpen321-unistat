@@ -711,7 +711,7 @@ describe("POST /meetings", () => {
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "kusharora339@gmail.com";
+        body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -746,7 +746,7 @@ describe("POST /meetings", () => {
 
     test("From an existing mentee to themselves", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "kusharora339@gmail.com";
+        body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -763,14 +763,10 @@ describe("POST /meetings", () => {
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
-        const res = await request(app).get("/meetings/manekgujral11@gmail.com").send({
-            "email": "manekgujral11@gmail.com",
-            "month": 6,
-            "year": 2022
-        })
+        const res = await request(app).get("/meetings/kusharora339@gmail.com").set("year", 2022).set("month", 6).send()
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
-        expect(res.meetings.some(meeting => {
+        expect(JSON.parse(res.text).meetings.some(meeting => {
             if (meeting.mId = meetingID) {
                 return true;
             }
