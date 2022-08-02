@@ -1,9 +1,10 @@
 const request = require('supertest')
-const {app,server} = require('../../server')
+const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const { sendMeetingRequest } = require('../../users/userHandlers')
 const { schedulePayment } = require('../../payments/paymentHandlers')
 const client = db.client
+
 
 require("../../users/__mocks__/userMocks")
 jest.mock("../../users/userHandlers.js")
@@ -12,7 +13,6 @@ require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers.js")
 
 // UNIT TESTS (Point 6 of M6)
-// REQUIRES A SECOND MENTEE UNDER secondmenteeuser@sample.com email
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
     "meetingLogs": [
@@ -82,7 +82,7 @@ beforeAll(() => {
 afterAll( async() => {
     // Close the server instance after each test
     server.close()
-    await client.close()
+    client.close()
 })
 
 // Tests for creating meeting requests
@@ -112,7 +112,7 @@ describe("POST /meetings", () => {
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mentorEmail = "secondmenteeuser@sample.com";
+        body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -140,7 +140,8 @@ describe("POST /meetings", () => {
             "hourOfDay": 14,
             "minute": 27,
             "second": 56
-          }
+        }
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -155,25 +156,24 @@ describe("POST /meetings", () => {
 
     test("From an existing user to a mentor who is an existing user", async () => {
         var body = {...sampleIntegrationTestMeeting}
-        body.mId = meetingID;
         await process.nextTick(() => { });
-        const res = await request(app).post("/meetings").send(body)
+        var res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
     })
 
-    test("For a meeting that already exists", async () => {
-        var body = {...sampleIntegrationTestMeeting}
-        body.mId = meetingID;
-        await process.nextTick(() => { });
-        const res = await request(app).post("/meetings").send(body)
-        expect(res.statusCode).toBe(400)
-    })
-    
+     test("For a meeting that already exists", async () => {
+         var body = {...sampleIntegrationTestMeeting}
+         body.mId = meetingID;
+         await process.nextTick(() => { });
+         const res = await request(app).post("/meetings").send(body)
+         expect(res.statusCode).toBe(400)
+     })
 })
 
 // Tests for getting all meetings for a user
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).get("/meetings/kusharora339@gmail.com").send({
             "email": "kusharora339@gmail.com",
             "month": 6,
@@ -190,6 +190,7 @@ describe("GET /meetings/email", () => {
     })
 
     test("Get meetings for an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).get("/meetings/johnwick@gmail.com").send({
             "email": "johnwick@gmail.com",
             "month": 6,
@@ -211,6 +212,7 @@ describe("GET /meetings/email", () => {
 // Tests for getting all meetingsById
 describe("GET /meetingsById", () => {
     test("Get meetingsById for a valid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetingsById").send({
             "mId": meetingID
         })
@@ -218,6 +220,7 @@ describe("GET /meetingsById", () => {
     })
 
     test("Get meetingsById for an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetingsById").send({
             "mId": "invalid"
         })
@@ -228,6 +231,7 @@ describe("GET /meetingsById", () => {
 // Tests for updating meeting status
 describe("PUT /meetings", () => {
     test("Update meeting status with an invalid status", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "invalid",
@@ -237,36 +241,40 @@ describe("PUT /meetings", () => {
     })
 
     test("Update meeting status with an invalid mId", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
-            "status": "declined",
+            "status": "DECLINED",
             "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
 
     test("Update meeting status with a user that is not the mentor in associated meeting", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
-            "email": "secondmenteeuser@sample.com"
+            "status": "DECLINED",
+            "email": "kusharora339@gmail.com"
         })
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(400)
     })
 
     test("Update meeting status with an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
+            "status": "DECLINED",
             "email": "invalid"
         })
-        expect(res.statusCode).toBe(200)
+        expect(res.statusCode).toBe(400)
     })
 
     test("Update meeting status with a valid status, meeting ID, and zoom credentials", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "declined",
+            "status": "DECLINED",
             "email": "kusharora339@gmail.com",
             "zoomId": "12345",
             "zoomPassword": "password"
