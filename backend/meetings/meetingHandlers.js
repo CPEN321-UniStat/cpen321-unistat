@@ -271,6 +271,14 @@ const updateMeetingLog = async (req, res) => {
 }
 
 const createZoomMeeting = async (req, res) => {
+    if (req.body.mId == null || (req.body.meetingStartTime >= req.body.meetingEndTime) || req.body.meetingTopic == null) {
+        console.log("Invalid input error")
+        var jsonResp = {"status" : "Invalid inputs error"}
+        res.status(400).send(JSON.stringify(jsonResp))
+        return
+    }
+
+
     //email = "cpen321.unistat@gmail.com"; // your zoom developer email account
     const email = "manekgujral11@gmail.com";
     var options = {
@@ -302,6 +310,7 @@ const createZoomMeeting = async (req, res) => {
     try {
         await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
+        console.log("Payment failed. Error:", error)
         var jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
         return
