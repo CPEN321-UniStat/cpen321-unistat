@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     android:layout_gravity="top"
     android:orientation="vertical"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     android:id="@+id/userProfileActivity"
     tools:context=".UserProfileActivity">
 
@@ -62,6 +65,7 @@
 
             </LinearLayout>
 
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/userProfileImage"
                 android:layout_width="135dp"
@@ -76,7 +80,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.094"
                 tools:srcCompat="@tools:sample/avatars" />
-
 
             <TextView
                 android:id="@+id/userNameText"

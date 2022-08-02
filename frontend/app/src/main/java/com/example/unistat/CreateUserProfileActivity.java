@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -44,6 +46,7 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_user_profile);
 
+        TextView greetUser = findViewById(R.id.userGreetText);
         userUnivName = findViewById(R.id.univNameInput);
         userUnivMajor = findViewById(R.id.univMajorInput);
         userUnivGpa = findViewById(R.id.univGpaInput);
@@ -51,6 +54,11 @@ public class CreateUserProfileActivity extends AppCompatActivity {
         userUnivBio = findViewById(R.id.univUserBio);
 
         account = GoogleSignIn.getLastSignedInAccount(this);
+
+        // Greet user
+        assert account != null;
+        String greet = "Hi " + account.getGivenName() + ",";
+        greetUser.setText(greet);
 
         FloatingActionButton nextButton = findViewById(R.id.nextUserProfileButton);
         nextButton.setOnClickListener(new View.OnClickListener() {

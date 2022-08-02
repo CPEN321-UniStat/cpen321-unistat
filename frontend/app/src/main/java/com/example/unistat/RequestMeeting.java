@@ -60,6 +60,7 @@ public class RequestMeeting extends AppCompatActivity {
     private RequestQueue requestQueue;
     private String mentorEmail;
     private String mentorName;
+    private String menteeName;
 
     CalendarConstraints.Builder endTimeConstraintsBuilder;
     MaterialDatePicker.Builder endMaterialDateBuilder;
@@ -78,6 +79,8 @@ public class RequestMeeting extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeeting.this);
         assert account != null;
         String userEmail = account.getEmail();
+
+        menteeName = account.getDisplayName();
 
         requestQueue = Volley.newRequestQueue(RequestMeeting.this);
 
@@ -257,7 +260,7 @@ public class RequestMeeting extends AppCompatActivity {
                                 } else if (startTimeCalendar.getTimeInMillis() < timeNow || endTimeCalendar.getTimeInMillis() < timeNow) {
                                     Toast.makeText(RequestMeeting.this, "Start time or end time cannot be in the past", Toast.LENGTH_LONG).show();
                                 } else {
-                                    bookMeeting(meetingTitle, mentorEmail, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
+                                    bookMeeting(meetingTitle, mentorEmail, menteeName, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
                                     Toast.makeText(RequestMeeting.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
                                     Intent viewCalendar = new Intent(RequestMeeting.this, CalendarActivity.class);
                                     startActivity(viewCalendar);
@@ -374,10 +377,10 @@ public class RequestMeeting extends AppCompatActivity {
         });
     }
 
-    public void bookMeeting(String name, String mentorEmail, String mentorName, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
+    public void bookMeeting(String name, String mentorEmail, String menteeName, String mentorName, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
         long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         List<MeetingLog> logs = new LinkedList<>();
-        Meeting meeting = new Meeting(id, name, mentorName, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
+        Meeting meeting = new Meeting(id, name, menteeName, mentorName, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();

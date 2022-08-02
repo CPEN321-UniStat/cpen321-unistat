@@ -54,6 +54,9 @@ public class UserProfileActivity extends AppCompatActivity {
         editUserUnivGpa = findViewById(R.id.editUserGpaInput);
         editUserUnivEntranceScore = findViewById(R.id.editUserEntranceScoreinput);
         editUserBio = findViewById(R.id.editUserBioInput);
+        editProfileButton = findViewById(R.id.editProfileButton);
+        confirmChangesButton = findViewById(R.id.confirmChangesButton);
+
 
         editUserUnivName.setEnabled(false);
         editUserUnivMajor.setEnabled(false);
@@ -73,6 +76,18 @@ public class UserProfileActivity extends AppCompatActivity {
         String userEmail = account.getEmail();
         Log.d(TAG, "User email: " + userEmail);
 
+        Bundle extras = getIntent().getExtras();
+        Boolean isMentor = extras.getBoolean("isMentor");
+
+        if (!isMentor) { // if mentee then no stat info displayed
+            editUserUnivName.setVisibility(View.GONE);
+            editUserUnivMajor.setVisibility(View.GONE);
+            editUserUnivGpa.setVisibility(View.GONE);
+            editUserUnivEntranceScore.setVisibility(View.GONE);
+            editProfileButton.setVisibility(View.GONE);
+            editUserBio.setVisibility(View.GONE);
+            confirmChangesButton.setVisibility(View.GONE);
+        }
         getUserStats(userEmail);
 
         userNameText.setText(account.getDisplayName());
@@ -80,22 +95,24 @@ public class UserProfileActivity extends AppCompatActivity {
         userEmailText.setText(emailText);
         Picasso.get().load(account.getPhotoUrl()).resize(125, 125).into(userProfileImage);
 
-        confirmChangesButton = findViewById(R.id.confirmChangesButton);
         confirmChangesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updateUserStats(userEmail);
-                confirmChangesButton.setVisibility(View.GONE);
-                editProfileButton.setVisibility(View.VISIBLE);
-                editUserUnivName.setEnabled(false);
-                editUserUnivMajor.setEnabled(false);
-                editUserUnivGpa.setEnabled(false);
-                editUserUnivEntranceScore.setEnabled(false);
-                editUserBio.setEnabled(false);
+                boolean done = updateUserStats(userEmail);
+                if (done) {
+                    confirmChangesButton.setVisibility(View.GONE);
+                    editProfileButton.setVisibility(View.VISIBLE);
+                    editUserUnivName.setEnabled(false);
+                    editUserUnivMajor.setEnabled(false);
+                    editUserUnivGpa.setEnabled(false);
+                    editUserUnivEntranceScore.setEnabled(false);
+                    editUserBio.setEnabled(false);
+                } else {
+                    // Do nothing, Keep Inputs enabled for user to continue editing
+                }
             }
         });
 
-        editProfileButton = findViewById(R.id.editProfileButton);
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +128,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    private void updateUserStats(String userEmail) {
+    private boolean updateUserStats(String userEmail) {
         String URL = IpConstants.URL + "stats";
         univName = editUserUnivName.getEditText().getText().toString().trim();
         univMajor = editUserUnivMajor.getEditText().getText().toString().trim();
@@ -122,7 +139,7 @@ public class UserProfileActivity extends AppCompatActivity {
         Boolean allPassed = runChecks();
 
         if (!allPassed) {
-            return;
+            return false;
         }
         
         JSONObject body = new JSONObject();
@@ -157,6 +174,7 @@ public class UserProfileActivity extends AppCompatActivity {
         );
 
         requestQueue.add(updateUserStatRequest);
+        return allPassed;
     }
 
     private Boolean runChecks() {
@@ -205,22 +223,15 @@ public class UserProfileActivity extends AppCompatActivity {
                             JSONObject userStat = statArray.getJSONObject(0);
 
                             //add coins to resp on stat req
-                            if (userStat.get("isMentor").equals(false)) { // if mentee then not much to show
-                                editUserUnivName.setVisibility(View.GONE);
-                                editUserUnivMajor.setVisibility(View.GONE);
-                                editUserUnivGpa.setVisibility(View.GONE);
-                                editUserUnivEntranceScore.setVisibility(View.GONE);
-                                editProfileButton.setVisibility(View.GONE);
-                                editUserBio.setVisibility(View.GONE);
-                                confirmChangesButton.setVisibility(View.GONE);
-                            } else { // if mentor then show university stats
+                            // add coins to resp on stat req
+                            if (userStat.get("isMentor").equals(true)) { // if mentor then show university stats
                                 editUserUnivName.getEditText().setText((String) userStat.get("univName"), TextView.BufferType.EDITABLE);
                                 editUserUnivMajor.getEditText().setText((String) userStat.get("univMajor"), TextView.BufferType.EDITABLE);
                                 editUserUnivGpa.getEditText().setText(String.valueOf(userStat.get("univGpa")), TextView.BufferType.EDITABLE);
                                 editUserUnivEntranceScore.getEditText().setText(String.valueOf(userStat.get("univEntranceScore")), TextView.BufferType.EDITABLE);
                                 editUserBio.getEditText().setText((String) userStat.get("univBio"), TextView.BufferType.EDITABLE);
                             }
-                            coinsText.setText(String.valueOf(userStat.get("coins"))); //add coins to resp on stat req
+                            coinsText.setText(String.valueOf(userStat.get("coins"))); // add coins to resp on stat req
                             // getCoinsByEmail(userEmail);
                         } catch (JSONException e) {
                             e.printStackTrace();

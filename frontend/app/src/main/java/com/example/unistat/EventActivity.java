@@ -51,12 +51,14 @@ public class EventActivity extends AppCompatActivity {
     private Button joinMeetingButton;
     private RequestQueue requestQueue;
     private Boolean isMentor = false;
+    private Intent startIntent;
     Meeting meeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        startIntent = getIntent();
         requestQueue = Volley.newRequestQueue(EventActivity.this);
         getAndSetMeetingInfo();
         addButtonListeners();
@@ -188,11 +190,12 @@ public class EventActivity extends AppCompatActivity {
         String userEmail = account.getEmail();
         if (userEmail.equals(meeting.getMentorEmail())) {
             isMentor = true;
+            profileText.setText(meeting.getMenteeName());
             //            getAndSetUserName(meeting.getMenteeEmail());
         } else{
             //            getAndSetUserName(meeting.getMentorEmail());
+            profileText.setText(meeting.getMentorName());
         }
-        profileText.setText(meeting.getMentorName());
 
         // 2. Set all parameters
         TextView eventNameText = findViewById(R.id.eventName);
@@ -208,9 +211,18 @@ public class EventActivity extends AppCompatActivity {
         timeText.setText(startTimeString + " - " + endTimeString);
 
         df = new SimpleDateFormat("MMM d, yyyy");
-        String date = df.format(meeting.getStartTime().getTime());
+        Calendar start = meeting.getStartTime();
+        Calendar end = meeting.getEndTime();
         TextView dateText = findViewById(R.id.date);
-        dateText.setText(date);
+        String startDate = df.format(start.getTime());
+
+        if (start.get(Calendar.DAY_OF_YEAR) == end.get(Calendar.DAY_OF_YEAR)) {
+            dateText.setText(startDate);
+        } else {
+            String endDate =  df.format(end.getTime());
+            String multipleDayDate = startDate + " - " + endDate;
+            dateText.setText(multipleDayDate);
+        }
 
         decideWhatsVisible(meeting.getStatus());
     }
@@ -308,6 +320,12 @@ public class EventActivity extends AppCompatActivity {
                 createZoomMeeting();
                 acceptMeetingButton.setVisibility(View.GONE);
                 declineMeetingButton.setVisibility(View.GONE);
+                Date meetingStart = meeting.getStartTime().getTime();
+                Date meetingEnd = meeting.getEndTime().getTime();
+                Date now = Calendar.getInstance().getTime();
+                if (now.before(meetingEnd) && now.after(meetingStart)) {
+                    joinMeetingButton.setVisibility(View.VISIBLE);
+                }
             }
         });
         declineMeetingButton.setOnClickListener(new View.OnClickListener() {

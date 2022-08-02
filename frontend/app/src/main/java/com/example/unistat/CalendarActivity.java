@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import com.example.unistat.meeting.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -46,14 +48,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
-public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener {
+public class CalendarActivity extends AppCompatActivity implements WeekView.EventClickListener, MonthLoader.MonthChangeListener, WeekView.EventLongPressListener, WeekView.EmptyViewLongPressListener, WeekView.ScrollListener {
     final static String ISO8601DATEFORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSZ";
     private WeekView mWeekView;
 
     private Boolean shouldAllowBack = false;
     private static HttpURLConnection connection;
 
-    private Button showOptimalMeetings;
+    private FloatingActionButton showOptimalMeetings;
     private boolean optimal = false;
 
     @Override
@@ -70,6 +72,13 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
             public void onClick(View view) {
                 optimal = !optimal;
                 mWeekView.notifyDatasetChanged();
+                if (!optimal) {
+                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_attach_money_24));
+                    Toast.makeText(CalendarActivity.this, "Displaying All meetings...", Toast.LENGTH_LONG).show();
+                } else {
+                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_money_off_24));
+                    Toast.makeText(CalendarActivity.this, "Displaying Optimal meetings...", Toast.LENGTH_LONG).show();
+                }
                 Log.d("Response",  "Optimal Meetings");
             }
         });
@@ -91,6 +100,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         mWeekView.setMonthChangeListener(this);
 
         mWeekView.setEventLongPressListener(this);
+
+        mWeekView.setScrollListener(this);
 
         // Set up a date time interpreter to interpret how the date and time will be formatted in
         // the week view. This is optional.
@@ -184,6 +195,14 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
     }
 
     @Override
+    public void onFirstVisibleDayChanged(Calendar newFirstVisibleDay, Calendar oldFirstVisibleDay) {
+        Log.d("FirstVisibleDayChanged", "Day changed");
+        if (optimal) {
+            mWeekView.notifyDatasetChanged();
+        }
+    }
+
+    @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
 //        System.out.println("Loading MEETINGS in calendar");
         Log.d("Response","Loading MEETINGS in calendar");
@@ -236,6 +255,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                 connection.setRequestProperty("startday", String.valueOf(start.get(Calendar.DATE)));
                 connection.setRequestProperty("endmonth", String.valueOf(end.get(Calendar.MONTH)));
                 connection.setRequestProperty("endday", String.valueOf(end.get(Calendar.DATE)));
+                connection.setRequestProperty("weekloadermonth", String.valueOf(month));
                 connection.setRequestProperty("year", String.valueOf(year));
             }
             else{
