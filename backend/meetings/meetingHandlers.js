@@ -252,11 +252,19 @@ const updateMeetingLog = async (req, res) => {
     }}
 
     try {
-        await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
-        var jsonResp = {
-            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+        var ret = await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
+        if (ret.matchedCount === 0) {
+            var jsonResp = {
+                "status": `Meeting with provided meeting ID "${req.body.mId}" does not exist`
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
+        else {
+            var jsonResp = {
+                "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        }
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
