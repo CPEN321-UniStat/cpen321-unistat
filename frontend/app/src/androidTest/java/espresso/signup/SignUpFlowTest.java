@@ -26,7 +26,7 @@ import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class signUpFlowTest {
+public class SignUpFlowTest {
     private UiDevice mUiDevice;
 
     @Rule

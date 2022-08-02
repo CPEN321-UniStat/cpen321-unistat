@@ -27,7 +27,7 @@ import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class manageProfileTest {
+public class ManageProfileTest {
     @Rule
     public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
             new ActivityScenarioRule<>(ViewStatsActivity.class);

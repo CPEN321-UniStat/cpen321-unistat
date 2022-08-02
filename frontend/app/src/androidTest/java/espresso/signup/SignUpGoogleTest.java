@@ -25,7 +25,7 @@ import com.example.unistat.R;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class signUpGoogleTest {
+public class SignUpGoogleTest {
     private UiDevice mUiDevice;
 
     @Rule
