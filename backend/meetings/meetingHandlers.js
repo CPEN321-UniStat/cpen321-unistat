@@ -222,7 +222,6 @@ const respondToMeeting = async (req, res) => {
         var meetingArray = await meeting.toArray()
 
         var menteeEmail = meetingArray[0].menteeEmail;
-        var menteeEmail = meetingArray[0].menteeEmail;
         var mentorEmail = meetingArray[0].mentorEmail;
 
         if(req.body.email != mentorEmail) {
@@ -323,16 +322,26 @@ const createZoomMeeting = async (req, res) => {
 
 const updateFirbaseToken = async (req, res) => {
     // Update firebase_token data
-    try {
-        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
-        var jsonResp = {
-            "status": `Firebase Token updated for ${req.body.email}`
+    const validUser = await isValidUser(req.body.email)
+    
+    if (validUser) {
+        try {
+            await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+            var jsonResp = {
+                "status": `Firebase Token updated for ${req.body.email}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
+    } else{ 
+        var jsonResp = {
+            "status": `Invalid user error: ${req.body.email}`
+        }
+        res.status(400).send(JSON.stringify(jsonResp))
     }
+    
 }
 
 const isValidUser = async (email) => {
