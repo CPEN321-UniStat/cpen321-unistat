@@ -11,6 +11,7 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
+const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
 const zoomPayload = {
     iss: process.env.API_KEY,
     exp: new Date().getTime() + 5000,
@@ -72,6 +73,103 @@ const getMeetingByEmail = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     }
+}
+
+const optimalMeetings = async (req, res) => {
+    var email = req.params.email;
+
+    var startDay = parseInt(req.headers['startday'], 10)
+    var startMonth = parseInt(req.headers['startmonth'], 10)
+    var endDay = parseInt(req.headers['endday'], 10)
+    var endMonth = parseInt(req.headers['endmonth'], 10)
+    var year = parseInt(req.headers['year'], 10)
+
+    var findQuery = {
+        "status": "PENDING",
+        "mStartTime.dayOfMonth": {"$gte": startDay},
+        "mStartTime.month": {"$gte": startMonth},
+        "mEndTime.dayOfMonth": {"$lte": endDay},
+        "mEndTime.month": {"$lte": endMonth},
+        "mStartTime.year": year,
+        "$or": [{"menteeEmail": email}, {"mentorEmail": email}] 
+    }
+    
+    var sortQuery = {
+        "mEndTime.year": 1,
+        "mEndTime.month": 1,
+        "mEndTime.dayOfMonth": 1,
+        "mEndTime.hourOfDay": 1,
+        "mEndTime.minute": 1,
+        "mEndTime.second": 1
+    }
+
+    
+    client.db("UniStatDB").collection("Meetings").find(findQuery).sort(sortQuery).toArray(function(err, result) {
+        if (err){
+            console.log(err)
+            res.status(400).send(JSON.stringify(err))
+        }
+        const P = []
+        for (let i = 0; i < result.length; i++) {
+            P[i+1] = getLargestIndexCompatibleInterval(i, result)
+        }
+        console.log(P)
+        const v = []
+        for (let i = 0; i < result.length; i++) {
+            var payment = result[i].paymentAmount
+            v[i+1] = payment
+        }
+        console.log(v)
+        const M = []
+        M[0] = 0
+        for (let i = 1; i <= result.length; i++) {
+            M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
+        }
+        console.log(M)
+
+        var optimalIndices = findSolution(result.length, M, P, v)
+        var optimalMeetings = optimalIndices.map(x => result[x-1])
+        console.log(optimalMeetings)
+
+        var jsonResp = {"meetings" : optimalMeetings}
+        res.status(200).send(JSON.stringify(jsonResp)); 
+    }) 
+}
+
+
+function getLargestIndexCompatibleInterval (j, meetings) {
+    console.log("---------------")
+    var p = 0
+    var meetingStartTime = meetings[j].mStartTime
+    const givenStart = new Date(meetingStartTime.year, meetingStartTime.month, meetingStartTime.dayOfMonth, meetingStartTime.hourOfDay, meetingStartTime.minute, meetingStartTime.second)
+    console.log(givenStart)
+    console.log("end-times:")
+    for (let i=0; i < meetings.length; i++) {
+        var meetingEndTime = meetings[i].mEndTime
+        const meetingEnd = new Date(meetingEndTime.year, meetingEndTime.month, meetingEndTime.dayOfMonth, meetingEndTime.hourOfDay, meetingEndTime.minute, meetingEndTime.second)
+        console.log(meetingEnd)
+        if (meetingEnd <= givenStart) {
+            p = i+1
+        }
+    }
+    console.log(p)
+    return p
+}
+
+function findSolution(j, M, P, v) {
+
+    if ( j == 0)
+        return []
+    if (v[j] + M[P[j]] > M[j-1]) {
+        console.log(j)
+        const arr = []
+        arr[0] = j
+        return arr.concat(findSolution(P[j], M, P, v))
+    }
+    else {
+        return findSolution(j-1, M, P, v)
+    }
+
 }
 
 const getMeetingById = async (req, res) => {
@@ -238,6 +336,7 @@ const isValidMid = async (mId) => {
 module.exports = {
     getMeetingByEmail,
     getMeetingById,
+    optimalMeetings,
     respondToMeeting,
     updateMeetingLog,
     createMeetingRequest,
