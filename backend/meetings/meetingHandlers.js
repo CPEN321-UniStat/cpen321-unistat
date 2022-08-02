@@ -180,8 +180,16 @@ const getMeetingById = async (req, res) => {
             console.log(err)
             res.status(400).send(JSON.stringify(err))
         }
-        var jsonResp = {"meeting" : result}
-        res.status(200).send(JSON.stringify(jsonResp))
+        console.log("theresult", result)
+        if (result.length > 0) {
+            var jsonResp = {"meeting" : result}
+            res.status(200).send(JSON.stringify(jsonResp))
+        } else {
+            var jsonResp = {
+                "status": `Invalid mId error`
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
+        }
     })
 }
 
@@ -198,6 +206,14 @@ const respondToMeeting = async (req, res) => {
             "zoomId": req.body.zoomId,
             "zoomPassword": req.body.zoomPassword
         }}
+
+        if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" &&req.body.status != "PENDING") {
+            var jsonResp = {
+                "status": `Invalid status error`
+            }
+            res.status(400).send(JSON.stringify(jsonResp))
+            return
+        }
         
         var meeting = client.db("UniStatDB").collection("Meetings").find(find_query, {$exists: true})
         var meetingArray = await meeting.toArray()

@@ -90,6 +90,7 @@ describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mentorEmail = "invalid@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -97,6 +98,7 @@ describe("POST /meetings", () => {
     test("From a non-existing user to an existing mentor", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.menteeEmail = "invalid@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -105,6 +107,7 @@ describe("POST /meetings", () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mentorEmail = "invalid@gmail.com";
         body.menteeEmail = "alsoinvalid@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -113,6 +116,7 @@ describe("POST /meetings", () => {
     test("From an existing mentee to another mentee", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.mentorEmail = "manekgujral11@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -120,6 +124,7 @@ describe("POST /meetings", () => {
     test("Meeting with a non-numeric input for paymentAmount", async () => {
         var body = {...sampleIntegrationTestMeeting}
         body.paymentAmount = "invalid";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -127,6 +132,7 @@ describe("POST /meetings", () => {
     test("Meeting with no input for paymentAmount", async () => {
         var body = {...sampleIntegrationTestMeeting}
         delete body.paymentAmount;
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -174,14 +180,11 @@ describe("POST /meetings", () => {
 describe("GET /meetings/email", () => {
     test("Get meetings for a valid user", async () => {
         await process.nextTick(() => { });
-        const res = await request(app).get("/meetings/kusharora339@gmail.com").send({
-            "email": "kusharora339@gmail.com",
-            "month": 6,
-            "year": 2022
-        })
+        const res = await request(app).get("/meetings/kusharora339@gmail.com").set("year", 2022).set("month", 6).send()
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
-        expect(res.meetings.some(meeting => {
+        console.log("resThingy", res)
+        expect(JSON.parse(res.text).meetings.some(meeting => {
             if (meeting.mId = meetingID) {
                 return true;
             }
@@ -200,6 +203,7 @@ describe("GET /meetings/email", () => {
     })
 
     test("Invalid month/year value", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).get("/meetings/johnwick@gmail.com").send({
             "email": "johnwick@gmail.com",
             "month": 6,
