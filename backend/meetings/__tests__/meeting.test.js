@@ -259,7 +259,7 @@ describe("PUT /meetings", () => {
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
             "status": "DECLINED",
-            "email": "kusharora339@gmail.com"
+            "email": "manekgujral11@gmail.com"
         })
         expect(res.statusCode).toBe(400)
     })
