@@ -35,6 +35,7 @@ import org.json.JSONObject;
 public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
+    private Boolean isMentor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Bundle extras = getIntent().getExtras();
-                Boolean isMentor = extras.getBoolean("isMentor");
+                isMentor = extras.getBoolean("isMentor");
                 Intent startViewProfile = new Intent(SettingsActivity.this, UserProfileActivity.class);
                 startViewProfile.putExtra("isMentor", isMentor);
                 startActivity(startViewProfile);
@@ -106,7 +107,11 @@ public class SettingsActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.calendar_activity:
-                        startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
+                        Intent startCalendar = new Intent(getApplicationContext(), CalendarActivity.class);
+                        if (isMentor != null) {
+                            startCalendar.putExtra("isMentor", isMentor);
+                        }
+                        startActivity(startCalendar);
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.view_stats_activity:
