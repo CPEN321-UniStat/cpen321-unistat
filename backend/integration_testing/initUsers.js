@@ -1,7 +1,6 @@
 const axios = require("axios");
 const dotEnv = require("dotenv");
 var admin = require("firebase-admin");
-var serviceAccount = require("../serviceAccountKey.json");
 
 dotEnv.config()
 

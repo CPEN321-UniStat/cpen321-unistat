@@ -2,6 +2,7 @@ package com.example.unistat.ui.calendar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
@@ -82,6 +85,18 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
 
         mWeekView = findViewById(R.id.weekView);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            mWeekView.setHourSeparatorColor(Color.BLACK);
+            mWeekView.setHeaderColumnTextColor(Color.WHITE);
+            mWeekView.setHeaderRowBackgroundColor(Color.DKGRAY);
+        }
+        else{
+            mWeekView.setHourSeparatorColor(Color.WHITE);
+            mWeekView.setHeaderColumnTextColor(Color.BLACK);
+            mWeekView.setHeaderRowBackgroundColor(Color.WHITE);
+        }
+
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {

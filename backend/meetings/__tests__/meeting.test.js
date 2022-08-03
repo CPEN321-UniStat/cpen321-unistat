@@ -1,8 +1,7 @@
 const request = require('supertest')
 const {app, server} = require('../../server')
 const db = require("../../database/connect")
-const { sendMeetingRequest } = require('../../users/userHandlers')
-const { schedulePayment } = require('../../payments/paymentHandlers')
+const { changeTesting } = require('../meetingHandlers')
 const client = db.client
 
 
@@ -48,8 +47,10 @@ beforeAll(() => {
             if (collectionInfo) { // Only if collection exists
                 client.db("UniStatDB").collection("Meetings").drop();
             }
+            if (err) console.log("Error dropping db:", err)
         }
     )
+    changeTesting()
 })
 
 
@@ -159,7 +160,7 @@ describe("GET /meetings/email", () => {
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
         expect(JSON.parse(res.text).meetings.some(meeting => {
-            if (meeting.mId = meetingID) {
+            if (meeting.mId == meetingID) {
                 return true;
             }
             return false;
@@ -199,7 +200,7 @@ describe("GET /optimalMeetings", () => {
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
         expect(JSON.parse(res.text).meetings.some(meeting => {
-            if (meeting.mId = meetingID) {
+            if (meeting.mId == meetingID) {
                 return true;
             }
             return false;

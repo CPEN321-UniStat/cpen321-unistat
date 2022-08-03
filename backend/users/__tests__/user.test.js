@@ -1,13 +1,10 @@
 const request = require('supertest')
 const {app, server} = require('../../server')
 const db = require("../../database/connect")
-const { JsonWebTokenError } = require('jsonwebtoken')
 const client = db.client
 const init = require("../../integration_testing/initUsers")
 const users = require("../userHandlers")
 const verify = require("../userVerification")
-const { getUserCoins } = require('../../payments/paymentHandlers')
-const bodyParser = require('body-parser')
 
 require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers")

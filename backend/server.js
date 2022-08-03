@@ -5,8 +5,6 @@ const db = require("./database/connect")
 
 const users = require("./users/userHandlers")
 
-const payment = require("./payments/paymentHandlers")
-
 const meeting = require("./meetings/meetingHandlers")
 
 app.use(express.json());

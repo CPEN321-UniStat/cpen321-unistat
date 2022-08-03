@@ -11,13 +11,13 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
-const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
+
 const zoomPayload = {
-    iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
+    iss: process.env.ZOOM_APP_API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
 }
-const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
-
+var jwtToken = jwt.sign(zoomPayload, process.env.ZOOM_APP_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
+var zoomEmail = "cpen321.unistat@gmail.com";
 
 // CRUD Functions for Meetings collection
 const createMeetingRequest = async (req, res) => {
@@ -25,21 +25,20 @@ const createMeetingRequest = async (req, res) => {
     try {
         const isMenteeValid = await isValidUser(req.body.menteeEmail);
         const isMentorValid = await isValidUser(req.body.mentorEmail);
-        const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
         const validTimes = areValidTimes(req.body.mStartTime, req.body.mEndTime)
         const isMeetingIdValid = await isValidMid(req.body.mId)
         if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
             }
 
             await users.sendMeetingRequest(req.body.mentorEmail)
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
-            var jsonResp = {
+            const jsonResp = {
                 "status": "Invalid user error"
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -126,7 +125,7 @@ const optimalMeetings = async (req, res) => {
         const M = []
         M[0] = 0
         for (let i = 1; i <= result.length; i++) {
-            M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
+            M[i] = Math.max(v[i] + M[P[i]], M[i-1])
         }
 
         var optimalIndices = findOptimalMeetings(result.length, M, P, v)
@@ -161,7 +160,7 @@ function getLargestIndexCompatibleInterval (j, meetings) {
 
 function findOptimalMeetings(j, M, P, v) {
 
-    if ( j == 0)
+    if ( j === 0)
         return []
     if (v[j] + M[P[j]] > M[j-1]) {
         // console.log(j)
@@ -185,10 +184,10 @@ const getMeetingById = async (req, res) => {
         }
         console.log("theresult", result)
         if (result.length > 0) {
-            var jsonResp = {"meeting" : result}
+            const jsonResp = {"meeting" : result}
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid mId error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -211,7 +210,7 @@ const respondToMeeting = async (req, res) => {
         }}
 
         if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" &&req.body.status != "PENDING") {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid status error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -225,14 +224,14 @@ const respondToMeeting = async (req, res) => {
         var mentorEmail = meetingArray[0].mentorEmail;
 
         if(req.body.email != mentorEmail) {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid user error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
         } else {
             await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
             await users.sendMeetingResponse(menteeEmail)
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting status updated`
             }
             res.status(200).send(JSON.stringify(jsonResp))
@@ -253,17 +252,16 @@ const updateMeetingLog = async (req, res) => {
     try {
         var ret = await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         if (ret.matchedCount === 0) {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting with provided meeting ID "${req.body.mId}" does not exist`
             }
             res.status(400).send(JSON.stringify(jsonResp))
+            return
         }
-        else {
-            var jsonResp = {
-                "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
+        const jsonResp = {
+            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
         }
+        res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
@@ -277,13 +275,13 @@ const createZoomMeeting = async (req, res) => {
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
-
+ 
+    console.log("EMAIL----------------", zoomEmail);
 
     //email = "cpen321.unistat@gmail.com"; // your zoom developer email account
-    const email = "manekgujral11@gmail.com";
     var options = {
         method: "POST",
-        uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
+        uri: "https://api.zoom.us/v2/users/" + zoomEmail + "/meetings",
         body: {
         topic: req.body.meetingTopic, //db
         timezone: "America/Vancouver",
@@ -311,7 +309,7 @@ const createZoomMeeting = async (req, res) => {
         await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
         console.log("Payment failed. Error:", error)
-        var jsonResp = {"status" : "Schedule payment failed"}
+        const jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
@@ -319,13 +317,13 @@ const createZoomMeeting = async (req, res) => {
     await requestPromise(options)
     .then(function (response) {
         console.log("response is: ", response)
-        var jsonResp = {"status" : response}
+        const jsonResp = {"status" : response}
         res.status(200).send(JSON.stringify(jsonResp))
     })
     .catch(function (err) {
         // API call failed...
         console.log("API call failed, reason ", err)
-        var jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
+        const jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
         res.status(400).send(JSON.stringify(jsonResp))
     })
 }
@@ -335,28 +333,27 @@ const updateFirbaseToken = async (req, res) => {
     // Update firebase_token data
     const validUser = await isValidUser(req.body.email)
     
-    if (validUser) {
-        try {
-            await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
-            var jsonResp = {
-                "status": `Firebase Token updated for ${req.body.email}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-    } else{ 
+    if (!validUser) {
         var jsonResp = {
             "status": `Invalid user error: ${req.body.email}`
         }
         res.status(400).send(JSON.stringify(jsonResp))
+        return
     }
-    
+    try {
+        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+        var jsonResp = {
+            "status": `Firebase Token updated for ${req.body.email}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
 }
 
 const isValidUser = async (email) => {
-    var query = {"email": email}
+    var query = {email}
     var existingUsers = client.db("UniStatDB").collection("Users").find(query, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
     return (lenUsers > 0) ? 1 : 0;
@@ -377,7 +374,7 @@ const areValidTimes = (time1, time2) => {
 }
 
 const isValidMid = async (mId) => {
-    var query = {"mId": mId}
+    var query = {mId}
     try {
         var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
         var lenMeeting = (await existingMeeting.toArray()).length
@@ -395,5 +392,11 @@ module.exports = {
     updateMeetingLog,
     createMeetingRequest,
     updateFirbaseToken,
-    createZoomMeeting
+    createZoomMeeting,
+    changeTesting: () => {
+        zoomEmail = "manekgujral11@gmail.com"
+        zoomPayload.iss = process.env.API_KEY
+        secretKey = process.env.API_SECRET
+        jwtToken = jwt.sign(zoomPayload, secretKey)
+    }
 }
