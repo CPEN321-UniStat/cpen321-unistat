@@ -256,13 +256,12 @@ const updateMeetingLog = async (req, res) => {
                 "status": `Meeting with provided meeting ID "${req.body.mId}" does not exist`
             }
             res.status(400).send(JSON.stringify(jsonResp))
+            return
         }
-        else {
-            var jsonResp = {
-                "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
+        var jsonResp = {
+            "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
         }
+        res.status(200).send(JSON.stringify(jsonResp))
     } catch (error) {
         console.log(error)
         res.status(400).send(JSON.stringify(error))
@@ -334,28 +333,27 @@ const updateFirbaseToken = async (req, res) => {
     // Update firebase_token data
     const validUser = await isValidUser(req.body.email)
     
-    if (validUser) {
-        try {
-            await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
-            var jsonResp = {
-                "status": `Firebase Token updated for ${req.body.email}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-    } else{ 
+    if (!validUser) {
         var jsonResp = {
             "status": `Invalid user error: ${req.body.email}`
         }
         res.status(400).send(JSON.stringify(jsonResp))
+        return
     }
-    
+    try {
+        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+        var jsonResp = {
+            "status": `Firebase Token updated for ${req.body.email}`
+        }
+        res.status(200).send(JSON.stringify(jsonResp))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
+    }
 }
 
 const isValidUser = async (email) => {
-    var query = {"email": email}
+    var query = {email}
     var existingUsers = client.db("UniStatDB").collection("Users").find(query, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
     return (lenUsers > 0) ? 1 : 0;
