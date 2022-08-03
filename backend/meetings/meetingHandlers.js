@@ -28,7 +28,7 @@ const createMeetingRequest = async (req, res) => {
         const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
+        const validTimes = areValidTimes(req.body.mStartTime, req.body.mEndTime)
         const isMeetingIdValid = await isValidMid(req.body.mId)
         if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
@@ -129,7 +129,7 @@ const optimalMeetings = async (req, res) => {
             M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
         }
 
-        var optimalIndices = findSolution(result.length, M, P, v)
+        var optimalIndices = findOptimalMeetings(result.length, M, P, v)
         var optimalMeetings = optimalIndices.map(x => result[x-1])
         var optimalMeetingsForMonth = optimalMeetings.filter(meeting => meeting.mStartTime.month === weekLoaderMonth)
 
@@ -159,7 +159,7 @@ function getLargestIndexCompatibleInterval (j, meetings) {
     return p
 }
 
-function findSolution(j, M, P, v) {
+function findOptimalMeetings(j, M, P, v) {
 
     if ( j == 0)
         return []
@@ -167,10 +167,10 @@ function findSolution(j, M, P, v) {
         // console.log(j)
         const arr = []
         arr[0] = j
-        return arr.concat(findSolution(P[j], M, P, v))
+        return arr.concat(findOptimalMeetings(P[j], M, P, v))
     }
     else {
-        return findSolution(j-1, M, P, v)
+        return findOptimalMeetings(j-1, M, P, v)
     }
 
 }
@@ -358,34 +358,11 @@ const isMentor = async (email) => {
     return (lenUsers > 0) ? 1 : 0;
 }
 
-// returns true if time1 < time2 ad false otherwise
-const compareTimes = (time1, time2) => {
-    // if year is 
-    if (time1.year > time2.year) return false
-    if (time1.year < time2.year) return true
-    
-    // we know year is same
-    if (time1.month > time2.month) return false
-    if (time1.month < time2.month) return true
-
-    // we know year and month is same
-    if (time1.dayOfMonth > time2.dayOfMonth) return false
-    if (time1.dayOfMonth < time2.dayOfMonth) return true
-
-    // we know day is same
-    if (time1.hourOfDay > time2.hourOfDay) return false
-    if (time1.hourOfDay < time2.hourOfDay) return true
-    
-    // we know hour is same
-    if (time1.minute > time2.minute) return false
-    if (time1.minute < time2.minute) return true
-
-    // we know hour is same
-    if (time1.second > time2.second) return false
-    if (time1.second < time2.second) return true
-
-    // exact same
-    return false
+// returns true if time1 <= time2 ad false otherwise
+const areValidTimes = (time1, time2) => {
+    const start = new Date(time1.year, time1.month, time1.dayOfMonth, time1.hourOfDay, time1.minute, time1.second)
+    const end = new Date(time2.year, time2.month, time2.dayOfMonth, time2.hourOfDay, time2.minute, time2.second)
+    return start <= end
 }
 
 const isValidMid = async (mId) => {
