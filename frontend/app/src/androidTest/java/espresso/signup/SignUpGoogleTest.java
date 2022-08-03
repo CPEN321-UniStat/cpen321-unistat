@@ -5,8 +5,6 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -15,11 +13,9 @@ import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.R;
 
@@ -37,7 +33,7 @@ public class SignUpGoogleTest {
         onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_button)).perform(click());
         mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        UiObject mText = mUiDevice.findObject(new UiSelector().text("Manek Gujral"));
+        UiObject mText = mUiDevice.findObject(new UiSelector().text("UniStat"));
         mText.click();
         Thread.sleep(1500);
         onView((withId(R.id.view_user_stats_activity))).check(matches(isDisplayed()));

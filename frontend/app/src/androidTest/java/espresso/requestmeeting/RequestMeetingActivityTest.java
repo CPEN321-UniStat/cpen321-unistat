@@ -1,4 +1,5 @@
 package espresso.requestmeeting;
+
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
@@ -114,7 +115,7 @@ public class RequestMeetingActivityTest {
         /* Click on Request Meeting button */
         onView(withId(R.id.requestMeetingButton)).perform(click());
         /* New page titled "Book a Meeting" and input field labelled "Meeting Title"*/
-        onView(withText("Book a Meeting")).check(matches(isDisplayed()));
+        onView(withText("Book your meeting…")).check(matches(isDisplayed()));
         onView(withHint("Meeting Title")).check(matches(isDisplayed()));
 
         /* Populate the "Meeting Title" input field with "#123abc/" */
@@ -439,10 +440,6 @@ public class RequestMeetingActivityTest {
         onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
         onView(withId(R.id.calendar_activity_screen)).check(matches(isDisplayed()));
-
-
-
     }
-
 }
 
