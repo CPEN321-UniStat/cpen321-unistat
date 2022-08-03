@@ -50,16 +50,10 @@ public class RequestMeetingActivityTest {
     String otherMentorDisplayName = "UniStat";
 
     UiDevice mDevice;
-    private View decorView;
+
     @Before
     public void setUp() throws Exception{
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<ViewStatsActivity>() {
-            @Override
-            public void perform(ViewStatsActivity activity) {
-                decorView = activity.getWindow().getDecorView();
-            }
-        });
     }
 
     @Rule
