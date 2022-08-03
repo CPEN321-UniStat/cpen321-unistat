@@ -1,6 +1,7 @@
 const request = require('supertest')
 const {app, server} = require('../../server')
 const db = require("../../database/connect")
+const { changeTesting } = require('../meetingHandlers')
 const client = db.client
 
 
@@ -48,6 +49,7 @@ beforeAll(() => {
             }
         }
     )
+    changeTesting()
 })
 
 

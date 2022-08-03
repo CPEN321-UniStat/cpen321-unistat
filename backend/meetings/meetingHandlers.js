@@ -13,11 +13,11 @@ const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
 
 const zoomPayload = {
-    iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
+    iss: process.env.ZOOM_APP_API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
 }
-const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
-
+var jwtToken = jwt.sign(zoomPayload, process.env.ZOOM_APP_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
+var zoomEmail = "cpen321.unistat@gmail.com";
 
 // CRUD Functions for Meetings collection
 const createMeetingRequest = async (req, res) => {
@@ -276,13 +276,13 @@ const createZoomMeeting = async (req, res) => {
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
-
+ 
+    console.log("EMAIL----------------", zoomEmail);
 
     //email = "cpen321.unistat@gmail.com"; // your zoom developer email account
-    const email = "manekgujral11@gmail.com";
     var options = {
         method: "POST",
-        uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
+        uri: "https://api.zoom.us/v2/users/" + zoomEmail + "/meetings",
         body: {
         topic: req.body.meetingTopic, //db
         timezone: "America/Vancouver",
@@ -394,5 +394,11 @@ module.exports = {
     updateMeetingLog,
     createMeetingRequest,
     updateFirbaseToken,
-    createZoomMeeting
+    createZoomMeeting,
+    changeTesting: () => {
+        zoomEmail = "manekgujral11@gmail.com"
+        zoomPayload.iss = process.env.API_KEY
+        secretKey = process.env.API_SECRET
+        jwtToken = jwt.sign(zoomPayload, secretKey)
+    }
 }

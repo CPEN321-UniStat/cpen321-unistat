@@ -22,6 +22,7 @@ beforeAll(() => {
             if (err) console.log("Error dropping:", err)
         }
     )
+    changeTesting();
 })
 
 
