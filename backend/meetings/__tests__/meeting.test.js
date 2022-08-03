@@ -63,7 +63,7 @@ afterAll( async() => {
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "invalid@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -71,7 +71,7 @@ describe("POST /meetings", () => {
     })
 
     test("From a non-existing user to an existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);        
         body.menteeEmail = "invalid@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -79,7 +79,7 @@ describe("POST /meetings", () => {
     })
 
     test("From a non-existing user to an non-existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);        
         body.mentorEmail = "invalid@gmail.com";
         body.menteeEmail = "alsoinvalid@gmail.com";
         await process.nextTick(() => { });
@@ -89,7 +89,7 @@ describe("POST /meetings", () => {
 
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -97,7 +97,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with a non-numeric input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.paymentAmount = "invalid";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -105,7 +105,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with no input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         delete body.paymentAmount;
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -113,7 +113,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with startTime after endTime", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mStartTime = {
             "year": 2022,
             "month": 6,
@@ -128,7 +128,7 @@ describe("POST /meetings", () => {
     })
 
     test("From an existing mentee to themselves", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -136,14 +136,14 @@ describe("POST /meetings", () => {
     })
 
     test("From an existing user to a mentor who is an existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         await process.nextTick(() => { });
         var res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
     })
 
      test("For a meeting that already exists", async () => {
-         var body = {...sampleIntegrationTestMeeting}
+         let body = Object.assign({}, sampleIntegrationTestMeeting);
          body.mId = meetingID;
          await process.nextTick(() => { });
          const res = await request(app).post("/meetings").send(body)

@@ -632,32 +632,7 @@ describe("View Statistics use case", () => {
 
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
-    "meetingLogs": [
-        {
-          "timestamp": "2022-07-09T11:00:00",
-          "userEmail": "manekgujral11@gmail.com",
-          "isMentor": false,
-          "action": "JOINED"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "kusharora339@gmail.com",
-            "isMentor": true,
-            "action": "JOINED"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "manekgujral11@gmail.com",
-            "isMentor": false,
-            "action": "LEFT"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "kusharora339@gmail.com",
-            "isMentor": true,
-            "action": "LEFT"
-        }
-    ],
+    "meetingLogs": [],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
     "mentorName": "Mentor User",
@@ -687,21 +662,21 @@ const sampleIntegrationTestMeeting = {
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "invalid@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("From a non-existing user to an existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.menteeEmail = "invalid@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("From a non-existing user to an non-existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "invalid@gmail.com";
         body.menteeEmail = "alsoinvalid@gmail.com";
         const res = await request(app).post("/meetings").send(body)
@@ -710,28 +685,28 @@ describe("POST /meetings", () => {
 
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("Meeting with a non-numeric input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.paymentAmount = "invalid";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("Meeting with no input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         delete body.paymentAmount;
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("Meeting with startTime after endTime", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mStartTime = {
             "year": 2022,
             "month": 6,
@@ -745,14 +720,14 @@ describe("POST /meetings", () => {
     })
 
     test("From an existing mentee to themselves", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
 
     test("From an existing user to a mentor who is an existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mId = meetingID;
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
