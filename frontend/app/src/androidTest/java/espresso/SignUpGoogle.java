@@ -1,4 +1,4 @@
-package espresso.signup;
+package espresso;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -23,62 +23,59 @@ import org.junit.runner.RunWith;
 import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.R;
 
-@RunWith(AndroidJUnit4.class)
-@LargeTest
-public class SignUpGoogleTest {
-    private UiDevice mUiDevice;
+public class SignUpGoogle {
 
-    @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule1 =
-            new ActivityScenarioRule<>(MainActivity.class);
+    public void signUp(boolean isMentee) throws UiObjectNotFoundException, InterruptedException {
+        UiDevice mUiDevice;
+        String popUpAccountName = "UniStat";
+        String userName = "cpen321.unistat";
+        String password = "unistat@123";
 
-    @Test
-    public void signUp() throws UiObjectNotFoundException, InterruptedException {
         onView((withId(R.id.sign_in_button))).check(matches(isDisplayed()));
         onView(withId(R.id.sign_in_button)).perform(click());
         mUiDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
 
         // Check all possible sign-in/sign-up cases
-        UiObject accountName = mUiDevice.findObject(new UiSelector().text("Kush Arora"));
         UiObject use_another_account = mUiDevice.findObject(new UiSelector().text("Use another account"));
 
         try {
+            // Check if account name is there
+            UiObject accountName = mUiDevice.findObject(new UiSelector().text(popUpAccountName));
             accountName.click();
-            Thread.sleep(1500);
-            onView(withId(R.id.view_user_stats_activity)).check(matches(isDisplayed()));
+            Thread.sleep(3000);
             return;
         } catch (UiObjectNotFoundException e) {
-            use_another_account.click();
+            // Check if use another account is there
+            try {
+                use_another_account.click();
+            } catch (UiObjectNotFoundException err) {
+                // No other option left go with initial sign up
+                assert true; // noop
+            }
         }
-
-        Thread.sleep(10000);
-
-        UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
-        email_or_phone.click();
-        email_or_phone.setText("kushar339");
-        mUiDevice.pressBack();
-
-        UiObject next1 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("NEXT"));
-        next1.click();
 
         Thread.sleep(10000);
 
         try {
-            UiObject enter_your_password = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
+            UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
             email_or_phone.click();
-            enter_your_password.setText("kusharora339");
-            mUiDevice.pressBack();
+            email_or_phone.setText(userName);
+            mUiDevice.pressEnter();
         } catch (UiObjectNotFoundException e) {
             // If not found in 10 seconds, wait more
             Thread.sleep(25000);
-            UiObject enter_your_password = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
+            UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
             email_or_phone.click();
-            enter_your_password.setText("kusharora339");
-            mUiDevice.pressBack();
+            email_or_phone.setText(userName);
+            mUiDevice.pressEnter();
         }
 
-        UiObject next2 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("NEXT"));
-        next2.click();
+        Thread.sleep(1500);
+
+        UiObject enter_password = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
+        enter_password.click();
+        enter_password.setText(password);
+        mUiDevice.pressEnter();
 
         Thread.sleep(2000);
 
@@ -100,6 +97,14 @@ public class SignUpGoogleTest {
         accept.click();
 
         Thread.sleep(15000);
+
+        completeSignUpFlow();
+
+        return;
+    }
+
+    private void completeSignUpFlow() {
+
     }
 }
 

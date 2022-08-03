@@ -12,22 +12,29 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import espresso.ToastMatcher;
+import espresso.SignUpGoogle;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ManageProfileTest {
+    private final SignUpGoogle signUpGoogle = new SignUpGoogle();
+
     @Rule
     public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
             new ActivityScenarioRule<>(ViewStatsActivity.class);
 
     @Test
-    public void manageMentorProfile() throws InterruptedException {
+    public void manageMentorProfile() throws InterruptedException, UiObjectNotFoundException {
+
+        signUpGoogle.signUp(false);
 
         onView(withId(R.id.sign_out_activity)).perform(click());
 
@@ -109,7 +116,8 @@ public class ManageProfileTest {
 
     // Need to first sign-in with a mentee account to successfully run the following test case
     @Test
-    public void manageMenteeProfile() {
+    public void manageMenteeProfile() throws InterruptedException, UiObjectNotFoundException {
+        signUpGoogle.signUp(true);
 
         onView(withId(R.id.sign_out_activity)).perform(click());
 
