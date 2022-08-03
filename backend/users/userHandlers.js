@@ -1,8 +1,5 @@
 // This file contains all functions that handle and process user information
 
-const axios = require("axios");
-const e = require("express");
-
 // set up firebase authentication for notifications
 var admin = require("firebase-admin");
 
@@ -31,19 +28,20 @@ const handleUserEntry = async (req, res) => {
             "status": "Cannot create user with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } else {  
-        try {
-            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-            console.log("exists: " + alreadyExists);
-            var jsonResp = {
-                "status": alreadyExists ? "loggedIn" : "signedUp"
-            }
-            res.status(200).send(JSON.stringify(jsonResp));
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error));
+        return
+    } 
+    try {
+        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        console.log("exists: " + alreadyExists);
+        var jsonResp = {
+            "status": alreadyExists ? "loggedIn" : "signedUp"
         }
+        res.status(200).send(JSON.stringify(jsonResp));
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error));
     }
+    
 }
 
 // Functions for managing user stats

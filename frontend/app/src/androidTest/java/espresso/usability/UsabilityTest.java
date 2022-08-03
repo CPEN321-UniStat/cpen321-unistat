@@ -5,18 +5,12 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.ListAdapter;
-
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.NoMatchingViewException;
 import androidx.test.espresso.ViewAssertion;
@@ -27,10 +21,8 @@ import androidx.test.filters.LargeTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
-
 import com.example.unistat.R;
 import com.example.unistat.ui.stats.ViewStatsActivity;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

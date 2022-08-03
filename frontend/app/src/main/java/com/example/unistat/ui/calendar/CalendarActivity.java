@@ -2,6 +2,7 @@ package com.example.unistat.ui.calendar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.RectF;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -9,15 +10,14 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
-
 import com.example.unistat.classes.IpConstants;
 import com.example.unistat.R;
 import com.example.unistat.ui.meetings.EventActivity;
@@ -30,11 +30,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -87,6 +85,16 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         });
 
         mWeekView = findViewById(R.id.weekView);
+
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
+            mWeekView.setHourSeparatorColor(Color.BLACK);
+            mWeekView.setHeaderColumnTextColor(Color.WHITE);
+        }
+        else{
+            mWeekView.setHourSeparatorColor(Color.WHITE);
+            mWeekView.setHeaderColumnTextColor(Color.BLACK);
+        }
+
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
             @Override
             public void onEventClick(WeekViewEvent event, RectF eventRect) {
