@@ -13,10 +13,10 @@ const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
 const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
 const zoomPayload = {
-    iss: process.env.ZOOM_APP_API_KEY,
+    iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
 }
-const jwtToken = jwt.sign(zoomPayload, process.env.ZOOM_APP_SECRET)
+const jwtToken = jwt.sign(zoomPayload, process.env.API_SECRET) // CHANGE TO ZOOM_APP_SECRET BEFORE FINAL SUBMISSION
 
 
 // CRUD Functions for Meetings collection
@@ -271,7 +271,16 @@ const updateMeetingLog = async (req, res) => {
 }
 
 const createZoomMeeting = async (req, res) => {
-    email = "cpen321.unistat@gmail.com"; // your zoom developer email account
+    if (req.body.mId == null || (req.body.meetingStartTime >= req.body.meetingEndTime) || req.body.meetingTopic == null) {
+        console.log("Invalid input error")
+        var jsonResp = {"status" : "Invalid inputs error"}
+        res.status(400).send(JSON.stringify(jsonResp))
+        return
+    }
+
+
+    //email = "cpen321.unistat@gmail.com"; // your zoom developer email account
+    const email = "manekgujral11@gmail.com";
     var options = {
         method: "POST",
         uri: "https://api.zoom.us/v2/users/" + email + "/meetings",
@@ -301,11 +310,13 @@ const createZoomMeeting = async (req, res) => {
     try {
         await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
+        console.log("Payment failed. Error:", error)
         var jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
+        return
     }
 
-    requestPromise(options)
+    await requestPromise(options)
     .then(function (response) {
         console.log("response is: ", response)
         var jsonResp = {"status" : response}

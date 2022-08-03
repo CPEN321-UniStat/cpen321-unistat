@@ -1,35 +1,27 @@
-package espresso;
+package espresso.manageprofile;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-import static org.hamcrest.Matchers.allOf;
-
-import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import org.hamcrest.Matchers;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import com.example.unistat.R;
-import com.example.unistat.statscardview.ViewStatsActivity;
+import com.example.unistat.ui.stats.ViewStatsActivity;
+import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class manageProfileTest {
+public class ManageProfileTest {
     @Rule
     public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
             new ActivityScenarioRule<>(ViewStatsActivity.class);
@@ -116,7 +108,6 @@ public class manageProfileTest {
     }
 
     // Need to first sign-in with a mentee account to successfully run the following test case
-
     @Test
     public void manageMenteeProfile() {
 
@@ -134,6 +125,5 @@ public class manageProfileTest {
         onView(withId(R.id.userProfileImage)).check(matches(isDisplayed()));
         onView(withId(R.id.userNameText)).check(matches(isDisplayed()));
         onView(withId(R.id.userEmailText)).check(matches(isDisplayed()));
-
     }
 }

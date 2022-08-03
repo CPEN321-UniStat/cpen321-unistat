@@ -1,9 +1,8 @@
-package com.example.unistat;
+package com.example.unistat.ui.settings;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,14 +11,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.statscardview.ViewStatsActivity;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.ui.login.MainActivity;
+import com.example.unistat.R;
+import com.example.unistat.ui.stats.ViewStatsActivity;
+import com.example.unistat.ui.calendar.CalendarActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,12 +29,10 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.zipow.videobox.conference.viewmodel.livedata.BOLiveDataType;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SignOutActivity extends AppCompatActivity {
+public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
 
@@ -55,7 +55,7 @@ public class SignOutActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Bundle extras = getIntent().getExtras();
                 Boolean isMentor = extras.getBoolean("isMentor");
-                Intent startViewProfile = new Intent(SignOutActivity.this, UserProfileActivity.class);
+                Intent startViewProfile = new Intent(SettingsActivity.this, UserProfileActivity.class);
                 startViewProfile.putExtra("isMentor", isMentor);
                 startActivity(startViewProfile);
                 overridePendingTransition(R.anim.zm_enlarge_in, R.anim.zm_enlarge_out);
@@ -132,7 +132,7 @@ public class SignOutActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Log.d(TAG, "logged out");
-                        Intent openMainActivity = new Intent(SignOutActivity.this, MainActivity.class);
+                        Intent openMainActivity = new Intent(SettingsActivity.this, MainActivity.class);
                         openMainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
                         // clear firebase_token for correct notification behavior
@@ -147,7 +147,7 @@ public class SignOutActivity extends AppCompatActivity {
     private void updateRegistrationToken(String token, String email) {
         //send firebase_token to users collection in DB
         //check if exists then replace/add update
-        RequestQueue requestQueue = Volley.newRequestQueue(SignOutActivity.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(SettingsActivity.this);
 
         String URL = IpConstants.URL + "firebaseToken";
 

@@ -10,7 +10,7 @@
     android:focusableInTouchMode="true"
     android:focusable="true"
     android:id="@+id/userProfileActivity"
-    tools:context=".UserProfileActivity">
+    tools:context=".ui.settings.UserProfileActivity">
 
     <ScrollView
         android:id="@+id/scrollView2"

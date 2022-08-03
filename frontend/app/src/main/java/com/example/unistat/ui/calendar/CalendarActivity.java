@@ -1,4 +1,4 @@
-package com.example.unistat;
+package com.example.unistat.ui.calendar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -8,30 +8,28 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.alamkanak.weekview.DateTimeInterpreter;
 import com.alamkanak.weekview.MonthLoader;
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekViewEvent;
-
-import com.example.unistat.statscardview.ViewStatsActivity;
-import com.example.unistat.meeting.Meeting;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.R;
+import com.example.unistat.ui.meetings.EventActivity;
+import com.example.unistat.ui.settings.SettingsActivity;
+import com.example.unistat.ui.stats.ViewStatsActivity;
+import com.example.unistat.classes.Meeting;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -128,7 +126,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.sign_out_activity:
-                        startActivity(new Intent(getApplicationContext(),SignOutActivity.class));
+                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     default:

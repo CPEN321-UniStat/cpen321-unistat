@@ -1,15 +1,14 @@
-package com.example.unistat;
+package com.example.unistat.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
 import com.airbnb.lottie.LottieAnimationView;
-import com.example.unistat.statscardview.ViewStatsActivity;
+import com.example.unistat.R;
+import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class UserStatusActivity extends AppCompatActivity {

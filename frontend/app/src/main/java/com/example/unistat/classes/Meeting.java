@@ -1,9 +1,7 @@
-package com.example.unistat.meeting;
+package com.example.unistat.classes;
 
 import android.graphics.Color;
-
 import com.alamkanak.weekview.WeekViewEvent;
-
 import java.util.Calendar;
 import java.util.List;
 

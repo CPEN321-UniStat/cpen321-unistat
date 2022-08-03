@@ -15,32 +15,7 @@ jest.mock("../../payments/paymentHandlers.js")
 // UNIT TESTS (Point 6 of M6)
 const meetingID = Math.random().toString(16).substr(2, 16);
 const sampleIntegrationTestMeeting = {
-    "meetingLogs": [
-        {
-          "timestamp": "2022-07-09T11:00:00",
-          "userEmail": "manekgujral11@gmail.com",
-          "isMentor": false,
-          "action": "JOINED"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "kusharora339@gmail.com",
-            "isMentor": true,
-            "action": "JOINED"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "manekgujral11@gmail.com",
-            "isMentor": false,
-            "action": "LEFT"
-        },
-        {
-            "timestamp": "2022-07-09T11:00:00",
-            "userEmail": "kusharora339@gmail.com",
-            "isMentor": true,
-            "action": "LEFT"
-        }
-    ],
+    "meetingLogs": [],
     "menteeEmail": "manekgujral11@gmail.com",
     "mentorEmail": "kusharora339@gmail.com",
     "paymentAmount": 5,
@@ -88,7 +63,7 @@ afterAll( async() => {
 // Tests for creating meeting requests
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "invalid@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -96,7 +71,7 @@ describe("POST /meetings", () => {
     })
 
     test("From a non-existing user to an existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);        
         body.menteeEmail = "invalid@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -104,7 +79,7 @@ describe("POST /meetings", () => {
     })
 
     test("From a non-existing user to an non-existing mentor", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);        
         body.mentorEmail = "invalid@gmail.com";
         body.menteeEmail = "alsoinvalid@gmail.com";
         await process.nextTick(() => { });
@@ -114,7 +89,7 @@ describe("POST /meetings", () => {
 
     // created additional test for when mentorid specified is valid but is not a mentor
     test("From an existing mentee to another mentee", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -122,7 +97,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with a non-numeric input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.paymentAmount = "invalid";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -130,7 +105,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with no input for paymentAmount", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         delete body.paymentAmount;
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -138,7 +113,7 @@ describe("POST /meetings", () => {
     })
 
     test("Meeting with startTime after endTime", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mStartTime = {
             "year": 2022,
             "month": 6,
@@ -153,7 +128,7 @@ describe("POST /meetings", () => {
     })
 
     test("From an existing mentee to themselves", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "manekgujral11@gmail.com";
         await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
@@ -161,14 +136,14 @@ describe("POST /meetings", () => {
     })
 
     test("From an existing user to a mentor who is an existing user", async () => {
-        var body = {...sampleIntegrationTestMeeting}
+        let body = Object.assign({}, sampleIntegrationTestMeeting);
         await process.nextTick(() => { });
         var res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(200)
     })
 
      test("For a meeting that already exists", async () => {
-         var body = {...sampleIntegrationTestMeeting}
+         let body = Object.assign({}, sampleIntegrationTestMeeting);
          body.mId = meetingID;
          await process.nextTick(() => { });
          const res = await request(app).post("/meetings").send(body)
@@ -307,40 +282,46 @@ describe("PUT /meetings", () => {
 })
 
 
-// Tests for createZoomMeeting
-// describe("POST /createZoomMeeting", () => {
-//     test("Meeting Name is null", async () => {
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": null,
-//             "meetingStartTime": "2022-08-11'T'11:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00"
-//         })
-//         expect(res.statusCode).toBe(400)
-//     })
+//Tests for createZoomMeeting
+describe("POST /createZoomMeeting", () => {
+    test("Meeting Name is null", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": null,
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(400)
+    })
 
-//     test("Creates a Zoom meeting", async () => {
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": "Test Meeting",
-//             "meetingStartTime": "2022-08-11'T'11:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00"
-//         })
-//         expect(res.statusCode).toBe(200)
-//     })
+    test("Creates a Zoom meeting", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(200)
+    })
 
-//     test("Start date is after end date", async () => {
-//         await process.nextTick(() => { });
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": "Test Meeting",
-//             "meetingStartTime": "2022-08-11'T'14:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00"
-//         })
-//         expect(res.statusCode).toBe(400)
-//     })
-// })
+    test("Start date is after end date", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'14:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(400)
+    })
+})
 
 // Tests for updating meeting logs
 describe("PUT /updateMeetingLog", () => {
     test("Update meeting logs with valid mId", async () => {
+        await process.nextTick(() => { });
         var res = await request(app).put("/updateMeetingLog").send({
             "mId": meetingID,
             "meetingLog": {
@@ -403,6 +384,7 @@ describe("PUT /updateMeetingLog", () => {
 // Tests for updating a firebase token
 describe("PUT /firebaseToken", () => {
     test("Update firebase token for a valid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/firebaseToken").send({
             "email": "kusharora339@gmail.com",
             "firebase_token": ""
@@ -411,6 +393,7 @@ describe("PUT /firebaseToken", () => {
     })
 
     test("Update firebase token for an invalid user", async () => {
+        await process.nextTick(() => { });
         const res = await request(app).put("/firebaseToken").send({
             "email": "johnwick@gmail.com",
             "firebase_token": ""

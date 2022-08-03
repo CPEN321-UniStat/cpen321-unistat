@@ -1,4 +1,4 @@
-package com.example.unistat;
+package com.example.unistat.ui.meetings;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
@@ -8,15 +8,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.unistat.meeting.Meeting;
-import com.example.unistat.meeting.MeetingLog;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.R;
+import com.example.unistat.classes.Meeting;
+import com.example.unistat.classes.MeetingLog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -32,7 +33,6 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
-
 import us.zoom.sdk.JoinMeetingOptions;
 import us.zoom.sdk.JoinMeetingParams;
 import us.zoom.sdk.MeetingParameter;

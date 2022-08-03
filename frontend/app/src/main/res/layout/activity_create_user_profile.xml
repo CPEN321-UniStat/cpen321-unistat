@@ -8,7 +8,7 @@
     android:clickable="true"
     android:focusableInTouchMode="true"
     android:focusable="true"
-    tools:context=".CreateUserProfileActivity">
+    tools:context=".ui.login.CreateUserProfileActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/univNameInput"

@@ -9,7 +9,7 @@
     android:focusableInTouchMode="true"
     android:focusable="true"
     android:id="@+id/view_user_stats_activity"
-    tools:context=".statscardview.ViewStatsActivity">
+    tools:context=".ui.stats.ViewStatsActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filterSearchBar"

@@ -1,32 +1,20 @@
-package espresso;
+package espresso.requestmeeting;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
-import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
-import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withTagValue;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.JMock1Matchers.equalTo;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import android.view.View;
-
-import androidx.annotation.VisibleForTesting;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -39,34 +27,27 @@ import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
-
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
-import org.hamcrest.Matchers;
 import org.hamcrest.TypeSafeMatcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import com.example.unistat.R;
-import com.example.unistat.UserStatusActivity;
-import com.example.unistat.statscardview.ViewStatsActivity;
-import com.google.android.exoplayer2.C;
-import com.google.android.exoplayer2.Timeline;
-import com.google.android.material.datepicker.MaterialCalendar;
+import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.textfield.TextInputLayout;
-
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
-public class RequestMeetingTest {
+public class RequestMeetingActivityTest {
 
     String myDisplayName = "Manek Gujral";
-    String otherMentorDisplayName = "Mentor User";
+    String otherMentorDisplayName = "UniStat";
 
     UiDevice mDevice;
     private View decorView;
@@ -134,7 +115,7 @@ public class RequestMeetingTest {
         /* Click on Request Meeting button */
         onView(withId(R.id.requestMeetingButton)).perform(click());
         /* New page titled "Book a Meeting" and input field labelled "Meeting Title"*/
-        onView(withText("Book a Meeting")).check(matches(isDisplayed()));
+        onView(withText("Book your meeting…")).check(matches(isDisplayed()));
         onView(withHint("Meeting Title")).check(matches(isDisplayed()));
 
         /* Populate the "Meeting Title" input field with "#123abc/" */
@@ -459,10 +440,6 @@ public class RequestMeetingTest {
         onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
         onView(withId(R.id.calendar_activity_screen)).check(matches(isDisplayed()));
-
-
-
     }
-
 }
 

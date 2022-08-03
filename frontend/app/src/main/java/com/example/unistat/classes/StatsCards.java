@@ -1,4 +1,4 @@
-package com.example.unistat.statscardview;
+package com.example.unistat.classes;
 
 public class StatsCards {
 
