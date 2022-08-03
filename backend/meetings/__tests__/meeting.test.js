@@ -3,6 +3,7 @@ const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const { sendMeetingRequest } = require('../../users/userHandlers')
 const { schedulePayment } = require('../../payments/paymentHandlers')
+const { changeTesting } = require('../meetingHandlers')
 const client = db.client
 
 
@@ -50,6 +51,7 @@ beforeAll(() => {
             }
         }
     )
+    changeTesting();
 })
 
 

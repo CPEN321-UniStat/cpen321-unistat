@@ -21,6 +21,7 @@ beforeAll(() => {
             }
         }
     )
+    changeTesting();
 })
 
 
