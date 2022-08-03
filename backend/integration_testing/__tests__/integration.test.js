@@ -2,6 +2,7 @@ const request = require('supertest')
 const {app, server} = require('../../server')
 const init = require("../initUsers")
 const db = require("../../database/connect")
+const { changeTesting } = require('../../meetings/meetingHandlers')
 const client = db.client
 
 beforeAll(() => {
@@ -22,7 +23,7 @@ beforeAll(() => {
             if (err) console.log("Error dropping:", err)
         }
     )
-    changeTesting();
+    changeTesting()
 })
 
 
