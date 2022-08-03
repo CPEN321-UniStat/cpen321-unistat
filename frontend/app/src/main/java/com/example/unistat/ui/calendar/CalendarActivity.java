@@ -89,10 +89,12 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES){
             mWeekView.setHourSeparatorColor(Color.BLACK);
             mWeekView.setHeaderColumnTextColor(Color.WHITE);
+            mWeekView.setHeaderRowBackgroundColor(Color.DKGRAY);
         }
         else{
             mWeekView.setHourSeparatorColor(Color.WHITE);
             mWeekView.setHeaderColumnTextColor(Color.BLACK);
+            mWeekView.setHeaderRowBackgroundColor(Color.WHITE);
         }
 
         mWeekView.setOnEventClickListener(new WeekView.EventClickListener() {
