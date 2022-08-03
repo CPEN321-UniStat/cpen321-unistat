@@ -11,7 +11,7 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
-const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
+
 const zoomPayload = {
     iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
@@ -25,21 +25,20 @@ const createMeetingRequest = async (req, res) => {
     try {
         const isMenteeValid = await isValidUser(req.body.menteeEmail);
         const isMentorValid = await isValidUser(req.body.mentorEmail);
-        const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
         const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
         const isMeetingIdValid = await isValidMid(req.body.mId)
         if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
             }
 
             await users.sendMeetingRequest(req.body.mentorEmail)
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
-            var jsonResp = {
+            const jsonResp = {
                 "status": "Invalid user error"
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -126,7 +125,7 @@ const optimalMeetings = async (req, res) => {
         const M = []
         M[0] = 0
         for (let i = 1; i <= result.length; i++) {
-            M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
+            M[i] = Math.max(v[i] + M[P[i]], M[i-1])
         }
 
         var optimalIndices = findSolution(result.length, M, P, v)
@@ -311,7 +310,7 @@ const createZoomMeeting = async (req, res) => {
         await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
         console.log("Payment failed. Error:", error)
-        var jsonResp = {"status" : "Schedule payment failed"}
+        const jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
@@ -319,13 +318,13 @@ const createZoomMeeting = async (req, res) => {
     await requestPromise(options)
     .then(function (response) {
         console.log("response is: ", response)
-        var jsonResp = {"status" : response}
+        const jsonResp = {"status" : response}
         res.status(200).send(JSON.stringify(jsonResp))
     })
     .catch(function (err) {
         // API call failed...
         console.log("API call failed, reason ", err)
-        var jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
+        const jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
         res.status(400).send(JSON.stringify(jsonResp))
     })
 }
