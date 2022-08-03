@@ -255,8 +255,6 @@ public class RequestMeetingActivity extends AppCompatActivity {
                                     Toast.makeText(RequestMeetingActivity.this, "Not enough balance for payment " + payment, Toast.LENGTH_LONG).show();
                                 } else if (startTimeCalendar.getTimeInMillis() > endTimeCalendar.getTimeInMillis()) {
                                     Toast.makeText(RequestMeetingActivity.this, "Start time cannot be after end time", Toast.LENGTH_LONG).show();
-                                } else if (startTimeCalendar.getTimeInMillis() < timeNow || endTimeCalendar.getTimeInMillis() < timeNow) {
-                                    Toast.makeText(RequestMeetingActivity.this, "Start time or end time cannot be in the past", Toast.LENGTH_LONG).show();
                                 } else {
                                     bookMeeting(meetingTitle, mentorEmail, menteeName, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
                                     Toast.makeText(RequestMeetingActivity.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
