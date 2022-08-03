@@ -19,6 +19,7 @@ beforeAll(() => {
             if (collectionInfo) { // Only if collection exists
                 client.db("UniStatDB").collection("Meetings").drop();
             }
+            if (err) console.log("Error dropping:", err)
         }
     )
 })
