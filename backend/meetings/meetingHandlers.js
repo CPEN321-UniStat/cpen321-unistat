@@ -374,7 +374,7 @@ const areValidTimes = (time1, time2) => {
 }
 
 const isValidMid = async (mId) => {
-    var query = {"mId": mId}
+    var query = {mId}
     try {
         var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
         var lenMeeting = (await existingMeeting.toArray()).length

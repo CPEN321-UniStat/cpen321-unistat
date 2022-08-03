@@ -6,21 +6,17 @@ const schedule = require('node-schedule');
 async function schedulePayment (mEndTime, mId) {
     // Update stat data
     console.log("-------------------schedulePayment-------------------")
-    try {
-        console.log(mEndTime)
-        var endTime = mEndTime
-        var id = mId
-        //           new Date(Year, M, d, h,  m, s)
-        console.log(new Date())
-        const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
-        // const serverDate = new Date(date.getTime() + 7 * 60 *60000)
-        schedule.scheduleJob(date, function(){
-            // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
-            handlePayment(id)
-        });
-    } catch (error) {
-        throw error
-    }
+    console.log(mEndTime)
+    var endTime = mEndTime
+    var id = mId
+    //           new Date(Year, M, d, h,  m, s)
+    console.log(new Date())
+    const date = new Date(endTime.year, endTime.month, endTime.dayOfMonth, endTime.hourOfDay, endTime.minute, endTime.second);
+    // const serverDate = new Date(date.getTime() + 7 * 60 *60000)
+    schedule.scheduleJob(date, function(){
+        // console.log(`Make payment of amount ${payment} from ${mentee} to ${mentor}`);
+        handlePayment(id)
+    });
 }
 
 // const getCoinsByUser = async (req, res) => {

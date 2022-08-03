@@ -24,7 +24,7 @@ const client = db.client;
 const handleUserEntry = async (req, res) => {
 
     if (req.body.Token == undefined || req.body.firebase_token == undefined) {
-        var jsonResp = {
+        const jsonResp = {
             "status": "Cannot create user with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
@@ -32,7 +32,7 @@ const handleUserEntry = async (req, res) => {
         try {
             var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
             console.log("exists: " + alreadyExists);
-            var jsonResp = {
+            const jsonResp = {
                 "status": alreadyExists ? "loggedIn" : "signedUp"
             }
             res.status(200).send(JSON.stringify(jsonResp));
@@ -64,8 +64,7 @@ const createUserStat = async (req, res) => {
             "status": "Cannot create user stat with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    }
-    else{
+    } else{
         try {
             var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
             var lenUsers = (await existingUsers.toArray()).length
@@ -136,7 +135,7 @@ const getStatsByFilter = async (req, res) => {
             
             if(result[0] != undefined && Object.keys(req.body)[0] == "userEmail"){
                 // result[0].isMentor = true
-                var currency = payment.getUserCoins(Object.values(req.body)[0])
+                const currency = payment.getUserCoins(Object.values(req.body)[0])
                 currency.then(function(r){
                     result[0].coins = r
                     result[0].isMentor = true
@@ -151,7 +150,7 @@ const getStatsByFilter = async (req, res) => {
                 })
             }
             else if(Object.keys(req.body)[0] == "userEmail"){
-                var currency = payment.getUserCoins(Object.values(req.body)[0])
+                const currency = payment.getUserCoins(Object.values(req.body)[0])
                 currency.then(function(r){
                     var jsonResp = {
                         "statData": [{ "coins": r, "isMentor": false }]
@@ -331,7 +330,7 @@ const sendMeetingRequest = async (userEmail) => {
     }
     if (curToken != "" && curToken != undefined) {
         try {
-            const resp = admin.messaging().sendToDevice(curToken, payload, options)
+            admin.messaging().sendToDevice(curToken, payload, options)
             return "Successfully sent notification"
         } catch (error) {
             return error
