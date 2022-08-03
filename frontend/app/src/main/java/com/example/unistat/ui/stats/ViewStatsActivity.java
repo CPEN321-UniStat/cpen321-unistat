@@ -43,6 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ViewStatsActivity extends AppCompatActivity {
     private static final String TAG = "ViewStatsActivity";
@@ -179,7 +180,12 @@ public class ViewStatsActivity extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.calendar_activity:
-                        startActivity(new Intent(getApplicationContext(), CalendarActivity.class));
+                        Intent startCalendar = new Intent(getApplicationContext(), CalendarActivity.class);
+                        Log.d(TAG, "IS_MENTOR: " + isMentor);
+                        if (isMentor != null) {
+                            startCalendar.putExtra("isMentor", isMentor);
+                        }
+                        startActivity(startCalendar);
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.view_stats_activity:

@@ -58,6 +58,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
     private FloatingActionButton showOptimalMeetings;
     private boolean optimal = false;
+    private Boolean isMentor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +68,34 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        Bundle extras = getIntent().getExtras();
+        isMentor = extras.getBoolean("isMentor");
+
         showOptimalMeetings = findViewById(R.id.showOptimalMeetings);
-        showOptimalMeetings.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                optimal = !optimal;
-                mWeekView.notifyDatasetChanged();
-                if (!optimal) {
-                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_attach_money_24));
-                    Toast.makeText(CalendarActivity.this, "Displaying All meetings...", Toast.LENGTH_LONG).show();
-                } else {
-                    showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_money_off_24));
-                    Toast.makeText(CalendarActivity.this, "Displaying Optimal meetings...", Toast.LENGTH_LONG).show();
+
+        if (isMentor){
+            showOptimalMeetings.setVisibility(View.VISIBLE);
+            showOptimalMeetings.setOnClickListener(new View.OnClickListener(){
+                @SuppressLint("UseCompatLoadingForDrawables")
+                @Override
+                public void onClick(View view) {
+                    optimal = !optimal;
+                    mWeekView.notifyDatasetChanged();
+                    if (!optimal) {
+                        showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_attach_money_24));
+                        Toast.makeText(CalendarActivity.this, "Displaying All meetings...", Toast.LENGTH_LONG).show();
+                    } else {
+                        showOptimalMeetings.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_money_off_24));
+                        Toast.makeText(CalendarActivity.this, "Displaying Optimal meetings...", Toast.LENGTH_LONG).show();
+                    }
+                    Log.d("Response",  "Optimal Meetings");
                 }
-                Log.d("Response",  "Optimal Meetings");
-            }
-        });
+            });
+        }
+        else{
+            showOptimalMeetings.setVisibility(View.GONE);
+        }
+
 
         mWeekView = findViewById(R.id.weekView);
 
@@ -141,7 +154,11 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.sign_out_activity:
-                        startActivity(new Intent(getApplicationContext(), SettingsActivity.class));
+                        Intent startSignOut = new Intent(getApplicationContext(), SettingsActivity.class);
+                        if (isMentor != null) {
+                            startSignOut.putExtra("isMentor", isMentor);
+                        }
+                        startActivity(startSignOut);
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     default:
