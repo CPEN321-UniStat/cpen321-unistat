@@ -11,7 +11,7 @@ const dotEnv = require("dotenv");
 dotEnv.config()
 const requestPromise = require("request-promise");
 const jwt = require("jsonwebtoken");
-const { registerDefaultScheme } = require("@grpc/grpc-js/build/src/resolver");
+
 const zoomPayload = {
     iss: process.env.API_KEY, // CHANGE TO ZOOM_APP_API_KEY BEFORE FINAL SUBMISSION
     exp: new Date().getTime() + 5000,
@@ -25,21 +25,20 @@ const createMeetingRequest = async (req, res) => {
     try {
         const isMenteeValid = await isValidUser(req.body.menteeEmail);
         const isMentorValid = await isValidUser(req.body.mentorEmail);
-        const isMenteeMentor = await isMentor(req.body.menteeEmail)
         const isMentorMentor = await isMentor(req.body.mentorEmail)
         const validPayment = (req.body.paymentAmount && !isNaN(req.body.paymentAmount))
-        const validTimes = compareTimes(req.body.mStartTime, req.body.mEndTime)
+        const validTimes = areValidTimes(req.body.mStartTime, req.body.mEndTime)
         const isMeetingIdValid = await isValidMid(req.body.mId)
         if ( isMenteeValid && isMentorValid && isMentorMentor && validPayment && validTimes && isMeetingIdValid) {
             await client.db("UniStatDB").collection("Meetings").insertOne(req.body)
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting request inputted by ${req.body.menteeEmail}`
             }
 
             await users.sendMeetingRequest(req.body.mentorEmail)
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
-            var jsonResp = {
+            const jsonResp = {
                 "status": "Invalid user error"
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -126,10 +125,10 @@ const optimalMeetings = async (req, res) => {
         const M = []
         M[0] = 0
         for (let i = 1; i <= result.length; i++) {
-            M[i] = Math.max(v[i] + M[ P[i] ], M[i-1])
+            M[i] = Math.max(v[i] + M[P[i]], M[i-1])
         }
 
-        var optimalIndices = findSolution(result.length, M, P, v)
+        var optimalIndices = findOptimalMeetings(result.length, M, P, v)
         var optimalMeetings = optimalIndices.map(x => result[x-1])
         var optimalMeetingsForMonth = optimalMeetings.filter(meeting => meeting.mStartTime.month === weekLoaderMonth)
 
@@ -159,18 +158,18 @@ function getLargestIndexCompatibleInterval (j, meetings) {
     return p
 }
 
-function findSolution(j, M, P, v) {
+function findOptimalMeetings(j, M, P, v) {
 
-    if ( j == 0)
+    if ( j === 0)
         return []
     if (v[j] + M[P[j]] > M[j-1]) {
         // console.log(j)
         const arr = []
         arr[0] = j
-        return arr.concat(findSolution(P[j], M, P, v))
+        return arr.concat(findOptimalMeetings(P[j], M, P, v))
     }
     else {
-        return findSolution(j-1, M, P, v)
+        return findOptimalMeetings(j-1, M, P, v)
     }
 
 }
@@ -311,7 +310,7 @@ const createZoomMeeting = async (req, res) => {
         await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
     } catch (error) {
         console.log("Payment failed. Error:", error)
-        var jsonResp = {"status" : "Schedule payment failed"}
+        const jsonResp = {"status" : "Schedule payment failed"}
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
@@ -319,13 +318,13 @@ const createZoomMeeting = async (req, res) => {
     await requestPromise(options)
     .then(function (response) {
         console.log("response is: ", response)
-        var jsonResp = {"status" : response}
+        const jsonResp = {"status" : response}
         res.status(200).send(JSON.stringify(jsonResp))
     })
     .catch(function (err) {
         // API call failed...
         console.log("API call failed, reason ", err)
-        var jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
+        const jsonResp = {"status" : `Create Zoom meeting failed ${err}`}
         res.status(400).send(JSON.stringify(jsonResp))
     })
 }
@@ -369,34 +368,11 @@ const isMentor = async (email) => {
     return (lenUsers > 0) ? 1 : 0;
 }
 
-// returns true if time1 < time2 ad false otherwise
-const compareTimes = (time1, time2) => {
-    // if year is 
-    if (time1.year > time2.year) return false
-    if (time1.year < time2.year) return true
-    
-    // we know year is same
-    if (time1.month > time2.month) return false
-    if (time1.month < time2.month) return true
-
-    // we know year and month is same
-    if (time1.dayOfMonth > time2.dayOfMonth) return false
-    if (time1.dayOfMonth < time2.dayOfMonth) return true
-
-    // we know day is same
-    if (time1.hourOfDay > time2.hourOfDay) return false
-    if (time1.hourOfDay < time2.hourOfDay) return true
-    
-    // we know hour is same
-    if (time1.minute > time2.minute) return false
-    if (time1.minute < time2.minute) return true
-
-    // we know hour is same
-    if (time1.second > time2.second) return false
-    if (time1.second < time2.second) return true
-
-    // exact same
-    return false
+// returns true if time1 <= time2 ad false otherwise
+const areValidTimes = (time1, time2) => {
+    const start = new Date(time1.year, time1.month, time1.dayOfMonth, time1.hourOfDay, time1.minute, time1.second)
+    const end = new Date(time2.year, time2.month, time2.dayOfMonth, time2.hourOfDay, time2.minute, time2.second)
+    return start <= end
 }
 
 const isValidMid = async (mId) => {
