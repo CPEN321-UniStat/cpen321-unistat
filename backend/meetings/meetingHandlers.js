@@ -184,10 +184,10 @@ const getMeetingById = async (req, res) => {
         }
         console.log("theresult", result)
         if (result.length > 0) {
-            var jsonResp = {"meeting" : result}
+            const jsonResp = {"meeting" : result}
             res.status(200).send(JSON.stringify(jsonResp))
         } else {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid mId error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -210,7 +210,7 @@ const respondToMeeting = async (req, res) => {
         }}
 
         if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" &&req.body.status != "PENDING") {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid status error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
@@ -224,14 +224,14 @@ const respondToMeeting = async (req, res) => {
         var mentorEmail = meetingArray[0].mentorEmail;
 
         if(req.body.email != mentorEmail) {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Invalid user error`
             }
             res.status(400).send(JSON.stringify(jsonResp))
         } else {
             await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
             await users.sendMeetingResponse(menteeEmail)
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting status updated`
             }
             res.status(200).send(JSON.stringify(jsonResp))
@@ -252,13 +252,13 @@ const updateMeetingLog = async (req, res) => {
     try {
         var ret = await client.db("UniStatDB").collection("Meetings").updateOne(find_query, update_query)
         if (ret.matchedCount === 0) {
-            var jsonResp = {
+            const jsonResp = {
                 "status": `Meeting with provided meeting ID "${req.body.mId}" does not exist`
             }
             res.status(400).send(JSON.stringify(jsonResp))
             return
         }
-        var jsonResp = {
+        const jsonResp = {
             "status": `Meeting logs updated for meeting ID: ${req.body.mId}`
         }
         res.status(200).send(JSON.stringify(jsonResp))
