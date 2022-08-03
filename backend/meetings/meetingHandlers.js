@@ -160,7 +160,7 @@ function getLargestIndexCompatibleInterval (j, meetings) {
 
 function findOptimalMeetings(j, M, P, v) {
 
-    if ( j == 0)
+    if ( j === 0)
         return []
     if (v[j] + M[P[j]] > M[j-1]) {
         // console.log(j)

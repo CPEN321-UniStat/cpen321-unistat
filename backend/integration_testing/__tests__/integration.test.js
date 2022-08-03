@@ -826,18 +826,18 @@ describe("PUT /meetings", () => {
 
 
 // Tests for createZoomMeeting
-// describe("POST /createZoomMeeting", () => {
-//     test("Creates a Zoom meeting", async () => {
-//         this.timeout(5000)
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": "Test Meeting",
-//             "meetingStartTime": "2022-08-11'T'11:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00",
-//             "mId": meetingID
-//         })
-//         expect(res.statusCode).toBe(200)
-//     })
-// })
+describe("POST /createZoomMeeting", () => {
+    test("Creates a Zoom meeting", async () => {
+        this.timeout(5000)
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(200)
+    })
+})
 
 // Tests for updating meeting logs
 describe("PUT /updateMeetingLog", () => {
