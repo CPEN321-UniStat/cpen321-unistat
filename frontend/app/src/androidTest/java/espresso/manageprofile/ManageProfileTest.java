@@ -9,20 +9,14 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-
-import static org.hamcrest.Matchers.allOf;
-
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import com.example.unistat.R;
 import com.example.unistat.ui.stats.ViewStatsActivity;
-
 import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
@@ -114,7 +108,6 @@ public class ManageProfileTest {
     }
 
     // Need to first sign-in with a mentee account to successfully run the following test case
-
     @Test
     public void manageMenteeProfile() {
 
@@ -132,6 +125,5 @@ public class ManageProfileTest {
         onView(withId(R.id.userProfileImage)).check(matches(isDisplayed()));
         onView(withId(R.id.userNameText)).check(matches(isDisplayed()));
         onView(withId(R.id.userEmailText)).check(matches(isDisplayed()));
-
     }
 }

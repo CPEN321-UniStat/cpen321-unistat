@@ -1,22 +1,18 @@
 package com.example.unistat.ui.stats;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.unistat.R;
 import com.example.unistat.ui.meetings.RequestMeetingActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.squareup.picasso.Picasso;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ViewMentorProfileActivity extends AppCompatActivity {
