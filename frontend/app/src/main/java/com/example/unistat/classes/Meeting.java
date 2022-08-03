@@ -10,6 +10,15 @@ public class Meeting extends WeekViewEvent {
         ACCEPTED, REJECTED, PENDING
     }
 
+    public static class User {
+        public String name;
+        public String email;
+        public User(String name, String email) {
+            this.name = name;
+            this.email = email;
+        }
+    }
+
     private String mentorEmail;
     private String mentorName;
     private String menteeName;
@@ -18,13 +27,13 @@ public class Meeting extends WeekViewEvent {
     private Status status;
     private List<MeetingLog> meetingLogs;
 
-    public Meeting(long id, String name, String menteeName, String mentorName, Calendar startTime, Calendar endTime, String mentorEmail,
-                   String menteeEmail, double paymentAmount, Status status, List<MeetingLog> meetingLogs) {
+    public Meeting(long id, String name, User mentee, User mentor, Calendar startTime, Calendar endTime,
+                   double paymentAmount, Status status, List<MeetingLog> meetingLogs) {
         super(id, name, startTime, endTime);
-        this.mentorEmail = mentorEmail;
-        this.mentorName = mentorName;
-        this.menteeName = menteeName;
-        this.menteeEmail = menteeEmail;
+        this.mentorEmail = mentor.email;
+        this.mentorName = mentor.name;
+        this.menteeName = mentee.name;
+        this.menteeEmail = mentee.email;
         this.paymentAmount = paymentAmount;
         setStatus(status);
         this.meetingLogs = meetingLogs;

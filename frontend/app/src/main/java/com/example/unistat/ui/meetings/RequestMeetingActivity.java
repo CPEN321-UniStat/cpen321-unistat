@@ -378,7 +378,9 @@ public class RequestMeetingActivity extends AppCompatActivity {
     public void bookMeeting(String name, String mentorEmail, String menteeName, String mentorName, String menteeEmail, Calendar startTime, Calendar endTime, double payment) {
         long id = UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         List<MeetingLog> logs = new LinkedList<>();
-        Meeting meeting = new Meeting(id, name, menteeName, mentorName, startTime, endTime, mentorEmail, menteeEmail, payment, Meeting.Status.PENDING, logs);
+        Meeting.User mentee = new Meeting.User(menteeName, menteeEmail);
+        Meeting.User mentor = new Meeting.User(mentorName, mentorEmail);
+        Meeting meeting = new Meeting(id, name, mentee, mentor, startTime, endTime, payment, Meeting.Status.PENDING, logs);
         GsonBuilder builder = new GsonBuilder();
         builder.setPrettyPrinting();
         Gson gson = builder.create();
