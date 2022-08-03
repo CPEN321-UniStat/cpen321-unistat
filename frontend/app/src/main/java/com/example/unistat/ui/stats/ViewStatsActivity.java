@@ -145,20 +145,13 @@ public class ViewStatsActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                isFiltering = editable.length() == 0;
+                isFiltering = editable.length() != 0;
 
-                adapter = new ArrayAdapter<>(ViewStatsActivity.this, R.layout.support_simple_spinner_dropdown_item, filterOptions);
-                filterAutoComplete.setAdapter(adapter);
-
-//                // If filter deleted and no sort remaining
-//                if (editable.length() == 0 && !isSortGpa && !isSortEntranceScore) {
-//                    getCardData("stats", Request.Method.GET);
-//                }
-//
-//                // If filter deleted and only sort remaining
-//                else if (editable.length() == 0) {
-//                    getCardData("statsBySorting", Request.Method.POST);
-//                }
+                if (!isFiltering) {
+                    adapter = new ArrayAdapter<>(ViewStatsActivity.this, R.layout.support_simple_spinner_dropdown_item, filterOptions);
+                    filterAutoComplete.setAdapter(adapter);
+                    loadStats();
+                }
             }
         });
 
@@ -267,48 +260,6 @@ public class ViewStatsActivity extends AppCompatActivity {
         }
 
     }
-
-//    private void sortStatsByEntranceScore(boolean b) {
-//        int filterTextLength = filterAutoComplete.getText().toString().length();
-//        if (b && filterTextLength > 0) { // Filter & sort
-//            isSortEntranceScore = true;
-//            sortByGpa.setEnabled(false);
-//            getCardData("statsByConfiguration", Request.Method.POST);
-//        } else if (b) { // Only sort
-//            isSortEntranceScore = true;
-//            sortByGpa.setEnabled(false);
-//            getCardData("statsBySorting", Request.Method.POST);
-//        } else if (filterTextLength > 0) { // Only filter no sort
-//            isSortEntranceScore = false;
-//            sortByGpa.setEnabled(true);
-//            getCardData("statsByFilter", Request.Method.POST);
-//        } else if (!isSortGpa) { // No filter no sort
-//            isSortEntranceScore = false;
-//            sortByGpa.setEnabled(true);
-//            getCardData("stats", Request.Method.GET);
-//        }
-//    }
-
-//    private void sortStatsByGpa(boolean b) {
-//        int filterTextLength = filterAutoComplete.getText().toString().length();
-//        if (b && filterTextLength > 0) { // Filter & sort
-//            sortByEntranceScore.setEnabled(false);
-//            isSortGpa = true;
-//            getCardData("statsByConfiguration", Request.Method.POST);
-//        } else if (b) { // Only sort
-//            sortByEntranceScore.setEnabled(false);
-//            isSortGpa = true;
-//            getCardData("statsBySorting", Request.Method.POST);
-//        } else if (filterTextLength > 0) { // Only filter no sort
-//            isSortGpa = false;
-//            sortByEntranceScore.setEnabled(true);
-//            getCardData("statsByFilter", Request.Method.POST);
-//        } else if (!isSortEntranceScore) { // No filter no sort
-//            isSortGpa = false;
-//            sortByEntranceScore.setEnabled(true);
-//            getCardData("stats", Request.Method.GET);
-//        }
-//    }
 
     private void initCardView() {
         RecyclerView recyclerView = findViewById(R.id.recycler_view_card_id);
