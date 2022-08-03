@@ -199,7 +199,7 @@ describe("GET /optimalMeetings", () => {
         expect(res.statusCode).toBe(200)
         // expect to get the meeting that was inputted above
         expect(JSON.parse(res.text).meetings.some(meeting => {
-            if (meeting.mId = meetingID) {
+            if (meeting.mId == meetingID) {
                 return true;
             }
             return false;
