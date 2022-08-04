@@ -43,7 +43,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Objects;
 
 public class ViewStatsActivity extends AppCompatActivity {
     private static final String TAG = "ViewStatsActivity";
@@ -359,7 +359,7 @@ public class ViewStatsActivity extends AppCompatActivity {
                                 String userName = userStat.getString("userName");
                                 String userEmail = userStat.getString("userEmail");
                                 if (endPoint.equals("stats"))
-                                    isMentor = checkIfMentor(userEmail);
+                                    checkIfMentor(userEmail);
                                 statsList.add(new StatsCards(userEmail, userName, (String) userStat.get("univName"), (String) userStat.get("univMajor"), userStat.getDouble("univGpa"), userStat.getInt("univEntranceScore"), (String) userStat.get("univBio"), (String) userStat.get("userPhoto")));
                             }
 
@@ -387,13 +387,14 @@ public class ViewStatsActivity extends AppCompatActivity {
         requestQueue.add(getUserStatRequest);
     }
 
-    private Boolean checkIfMentor(String userEmail) {
+    private void checkIfMentor(String userEmail) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String currUserEmail = account.getEmail();
-        if (currUserEmail.equals(userEmail))
-            return true;
-        return false;
+        Log.d(TAG, "statEmail: " + userEmail + " | " + "currUserEmail: " + currUserEmail);
+        if (isMentor == null || !isMentor) // Modify isMentor only if no mentor found yet, else keep changing the value
+            isMentor = Objects.equals(currUserEmail, userEmail);
+        Log.d(TAG, "any true? " + isMentor);
     }
 
     @Override
