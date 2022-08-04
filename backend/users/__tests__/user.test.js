@@ -9,6 +9,9 @@ const verify = require("../userVerification")
 require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers")
 
+require("../../meetings/__mocks__/meetingMocks")
+jest.mock("../../payments/paymentHandlers")
+
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
     "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
@@ -682,12 +685,19 @@ describe('Test sendMeetingRequest function', () => {
  })
 
  describe("DELETE /users", () => {
-
     describe("user exists in DB", () => {
         test("should return a json response with status code 200", async () => {
             const res = await request(app).delete("/users").send({userEmail : "manekgujral11@gmail.com"})
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("User removed : manekgujral11@gmail.com")
+        })
+    })
+
+    describe("user exists in DB", () => {
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).delete("/users").send({userEmail : "kusharora339@gmail.com"})
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).status).toBe("User removed : kusharora339@gmail.com")
         })
     })
 
@@ -700,13 +710,11 @@ describe('Test sendMeetingRequest function', () => {
     })
 
     describe("when body is missing or undefined", () => {
-        
         const body = [
             {  "userEmail": "" },
             {  "userEmail": undefined},
             {}
         ]
-
         body.forEach(async (body) => {
             test("should return a json response with status code 400", async () => {
                 const res = await request(app).delete("/users").send(body)
@@ -715,6 +723,4 @@ describe('Test sendMeetingRequest function', () => {
             })
         })
     })
-
-
 })
