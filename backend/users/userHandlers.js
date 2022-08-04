@@ -306,7 +306,7 @@ const updateStat = async (req, res) => {
  * @param {*} fb_token 
  * @returns 
  */
-async function storeGoogleUserData(idToken, fb_token) {
+ async function storeGoogleUserData(idToken, fb_token) {
 
     var response = null;
     try {
@@ -320,15 +320,12 @@ async function storeGoogleUserData(idToken, fb_token) {
     // var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
     response.firebase_token = fb_token
 
-    const existingUsers = client.db("UniStatDB").collection("Users").find({ email: response.email })
+    var existingUsers = client.db("UniStatDB").collection("Users").find({email: response.email}, {$exists: true})
     var lenUsers = (await existingUsers.toArray()).length
 
     if (lenUsers > 0) { // User already exists
         console.log("already exists")
-        var currency = (await existingUsers.toArray())[0].currency
-        response.currency = currency
-        await client.db("UniStatDB").collection("Users").updateOne({email : response.email}, {$set: {response}}) //update all user info when the login again
-        // await client.db("UniStatDB").collection("Users").updateOne({email : response.email}, {$set: {"firebase_token": fb_token}})
+        await client.db("UniStatDB").collection("Users").updateOne({email : response.email}, {$set: {"firebase_token": fb_token}})
     } else { // New user, so insert
         console.log("new user, signing up...")
         response.currency = 100
