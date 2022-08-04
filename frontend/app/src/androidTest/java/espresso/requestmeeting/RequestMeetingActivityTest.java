@@ -14,6 +14,8 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import android.util.Log;
 import android.view.View;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
@@ -30,16 +32,33 @@ import androidx.test.uiautomator.UiSelector;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.classes.Meeting;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
@@ -47,6 +66,7 @@ import espresso.ToastMatcher;
 public class RequestMeetingActivityTest {
 
     String myDisplayName = "My name";
+    private static HttpURLConnection connection;
 
     UiDevice mDevice;
     private View decorView;
@@ -233,6 +253,51 @@ public class RequestMeetingActivityTest {
 
     }
 
+    @Test
+    public void testDelete() {
+        String URL = IpConstants.URL + "users";
+
+        BufferedReader reader;
+        String line;
+        StringBuffer responseContent = new StringBuffer();
+        try {
+            java.net.URL url = new URL(URL);
+            connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            String jsonInputString = "{\"userEmail\": \"vijeethvp@gmail.com\"}";
+            try(OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+
+            int status = connection.getResponseCode();
+
+            if (status > 299) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            connection.disconnect();
+        }
+    }
 
 
     @Test
