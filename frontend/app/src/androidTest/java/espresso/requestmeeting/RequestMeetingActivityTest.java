@@ -2,10 +2,12 @@ package espresso.requestmeeting;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withHint;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
@@ -42,6 +44,7 @@ import org.junit.runner.RunWith;
 import com.example.unistat.R;
 import com.example.unistat.classes.IpConstants;
 import com.example.unistat.classes.Meeting;
+import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -59,31 +62,32 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import espresso.SignUpGoogle;
 import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RequestMeetingActivityTest {
 
-    String myDisplayName = "My name";
-    private static HttpURLConnection connection;
+    String myDisplayName = "UniStat";
+    private final SignUpGoogle signUpGoogle = new SignUpGoogle();
 
     UiDevice mDevice;
     private View decorView;
     @Before
     public void setUp() throws Exception{
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<ViewStatsActivity>() {
+        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<MainActivity>() {
             @Override
-            public void perform(ViewStatsActivity activity) {
+            public void perform(MainActivity activity) {
                 decorView = activity.getWindow().getDecorView();
             }
         });
     }
 
     @Rule
-    public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
-            new ActivityScenarioRule<>(ViewStatsActivity.class);
+    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(MainActivity.class);
 
     public static Matcher<View> hasTextInputLayoutErrorText(final String expectedErrorText) {
         return new TypeSafeMatcher<View>() {
@@ -111,7 +115,9 @@ public class RequestMeetingActivityTest {
         };
     }
 
-    private void testMeetingTitleAndStart(boolean startTimeAfterEnd) throws  UiObjectNotFoundException {
+    private void testMeetingTitleAndStart(boolean startTimeAfterEnd) throws UiObjectNotFoundException, InterruptedException {
+        signUpGoogle.signUp(false);
+
         /* Click on own university admission statistic */
         onView(allOf(withText(myDisplayName), withId(R.id.mentorName))).check(matches(isDisplayed()));
         onView(allOf(withText(myDisplayName), withId(R.id.mentorName))).perform(click());
@@ -203,8 +209,6 @@ public class RequestMeetingActivityTest {
             assertFalse(calendar.exists());
         }
 
-
-
 //        /* Click on "From" time */
 //        onView(withId(R.id.start_time_text)).check(matches(isDisplayed()));
 //        onView(withId(R.id.start_time_text)).perform(click());
@@ -254,54 +258,7 @@ public class RequestMeetingActivityTest {
     }
 
     @Test
-    public void testDelete() {
-        String URL = IpConstants.URL + "users";
-
-        BufferedReader reader;
-        String line;
-        StringBuffer responseContent = new StringBuffer();
-        try {
-            java.net.URL url = new URL(URL);
-            connection = (HttpURLConnection) url.openConnection();
-
-            connection.setRequestMethod("DELETE");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept", "application/json");
-            connection.setDoOutput(true);
-            String jsonInputString = "{\"userEmail\": \"vijeethvp@gmail.com\"}";
-            try(OutputStream os = connection.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-
-            int status = connection.getResponseCode();
-
-            if (status > 299) {
-                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            }
-            else {
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                while ((line = reader.readLine()) != null) {
-                    responseContent.append(line);
-                }
-                reader.close();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            connection.disconnect();
-        }
-    }
-
-
-    @Test
-    public void requestMeetingPayments() throws UiObjectNotFoundException {
+    public void requestMeetingPayments() throws UiObjectNotFoundException, InterruptedException {
 
         testMeetingTitleAndStart(false);
 
@@ -326,10 +283,23 @@ public class RequestMeetingActivityTest {
         /* The “Payment Offer” field is filled out successfully */
         onView(withId(R.id.payment_offer_input_edit_text)).check(matches(withText("1")));
 
+        // Sign Out
+        onView(isRoot()).perform(pressBack());
+        onView(isRoot()).perform(pressBack());
+        onView(isRoot()).perform(pressBack());
+        onView(withId(R.id.sign_out_activity)).perform(click());
+        onView(withId(R.id.settingsAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.dark_mode_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.view_profile_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
+
     }
 
     @Test
-    public void requestMeetingStartTimeAfterEndTime() throws UiObjectNotFoundException {
+    public void requestMeetingStartTimeAfterEndTime() throws UiObjectNotFoundException, InterruptedException {
 
         testMeetingTitleAndStart(true);
 
@@ -342,12 +312,24 @@ public class RequestMeetingActivityTest {
         onView(withText("Start time cannot be after end time")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
 
+        // Sign Out
+        onView(isRoot()).perform(pressBack());
+        onView(isRoot()).perform(pressBack());
+        onView(isRoot()).perform(pressBack());
+        onView(withId(R.id.sign_out_activity)).perform(click());
+        onView(withId(R.id.settingsAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.dark_mode_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.view_profile_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
 
     }
 
 
     @Test
-    public void requestMeetingSuccessful() throws UiObjectNotFoundException {
+    public void requestMeetingSuccessful() throws UiObjectNotFoundException, InterruptedException {
 
         testMeetingTitleAndStart(false);
 
@@ -436,6 +418,16 @@ public class RequestMeetingActivityTest {
         onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
         onView(withId(R.id.calendar_activity_screen)).check(matches(isDisplayed()));
+
+        // Sign Out
+        onView(withId(R.id.sign_out_activity)).perform(click());
+        onView(withId(R.id.settingsAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.dark_mode_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.view_profile_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
     }
 }
 

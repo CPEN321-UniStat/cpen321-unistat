@@ -31,8 +31,7 @@ const client = db.client;
             "status": "Cannot remove user with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    }
-    else{
+    } else {
         try {
             await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
             await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
