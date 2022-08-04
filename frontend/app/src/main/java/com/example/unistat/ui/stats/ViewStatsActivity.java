@@ -57,7 +57,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private Boolean isSortGpa;
     private Boolean isSortEntranceScore;
     private String searchText;
-    private Boolean isMentor = null;
+    public static Boolean isMentor = null;
     private ArrayList<String> filterOptions;
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;
@@ -207,27 +207,6 @@ public class ViewStatsActivity extends AppCompatActivity {
 
 
         }
-
-
-    /**
-     * Clear focus on touch outside for all EditText inputs.
-     */
-    @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            View v = getCurrentFocus();
-            if (v instanceof AutoCompleteTextView) {
-                Rect outRect = new Rect();
-                v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
-                    v.clearFocus();
-                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                }
-            }
-        }
-        return super.dispatchTouchEvent(event);
-    }
 
     private void sortStatsByEntranceScore(boolean b) {
         int filterTextLength = filterAutoComplete.getText().toString().length();

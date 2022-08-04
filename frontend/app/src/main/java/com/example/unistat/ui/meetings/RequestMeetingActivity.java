@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,6 +23,8 @@ import com.example.unistat.R;
 import com.example.unistat.classes.Meeting;
 import com.example.unistat.classes.MeetingLog;
 import com.example.unistat.ui.calendar.CalendarActivity;
+import com.example.unistat.ui.login.MainActivity;
+import com.example.unistat.ui.login.SplashScreen;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.CalendarConstraints;
@@ -64,6 +69,7 @@ public class RequestMeetingActivity extends AppCompatActivity {
     MaterialDatePicker.Builder endMaterialDateBuilder;
     MaterialDatePicker endMaterialDatePicker;
 
+    private LottieAnimationView confirmAnimationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +79,9 @@ public class RequestMeetingActivity extends AppCompatActivity {
         Intent intent = getIntent();
         mentorEmail = intent.getStringExtra("mentorEmail");
         mentorName = intent.getStringExtra("mentorName");
+
+        confirmAnimationView = findViewById(R.id.confirmAnimationView);
+        confirmAnimationView.setVisibility(View.GONE);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(RequestMeetingActivity.this);
         assert account != null;
@@ -257,10 +266,22 @@ public class RequestMeetingActivity extends AppCompatActivity {
                                     Toast.makeText(RequestMeetingActivity.this, "Start time cannot be after end time", Toast.LENGTH_LONG).show();
                                 } else {
                                     bookMeeting(meetingTitle, mentorEmail, menteeName, mentorName, userEmail, (Calendar) startTimeCalendar.clone(), (Calendar) endTimeCalendar.clone(), payment);
-                                    Toast.makeText(RequestMeetingActivity.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
-                                    Intent viewCalendar = new Intent(RequestMeetingActivity.this, CalendarActivity.class);
-                                    startActivity(viewCalendar);
-                                    overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
+                                    confirmAnimationView.setVisibility(View.VISIBLE);
+                                    confirmAnimationView.playAnimation();
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(RequestMeetingActivity.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+                                            Intent viewCalendar = new Intent(RequestMeetingActivity.this, CalendarActivity.class);
+                                            startActivity(viewCalendar);
+                                            overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
+                                            finish();
+                                        }
+                                    }, 3130);
+//                                    Toast.makeText(RequestMeetingActivity.this, "Your meeting request was sent", Toast.LENGTH_LONG).show();
+//                                    Intent viewCalendar = new Intent(RequestMeetingActivity.this, CalendarActivity.class);
+//                                    startActivity(viewCalendar);
+//                                    overridePendingTransition(R.anim.zm_slide_in_left, R.anim.zm_slide_out_right);
                                 }
                             }
                         } catch (JSONException e) {

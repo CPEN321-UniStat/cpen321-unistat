@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.meetings.RequestMeetingActivity">
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/confirmAnimationView"
+        android:layout_width="350dp"
+        android:layout_height="371dp"
+        android:padding="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/confirm" />
+
     <TextView
         android:id="@+id/end_date_text"
         android:layout_width="wrap_content"
