@@ -14,6 +14,8 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import android.util.Log;
 import android.view.View;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
@@ -30,24 +32,41 @@ import androidx.test.uiautomator.UiSelector;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
+import com.example.unistat.classes.IpConstants;
+import com.example.unistat.classes.Meeting;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.textfield.TextInputLayout;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
 import espresso.ToastMatcher;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class RequestMeetingActivityTest {
 
-    String myDisplayName = "Manek Gujral";
-    String otherMentorDisplayName = "UniStat";
+    String myDisplayName = "My name";
+    private static HttpURLConnection connection;
 
     UiDevice mDevice;
     private View decorView;
@@ -106,8 +125,8 @@ public class RequestMeetingActivityTest {
         onView(withId(R.id.view_stats_activity)).check(matches(isDisplayed()));
 
         /* Click on a university admission statistic other than own */
-        onView(allOf(withText(otherMentorDisplayName), withId(R.id.mentorName))).check(matches(isDisplayed()));
-        onView(allOf(withText(otherMentorDisplayName), withId(R.id.mentorName))).perform(click());
+        onView(allOf(withText(not(myDisplayName)), withId(R.id.mentorName))).check(matches(isDisplayed()));
+        onView(allOf(withText(not(myDisplayName)), withId(R.id.mentorName))).perform(click());
         /* New page shows up, and request meeting button is shown */
         onView(withId(R.id.view_mentor_profile_activity)).check(matches(isDisplayed()));
         onView(withId(R.id.requestMeetingButton)).check(matches(isDisplayed()));
@@ -234,6 +253,51 @@ public class RequestMeetingActivityTest {
 
     }
 
+    @Test
+    public void testDelete() {
+        String URL = IpConstants.URL + "users";
+
+        BufferedReader reader;
+        String line;
+        StringBuffer responseContent = new StringBuffer();
+        try {
+            java.net.URL url = new URL(URL);
+            connection = (HttpURLConnection) url.openConnection();
+
+            connection.setRequestMethod("DELETE");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept", "application/json");
+            connection.setDoOutput(true);
+            String jsonInputString = "{\"userEmail\": \"vijeethvp@gmail.com\"}";
+            try(OutputStream os = connection.getOutputStream()) {
+                byte[] input = jsonInputString.getBytes("utf-8");
+                os.write(input, 0, input.length);
+            }
+
+
+            int status = connection.getResponseCode();
+
+            if (status > 299) {
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+            else {
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                while ((line = reader.readLine()) != null) {
+                    responseContent.append(line);
+                }
+                reader.close();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            connection.disconnect();
+        }
+    }
 
 
     @Test
@@ -273,81 +337,6 @@ public class RequestMeetingActivityTest {
         onView(withId(R.id.payment_offer_input_edit_text)).perform(replaceText("1"));
         /* The “Payment Offer” field is filled out successfully */
         onView(withId(R.id.payment_offer_input_edit_text)).check(matches(withText("1")));
-
-        /* Click on 'To' date */
-        onView(withId(R.id.end_date_text)).check(matches(isDisplayed()));
-        onView(withId(R.id.end_date_text)).perform(click());
-        /* Calendar date picker is shown */
-        UiObject calendar = mDevice.findObject(new UiSelector().text("SELECT END DATE"));
-        assertTrue(calendar.exists());
-
-        /* Click on a date (yesterday) that is before the start date */
-        Calendar today = Calendar.getInstance();
-        Calendar yesterday = (Calendar) today.clone();
-        yesterday.add(Calendar.DAY_OF_MONTH, -1);
-        if (yesterday.get(Calendar.MONTH) < today.get(Calendar.MONTH)) {
-            UiObject prevMonthButton = mDevice.findObject(new UiSelector().description("Change to previous month"));
-            prevMonthButton.click();
-        }
-        UiObject yesterdayButton = mDevice.findObject(new UiSelector().text(String.valueOf(yesterday.get(Calendar.DAY_OF_MONTH))));
-        yesterdayButton.click();
-        /* The clicked date is not selected */
-        UiObject selectedDateText = mDevice.findObject(new UiSelector().description("Current selection: Selected date"));
-        assertEquals("Selected date", selectedDateText.getText());
-
-
-        /* Click on a date (today) that is the start date or in the future */
-        UiObject todayButton = mDevice.findObject(new UiSelector().text(String.valueOf(today.get(Calendar.DAY_OF_MONTH))));
-        todayButton.click();
-        /* Clicked date is selected */
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d, yyyy");
-        String todayDateText = simpleDateFormat.format(today.getTime());
-        selectedDateText = mDevice.findObject(new UiSelector().description("Current selection: " + todayDateText));
-        assertEquals(todayDateText, selectedDateText.getText());
-
-        /* Click on OK */
-        UiObject okButton = mDevice.findObject(new UiSelector().text("OK"));
-        okButton.click();
-        /* The Calendar date picker is closed */
-        assertFalse(calendar.exists());
-
-
-//        /* Click on "To" time */
-//        onView(withId(R.id.end_time_text)).check(matches(isDisplayed()));
-//        onView(withId(R.id.end_time_text)).perform(click());
-//        /* Time picker is shown */
-//        UiObject time = mDevice.findObject(new UiSelector().text("SELECT END TIME"));
-//        assertTrue(time.exists());
-//
-//
-//        /* Input time of last 5th minute */
-//        UiObject2 colonText = mDevice.findObject(By.text(":"));
-//        UiObject2 colonParent = colonText.getParent();
-//        UiObject2 hourChip = colonParent.getChildren().get(0);
-//        UiObject2 minuteChip = colonParent.getChildren().get(2);
-//        UiObject amButton = mDevice.findObject(new UiSelector().text("AM"));
-//        UiObject pmButton = mDevice.findObject(new UiSelector().text("PM"));
-//        Calendar selectedTime = (Calendar) today.clone();
-//        if (selectedTime.get(Calendar.MINUTE) % 5 == 0)
-//            selectedTime.add(Calendar.MINUTE, -5);
-//        else
-//            selectedTime.add(Calendar.MINUTE, -5 - selectedTime.get(Calendar.MINUTE) % 5);
-//        int selectedHour = selectedTime.get(Calendar.HOUR);
-//        boolean am = selectedTime.get(Calendar.AM_PM) == Calendar.AM;
-//        int selectedMin = selectedTime.get(Calendar.MINUTE);
-//        hourChip.click();
-//        UiObject hourText = mDevice.findObject(new UiSelector().text(String.valueOf(selectedHour)).className("android.widget.TextView"));
-//        hourText.click();
-//        minuteChip.click();
-//        DecimalFormat formatter = new DecimalFormat("00");
-//        UiObject minText = mDevice.findObject(new UiSelector().text(formatter.format(selectedMin)).className("android.widget.TextView"));
-//        minText.click();
-//        if (am)
-//            amButton.click();
-//        else
-//            pmButton.click();
-//        okButton = mDevice.findObject(new UiSelector().text("OK"));
-//        okButton.click();
 
         onView(withId(R.id.book_meeting_button)).perform(click());
         onView(withText("Start time cannot be after end time")).inRoot(new ToastMatcher())
