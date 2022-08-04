@@ -16,14 +16,13 @@ admin.initializeApp({
 const db = require("../database/connect")
 const client = db.client;
 
-
 /**
  * 
  * @param {*} req 
  * @param {*} res 
  */
  const removeUserfromDB = async (req, res) => {
-    if (req.body.userEmail == undefined){
+    if (req.body.userEmail == undefined || req.body.userEmail == "" || req.body == undefined) {
         var jsonResp = {
             "status": "Cannot remove user with undefined body"
         }
