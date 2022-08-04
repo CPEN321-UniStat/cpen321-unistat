@@ -154,6 +154,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.sign_out_activity:
+                        Bundle extras = getIntent().getExtras();
+                        isMentor = extras.getBoolean("isMentor");
                         Intent startSignOut = new Intent(getApplicationContext(), SettingsActivity.class);
                         if (isMentor != null) {
                             startSignOut.putExtra("isMentor", isMentor);

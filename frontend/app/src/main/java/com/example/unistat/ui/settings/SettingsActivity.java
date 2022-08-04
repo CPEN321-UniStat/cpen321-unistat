@@ -35,7 +35,7 @@ import org.json.JSONObject;
 public class SettingsActivity extends AppCompatActivity {
 
     private static final String TAG = "signOutActivity";
-    private Boolean isMentor;
+    private Boolean isMentor=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +108,8 @@ public class SettingsActivity extends AppCompatActivity {
                 {
                     case R.id.calendar_activity:
                         Intent startCalendar = new Intent(getApplicationContext(), CalendarActivity.class);
+                        Bundle extras = getIntent().getExtras();
+                        isMentor = extras.getBoolean("isMentor");
                         if (isMentor != null) {
                             startCalendar.putExtra("isMentor", isMentor);
                         }
