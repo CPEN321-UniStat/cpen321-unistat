@@ -69,6 +69,16 @@ public class SignUpFlowTest {
     @Test
     public void signUpHighSchoolStudent() throws InterruptedException, UiObjectNotFoundException {
         signUpGoogle.signUp(true);
+
+        // Sign Out
+        onView(withId(R.id.sign_out_activity)).perform(click());
+        onView(withId(R.id.settingsAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.dark_mode_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.view_profile_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
     }
 }
 

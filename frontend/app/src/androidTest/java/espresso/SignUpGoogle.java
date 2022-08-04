@@ -65,59 +65,58 @@ public class SignUpGoogle {
 
         // Check all possible sign-in/sign-up cases
         UiObject use_another_account = mUiDevice.findObject(new UiSelector().text("Use another account"));
+        UiObject accountName_1 = mUiDevice.findObject(new UiSelector().text(popUpAccountName));
+        UiObject accountName_2 = mUiDevice.findObject(new UiSelector().text("cpen321.unistat@gmail.com"));
 
-        try {
-            // Check if account name is there
-            UiObject accountName = mUiDevice.findObject(new UiSelector().text(popUpAccountName));
-            accountName.click();
+        if (accountName_1.exists()) {
+            accountName_1.click();
             Thread.sleep(3000);
             completeSignUpFlow(isMentee);
             return;
-        } catch (UiObjectNotFoundException e) {
-            // Check if use another account is there
-            try {
-                use_another_account.click();
-            } catch (UiObjectNotFoundException err) {
-                // No other option left go with initial sign up
-                assert true; // noop
-            }
+        } else if (accountName_2.exists()) {
+            accountName_1.click();
+            Thread.sleep(3000);
+            completeSignUpFlow(isMentee);
+            return;
+        } else if (use_another_account.exists()) {
+            use_another_account.click();
         }
 
-        Thread.sleep(10000);
+        Thread.sleep(2000);
 
-        try {
-            UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
-            email_or_phone.click();
-            email_or_phone.setText(userName);
-            mUiDevice.pressEnter();
-        } catch (UiObjectNotFoundException e) {
-            // If not found in 10 seconds, wait more
-            Thread.sleep(25000);
-            UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
-            email_or_phone.click();
-            email_or_phone.setText(userName);
-            mUiDevice.pressEnter();
+        UiObject email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
+        while (!email_or_phone.exists()) {
+            email_or_phone = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
         }
+        email_or_phone.click();
+        email_or_phone.setText(userName);
+        mUiDevice.pressEnter();
 
-        Thread.sleep(1500);
+        Thread.sleep(3000);
 
         UiObject enter_password = mUiDevice.findObject(new UiSelector().className("android.widget.EditText"));
         enter_password.click();
         enter_password.setText(password);
         mUiDevice.pressEnter();
 
-        Thread.sleep(2000);
+        Thread.sleep(3000);
 
-        try {
-            UiObject next3 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("Don't turn on"));
+        UiObject next3 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("Don't turn on"));
+        UiObject next4 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("DON'T TURN ON"));
+        UiObject i_agree_1 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("I agree"));
+        UiObject i_agree_2 = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("I AGREE"));
+
+        if (next3.exists()) {
             next3.click();
-        } catch (UiObjectNotFoundException e) {
-            Thread.sleep(2000);
-            UiObject i_agree = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("I agree"));
-            i_agree.click();
+        } else if (next4.exists()) {
+            next4.click();
+        } else if (i_agree_1.exists()) {
+            i_agree_1.click();
+        } else if (i_agree_2.exists()) {
+            i_agree_2.click();
         }
 
-        Thread.sleep(1000);
+        Thread.sleep(3000);
 
         UiObject more = mUiDevice.findObject(new UiSelector().className("android.widget.Button").textContains("MORE"));
         more.click();
