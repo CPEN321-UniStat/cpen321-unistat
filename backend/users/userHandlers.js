@@ -85,25 +85,20 @@ const createUserStat = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else{
-        try {
-            var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
-            var lenUsers = (await existingUsers.toArray()).length
-            if (lenUsers > 0) {
-                const jsonResp = {
-                    "status": "Stat already exists"
-                }
-                res.status(400).send(JSON.stringify(jsonResp))
+        var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+        var lenUsers = (await existingUsers.toArray()).length
+        if (lenUsers > 0) {
+            const jsonResp = {
+                "status": "Stat already exists"
             }
-            else{
-                await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-                const jsonResp = {
-                    "status": `Stat stored for ${req.body.userEmail}`
-                }
-                res.status(200).send(JSON.stringify(jsonResp))
+            res.status(400).send(JSON.stringify(jsonResp))
+        }
+        else{
+            await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+            const jsonResp = {
+                "status": `Stat stored for ${req.body.userEmail}`
             }
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+            res.status(200).send(JSON.stringify(jsonResp))
         }
     }
 }
@@ -204,15 +199,15 @@ const getStatsBySorting = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        var jsonResp2 = {
             "status": "Invalid request: Cannot sort by more than one criteria"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp2))
     } else if (!(Object.keys(req.body)[0] == "univGpa" || Object.keys(req.body)[0] == "univEntranceScore")) {
-        var jsonResp = {
+        var jsonResp3 = {
             "status": "Invalid request: Please make sure the sort criteria is either univGpa or univEntranceScore"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp3))
     } else {
         client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
             if (err){
