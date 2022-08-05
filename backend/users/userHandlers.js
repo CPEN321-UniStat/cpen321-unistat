@@ -28,15 +28,19 @@ const client = db.client;
         }
         res.status(400).send(JSON.stringify(jsonRespError))
     } else {
-        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-        await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
-        await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
-        await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
-        var jsonResp = {
-            "status": `User removed : ${req.body.userEmail}`
+        try {
+            await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+            await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
+            await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
+            await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
+            var jsonResp = {
+                "status": `User removed : ${req.body.userEmail}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
-
     }
 
 }
@@ -54,12 +58,17 @@ const handleUserEntry = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else {
-        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-        console.log("exists: " + alreadyExists);
-        const jsonResp = {
-            "status": alreadyExists ? "loggedIn" : "signedUp"
+        try {
+            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+            console.log("exists: " + alreadyExists);
+            const jsonResp = {
+                "status": alreadyExists ? "loggedIn" : "signedUp"
+            }
+            res.status(200).send(JSON.stringify(jsonResp));
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error));
         }
-        res.status(200).send(JSON.stringify(jsonResp));
     }
 }
 
@@ -96,7 +105,9 @@ const createUserStat = async (req, res) => {
                 res.status(200).send(JSON.stringify(jsonResp))
             }
             else {
-                jsonResp = {"status": "Stat already exists"}
+                var jsonResp = {
+                    "status": "Stat already exists"
+                }
                 res.status(400).send(JSON.stringify(jsonResp))
             }
         } catch (error) {
@@ -135,12 +146,12 @@ const getStatsByFilter = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        jsonResp = {
+        var jsonResp = {
             "status": "Invalid request: Cannot filter more than one string"
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
-        jsonResp = {
+        var jsonResp = {
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
         }
         res.status(400).send(JSON.stringify(jsonResp))
@@ -377,7 +388,7 @@ const sendMeetingResponse = async (userEmail) => {
     }
     if (curToken != "" && curToken != undefined) {
         try {
-            admin.messaging().sendToDevice(curToken, payload, options)
+            const resp = admin.messaging().sendToDevice(curToken, payload, options)
             return "Successfully sent notification"
         } catch (error) {
             return error
