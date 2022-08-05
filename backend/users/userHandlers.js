@@ -198,23 +198,23 @@ const getStatsBySorting = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        var jsonResp2 = {
             "status": "Invalid request: Cannot sort by more than one criteria"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp2))
     } else if (!(Object.keys(req.body)[0] == "univGpa" || Object.keys(req.body)[0] == "univEntranceScore")) {
-        var jsonResp = {
+        var jsonResp3 = {
             "status": "Invalid request: Please make sure the sort criteria is either univGpa or univEntranceScore"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp3))
     } else {
         client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
             if (err){
                 console.log(error)
                 res.status(400).send(JSON.stringify(error))
             }
-            var jsonResp = {"statData" : result.reverse()}
-            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
+            var jsonResp4 = {"statData" : result.reverse()}
+            res.status(200).send(JSON.stringify(jsonResp4)); // send back all stats sorted applied
         })
     }
 }
