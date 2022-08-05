@@ -107,9 +107,8 @@ public class UserProfileActivity extends AppCompatActivity {
                     editUserUnivGpa.setEnabled(false);
                     editUserUnivEntranceScore.setEnabled(false);
                     editUserBio.setEnabled(false);
-                } else {
-                    // Do nothing, Keep Inputs enabled for user to continue editing
-                }
+                }  // Do nothing, Keep Inputs enabled for user to continue editing
+
             }
         });
 

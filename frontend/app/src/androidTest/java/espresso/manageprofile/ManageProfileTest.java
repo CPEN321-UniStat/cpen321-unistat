@@ -67,13 +67,13 @@ public class ManageProfileTest {
         Thread.sleep(1500);
 
         // Check for invalid field error
-        onView(withId(R.id.editProfileButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.editProfileButton)).perform(click());
 
         onView(withId(R.id.editUserUnivEditText)).perform(replaceText("1234ubc"));
 
         onView(withId(R.id.confirmChangesButton)).check(matches(isDisplayed()));
         onView(withId(R.id.confirmChangesButton)).perform(click());
+
+        Thread.sleep(1500);
 
         onView(withText("Please make sure your university name & major are valid.")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
@@ -82,13 +82,13 @@ public class ManageProfileTest {
 
 
         // Every field is correct
-        onView(withId(R.id.editProfileButton)).check(matches(isDisplayed()));
-        onView(withId(R.id.editProfileButton)).perform(click());
 
         onView(withId(R.id.editUserUnivEditText)).perform(replaceText("UBC"));
 
         onView(withId(R.id.confirmChangesButton)).check(matches(isDisplayed()));
         onView(withId(R.id.confirmChangesButton)).perform(click());
+
+        Thread.sleep(2000);
 
         onView(withText("Your Profile has been updated")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));
@@ -103,6 +103,8 @@ public class ManageProfileTest {
 
         onView(withId(R.id.confirmChangesButton)).check(matches(isDisplayed()));
         onView(withId(R.id.confirmChangesButton)).perform(click());
+
+        Thread.sleep(2000);
 
         onView(withText("Please make sure your GPA is valid.")).inRoot(new ToastMatcher())
                 .check(matches(isDisplayed()));

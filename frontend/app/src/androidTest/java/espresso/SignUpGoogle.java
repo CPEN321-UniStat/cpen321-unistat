@@ -65,7 +65,7 @@ public class SignUpGoogle {
 
         // Check all possible sign-in/sign-up cases
         UiObject use_another_account = mUiDevice.findObject(new UiSelector().text("Use another account"));
-        UiObject accountName_1 = mUiDevice.findObject(new UiSelector().text(popUpAccountName));
+        UiObject accountName_1 = mUiDevice.findObject(new UiSelector().textContains(popUpAccountName));
         UiObject accountName_2 = mUiDevice.findObject(new UiSelector().text("cpen321.unistat@gmail.com"));
 
         if (accountName_1.exists()) {

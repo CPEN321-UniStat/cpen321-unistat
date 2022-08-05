@@ -69,7 +69,7 @@ import espresso.ToastMatcher;
 @LargeTest
 public class RequestMeetingActivityTest {
 
-    String myDisplayName = "UniStat";
+    String myDisplayName = "UniStat Test";
     private final SignUpGoogle signUpGoogle = new SignUpGoogle();
 
     UiDevice mDevice;
@@ -415,8 +415,8 @@ public class RequestMeetingActivityTest {
 //        okButton.click();
 
         onView(withId(R.id.book_meeting_button)).perform(click());
-        onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
-                .check(matches(isDisplayed()));
+        // Showing animation and no Toast so juts sleep
+        Thread.sleep(4000);
         onView(withId(R.id.calendar_activity_screen)).check(matches(isDisplayed()));
 
         // Sign Out

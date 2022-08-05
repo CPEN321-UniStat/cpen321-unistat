@@ -50,7 +50,6 @@ public class ViewStatsActivity extends AppCompatActivity {
     private CardAdapter cardAdapter;
     private ArrayList<StatsCards> statsList;
     private RequestQueue requestQueue;
-    private TextInputLayout filterSearchBar;
     private AutoCompleteTextView filterAutoComplete;
     private Chip sortByGpa;
     private Chip sortByEntranceScore;

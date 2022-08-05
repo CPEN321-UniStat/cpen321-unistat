@@ -4,6 +4,8 @@ import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.Matchers.instanceOf;
@@ -22,11 +24,14 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import com.example.unistat.R;
+import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import espresso.SignUpGoogle;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -34,20 +39,21 @@ public class UsabilityTest {
 
     UiDevice mDevice;
     private View decorView;
+    private final SignUpGoogle signUpGoogle = new SignUpGoogle();
     @Before
     public void setUp() throws Exception{
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<ViewStatsActivity>() {
+        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<MainActivity>() {
             @Override
-            public void perform(ViewStatsActivity activity) {
+            public void perform(MainActivity activity) {
                 decorView = activity.getWindow().getDecorView();
             }
         });
     }
 
     @Rule
-    public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
-            new ActivityScenarioRule<>(ViewStatsActivity.class);
+    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(MainActivity.class);
 
 
     int listCount;
@@ -72,6 +78,8 @@ public class UsabilityTest {
 
     @Test
     public void testClicks() throws UiObjectNotFoundException, InterruptedException {
+
+        signUpGoogle.signUp(true);
 
         Thread.sleep(8000);
         onView(withId(R.id.filterAutoComplete)).check(new RecyclerViewItemCountAssertion(4));
@@ -100,6 +108,16 @@ public class UsabilityTest {
             //Unclick
             clickSortByEntranceScore();
         }
+
+        // Sign out
+        onView(withId(R.id.sign_out_activity)).perform(click());
+        onView(withId(R.id.settingsAnimation)).check(matches(isDisplayed()));
+        onView(withId(R.id.dark_mode_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.view_profile_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).check(matches(isDisplayed()));
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
     }
 
     private void clickSuggestionAtPosition(int pos) throws InterruptedException {
