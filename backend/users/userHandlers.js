@@ -84,25 +84,20 @@ const createUserStat = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else{
-        try {
-            var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
-            var lenUsers = (await existingUsers.toArray()).length
-            if (lenUsers == 0) {
-                await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-                var jsonResp = {
-                    "status": `Stat stored for ${req.body.userEmail}`
-                }
-                res.status(200).send(JSON.stringify(jsonResp))
+        var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+        var lenUsers = (await existingUsers.toArray()).length
+        if (lenUsers == 0) {
+            await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+            var jsonResp = {
+                "status": `Stat stored for ${req.body.userEmail}`
             }
-            else {
-                var jsonResp2 = {
-                    "status": "Stat already exists"
-                }
-                res.status(400).send(JSON.stringify(jsonResp2))
+            res.status(200).send(JSON.stringify(jsonResp))
+        }
+        else {
+            var jsonResp2 = {
+                "status": "Stat already exists"
             }
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+            res.status(400).send(JSON.stringify(jsonResp2))
         }
     }
 }
@@ -136,15 +131,15 @@ const getStatsByFilter = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        var jsonResp2 = {
             "status": "Invalid request: Cannot filter more than one string"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp2))
     } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
-        var jsonResp2 = {
+        var jsonResp3 = {
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
         }
-        res.status(400).send(JSON.stringify(jsonResp2))
+        res.status(400).send(JSON.stringify(jsonResp3))
     } else {
         client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
             if (err){
