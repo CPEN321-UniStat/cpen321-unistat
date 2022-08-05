@@ -338,16 +338,11 @@ const updateFirbaseToken = async (req, res) => {
         res.status(400).send(JSON.stringify(jsonRespError))
         return
     }
-    try {
-        await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
-        var jsonResp = {
-            "status": `Firebase Token updated for ${req.body.email}`
-        }
-        res.status(200).send(JSON.stringify(jsonResp))
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error))
+    await client.db("UniStatDB").collection("Users").updateOne({email : req.body.email}, {$set: req.body})
+    var jsonResp = {
+        "status": `Firebase Token updated for ${req.body.email}`
     }
+    res.status(200).send(JSON.stringify(jsonResp))
 }
 
 const isValidUser = async (email) => {

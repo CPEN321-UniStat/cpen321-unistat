@@ -1,3 +1,4 @@
+
 // This file contains all functions that handle and process user information
 
 // set up firebase authentication for notifications
@@ -28,19 +29,14 @@ const client = db.client;
         }
         res.status(400).send(JSON.stringify(jsonRespError))
     } else {
-        try {
-            await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-            await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
-            await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
-            await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
-            var jsonResp = {
-                "status": `User removed : ${req.body.userEmail}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+        await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
+        await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
+        await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
+        var jsonResp = {
+            "status": `User removed : ${req.body.userEmail}`
         }
+        res.status(200).send(JSON.stringify(jsonResp))
     }
 
 }
@@ -388,7 +384,7 @@ const sendMeetingResponse = async (userEmail) => {
     }
     if (curToken != "" && curToken != undefined) {
         try {
-            const resp = admin.messaging().sendToDevice(curToken, payload, options)
+            admin.messaging().sendToDevice(curToken, payload, options)
             return "Successfully sent notification"
         } catch (error) {
             return error
