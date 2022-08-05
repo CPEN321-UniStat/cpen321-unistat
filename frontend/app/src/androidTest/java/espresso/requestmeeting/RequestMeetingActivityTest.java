@@ -209,52 +209,6 @@ public class RequestMeetingActivityTest {
             assertFalse(calendar.exists());
         }
 
-//        /* Click on "From" time */
-//        onView(withId(R.id.start_time_text)).check(matches(isDisplayed()));
-//        onView(withId(R.id.start_time_text)).perform(click());
-//        /* Time picker is shown */
-//        UiObject time = mDevice.findObject(new UiSelector().text("SELECT START TIME"));
-//        assertTrue(time.exists());
-//
-//
-//        /* Input time of last 5th minute */
-//        UiObject2 colonText = mDevice.findObject(By.text(":"));
-//        UiObject2 colonParent = colonText.getParent();
-//        UiObject2 hourChip = colonParent.getChildren().get(0);
-//        UiObject2 minuteChip = colonParent.getChildren().get(2);
-//        UiObject amButton = mDevice.findObject(new UiSelector().text("AM"));
-//        UiObject pmButton = mDevice.findObject(new UiSelector().text("PM"));
-//        Calendar selectedTime = (Calendar) today.clone();
-//        if (startTimeAfterEnd) {
-//            if (selectedTime.get(Calendar.MINUTE) % 5 == 0)
-//                selectedTime.add(Calendar.MINUTE, -5);
-//            else
-//                selectedTime.add(Calendar.MINUTE, -5 - selectedTime.get(Calendar.MINUTE) % 5);
-//        }
-//        else {
-//            if (selectedTime.get(Calendar.MINUTE) % 5 == 0)
-//                selectedTime.add(Calendar.MINUTE, 10);
-//            else {
-//                selectedTime.add(Calendar.MINUTE, 10 - selectedTime.get(Calendar.MINUTE) % 5);
-//            }
-//        }
-//        int selectedHour = selectedTime.get(Calendar.HOUR);
-//        boolean am = selectedTime.get(Calendar.AM_PM) == Calendar.AM;
-//        int selectedMin = selectedTime.get(Calendar.MINUTE);
-//        hourChip.click();
-//        UiObject hourText = mDevice.findObject(new UiSelector().text(String.valueOf(selectedHour)).className("android.widget.TextView"));
-//        hourText.click();
-//        minuteChip.click();
-//        DecimalFormat formatter = new DecimalFormat("00");
-//        UiObject minText = mDevice.findObject(new UiSelector().text(formatter.format(selectedMin)).className("android.widget.TextView"));
-//        minText.click();
-//        if (am)
-//            amButton.click();
-//        else
-//            pmButton.click();
-//        okButton = mDevice.findObject(new UiSelector().text("OK"));
-//        okButton.click();
-
     }
 
     @Test
@@ -374,45 +328,6 @@ public class RequestMeetingActivityTest {
         okButton.click();
         /* The Calendar date picker is closed */
         assertFalse(calendar.exists());
-
-
-//        /* Click on "To" time */
-//        onView(withId(R.id.end_time_text)).check(matches(isDisplayed()));
-//        onView(withId(R.id.end_time_text)).perform(click());
-//        /* Time picker is shown */
-//        UiObject time = mDevice.findObject(new UiSelector().text("SELECT END TIME"));
-//        assertTrue(time.exists());
-//
-//
-//        /* Input time of last 5th minute */
-//        UiObject2 colonText = mDevice.findObject(By.text(":"));
-//        UiObject2 colonParent = colonText.getParent();
-//        UiObject2 hourChip = colonParent.getChildren().get(0);
-//        UiObject2 minuteChip = colonParent.getChildren().get(2);
-//        UiObject amButton = mDevice.findObject(new UiSelector().text("AM"));
-//        UiObject pmButton = mDevice.findObject(new UiSelector().text("PM"));
-//        Calendar selectedTime = (Calendar) today.clone();
-//        if (selectedTime.get(Calendar.MINUTE) % 5 == 0)
-//            selectedTime.add(Calendar.MINUTE, 25);
-//        else {
-//            selectedTime.add(Calendar.MINUTE, 25 - selectedTime.get(Calendar.MINUTE) % 5);
-//        }
-//        int selectedHour = selectedTime.get(Calendar.HOUR);
-//        boolean am = selectedTime.get(Calendar.AM_PM) == Calendar.AM;
-//        int selectedMin = selectedTime.get(Calendar.MINUTE);
-//        hourChip.click();
-//        UiObject hourText = mDevice.findObject(new UiSelector().text(String.valueOf(selectedHour)).className("android.widget.TextView"));
-//        hourText.click();
-//        minuteChip.click();
-//        DecimalFormat formatter = new DecimalFormat("00");
-//        UiObject minText = mDevice.findObject(new UiSelector().text(formatter.format(selectedMin)).className("android.widget.TextView"));
-//        minText.click();
-//        if (am)
-//            amButton.click();
-//        else
-//            pmButton.click();
-//        okButton = mDevice.findObject(new UiSelector().text("OK"));
-//        okButton.click();
 
         onView(withId(R.id.book_meeting_button)).perform(click());
         onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
