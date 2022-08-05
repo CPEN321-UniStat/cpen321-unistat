@@ -51,7 +51,6 @@ const createMeetingRequest = async (req, res) => {
 
 const getMeetingByEmail = async (req, res) => {
     const isEmailValid = await isValidUser(req.params.email)
-    console.log("isEmailValid", isEmailValid)
     if (isEmailValid) {
         var email = req.params.email;
         var month = parseInt(req.headers['month'], 10)
@@ -182,7 +181,6 @@ const getMeetingById = async (req, res) => {
             console.log(err)
             res.status(400).send(JSON.stringify(err))
         }
-        console.log("theresult", result)
         if (result.length > 0) {
             const jsonResp = {"meeting" : result}
             res.status(200).send(JSON.stringify(jsonResp))
@@ -219,7 +217,6 @@ const respondToMeeting = async (req, res) => {
         
         var meeting = client.db("UniStatDB").collection("Meetings").find(find_query, {$exists: true})
         var meetingArray = await meeting.toArray()
-
         var menteeEmail = meetingArray[0].menteeEmail;
         var mentorEmail = meetingArray[0].mentorEmail;
 
@@ -337,6 +334,7 @@ const updateFirbaseToken = async (req, res) => {
         var jsonResp = {
             "status": `Invalid user error: ${req.body.email}`
         }
+        console.log("INVALIDUSER")
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
@@ -376,8 +374,8 @@ const areValidTimes = (time1, time2) => {
 const isValidMid = async (mId) => {
     var query = {mId}
     try {
-        var existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
-        var lenMeeting = (await existingMeeting.toArray()).length
+        const existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
+        const lenMeeting = (await existingMeeting.toArray()).length
         return (lenMeeting > 0) ? 0 : 1;
     } catch (err) {
         return 1

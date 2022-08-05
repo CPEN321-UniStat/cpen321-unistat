@@ -58,7 +58,7 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
 
     private FloatingActionButton showOptimalMeetings;
     private boolean optimal = false;
-    private Boolean isMentor = null;
+    public static Boolean isMentor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,9 +68,6 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        Bundle extras = getIntent().getExtras();
-//        isMentor = extras.getBoolean("isMentor");
-        isMentor = ViewStatsActivity.isMentor;
         showOptimalMeetings = findViewById(R.id.showOptimalMeetings);
 
         if (isMentor){
@@ -154,9 +151,6 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         overridePendingTransition(R.anim.zm_fade_in, R.anim.zm_fade_out);
                         return true;
                     case R.id.sign_out_activity:
-                        Bundle extras = getIntent().getExtras();
-//                        isMentor = extras.getBoolean("isMentor");
-                        isMentor = ViewStatsActivity.isMentor;
                         Intent startSignOut = new Intent(getApplicationContext(), SettingsActivity.class);
                         if (isMentor != null) {
                             startSignOut.putExtra("isMentor", isMentor);

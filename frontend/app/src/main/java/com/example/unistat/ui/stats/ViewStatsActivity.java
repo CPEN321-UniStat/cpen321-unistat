@@ -50,7 +50,6 @@ public class ViewStatsActivity extends AppCompatActivity {
     private CardAdapter cardAdapter;
     private ArrayList<StatsCards> statsList;
     private RequestQueue requestQueue;
-    private TextInputLayout filterSearchBar;
     private AutoCompleteTextView filterAutoComplete;
     private Chip sortByGpa;
     private Chip sortByEntranceScore;
@@ -58,7 +57,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private Boolean isSortEntranceScore;
     private Boolean isFiltering;
     private String searchText;
-    public static Boolean isMentor = null;
+    private Boolean isMentor = null;
     private ArrayList<String> filterOptions;
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;
@@ -355,10 +354,12 @@ public class ViewStatsActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String currUserEmail = account.getEmail();
+        Log.d(TAG, "init value: " + isMentor);
         Log.d(TAG, "statEmail: " + userEmail + " | " + "currUserEmail: " + currUserEmail);
         if (isMentor == null || !isMentor) // Modify isMentor only if no mentor found yet, else keep changing the value
             isMentor = Objects.equals(currUserEmail, userEmail);
         Log.d(TAG, "any true? " + isMentor);
+        CalendarActivity.isMentor = isMentor;
     }
 
     @Override

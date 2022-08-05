@@ -16,8 +16,6 @@ import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
-import android.util.Log;
 import android.view.View;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.Espresso;
@@ -25,43 +23,22 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
-import androidx.test.uiautomator.UiObject2;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
-import com.example.unistat.classes.IpConstants;
-import com.example.unistat.classes.Meeting;
 import com.example.unistat.ui.login.MainActivity;
-import com.example.unistat.ui.stats.ViewStatsActivity;
 import com.google.android.material.textfield.TextInputLayout;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
-
 import espresso.SignUpGoogle;
 import espresso.ToastMatcher;
 
@@ -69,7 +46,7 @@ import espresso.ToastMatcher;
 @LargeTest
 public class RequestMeetingActivityTest {
 
-    String myDisplayName = "UniStat";
+    String myDisplayName = "UniStat Test";
     private final SignUpGoogle signUpGoogle = new SignUpGoogle();
 
     UiDevice mDevice;
@@ -408,8 +385,8 @@ public class RequestMeetingActivityTest {
 //        okButton.click();
 
         onView(withId(R.id.book_meeting_button)).perform(click());
-        onView(withText("Your meeting request was sent")).inRoot(new ToastMatcher())
-                .check(matches(isDisplayed()));
+        // Showing animation and no Toast so juts sleep
+        Thread.sleep(4000);
         onView(withId(R.id.calendar_activity_screen)).check(matches(isDisplayed()));
 
         // Sign Out

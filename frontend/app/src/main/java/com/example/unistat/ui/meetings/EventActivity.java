@@ -51,14 +51,12 @@ public class EventActivity extends AppCompatActivity {
     private Button joinMeetingButton;
     private RequestQueue requestQueue;
     private Boolean isMentor = false;
-    private Intent startIntent;
     Meeting meeting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        startIntent = getIntent();
         requestQueue = Volley.newRequestQueue(EventActivity.this);
         getAndSetMeetingInfo();
         addButtonListeners();
