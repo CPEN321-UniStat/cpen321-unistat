@@ -58,7 +58,7 @@ public class ViewStatsActivity extends AppCompatActivity {
     private Boolean isSortEntranceScore;
     private Boolean isFiltering;
     private String searchText;
-    public static Boolean isMentor = null;
+    private Boolean isMentor = null;
     private ArrayList<String> filterOptions;
     private ArrayList<String> univNameStats;
     private ArrayList<String> univMajorStats;

@@ -69,8 +69,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         StrictMode.setThreadPolicy(policy);
 
         Bundle extras = getIntent().getExtras();
-//        isMentor = extras.getBoolean("isMentor");
-        isMentor = ViewStatsActivity.isMentor;
+        isMentor = extras.getBoolean("isMentor");
+//        isMentor = ViewStatsActivity.isMentor;
         showOptimalMeetings = findViewById(R.id.showOptimalMeetings);
 
         if (isMentor){
