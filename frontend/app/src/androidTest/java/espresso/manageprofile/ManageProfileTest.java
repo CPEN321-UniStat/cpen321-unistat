@@ -12,22 +12,30 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.uiautomator.UiObjectNotFoundException;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
+import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.ui.stats.ViewStatsActivity;
 import espresso.ToastMatcher;
+import espresso.SignUpGoogle;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
 public class ManageProfileTest {
+    private final SignUpGoogle signUpGoogle = new SignUpGoogle();
+
     @Rule
-    public ActivityScenarioRule<ViewStatsActivity> activityScenarioRule =
-            new ActivityScenarioRule<>(ViewStatsActivity.class);
+    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(MainActivity.class);
 
     @Test
-    public void manageMentorProfile() throws InterruptedException {
+    public void manageMentorProfile() throws InterruptedException, UiObjectNotFoundException {
+
+        signUpGoogle.signUp(false);
 
         onView(withId(R.id.sign_out_activity)).perform(click());
 
@@ -101,15 +109,17 @@ public class ManageProfileTest {
 
         Thread.sleep(1500);
 
-        // Sign out for the next test
+        // Sign out
         onView(isRoot()).perform(pressBack());
         onView(withId(R.id.sign_out_button)).perform(click());
 
+        signUpGoogle.tearDownAccount();
     }
 
     // Need to first sign-in with a mentee account to successfully run the following test case
     @Test
-    public void manageMenteeProfile() {
+    public void manageMenteeProfile() throws InterruptedException, UiObjectNotFoundException {
+        signUpGoogle.signUp(true);
 
         onView(withId(R.id.sign_out_activity)).perform(click());
 
@@ -125,5 +135,11 @@ public class ManageProfileTest {
         onView(withId(R.id.userProfileImage)).check(matches(isDisplayed()));
         onView(withId(R.id.userNameText)).check(matches(isDisplayed()));
         onView(withId(R.id.userEmailText)).check(matches(isDisplayed()));
+
+        // Sign out
+        onView(isRoot()).perform(pressBack());
+        onView(withId(R.id.sign_out_button)).perform(click());
+
+        signUpGoogle.tearDownAccount();
     }
 }

@@ -142,5 +142,6 @@ async function makePayment(menteeEmail, mentorEmail, payment) {
 module.exports = {
     schedulePayment,
     // getCoinsByUser,
-    getUserCoins
+    getUserCoins,
+    handlePayment
 }

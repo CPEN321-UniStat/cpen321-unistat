@@ -69,8 +69,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
         StrictMode.setThreadPolicy(policy);
 
         Bundle extras = getIntent().getExtras();
-        isMentor = extras.getBoolean("isMentor");
-
+//        isMentor = extras.getBoolean("isMentor");
+        isMentor = ViewStatsActivity.isMentor;
         showOptimalMeetings = findViewById(R.id.showOptimalMeetings);
 
         if (isMentor){
@@ -155,7 +155,8 @@ public class CalendarActivity extends AppCompatActivity implements WeekView.Even
                         return true;
                     case R.id.sign_out_activity:
                         Bundle extras = getIntent().getExtras();
-                        isMentor = extras.getBoolean("isMentor");
+//                        isMentor = extras.getBoolean("isMentor");
+                        isMentor = ViewStatsActivity.isMentor;
                         Intent startSignOut = new Intent(getApplicationContext(), SettingsActivity.class);
                         if (isMentor != null) {
                             startSignOut.putExtra("isMentor", isMentor);

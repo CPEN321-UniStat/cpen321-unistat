@@ -9,6 +9,9 @@ const verify = require("../userVerification")
 require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers")
 
+require("../../meetings/__mocks__/meetingMocks")
+jest.mock("../../payments/paymentHandlers")
+
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
     "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
@@ -22,20 +25,6 @@ const mentorSampleStat = {
 
 beforeAll(async () => {
     console.log("DROPPING")
-    // client.db("UniStatDB").listCollections({name: "Users"}).next(
-    //     function (err, collectionInfo) {
-    //         if (collectionInfo) {
-    //             client.db("UniStatDB").collection("Users").drop();
-    //         }
-    //     }
-    // )
-    // client.db("UniStatDB").listCollections({name: "Stats"}).next(
-    //     function (err, collectionInfo) {
-    //         if (collectionInfo) {
-    //             client.db("UniStatDB").collection("Stats").drop();
-    //         }
-    //     }
-    // )
     var query1 = {email : "manekgujral11@gmail.com"}
     var query2 = {email : "kusharora339@gmail.com"}
     var query3 = {userEmail : "kusharora339@gmail.com"}
@@ -43,7 +32,6 @@ beforeAll(async () => {
     client.db("UniStatDB").collection("Users").deleteOne(query2);
     client.db("UniStatDB").collection("Stats").deleteOne(query3);
 })
-
 
 afterAll( () => {
     // Close the server instance after each test
@@ -695,3 +683,44 @@ describe('Test sendMeetingRequest function', () => {
         expect(res).toBe("Successfully sent notification")
      })
  })
+
+ describe("DELETE /users", () => {
+    describe("user exists in DB", () => {
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).delete("/users").send({userEmail : "manekgujral11@gmail.com"})
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).status).toBe("User removed : manekgujral11@gmail.com")
+        })
+    })
+
+    describe("user exists in DB", () => {
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).delete("/users").send({userEmail : "kusharora339@gmail.com"})
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).status).toBe("User removed : kusharora339@gmail.com")
+        })
+    })
+
+    describe("user does not exist in DB", () => {
+        test("should return a json response with status code 200", async () => {
+            const res = await request(app).delete("/users").send({userEmail : "test@gmail.com"})
+            expect(res.statusCode).toBe(200)
+            expect(JSON.parse(res.text).status).toBe("User removed : test@gmail.com")
+        })
+    })
+
+    describe("when body is missing or undefined", () => {
+        const body = [
+            {  "userEmail": "" },
+            {  "userEmail": undefined},
+            {}
+        ]
+        body.forEach(async (body) => {
+            test("should return a json response with status code 400", async () => {
+                const res = await request(app).delete("/users").send(body)
+                expect(res.statusCode).toBe(400)
+                expect(JSON.parse(res.text).status).toBe("Cannot remove user with undefined body")
+            })
+        })
+    })
+})
