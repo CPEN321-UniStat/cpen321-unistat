@@ -46,8 +46,8 @@ const mentorStat = {
 beforeAll(() => {
     console.log("DROPPING")
 
-    var query1 = {mId : meetingID}
-    client.db("UniStatDB").collection("Meetings").deleteOne(query1);
+    var query = {mId : meetingID}
+    client.db("UniStatDB").collection("Meetings").deleteOne(query);
 
     var query1 = {email : "manekgujral11@gmail.com"}
     var query2 = {email : "kusharora339@gmail.com"}
