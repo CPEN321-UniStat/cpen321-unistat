@@ -92,13 +92,12 @@ const createUserStat = async (req, res) => {
                 "status": `Stat stored for ${req.body.userEmail}`
             }
             res.status(200).send(JSON.stringify(jsonResp))
+            return
         }
-        else {
-            var jsonResp2 = {
-                "status": "Stat already exists"
-            }
-            res.status(400).send(JSON.stringify(jsonResp2))
+        var jsonResp2 = {
+            "status": "Stat already exists"
         }
+        res.status(400).send(JSON.stringify(jsonResp2))
     }
 }
 
