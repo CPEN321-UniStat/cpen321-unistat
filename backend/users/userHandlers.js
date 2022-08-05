@@ -1,4 +1,3 @@
-
 // This file contains all functions that handle and process user information
 
 // set up firebase authentication for notifications
@@ -29,14 +28,19 @@ const client = db.client;
         }
         res.status(400).send(JSON.stringify(jsonRespError))
     } else {
-        await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-        await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
-        await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
-        await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
-        var jsonResp = {
-            "status": `User removed : ${req.body.userEmail}`
+        try {
+            await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+            await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
+            await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
+            await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
+            var jsonResp = {
+                "status": `User removed : ${req.body.userEmail}`
+            }
+            res.status(200).send(JSON.stringify(jsonResp))
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
-        res.status(200).send(JSON.stringify(jsonResp))
     }
 
 }
@@ -54,12 +58,17 @@ const handleUserEntry = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else {
-        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-        console.log("exists: " + alreadyExists);
-        const jsonResp = {
-            "status": alreadyExists ? "loggedIn" : "signedUp"
+        try {
+            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+            console.log("exists: " + alreadyExists);
+            const jsonResp = {
+                "status": alreadyExists ? "loggedIn" : "signedUp"
+            }
+            res.status(200).send(JSON.stringify(jsonResp));
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error));
         }
-        res.status(200).send(JSON.stringify(jsonResp));
     }
 }
 
@@ -84,26 +93,26 @@ const createUserStat = async (req, res) => {
             "status": "Cannot create user stat with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } 
-    else{
-        var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
-        var lenUsers = (await existingUsers.toArray()).length
-        if (lenUsers > 0) {
-            const jsonResp = {
-                "status": "Stat already exists"
-            }
-            res.status(400).send(JSON.stringify(jsonResp))
-        }
-        else{
-            try {
+    } else{
+        try {
+            var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+            var lenUsers = (await existingUsers.toArray()).length
+            if (lenUsers == 0) {
                 await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-                const jsonResp = {
+                var jsonResp = {
                     "status": `Stat stored for ${req.body.userEmail}`
                 }
                 res.status(200).send(JSON.stringify(jsonResp))
-            } catch (error) {
-                res.status(400).send(JSON.stringify(error))
             }
+            else {
+                var jsonResp = {
+                    "status": "Stat already exists"
+                }
+                res.status(400).send(JSON.stringify(jsonResp))
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error))
         }
     }
 }
@@ -137,15 +146,15 @@ const getStatsByFilter = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp2 = {
+        var jsonResp = {
             "status": "Invalid request: Cannot filter more than one string"
         }
-        res.status(400).send(JSON.stringify(jsonResp2))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
-        var jsonResp3 = {
+        var jsonResp = {
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
         }
-        res.status(400).send(JSON.stringify(jsonResp3))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else {
         client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
             if (err){
@@ -204,15 +213,15 @@ const getStatsBySorting = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp2 = {
+        var jsonResp = {
             "status": "Invalid request: Cannot sort by more than one criteria"
         }
-        res.status(400).send(JSON.stringify(jsonResp2))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else if (!(Object.keys(req.body)[0] == "univGpa" || Object.keys(req.body)[0] == "univEntranceScore")) {
-        var jsonResp3 = {
+        var jsonResp = {
             "status": "Invalid request: Please make sure the sort criteria is either univGpa or univEntranceScore"
         }
-        res.status(400).send(JSON.stringify(jsonResp3))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else {
         client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
             if (err){
@@ -237,16 +246,16 @@ const getStatsByConfiguration = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length != 2) {
-        var jsonResp2 = {
+        var jsonResp = {
             "status": "Invalid request: Cannot sort/filter by more or less than one criteria for each"
         }
-        res.status(400).send(JSON.stringify(jsonResp2))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else if (!(Object.keys(req.body)[1] == "univGpa" || Object.keys(req.body)[1] == "univEntranceScore") 
                     && !(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) {
-        var jsonResp3 = {
+        var jsonResp = {
             "status": "Invalid request: Please make sure that the sort and filter configurations are correct with sort placed before the filter configuration"
         }
-        res.status(400).send(JSON.stringify(jsonResp3))
+        res.status(400).send(JSON.stringify(jsonResp))
     } else {
         client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
             if (err){
@@ -279,10 +288,10 @@ const updateStat = async (req, res) => {
     } else {
         try {
             await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
-            var jsonResp2 = {
+            var jsonResp = {
                 "status": `Stat updated for ${req.body.userEmail}`
             }
-            res.status(200).send(JSON.stringify(jsonResp2))
+            res.status(200).send(JSON.stringify(jsonResp))
         } catch (error) {
             console.log(error)
             res.status(400).send(JSON.stringify(error))
@@ -379,7 +388,7 @@ const sendMeetingResponse = async (userEmail) => {
     }
     if (curToken != "" && curToken != undefined) {
         try {
-            admin.messaging().sendToDevice(curToken, payload, options)
+            const resp = admin.messaging().sendToDevice(curToken, payload, options)
             return "Successfully sent notification"
         } catch (error) {
             return error
