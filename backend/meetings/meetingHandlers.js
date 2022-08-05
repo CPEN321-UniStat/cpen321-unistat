@@ -334,6 +334,7 @@ const updateFirbaseToken = async (req, res) => {
         var jsonResp = {
             "status": `Invalid user error: ${req.body.email}`
         }
+        console.log("INVALIDUSER")
         res.status(400).send(JSON.stringify(jsonResp))
         return
     }
