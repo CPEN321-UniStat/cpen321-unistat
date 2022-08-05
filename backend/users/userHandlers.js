@@ -273,10 +273,10 @@ const updateStat = async (req, res) => {
     } else {
         try {
             await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
-            var jsonResp = {
+            var jsonResp2 = {
                 "status": `Stat updated for ${req.body.userEmail}`
             }
-            res.status(200).send(JSON.stringify(jsonResp))
+            res.status(200).send(JSON.stringify(jsonResp2))
         } catch (error) {
             console.log(error)
             res.status(400).send(JSON.stringify(error))
