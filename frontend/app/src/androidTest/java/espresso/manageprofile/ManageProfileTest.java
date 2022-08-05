@@ -13,13 +13,11 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.uiautomator.UiObjectNotFoundException;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import com.example.unistat.R;
 import com.example.unistat.ui.login.MainActivity;
-import com.example.unistat.ui.stats.ViewStatsActivity;
 import espresso.ToastMatcher;
 import espresso.SignUpGoogle;
 

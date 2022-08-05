@@ -25,12 +25,10 @@ import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import com.example.unistat.R;
 import com.example.unistat.ui.login.MainActivity;
-import com.example.unistat.ui.stats.ViewStatsActivity;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import espresso.SignUpGoogle;
 
 @RunWith(AndroidJUnit4.class)
@@ -79,7 +77,7 @@ public class UsabilityTest {
     @Test
     public void testClicks() throws UiObjectNotFoundException, InterruptedException {
 
-        signUpGoogle.signUp(true);
+        signUpGoogle.signUp(false);
 
         Thread.sleep(8000);
         onView(withId(R.id.filterAutoComplete)).check(new RecyclerViewItemCountAssertion(4));

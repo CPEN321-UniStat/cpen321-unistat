@@ -1,6 +1,5 @@
 package espresso;
 
-import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressBack;
@@ -10,43 +9,17 @@ import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static org.junit.Assert.assertTrue;
-
-import android.content.Context;
-import android.util.Log;
-
-import androidx.test.espresso.Espresso;
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.filters.LargeTest;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiSelector;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HurlStack;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.unistat.classes.IpConstants;
-import com.example.unistat.ui.login.MainActivity;
 import com.example.unistat.R;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -176,7 +149,7 @@ public class SignUpGoogle {
             onView(isRoot()).perform(pressBack());
             onView(withId(R.id.univGpaInputEditText)).perform(typeText(String.valueOf(4.0)));
             onView(isRoot()).perform(pressBack());
-            onView(withId(R.id.univEntranceScoreInputEditText)).perform(typeText(String.valueOf(400)));
+            onView(withId(R.id.univEntranceScoreInputEditText)).perform(typeText("400"));
             onView(isRoot()).perform(pressBack());
             onView(withId(R.id.univUserBioEditText)).perform(typeText("story"));
 
