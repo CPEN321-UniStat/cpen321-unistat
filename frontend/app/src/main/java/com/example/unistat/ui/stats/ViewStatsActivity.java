@@ -37,7 +37,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.chip.Chip;
-import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.perf.metrics.AddTrace;
 import org.json.JSONArray;
 import org.json.JSONException;

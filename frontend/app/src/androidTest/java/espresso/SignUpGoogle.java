@@ -167,7 +167,7 @@ public class SignUpGoogle {
         String line;
         StringBuffer responseContent = new StringBuffer();
         try {
-            java.net.URL url = new URL(URL);
+            URL url = new URL(URL);
             connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("DELETE");

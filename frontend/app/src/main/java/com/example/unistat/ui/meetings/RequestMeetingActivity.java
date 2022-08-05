@@ -23,8 +23,6 @@ import com.example.unistat.R;
 import com.example.unistat.classes.Meeting;
 import com.example.unistat.classes.MeetingLog;
 import com.example.unistat.ui.calendar.CalendarActivity;
-import com.example.unistat.ui.login.MainActivity;
-import com.example.unistat.ui.login.SplashScreen;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.datepicker.CalendarConstraints;

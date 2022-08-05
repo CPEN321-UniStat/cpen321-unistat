@@ -35,9 +35,15 @@ import espresso.SignUpGoogle;
 @LargeTest
 public class UsabilityTest {
 
+    @Rule
+    public ActivityScenarioRule<MainActivity> activityScenarioRule =
+            new ActivityScenarioRule<>(MainActivity.class);
+
+    int listCount;
     UiDevice mDevice;
     private View decorView;
     private final SignUpGoogle signUpGoogle = new SignUpGoogle();
+
     @Before
     public void setUp() throws Exception{
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
@@ -49,12 +55,6 @@ public class UsabilityTest {
         });
     }
 
-    @Rule
-    public ActivityScenarioRule<MainActivity> activityScenarioRule =
-            new ActivityScenarioRule<>(MainActivity.class);
-
-
-    int listCount;
     public class RecyclerViewItemCountAssertion implements ViewAssertion {
         private final int expectedCount;
 
