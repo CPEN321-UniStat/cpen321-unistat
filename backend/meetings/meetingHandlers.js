@@ -331,11 +331,11 @@ const updateFirbaseToken = async (req, res) => {
     const validUser = await isValidUser(req.body.email)
     
     if (!validUser) {
-        var jsonResp = {
+        var jsonRespError = {
             "status": `Invalid user error: ${req.body.email}`
         }
         console.log("INVALIDUSER")
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonRespError))
         return
     }
     try {
