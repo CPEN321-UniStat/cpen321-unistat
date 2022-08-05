@@ -232,16 +232,16 @@ const getStatsByConfiguration = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length != 2) {
-        var jsonResp = {
+        var jsonResp2 = {
             "status": "Invalid request: Cannot sort/filter by more or less than one criteria for each"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp2))
     } else if (!(Object.keys(req.body)[1] == "univGpa" || Object.keys(req.body)[1] == "univEntranceScore") 
                     && !(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) {
-        var jsonResp = {
+        var jsonResp3 = {
             "status": "Invalid request: Please make sure that the sort and filter configurations are correct with sort placed before the filter configuration"
         }
-        res.status(400).send(JSON.stringify(jsonResp))
+        res.status(400).send(JSON.stringify(jsonResp3))
     } else {
         client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
             if (err){
