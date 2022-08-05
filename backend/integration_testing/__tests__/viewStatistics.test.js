@@ -3,6 +3,15 @@ const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const client = db.client
 
+beforeAll(() => {
+    console.log("DROPPING")
+    var query1 = {email : "manekgujral11@gmail.com"}
+    var query2 = {email : "kusharora339@gmail.com"}
+    var query3 = {userEmail : "kusharora339@gmail.com"}
+    client.db("UniStatDB").collection("Users").deleteOne(query1);
+    client.db("UniStatDB").collection("Users").deleteOne(query2);
+    client.db("UniStatDB").collection("Stats").deleteOne(query3);
+})
 
 afterAll( () => {
     // Close the server instance after each test
