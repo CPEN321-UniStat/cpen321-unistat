@@ -54,17 +54,12 @@ const handleUserEntry = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else {
-        try {
-            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-            console.log("exists: " + alreadyExists);
-            const jsonResp = {
-                "status": alreadyExists ? "loggedIn" : "signedUp"
-            }
-            res.status(200).send(JSON.stringify(jsonResp));
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error));
+        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        console.log("exists: " + alreadyExists);
+        const jsonResp = {
+            "status": alreadyExists ? "loggedIn" : "signedUp"
         }
+        res.status(200).send(JSON.stringify(jsonResp));
     }
 }
 
@@ -140,12 +135,12 @@ const getStatsByFilter = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        jsonResp = {
             "status": "Invalid request: Cannot filter more than one string"
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
-        var jsonResp = {
+        jsonResp = {
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
         }
         res.status(400).send(JSON.stringify(jsonResp))
