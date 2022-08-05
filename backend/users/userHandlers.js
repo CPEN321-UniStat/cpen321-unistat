@@ -16,34 +16,34 @@ admin.initializeApp({
 const db = require("../database/connect")
 const client = db.client;
 
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- */
- const removeUserfromDB = async (req, res) => {
-    if (req.body.userEmail == undefined || req.body.userEmail == "" || req.body == undefined) {
-        var jsonResp = {
-            "status": "Cannot remove user with undefined body"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
-    } else {
-        try {
-            await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
-            await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
-            await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
-            await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
-            var jsonResp = {
-                "status": `User removed : ${req.body.userEmail}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
-    }
+// /**
+//  * 
+//  * @param {*} req 
+//  * @param {*} res 
+//  */
+//  const removeUserfromDB = async (req, res) => {
+//     if (req.body.userEmail == undefined || req.body.userEmail == "" || req.body == undefined) {
+//         var jsonResp = {
+//             "status": "Cannot remove user with undefined body"
+//         }
+//         res.status(400).send(JSON.stringify(jsonResp))
+//     } else {
+//         try {
+//             await client.db("UniStatDB").collection("Stats").deleteOne({userEmail : req.body.userEmail})
+//             await client.db("UniStatDB").collection("Users").deleteOne({email : req.body.userEmail})
+//             await client.db("UniStatDB").collection("Meetings").deleteOne({menteeEmail : req.body.userEmail})
+//             await client.db("UniStatDB").collection("Meetings").deleteOne({mentorEmail : req.body.userEmail})
+//             var jsonResp = {
+//                 "status": `User removed : ${req.body.userEmail}`
+//             }
+//             res.status(200).send(JSON.stringify(jsonResp))
+//         } catch (error) {
+//             console.log(error)
+//             res.status(400).send(JSON.stringify(error))
+//         }
+//     }
 
-}
+// }
 
 /**
  * 
@@ -398,7 +398,7 @@ const sendMeetingResponse = async (userEmail) => {
 }
 
 module.exports = {
-    removeUserfromDB,
+    // removeUserfromDB,
     handleUserEntry,
     storeGoogleUserData,
     createUserStat,

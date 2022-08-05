@@ -684,43 +684,43 @@ describe('Test sendMeetingRequest function', () => {
      })
  })
 
- describe("DELETE /users", () => {
-    describe("user exists in DB", () => {
-        test("should return a json response with status code 200", async () => {
-            const res = await request(app).delete("/users").send({userEmail : "manekgujral11@gmail.com"})
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).status).toBe("User removed : manekgujral11@gmail.com")
-        })
-    })
+//  describe("DELETE /users", () => {
+//     describe("user exists in DB", () => {
+//         test("should return a json response with status code 200", async () => {
+//             const res = await request(app).delete("/users").send({userEmail : "manekgujral11@gmail.com"})
+//             expect(res.statusCode).toBe(200)
+//             expect(JSON.parse(res.text).status).toBe("User removed : manekgujral11@gmail.com")
+//         })
+//     })
 
-    describe("user exists in DB", () => {
-        test("should return a json response with status code 200", async () => {
-            const res = await request(app).delete("/users").send({userEmail : "kusharora339@gmail.com"})
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).status).toBe("User removed : kusharora339@gmail.com")
-        })
-    })
+//     describe("user exists in DB", () => {
+//         test("should return a json response with status code 200", async () => {
+//             const res = await request(app).delete("/users").send({userEmail : "kusharora339@gmail.com"})
+//             expect(res.statusCode).toBe(200)
+//             expect(JSON.parse(res.text).status).toBe("User removed : kusharora339@gmail.com")
+//         })
+//     })
 
-    describe("user does not exist in DB", () => {
-        test("should return a json response with status code 200", async () => {
-            const res = await request(app).delete("/users").send({userEmail : "test@gmail.com"})
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).status).toBe("User removed : test@gmail.com")
-        })
-    })
+//     describe("user does not exist in DB", () => {
+//         test("should return a json response with status code 200", async () => {
+//             const res = await request(app).delete("/users").send({userEmail : "test@gmail.com"})
+//             expect(res.statusCode).toBe(200)
+//             expect(JSON.parse(res.text).status).toBe("User removed : test@gmail.com")
+//         })
+//     })
 
-    describe("when body is missing or undefined", () => {
-        const body = [
-            {  "userEmail": "" },
-            {  "userEmail": undefined},
-            {}
-        ]
-        body.forEach(async (body) => {
-            test("should return a json response with status code 400", async () => {
-                const res = await request(app).delete("/users").send(body)
-                expect(res.statusCode).toBe(400)
-                expect(JSON.parse(res.text).status).toBe("Cannot remove user with undefined body")
-            })
-        })
-    })
-})
+//     describe("when body is missing or undefined", () => {
+//         const body = [
+//             {  "userEmail": "" },
+//             {  "userEmail": undefined},
+//             {}
+//         ]
+//         body.forEach(async (body) => {
+//             test("should return a json response with status code 400", async () => {
+//                 const res = await request(app).delete("/users").send(body)
+//                 expect(res.statusCode).toBe(400)
+//                 expect(JSON.parse(res.text).status).toBe("Cannot remove user with undefined body")
+//             })
+//         })
+//     })
+// })
