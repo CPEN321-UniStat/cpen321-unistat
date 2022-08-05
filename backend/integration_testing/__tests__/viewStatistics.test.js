@@ -35,6 +35,7 @@ describe("View Statistics use case", () => {
         describe("when the filter string is undefined", () => {
 
             test("should return a json response with status code 400", async () => {
+                await process.nextTick(() => { });
                 const res = await request(app).post("/statsByFilter").send({
                     "univName": undefined
                 })

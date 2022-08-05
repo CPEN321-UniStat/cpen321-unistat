@@ -3,6 +3,44 @@ const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const client = db.client
 
+const meetingID = 12345;
+const sampleIntegrationTestMeeting = {
+    "meetingLogs": [],
+    "menteeEmail": "manekgujral11@gmail.com",
+    "mentorEmail": "kusharora339@gmail.com",
+    "mentorName": "Mentor User",
+    "paymentAmount": 5,
+    "status": "PENDING",
+    "mColor": 0,
+    "mEndTime": {
+      "year": 2022,
+      "month": 6,
+      "dayOfMonth": 27,
+      "hourOfDay": 12,
+      "minute": 27,
+      "second": 56
+    },
+    "mId": meetingID,
+    "mName": "Integration Meeting Test",
+    "mStartTime": {
+      "year": 2022,
+      "month": 6,
+      "dayOfMonth": 27,
+      "hourOfDay": 11,
+      "minute": 27,
+      "second": 56
+    }
+}
+
+beforeAll(() => {
+    console.log("DROPPING")
+    var query1 = {mId : meetingID}
+    client.db("UniStatDB").collection("Meetings").deleteOne(query1);
+    
+    client.db("UniStatDB").collection("Meetings").insertOne(sampleIntegrationTestMeeting);
+
+})
+
 afterAll( () => {
     // Close the server instance after each test
     server.close()

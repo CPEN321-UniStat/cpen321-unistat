@@ -3,6 +3,63 @@ const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const client = db.client
 
+const menteeUser = {
+    "iss": "https://accounts.google.com",
+    "azp": "572477064370-fo6khhqfp4g0bp8k8s9fqsjn2msoqimq.apps.googleusercontent.com",
+    "aud": "572477064370-fo6khhqfp4g0bp8k8s9fqsjn2msoqimq.apps.googleusercontent.com",
+    "sub": "110978389962889292287",
+    "email": "manekgujral11@gmail.com",
+    "email_verified": true,
+    "at_hash": "B8XZ0KZ81_4blNoVFCeJJw",
+    "iat": 1659631906,
+    "exp": 1659635506,
+    "firebase_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY1OTYzMTkwOCwiZXhwIjoxNjU5NjM1NTA4LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1vNWVhZkB1bmlzdGF0LTE2NTYxMjg1OTU5MzkuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1vNWVhZkB1bmlzdGF0LTE2NTYxMjg1OTU5MzkuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMDYwODk3ODYyMjIxNjE1Nzk0NzkifQ.HU5CGo3U1iQyBoR9wttLO6bYfBcbG4oag_R2S18mAh6wjoQdTkVq8eEPYvft0fIaRsaP_5wNoN_mnmebrNT9t7U1iiGcUHcVzf8As6l3YZv46KyqHTXyRcRO-fiEVhWkWWkjKWQT1OJ5iDQUvM4lq5muuNb-YuWPMmpGq3mYb-hj7aAm-SjKNuVYmbfX843gRU8iCvW9oKxhvo3dE8-rvYC_0y4KTGkEOpJPdGDOTLJ96cjNb7yRU14Ko7_B9BRATaA_NW0hakJlardM9rl7huKpR7Gs-NktwRxbdpx-Ab_MZS_4ZDB_Byqe9TJ92XCRuKuZNBIAGEh0_XBH71b1lw",
+    "currency": 100
+}
+
+const mentorUser = {
+    "iss": "https://accounts.google.com",
+    "azp": "572477064370-fo6khhqfp4g0bp8k8s9fqsjn2msoqimq.apps.googleusercontent.com",
+    "aud": "572477064370-fo6khhqfp4g0bp8k8s9fqsjn2msoqimq.apps.googleusercontent.com",
+    "sub": "109260748916358625017",
+    "email": "kusharora339@gmail.com",
+    "email_verified": true,
+    "at_hash": "VOaaDwawAqKvc80o8CHxxQ",
+    "iat": 1659631907,
+    "exp": 1659635507,
+    "firebase_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY1OTYzMTkwOSwiZXhwIjoxNjU5NjM1NTA5LCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay1vNWVhZkB1bmlzdGF0LTE2NTYxMjg1OTU5MzkuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1vNWVhZkB1bmlzdGF0LTE2NTYxMjg1OTU5MzkuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJ1aWQiOiIxMDYwODk3ODYyMjIxNjE1Nzk0NzkifQ.i8lPQeYeTanT-B-XXtUa0DvPdoswUkY0RnarebenheSUzkkAR6JhT-aUfU5W6z5IxzMPujb4jZZCGqBNWUIXZFZD1G2VrjjgqQxY56_euEtl8OBaj5Wxuhu1bYShWXGIsqQCOgxlmtzIKvWKat0bxRz6ASjm3D6zqZ55uy67CYZUC0735MlUBYtzWw50Ai01FXSuhhyDwbLWCMt6J6M0PgNomwe5Z2IllAu86_zyOCIRysxqAObSG5n8679xiFT49doTkA3xYftorOFuG0fSRxZB-ulKJN7kxU-NRdvVvMIGhie5JDpF0KxnpCNSVhYyM0iu70rzDUgnds1e2pCUIw",
+    "currency": 100
+}
+
+const mentorStat = {
+    "userEmail": "kusharora339@gmail.com",
+    "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
+    "userName": "Mentor User",
+    "univName": "Mentor Univ",
+    "univMajor": "Mentor major",
+    "univGpa": 1,
+    "univEntranceScore": 1255,
+    "univBio": "😀🥰😄😋😚😄"
+}
+
+
+beforeAll(() => {
+    console.log("DROPPING")
+
+    var query1 = {mId : meetingID}
+    client.db("UniStatDB").collection("Meetings").deleteOne(query1);
+
+    var query1 = {email : "manekgujral11@gmail.com"}
+    var query2 = {email : "kusharora339@gmail.com"}
+    var query3 = {userEmail : "kusharora339@gmail.com"}
+    client.db("UniStatDB").collection("Users").deleteOne(query1);
+    client.db("UniStatDB").collection("Users").deleteOne(query2);
+    client.db("UniStatDB").collection("Stats").deleteOne(query3);
+    client.db("UniStatDB").collection("Users").insertOne(menteeUser);
+    client.db("UniStatDB").collection("Users").insertOne(mentorUser);
+    client.db("UniStatDB").collection("Stats").insertOne(mentorStat);
+})
+
 afterAll( () => {
     // Close the server instance after each test
     server.close()
@@ -39,11 +96,12 @@ const sampleIntegrationTestMeeting = {
 }
 
 
-// Tests for creating meeting requests
+// Tests for Requesting a Meeting
 describe("POST /meetings", () => {
     test("From an existing user to a non-existing user", async () => {
         let body = Object.assign({}, sampleIntegrationTestMeeting);
         body.mentorEmail = "invalid@gmail.com";
+        await process.nextTick(() => { });
         const res = await request(app).post("/meetings").send(body)
         expect(res.statusCode).toBe(400)
     })
@@ -113,112 +171,4 @@ describe("POST /meetings", () => {
         expect(res.statusCode).toBe(200)
     })
     
-})
-
-// Tests for getting all meetings for a user
-describe("GET /meetings/email", () => {
-    test("Get meetings for a valid user", async () => {
-        const res = await request(app).get("/meetings/kusharora339@gmail.com").set("year", 2022).set("month", 6).send()
-        expect(res.statusCode).toBe(200)
-        // expect to get the meeting that was inputted above
-        expect(JSON.parse(res.text).meetings.some(meeting => {
-            if (meeting.mId == meetingID) {
-                return true;
-            }
-            return false;
-        }))
-    })
-
-    test("Get meetings for an invalid user", async () => {
-        const res = await request(app).get("/meetings/johnwick@gmail.com").send({
-            "email": "johnwick@gmail.com",
-            "month": 6,
-            "year": 2022
-        })
-        expect(res.statusCode).toBe(400)
-    })
-})
-
-// Tests for getting all meetingsById
-describe("GET /meetingsById", () => {
-    test("Get meetingsById for a valid user", async () => {
-        const res = await request(app).post("/meetingsById").send({
-            "mId": meetingID
-        })
-        expect(res.statusCode).toBe(200)
-    })
-
-    test("Get meetingsById for an invalid user", async () => {
-        const res = await request(app).post("/meetingsById").send({
-            "mId": "invalid"
-        })
-        expect(res.statusCode).toBe(400)
-    })
-})
-
-// Tests for updating meeting status
-describe("PUT /meetings", () => {
-    test("Update meeting status with an invalid status", async () => {
-        const res = await request(app).put("/meetings").send({
-            "mId": meetingID,
-            "status": "invalid",
-            "email": "kusharora339@gmail.com"
-        })
-        expect(res.statusCode).toBe(400)
-    })
-
-    test("Update meeting status with an invalid mId", async () => {
-        const res = await request(app).put("/meetings").send({
-            "mId": "invalid",
-            "status": "declined",
-            "email": "kusharora339@gmail.com"
-        })
-        expect(res.statusCode).toBe(400)
-    })
-
-    test("Update meeting status with a user that is not the mentor in associated meeting", async () => {
-        const res = await request(app).put("/meetings").send({
-            "mId": meetingID,
-            "status": "DECLINED",
-            "email": "kusharora339@gmail.com@sample.com"
-        })
-        expect(res.statusCode).toBe(400)
-    })
-
-    test("Update meeting status with an invalid user", async () => {
-        const res = await request(app).put("/meetings").send({
-            "mId": meetingID,
-            "status": "DECLINED",
-            "email": "invalid"
-        })
-        expect(res.statusCode).toBe(400)
-    })
-
-    test("Update meeting status with a valid status and meeting ID", async () => {
-        const res = await request(app).put("/meetings").send({
-            "mId": meetingID,
-            "status": "DECLINED",
-            "email": "kusharora339@gmail.com"
-        })
-        expect(res.statusCode).toBe(200)
-    })
-})
-
-// Tests for updating a firebase token
-describe("PUT /firebaseToken", () => {
-    test("Update firebase token for a valid user", async () => {
-        const res = await request(app).put("/firebaseToken").send({
-            "email": "manekgujral11@gmail.com",
-            "firebase_token": ""
-        })
-        expect(res.statusCode).toBe(200)
-    })
-
-    test("Update firebase token for an invalid user", async () => {
-        const res = await request(app).put("/firebaseToken").send({
-            "email": "johnwick@gmail.com",
-            "firebase_token": ""
-        })
-        expect(res.statusCode).toBe(400)
-    })
 })
