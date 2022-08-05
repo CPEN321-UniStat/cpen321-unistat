@@ -6,6 +6,15 @@ import java.util.Calendar;
 import java.util.List;
 
 public class Meeting extends WeekViewEvent {
+
+    private String mentorEmail;
+    private String mentorName;
+    private String menteeName;
+    private String menteeEmail;
+    private double paymentAmount;
+    private Status status;
+    private List<MeetingLog> meetingLogs;
+
     public enum Status {
         ACCEPTED, REJECTED, PENDING
     }
@@ -18,14 +27,6 @@ public class Meeting extends WeekViewEvent {
             this.email = email;
         }
     }
-
-    private String mentorEmail;
-    private String mentorName;
-    private String menteeName;
-    private String menteeEmail;
-    private double paymentAmount;
-    private Status status;
-    private List<MeetingLog> meetingLogs;
 
     public Meeting(long id, String name, User mentee, User mentor, Calendar startTime, Calendar endTime,
                    double paymentAmount, Status status, List<MeetingLog> meetingLogs) {

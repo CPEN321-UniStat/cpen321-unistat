@@ -73,16 +73,9 @@ public class RequestMeetingActivityTest {
     private final SignUpGoogle signUpGoogle = new SignUpGoogle();
 
     UiDevice mDevice;
-    private View decorView;
     @Before
     public void setUp() throws Exception{
         mDevice = UiDevice.getInstance(InstrumentationRegistry.getInstrumentation());
-        activityScenarioRule.getScenario().onActivity(new ActivityScenario.ActivityAction<MainActivity>() {
-            @Override
-            public void perform(MainActivity activity) {
-                decorView = activity.getWindow().getDecorView();
-            }
-        });
     }
 
     @Rule

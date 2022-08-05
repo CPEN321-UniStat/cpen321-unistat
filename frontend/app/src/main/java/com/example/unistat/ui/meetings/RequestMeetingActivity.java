@@ -236,7 +236,6 @@ public class RequestMeetingActivity extends AppCompatActivity {
     }
 
     private void bookMeetingIfValid(String userEmail, boolean meetingTitleValid, boolean paymentValid, String meetingTitle, String paymentOffer) {
-        long timeNow = System.currentTimeMillis();
         String URL = IpConstants.URL + "statsByFilter";
         JSONObject body = new JSONObject();
         try {
