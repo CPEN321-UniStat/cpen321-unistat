@@ -86,8 +86,8 @@ const createUserStat = async (req, res) => {
         res.status(400).send(JSON.stringify(jsonResp))
     } 
     else{
-        var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
-        var lenUsers = (await existingUsers.toArray()).length
+        const existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+        const lenUsers = (await existingUsers.toArray()).length
         if (lenUsers > 0) {
             const jsonResp = {
                 "status": "Stat already exists"
@@ -96,10 +96,9 @@ const createUserStat = async (req, res) => {
         }
         else{
             await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-            const jsonResp = {
+            res.status(200).send(JSON.stringify({
                 "status": `Stat stored for ${req.body.userEmail}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
+            }))
         }
     }
 }
