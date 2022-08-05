@@ -84,7 +84,8 @@ const createUserStat = async (req, res) => {
             "status": "Cannot create user stat with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } else{
+    } 
+    else{
         var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
         var lenUsers = (await existingUsers.toArray()).length
         if (lenUsers > 0) {
