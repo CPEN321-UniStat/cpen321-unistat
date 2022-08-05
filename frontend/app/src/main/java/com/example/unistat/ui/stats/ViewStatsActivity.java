@@ -355,10 +355,12 @@ public class ViewStatsActivity extends AppCompatActivity {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         assert account != null;
         String currUserEmail = account.getEmail();
+        Log.d(TAG, "init value: " + isMentor);
         Log.d(TAG, "statEmail: " + userEmail + " | " + "currUserEmail: " + currUserEmail);
         if (isMentor == null || !isMentor) // Modify isMentor only if no mentor found yet, else keep changing the value
             isMentor = Objects.equals(currUserEmail, userEmail);
         Log.d(TAG, "any true? " + isMentor);
+        CalendarActivity.isMentor = isMentor;
     }
 
     @Override
