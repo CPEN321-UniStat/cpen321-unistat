@@ -55,7 +55,7 @@ public class SignUpGoogle {
 
     public void signUp(boolean isMentee) throws UiObjectNotFoundException, InterruptedException {
         UiDevice mUiDevice;
-        String popUpAccountName = "UniStat";
+        String popUpAccountName = "UniStat Test";
         String userName = "cpen321.unistat";
         String password = "unistat@123";
 
@@ -74,7 +74,7 @@ public class SignUpGoogle {
             completeSignUpFlow(isMentee);
             return;
         } else if (accountName_2.exists()) {
-            accountName_1.click();
+            accountName_2.click();
             Thread.sleep(3000);
             completeSignUpFlow(isMentee);
             return;
