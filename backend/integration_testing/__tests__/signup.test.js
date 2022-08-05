@@ -31,7 +31,7 @@ var mentorSampleStat = {
     "univBio": "😀🥰😄😋😚😄"
 }
 
-describe("Sign up and login use case", () => {
+describe("Sign up use case", () => {
 
     describe("when the user is not already in the database", () => {
 
@@ -56,34 +56,6 @@ describe("Sign up and login use case", () => {
             })
             expect(res.statusCode).toBe(200)
             expect(JSON.parse(res.text).status).toBe("signedUp")
-            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
-        })
-
-    })
-
-    describe("when the user is already in the database", () => {
-
-        test("(for mentee) should return a json response with status code 200", async () => {
-            const [,idMenteeToken] = await init.initializeUsers()
-            const fb_token = await init.initUserFbToken();
-            const res = await request(app).post("/users").send({
-                "Token": idMenteeToken, 
-                "firebase_token": fb_token
-            })
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).status).toBe("loggedIn")
-            expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
-        })
-
-        test("(for mentor) should return a json response with status code 200", async () => {
-            [idMentorToken,] = await init.initializeUsers();
-            const fb_token = await init.initUserFbToken()
-            const res = await request(app).post("/users").send({
-                "Token": idMentorToken, 
-                "firebase_token": fb_token
-            })
-            expect(res.statusCode).toBe(200)
-            expect(JSON.parse(res.text).status).toBe("loggedIn")
             expect(res.headers['content-type']).toBe('text/html; charset=utf-8')
         })
 
@@ -164,6 +136,7 @@ describe("Sign up and login use case", () => {
     
             body.forEach(async (body) => {
                 test("should return a json response with status code 400", async () => {
+                    await process.nextTick(() => { }); 
                     const res = await request(app).post("/stats").send(body)
                     expect(res.statusCode).toBe(400)
                     expect(JSON.parse(res.text).status).toBe("Cannot create user stat with undefined body")
