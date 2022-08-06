@@ -92,7 +92,6 @@ const createUserStat = async (req, res) => {
             var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
             var lenUsers = (await existingUsers.toArray()).length
             if (lenUsers > 0) {
-                const jsonResp = 
                 res.status(400).send(JSON.stringify({
                     "status": "Stat already exists"
                 }))
@@ -288,13 +287,9 @@ const updateStat = async (req, res) => {
  */
  async function storeGoogleUserData(idToken, fb_token) {
 
-    var response = null;
-    try {
-        response = await verify.userVerifier(idToken);
-    } catch (error) {
-        console.log(error)
-        throw error
-    }
+    var response = await verify.userVerifier(idToken);
+    // console.log(error)
+    // throw error
 
     console.log(response)
     // var response = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`)
