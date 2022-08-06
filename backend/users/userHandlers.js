@@ -52,24 +52,18 @@ const handleUserEntry = async (req, res) => {
         res.status(400).send(JSON.stringify({
             "status": "Cannot create user with undefined body"
         }))
-        return
-    }
-    
-    await func(req.body.Token, req.body.firebase_token, res)
-    
-}
-
-const  func = async (token, firebase_token, res) => {
-    try {
-        var alreadyExists = await storeGoogleUserData(token, firebase_token);
-        // console.log("exists: " + alreadyExists);
-        res.status(200).send(JSON.stringify({
-        "status": alreadyExists ? "loggedIn" : "signedUp"
-        }));
-    } catch (error) {
-        console.log(error)
-        res.status(400).send(JSON.stringify(error));
-    }
+    } else {
+        try {
+            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+            // console.log("exists: " + alreadyExists);
+            res.status(200).send(JSON.stringify({
+            "status": alreadyExists ? "loggedIn" : "signedUp"
+            }));
+        } catch (error) {
+            console.log(error)
+            res.status(400).send(JSON.stringify(error));
+        }
+    }    
 }
 
 // Functions for managing user stats
