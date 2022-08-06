@@ -49,18 +49,16 @@ const client = db.client;
 const handleUserEntry = async (req, res) => {
 
     if (req.body.Token == undefined || req.body.firebase_token == undefined) {
-        const jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Cannot create user with undefined body"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else {
         try {
             var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
             console.log("exists: " + alreadyExists);
-            const jsonResp = {
+            res.status(200).send(JSON.stringify({
                 "status": alreadyExists ? "loggedIn" : "signedUp"
-            }
-            res.status(200).send(JSON.stringify(jsonResp));
+            }));
         } catch (error) {
             console.log(error)
             res.status(400).send(JSON.stringify(error));
@@ -94,17 +92,16 @@ const createUserStat = async (req, res) => {
             var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
             var lenUsers = (await existingUsers.toArray()).length
             if (lenUsers > 0) {
-                const jsonResp = {
+                const jsonResp = 
+                res.status(400).send(JSON.stringify({
                     "status": "Stat already exists"
-                }
-                res.status(400).send(JSON.stringify(jsonResp))
+                }))
             }
             else{
                 await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-                const jsonResp = {
+                res.status(200).send(JSON.stringify({
                     "status": `Stat stored for ${req.body.userEmail}`
-                }
-                res.status(200).send(JSON.stringify(jsonResp))
+                }))
             }
         } catch (error) {
             console.log(error)
@@ -124,8 +121,7 @@ const getAllUserStats = async (req, res) => {
             console.log(error)
             res.status(400).send(JSON.stringify(error))
         }
-        var jsonResp = {"statData" : result.reverse()}
-        res.status(200).send(JSON.stringify(jsonResp)); // send back all stats with filter applied
+        res.status(200).send(JSON.stringify({"statData" : result.reverse()})); // send back all stats with filter applied
     }
     )
 }
@@ -204,23 +200,20 @@ const getStatsBySorting = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Cannot sort by more than one criteria"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else if (!(Object.keys(req.body)[0] == "univGpa" || Object.keys(req.body)[0] == "univEntranceScore")) {
-        var jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Please make sure the sort criteria is either univGpa or univEntranceScore"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else {
         client.db("UniStatDB").collection("Stats").find({}).sort([Object.keys(req.body)[0]]).toArray(function(err, result) {
             if (err){
                 console.log(error)
                 res.status(400).send(JSON.stringify(error))
             }
-            var jsonResp = {"statData" : result.reverse()}
-            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted applied
+            res.status(200).send(JSON.stringify({"statData" : result.reverse()})); // send back all stats sorted applied
         })
     }
 }
@@ -237,24 +230,21 @@ const getStatsByConfiguration = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length != 2) {
-        var jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Cannot sort/filter by more or less than one criteria for each"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else if (!(Object.keys(req.body)[1] == "univGpa" || Object.keys(req.body)[1] == "univEntranceScore") 
-                    && !(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) {
-        var jsonResp = {
+                    && !(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor")) { 
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Please make sure that the sort and filter configurations are correct with sort placed before the filter configuration"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else {
         client.db("UniStatDB").collection("Stats").find({[Object.keys(req.body)[0]] : Object.values(req.body)[0]}).sort([Object.keys(req.body)[1]]).toArray(function(err, result) {
             if (err){
                 console.log(error)
                 res.status(400).send(JSON.stringify(error))
             }
-            var jsonResp = {"statData" : result.reverse()}
-            res.status(200).send(JSON.stringify(jsonResp)); // send back all stats sorted by filter applied
+            res.status(200).send(JSON.stringify({"statData" : result.reverse()})); // send back all stats sorted by filter applied
         })
     }
 }
@@ -279,10 +269,9 @@ const updateStat = async (req, res) => {
     } else {
         try {
             await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
-            var jsonResp = {
+            res.status(200).send(JSON.stringify({
                 "status": `Stat updated for ${req.body.userEmail}`
-            }
-            res.status(200).send(JSON.stringify(jsonResp))
+            }))
         } catch (error) {
             console.log(error)
             res.status(400).send(JSON.stringify(error))
