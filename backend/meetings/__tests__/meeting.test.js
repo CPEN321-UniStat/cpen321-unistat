@@ -328,41 +328,41 @@ describe("PUT /meetings", () => {
 })
 
 
-//Tests for createZoomMeeting
-// describe("POST /createZoomMeeting", () => {
-//     test("Meeting Name is null", async () => {
-//         await process.nextTick(() => { });
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": null,
-//             "meetingStartTime": "2022-08-11'T'11:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00",
-//             "mId": meetingID
-//         })
-//         expect(res.statusCode).toBe(400)
-//     })
+Tests for createZoomMeeting
+describe("POST /createZoomMeeting", () => {
+    test("Meeting Name is null", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": null,
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(400)
+    })
 
-//     test("Creates a Zoom meeting", async () => {
-//         await process.nextTick(() => { });
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": "Test Meeting",
-//             "meetingStartTime": "2022-08-11'T'11:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00",
-//             "mId": meetingID
-//         })
-//         expect(res.statusCode).toBe(200)
-//     })
+    test("Creates a Zoom meeting", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(200)
+    })
 
-//     test("Start date is after end date", async () => {
-//         await process.nextTick(() => { });
-//         const res = await request(app).post("/createZoomMeeting").send({
-//             "meetingTopic": "Test Meeting",
-//             "meetingStartTime": "2022-08-11'T'14:05:00",
-//             "meetingEndTime": "2022-08-11'T'12:05:00",
-//             "mId": meetingID
-//         })
-//         expect(res.statusCode).toBe(400)
-//     })
-// })
+    test("Start date is after end date", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'14:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        expect(res.statusCode).toBe(400)
+    })
+})
 
 // Tests for updating meeting logs
 describe("PUT /updateMeetingLog", () => {
