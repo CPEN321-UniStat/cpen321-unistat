@@ -207,7 +207,7 @@ const respondToMeeting = async (req, res) => {
             "zoomPassword": req.body.zoomPassword
         }}
 
-        if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" &&req.body.status != "PENDING") {
+        if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" && req.body.status != "PENDING") {
             const jsonResp = {
                 "status": `Invalid status error`
             }

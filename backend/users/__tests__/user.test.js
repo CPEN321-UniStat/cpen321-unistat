@@ -9,9 +9,6 @@ const verify = require("../userVerification")
 require("../../payments/__mocks__/paymentMocks")
 jest.mock("../../payments/paymentHandlers")
 
-require("../../meetings/__mocks__/meetingMocks")
-jest.mock("../../payments/paymentHandlers")
-
 const mentorSampleStat = {
     "userEmail": "kusharora339@gmail.com",
     "userPhoto": "https://lh3.googleusercontent.com/a/AItbvmnZ_qSBbayg--2ZH-kFFsfVZC6v57Rv1x4Ugtg=s96-c",
