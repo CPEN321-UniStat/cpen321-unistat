@@ -142,15 +142,13 @@ const getStatsByFilter = async (req, res) => {
         }
         res.status(400).send(JSON.stringify(jsonResp))
     } else if (Object.keys(req.body).length > 1) {
-        var jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Cannot filter more than one string"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else if (!(Object.keys(req.body)[0] == "univName" || Object.keys(req.body)[0] == "univMajor" || Object.keys(req.body)[0] == "userEmail")) {
-        var jsonResp = {
+        res.status(400).send(JSON.stringify({
             "status": "Invalid request: Please make sure the filter criteria is either univName or univMajor"
-        }
-        res.status(400).send(JSON.stringify(jsonResp))
+        }))
     } else {
         client.db("UniStatDB").collection("Stats").find({ [Object.keys(req.body)[0]] : Object.values(req.body)[0] }).toArray(function(err, result) {
             if (err){
@@ -164,10 +162,9 @@ const getStatsByFilter = async (req, res) => {
                 currency.then(function(r){
                     result[0].coins = r
                     result[0].isMentor = true
-                    var jsonResp = {
+                    res.status(200).send(JSON.stringify({
                         "statData": result,
-                    }
-                    res.status(200).send(JSON.stringify(jsonResp));
+                    }));
                 }
                 ).catch(function(err){
                     console.log(err)
@@ -177,10 +174,9 @@ const getStatsByFilter = async (req, res) => {
             else if(Object.keys(req.body)[0] == "userEmail"){
                 const currency = payment.getUserCoins(Object.values(req.body)[0])
                 currency.then(function(r){
-                    var jsonResp = {
+                    res.status(200).send(JSON.stringify({
                         "statData": [{ "coins": r, "isMentor": false }]
-                    }
-                    res.status(200).send(JSON.stringify(jsonResp));
+                    }));
                 }
                 ).catch(function(err){
                     console.log(err)
@@ -188,10 +184,9 @@ const getStatsByFilter = async (req, res) => {
                 })
             }
             else{
-                var jsonResp = {
+                res.status(200).send(JSON.stringify({
                     "statData": result,
-                }
-                res.status(200).send(JSON.stringify(jsonResp));
+                }));
             }
         })
     }

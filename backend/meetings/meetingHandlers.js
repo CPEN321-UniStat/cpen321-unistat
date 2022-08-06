@@ -368,13 +368,10 @@ const areValidTimes = (time1, time2) => {
 
 const isValidMid = async (mId) => {
     var query = {mId}
-    try {
-        const existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
-        const lenMeeting = (await existingMeeting.toArray()).length
-        return (lenMeeting > 0) ? 0 : 1;
-    } catch (err) {
-        return 1
-    }
+    
+    const existingMeeting = client.db("UniStatDB").collection("Meetings").find(query, {$exists: true})
+    const lenMeeting = (await existingMeeting.toArray()).length
+    return (lenMeeting > 0) ? 0 : 1;
 }
 
 module.exports = {
