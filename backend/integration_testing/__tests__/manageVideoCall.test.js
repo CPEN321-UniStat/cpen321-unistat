@@ -2,9 +2,17 @@ const request = require('supertest')
 const {app, server} = require('../../server')
 const db = require("../../database/connect")
 const client = db.client
+const { changeTesting } = require('../../meetings/meetingHandlers')
+
 
 const meetingID = 12345;
+const { handlePayment } = require('../../payments/paymentHandlers')
+jest.mock('node-schedule');
+const schedule = require('node-schedule');
 
+schedule.scheduleJob.mockImplementation(() => {
+    handlePayment(meetingID)
+})
 const sampleIntegrationTestMeeting = {
     "meetingLogs": [],
     "menteeEmail": "manekgujral11@gmail.com",
@@ -38,6 +46,7 @@ beforeAll(() => {
     var query1 = {mId : meetingID}
     client.db("UniStatDB").collection("Meetings").deleteOne(query1);
     client.db("UniStatDB").collection("Meetings").insertOne(sampleIntegrationTestMeeting);
+    changeTesting();
 })
 
 afterAll( () => {
@@ -106,5 +115,20 @@ describe("PUT /updateMeetingLog", () => {
             }
         })
         expect(res.statusCode).toBe(400)
+    })
+})
+
+// // // Tests for createZoomMeeting
+describe("POST /createZoomMeeting", () => {
+    test("Creates a Zoom meeting", async () => {
+        await process.nextTick(() => { });
+        const res = await request(app).post("/createZoomMeeting").send({
+            "meetingTopic": "Test Meeting",
+            "meetingStartTime": "2022-08-11'T'11:05:00",
+            "meetingEndTime": "2022-08-11'T'12:05:00",
+            "mId": meetingID
+        })
+        await process.nextTick(() => { });
+        expect(res.statusCode).toBe(200)
     })
 })
