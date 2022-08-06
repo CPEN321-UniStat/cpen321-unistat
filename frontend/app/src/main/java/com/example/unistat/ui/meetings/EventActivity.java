@@ -406,7 +406,7 @@ public class EventActivity extends AppCompatActivity {
         JSONObject body = new JSONObject();
 
         Date startMeetingDate = meeting.getStartTime().getTime();
-        Date endMeetingDate = meeting.getStartTime().getTime();
+        Date endMeetingDate = meeting.getEndTime().getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 
         String meetingStartTime = formatter.format(startMeetingDate);

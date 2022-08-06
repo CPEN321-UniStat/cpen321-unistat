@@ -88,7 +88,7 @@ const optimalMeetings = async (req, res) => {
     var findQuery = {
         "$and": [
           {"status": "PENDING"},
-          {"$or": [{"menteeEmail": email}, {"mentorEmail": email}]},
+          {"mentorEmail": email},
           {"$or": [{ "mStartTime.month": {"$ne": startMonth}}, {"mStartTime.dayOfMonth": {"$gte": startDay}}]},
           {"$or": [{ "mStartTime.month": startMonth}, {"mStartTime.month": {"$gt": startMonth}}]},
           {"$or": [{ "mEndTime.month": {"$ne": endMonth}}, {"mEndTime.dayOfMonth": {"$lte": endDay}}]},
@@ -207,7 +207,7 @@ const respondToMeeting = async (req, res) => {
             "zoomPassword": req.body.zoomPassword
         }}
 
-        if (req.body.status != "ACCEPTED" && req.body.status != "DECLINED" && req.body.status != "PENDING") {
+        if (req.body.status != "ACCEPTED" && req.body.status != "REJECTED" &&req.body.status != "PENDING") {
             const jsonResp = {
                 "status": `Invalid status error`
             }

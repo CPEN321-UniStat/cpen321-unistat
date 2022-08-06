@@ -288,7 +288,7 @@ describe("PUT /meetings", () => {
         await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": "invalid",
-            "status": "DECLINED",
+            "status": "REJECTED",
             "email": "kusharora339@gmail.com"
         })
         expect(res.statusCode).toBe(400)
@@ -298,7 +298,7 @@ describe("PUT /meetings", () => {
         await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "DECLINED",
+            "status": "REJECTED",
             "email": "manekgujral11@gmail.com"
         })
         expect(res.statusCode).toBe(400)
@@ -308,7 +308,7 @@ describe("PUT /meetings", () => {
         await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "DECLINED",
+            "status": "REJECTED",
             "email": "invalid"
         })
         expect(res.statusCode).toBe(400)
@@ -318,7 +318,7 @@ describe("PUT /meetings", () => {
         await process.nextTick(() => { });
         const res = await request(app).put("/meetings").send({
             "mId": meetingID,
-            "status": "DECLINED",
+            "status": "REJECTED",
             "email": "kusharora339@gmail.com",
             "zoomId": "12345",
             "zoomPassword": "password"
