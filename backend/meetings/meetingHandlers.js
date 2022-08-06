@@ -88,7 +88,7 @@ const optimalMeetings = async (req, res) => {
     var findQuery = {
         "$and": [
           {"status": "PENDING"},
-          {"menteeEmail": email},
+          {"mentorEmail": email},
           {"$or": [{ "mStartTime.month": {"$ne": startMonth}}, {"mStartTime.dayOfMonth": {"$gte": startDay}}]},
           {"$or": [{ "mStartTime.month": startMonth}, {"mStartTime.month": {"$gt": startMonth}}]},
           {"$or": [{ "mEndTime.month": {"$ne": endMonth}}, {"mEndTime.dayOfMonth": {"$lte": endDay}}]},
