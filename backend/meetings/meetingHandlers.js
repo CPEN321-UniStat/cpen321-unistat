@@ -303,7 +303,7 @@ const createZoomMeeting = async (req, res) => {
 
     // Schedule Payment 
     try {
-        await payment.schedulePayment(req.body.meetingEndTime, req.body.mId);
+        await payment.schedulePayment(req.body.mEndTime, req.body.mId);
     } catch (error) {
         console.log("Payment failed. Error:", error)
         const jsonResp = {"status" : "Schedule payment failed"}
