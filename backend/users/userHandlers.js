@@ -54,8 +54,14 @@ const handleUserEntry = async (req, res) => {
         }))
         return
     }
+    
+    await func(req.body.Token, req.body.firebase_token, res)
+    
+}
+
+const  func = async (token, firebase_token, res) => {
     try {
-        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        var alreadyExists = await storeGoogleUserData(token, firebase_token);
         // console.log("exists: " + alreadyExists);
         res.status(200).send(JSON.stringify({
         "status": alreadyExists ? "loggedIn" : "signedUp"
@@ -64,7 +70,6 @@ const handleUserEntry = async (req, res) => {
         console.log(error)
         res.status(400).send(JSON.stringify(error));
     }
-    
 }
 
 // Functions for managing user stats
