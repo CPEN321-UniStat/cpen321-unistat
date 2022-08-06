@@ -48,22 +48,23 @@ const client = db.client;
  */
 const handleUserEntry = async (req, res) => {
 
-    // if (req.body.Token != undefined && req.body.firebase_token != undefined) {
-        try {
-            var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
-            // console.log("exists: " + alreadyExists);
-            res.status(200).send(JSON.stringify({
-            "status": alreadyExists ? "loggedIn" : "signedUp"
-            }));
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error));
-        }
-    // } else {
-    //     res.status(400).send(JSON.stringify({
-    //         "status": "Cannot create user with undefined body"
-    //     }))
-    // }
+    if (req.body.Token == undefined || req.body.firebase_token == undefined) {
+        res.status(400).send(JSON.stringify({
+            "status": "Cannot create user with undefined body"
+        }))
+        return
+    }
+    try {
+        var alreadyExists = await storeGoogleUserData(req.body.Token, req.body.firebase_token);
+        // console.log("exists: " + alreadyExists);
+        res.status(200).send(JSON.stringify({
+        "status": alreadyExists ? "loggedIn" : "signedUp"
+        }));
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error));
+    }
+    
 }
 
 // Functions for managing user stats
@@ -87,25 +88,25 @@ const createUserStat = async (req, res) => {
             "status": "Cannot create user stat with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } else{
-        try {
-            var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
-            var lenUsers = (await existingUsers.toArray()).length
-            if (lenUsers > 0) {
-                res.status(400).send(JSON.stringify({
-                    "status": "Stat already exists"
-                }))
-            }
-            else{
-                await client.db("UniStatDB").collection("Stats").insertOne(req.body)
-                res.status(200).send(JSON.stringify({
-                    "status": `Stat stored for ${req.body.userEmail}`
-                }))
-            }
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
+        return
+    }
+    try {
+        var existingUsers = client.db("UniStatDB").collection("Stats").find({userEmail: req.body.userEmail}, {$exists: true})
+        var lenUsers = (await existingUsers.toArray()).length
+        if (lenUsers > 0) {
+            res.status(400).send(JSON.stringify({
+                "status": "Stat already exists"
+            }))
         }
+        else{
+            await client.db("UniStatDB").collection("Stats").insertOne(req.body)
+            res.status(200).send(JSON.stringify({
+                "status": `Stat stored for ${req.body.userEmail}`
+            }))
+        }
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
     }
 }
 
@@ -265,16 +266,16 @@ const updateStat = async (req, res) => {
             "status": "Cannot update user stat with undefined body"
         }
         res.status(400).send(JSON.stringify(jsonResp))
-    } else {
-        try {
-            await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
-            res.status(200).send(JSON.stringify({
-                "status": `Stat updated for ${req.body.userEmail}`
-            }))
-        } catch (error) {
-            console.log(error)
-            res.status(400).send(JSON.stringify(error))
-        }
+        return
+    }
+    try {
+        await client.db("UniStatDB").collection("Stats").updateOne({userEmail : req.body.userEmail}, {$set: req.body})
+        res.status(200).send(JSON.stringify({
+            "status": `Stat updated for ${req.body.userEmail}`
+        }))
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(JSON.stringify(error))
     }
 }
 
